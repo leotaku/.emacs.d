@@ -12,7 +12,7 @@
 
 ;;; Code:
 
-;; named-progn - a macro for visually separating the init file
+;; named-progn - a macro for visually separating code in the init file
 
 (defmacro named-progn (name &rest body)
   "Just like `progn' but the macro takes an unqoted symbol as the first argument.
@@ -24,11 +24,11 @@ This symbol is simply ignored and only serves to add visual identifiers blocks o
 
 (named-progn straight-pre-setup
   (setq straight-enable-use-package-integration t
-	straight-fix-org t)
+        straight-fix-org t)
   (setq straight-check-for-modifications
-	'(find-at-startup find-when-checking check-on-save)
-	straight-recipe-repositories
-	'(org-elpa melpa emacsmirror gnu-elpa-mirror)))
+        '(find-when-checking check-on-save)
+        straight-recipe-repositories
+        '(org-elpa melpa emacsmirror gnu-elpa-mirror)))
 
 (named-progn straight-bootstrap
   (defvar bootstrap-version)
@@ -42,7 +42,8 @@ This symbol is simply ignored and only serves to add visual identifiers blocks o
            'silent 'inhibit-cookies)
         (goto-char (point-max))
         (eval-print-last-sexp)))
-    (load bootstrap-file nil 'nomessage)))
+    (load bootstrap-file nil 'nomessage))
+  (require 'straight-x))
 
 ;; emacs server
 
@@ -52,15 +53,33 @@ This symbol is simply ignored and only serves to add visual identifiers blocks o
 
 ;; intrinsic packages - these packages are needed for basic emacs functionality
 
-(named-progn use-package-setup
-  (straight-use-package 'use-package))
+(named-progn leaf-setup
+  (straight-use-package '(leaf :type git :host github
+                           :repo "conao3/leaf.el"))
+  (straight-use-package '(leaf-keywords :type git :host github
+                                        :repo "conao3/leaf-keywords.el"))
+  (require 'leaf)
+  (require 'leaf-keywords)
+  (leaf-keywords-init)
+  (defmacro use-package (name &rest args)
+    (declare (indent defun))
+    `(leaf ,name ,@args))
+  (defmacro use-config (name &rest args)
+    (declare (indent defun))
+    `(leaf ,name ,@args :leaf-defer nil))
+  (with-eval-after-load 'lispy
+    (push '(use-config . 1)
+          (alist-get 'emacs-lisp-mode lispy-tag-arity))))
 
 (named-progn no-littering-setup
   (straight-use-package 'no-littering)
   (require 'no-littering)
   (setq custom-file (no-littering-expand-etc-file-name "custom.el"))
   (setq auto-save-file-name-transforms
-	`((".*" ,(no-littering-expand-var-file-name "auto-save/") t))))
+        `((".*" ,(no-littering-expand-var-file-name "auto-save/") t))))
+
+(named-progn emacs-stupid
+  (setq custom-safe-themes t))
 
 (provide 'boilerplate-init)
 

@@ -31,6 +31,19 @@
 ;; One less file to load at startup
 (setq site-run-file nil)
 
+;; load benchmarking utility from local dir, bypassing straight.el
+(let ((dir (expand-file-name
+            "straight/build/benchmark-init"
+            user-emacs-directory)))
+  (if (file-directory-p dir)
+      (progn
+        (add-to-list 'load-path dir)
+        (require 'benchmark-init)
+        (benchmark-init/activate)
+        (require 'benchmark-init-modes)
+        (add-hook 'after-init-hook 'benchmark-init/deactivate))
+    (warn "The benchmark-init package is missing from your straight directory!")))
+
 (provide 'early-init)
 
 ;; early-init.el ends here
