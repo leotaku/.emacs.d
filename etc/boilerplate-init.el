@@ -48,8 +48,10 @@ This symbol is simply ignored and only serves to add visual identifiers blocks o
 ;; emacs server
 
 (named-progn emacs-server
+  (require 'server)
   (add-hook 'emacs-startup-hook
-	    (lambda () (server-start nil t))))
+	        (defun maybe-server-start () (unless (server-running-p)
+                                           (server-start nil t)))))
 
 ;; intrinsic packages - these packages are needed for basic emacs functionality
 
