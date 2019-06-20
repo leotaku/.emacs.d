@@ -1,4 +1,4 @@
-;;; init.el --- my emacs config for iterfast
+;;; init.el --- my emacs config for fastiter
 
 ;; run early configuration
 
@@ -10,58 +10,21 @@
 
 (use-package fi
   :straight (fi :type git :host github
-                :repo "leotaku/fi-emacs"))
-
-;; se(use-package fi :straight (fi :type git :host github :repo "leotaku/fi-emacs")) ()ngs
-
-(use-config objed
-  :straight t
+                :repo "leotaku/fi-emacs")
   :leaf-defer nil
-  :bind (("M-l" . objed-line-object)
-         (:objed-map
-          ("j" . objed-next-line)
-          ("k" . objed-previous-line)
-          ("n" . objed-kill)
-          ("p" . objed-toggle-side)))
-  :init
-  ;; (setq objed-cmd-alist nil)
-  :config
-  (defun objed-vr-replace ()
-    (interactive)
-    (save-excursion
-      (setf (point) (objed--beg))
-      (setf (mark) (objed--end))
-      (call-interactively 'vr/replace)))
-  (defun objed-vr-mark ()
-    (interactive)
-    (save-excursion
-      (setf (point) (objed--beg))
-      (setf (mark) (objed--end))
-      (call-interactively 'vr/mc-mark)))
-  (defun objed-goto-line (arg)
-    (interactive "NLine number: ")
-    (goto-line arg)
-    (objed-activate 'line))
-  (defun objed-switch-into-line (char)
-    (interactive (list (read-char "char: " t)))
-    (avy-with objed-switch-into-line
-      (avy-jump
-       (if (= 13 char)
-           "\n"
-         (regexp-quote (string char)))
-       :window-flip nil
-       :beg (objed--beg)
-       :end (objed--end)
-       :action (lambda (char)
-                 (goto-char char)
-                 (objed-quit)
-                 (objed-activate 'char)))))
-  (defun objed-swiper ()
-    (interactive)
-    (ignore-errors (swiper))
-    (objed-activate 'line))
-  (setq objed-mode-map (make-sparse-keymap))
-  (objed-mode 1))
+  :require fi-auto)
+
+;; (use-config objed
+;;   :straight t
+;;   :leaf-defer nil
+;;   :bind (("M-l" . objed-line-object)
+;;          (:objed-map
+;;           ("j" . objed-next-line)
+;;           ("k" . objed-previous-line)
+;;           ("n" . objed-kill)
+;;           ("p" . objed-toggle-side)))
+;;   :config
+;;   (objed-mode 1))
 
 (use-config sensible-keys
   :bind (("A-j" . next-line)
@@ -70,6 +33,23 @@
   (keyboard-translate ?\C-i ?\H-i)
   (keyboard-translate ?\C-m ?\H-m)
   (leaf-key "ESC" (kbd "C-g") 'key-translation-map))
+
+(use-config smart-backspace
+  :bind ((:prog-mode-map
+          ("DEL" . smart-backward-delete)))
+  :config
+  (defun smart-backward-delete ()
+    (interactive)
+    (if (region-active-p)
+        (delete-region (region-beginning)
+                       (region-end))
+      (cond ((looking-back "^")
+             (backward-delete-char 1))
+            ((looking-back (rx blank))
+             (while (looking-back (rx blank))
+               (backward-delete-char 1)))
+            (t
+             (backward-delete-char 1))))))
 
 (use-config keyfreq
   :straight t
@@ -174,6 +154,8 @@
 
 (use-package recentf
   :bind (("C-x l" . counsel-recentf))
+  :leaf-defer nil
+  :require t
   :custom
   (recentf-max-saved-items . 4000)
   (recentf-max-menu-items . 1000)
@@ -190,6 +172,10 @@
   :custom
   (nix-indent-function . 'nix-indent-line))
 
+(use-package lua-mode
+  :straight t
+  :mode "\\.lua\\'")
+
 (use-package rust-mode
   :straight t
   :mode "\\.rs\\'")
@@ -200,7 +186,7 @@
 
 (use-package markdown-mode
   :straight t
-  :mode "\\.md\\'" "\\.markdown\\'")
+  :mode (("\\.md\\'" "\\.markdown\\'") . gfm-mode))
 
 (use-package tex
   :straight (auctex :type git :host github
@@ -302,34 +288,30 @@ depending on the last command issued."
 (use-package pcre2el
   :straight t)
 
-(use-package visual-regexp-steroids
-  :straight t
-  :leaf-defer nil
+(use-package bpvr
+  :straight (bpvr :type git :host github
+                  :repo "leotaku/buffer-preview.el")
   :require t
-  :bind (("C-r" . vr/replace)
-         ("H-m" . vr/mc-mark))
-  :custom
-  (vr/engine . 'pcre2el))
+  :bind (("M-r" . bpvr/replace)))
 
 (use-package multiple-cursors
-  :straight t
-  :after visual-regexp-steroids)
+  :straight t)
 
 (use-package flycheck
   :straight t
   :commands flycheck-mode)
 
-(use-package flycheck-aspell
-  :straight (flycheck-aspell :type git :host github
-                             :repo "leotaku/flycheck-aspell")
-  :after flycheck
-  :init
-  (straight-use-package 'async)
-  :config
-  (add-to-list 'flycheck-checkers 'tex-aspell-dynamic))
+;; (use-package flycheck-aspell
+;;   :straight (flycheck-aspell :type git :host github
+;;                              :repo "leotaku/flycheck-aspell")
+;;   :after flycheck
+;;   :init
+;;   (straight-use-package 'async)
+;;   :config
+;;   (add-to-list 'flycheck-checkers 'tex-aspell-dynamic))
 
 (use-package ispell
-  :bind (("C-." . ispell-word))
+  :bind (("M-." . ispell-word))
   :init
   (setq ispell-dictionary "en_US"
         ispell-program-name "aspell"
@@ -342,10 +324,10 @@ depending on the last command issued."
     (when (bound-and-true-p flycheck-mode)
       (flycheck-buffer))))
 
-(use-package expand-region
-  :straight t
-  :bind (("M-m" . er/expand-region)
-         ("M-n" . er/contract-region)))
+;; (use-package expand-region
+;;   :straight t
+;;   :bind (("M-m" . er/expand-region)
+;;          ("M-n" . er/contract-region)))
 
 (use-package el2org
   :straight t)
@@ -393,20 +375,20 @@ depending on the last command issued."
 
 (use-package projectile
   :straight t
-  :leaf-defer nil
+  ;; FIXME: better autoloading
+  :bind (("H-M-J" . projectile-command-map))
   :custom
   (projectile-completion-system . 'ivy)
   (projectile-project-root-files-functions . '(projectile-root-top-down))
   (projectile-project-root-files . '(".git" ".bzr" ".svn" ".hg" "_darcs" ".projectile"))
+  :preface
+  (fi-auto-key (kbd "C-x p") projectile-command-map 'projectile)
   :config
   (projectile-mode 1)
-  (define-key global-map (kbd "C-x p") projectile-command-map))
+  (counsel-projectile-mode 1))
 
 (use-package counsel-projectile
-  :straight t
-  :after projectile
-  :config
-  (counsel-projectile-mode))
+  :straight t)
 
 (use-package company
   :straight t
@@ -435,8 +417,14 @@ depending on the last command issued."
           ("<return>" . magit-diff-visit-file-other-window)
           ("j" . magit-next-line)
           ("k" . magit-previous-line)
-          ("v" . set-mark-command)
-          ("C-k" . magit-discard))))
+          ("v" . magit-mark)
+          ("C-k" . magit-discard)))
+  :config
+  (defun magit-mark ()
+    (interactive)
+    (if (region-active-p)
+        (deactivate-mark)
+      (set-mark-command nil))))
 
 (use-package amx
   :straight t
@@ -447,6 +435,7 @@ depending on the last command issued."
   :straight t
   :require t
   :custom
+  (undohist-ignored-files .  '("COMMIT_EDITMSG"))
   `(undohist-directory . ,(no-littering-expand-var-file-name "undohist"))
   :config
   (undohist-initialize))
