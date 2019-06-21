@@ -392,7 +392,7 @@ depending on the last command issued."
 
 (use-package company
   :straight t
-  :require t
+  :leaf-defer nil
   :bind (:company-active-map
          ("RET" . nil)
          ("<return>" . nil)
