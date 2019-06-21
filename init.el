@@ -126,12 +126,28 @@
   (help-window-select . t))
 
 (use-config window-management
-  :bind (("C-x c" . make-frame)
-         ("C-x x" . delete-frame)))
+  :bind `(("C-x c" . make-frame)
+          ("C-x x" . delete-frame)
+          ("C-x k" . ,(defun delete-window-or-frame ()
+                        (interactive)
+                        (unless (ignore-errors (delete-window) t)
+                          (delete-frame))))))
 
 (use-package ace-window
   :straight t
   :bind (("C-x o" . ace-window)))
+
+(use-package recentf
+  :bind (("C-x l" . counsel-recentf))
+  :leaf-defer nil
+  :require t
+  :custom
+  (recentf-max-saved-items . 4000)
+  (recentf-max-menu-items . 1000)
+  :config
+  (add-to-list 'recentf-exclude no-littering-var-directory)
+  (add-to-list 'recentf-exclude no-littering-etc-directory)
+  (add-hook 'find-file-hook 'recentf-save-list))
 
 (use-package dired
   :bind ((:dired-mode-map
@@ -151,18 +167,6 @@
 (use-package savehist
   :config
   (savehist-mode 1))
-
-(use-package recentf
-  :bind (("C-x l" . counsel-recentf))
-  :leaf-defer nil
-  :require t
-  :custom
-  (recentf-max-saved-items . 4000)
-  (recentf-max-menu-items . 1000)
-  :config
-  (add-to-list 'recentf-exclude no-littering-var-directory)
-  (add-to-list 'recentf-exclude no-littering-etc-directory)
-  (add-hook 'find-file-hook 'recentf-save-list))
 
 ;; languages
 
@@ -324,10 +328,10 @@ depending on the last command issued."
     (when (bound-and-true-p flycheck-mode)
       (flycheck-buffer))))
 
-;; (use-package expand-region
-;;   :straight t
-;;   :bind (("M-m" . er/expand-region)
-;;          ("M-n" . er/contract-region)))
+(use-package expand-region
+  :straight t
+  :bind (("M-m" . er/expand-region)
+         ("M-n" . er/contract-region)))
 
 (use-package el2org
   :straight t)
