@@ -348,11 +348,7 @@ depending on the last command issued."
          ("M-n" . er/contract-region)))
 
 (use-package el2org
-  :straight t)
-
-(use-package ox-gfm
-  :straight t
-  :after el2org)
+  :straight t ox-gfm)
 
 (use-package which-key
   :straight t
