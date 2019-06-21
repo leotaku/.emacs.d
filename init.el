@@ -396,7 +396,7 @@ depending on the last command issued."
   (projectile-project-root-files-functions . '(projectile-root-top-down))
   (projectile-project-root-files . '(".git" ".bzr" ".svn" ".hg" "_darcs" ".projectile"))
   :preface
-  (fi-auto-key (kbd "C-x p") projectile-command-map 'projectile)
+  (fi-auto-bind (kbd "C-x p") projectile-command-map 'projectile)
   :config
   (projectile-mode 1)
   (counsel-projectile-mode 1))
