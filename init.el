@@ -12,7 +12,7 @@
   :straight (fi :type git :host github
                 :repo "leotaku/fi-emacs")
   :leaf-defer nil
-  :require fi-auto)
+  :require fi-auto fi-subr fi-config fi-helpers)
 
 ;; (use-config objed
 ;;   :straight t
@@ -442,22 +442,10 @@ depending on the last command issued."
 
 (use-package solarized-theme
   :straight t
+  :require t
   :init
-  (add-hook
-   'emacs-startup-hook
-   (lambda ()
-     (load-theme 'solarized-light t)
-     (custom-theme-set-faces
-      'solarized-light
-      '(region ((t . (:inherit hl-line)))))))
-  :config
-  (let ((line (face-attribute 'mode-line :underline)))
-    (set-face-attribute 'mode-line          nil :overline   line)
-    (set-face-attribute 'mode-line-inactive nil :overline   line)
-    (set-face-attribute 'mode-line-inactive nil :underline  line)
-    (set-face-attribute 'mode-line          nil :box        nil)
-    (set-face-attribute 'mode-line-inactive nil :box        nil)
-    (set-face-attribute 'mode-line-inactive nil :background "#f9f2d9")))
+  (fi-configure-gui
+   (load-theme 'solarized-light)))
 
 (use-config mode-line-other
   :config
