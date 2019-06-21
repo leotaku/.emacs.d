@@ -98,7 +98,7 @@
   (vc-follow-symlinks . t))
 
 (use-config backups
-  :custom
+  :pre-setq
   (backup-by-copying . t)
   (delete-old-versions . t)
   (kept-new-versions . 6)
@@ -110,7 +110,7 @@
   (truncate-lines . t))
 
 (use-config show-paren
-  :custom
+  :pre-setq
   (show-paren-delay . 0)
   :config
   (show-paren-mode 1))
@@ -121,7 +121,7 @@
   (tab-width . 4))
 
 (use-config sensible-errors
-  :custom
+  :pre-setq
   (command-error-function . 'named-error-function)
   :config
   (defun named-error-function (data context caller)
@@ -136,12 +136,13 @@
   :bind ((:help-mode-map
           ("j" . next-line)
           ("k" . previous-line)))
-  :custom
+  :pre-setq
   (help-window-select . t))
 
 (use-config window-management
   :bind `(("C-x c" . make-frame)
           ("C-x x" . delete-frame)
+          ("C-x j" . delete-other-windows)
           ("C-x k" . ,(defun delete-window-or-frame ()
                         (interactive)
                         (unless (ignore-errors (delete-window) t)
@@ -155,7 +156,7 @@
   :bind (("C-x l" . counsel-recentf))
   :leaf-defer nil
   :require t
-  :custom
+  :pre-setq
   (recentf-max-saved-items . 4000)
   (recentf-max-menu-items . 1000)
   :config
@@ -187,7 +188,7 @@
 (use-package nix-mode
   :straight t
   :mode "\\.nix\\'"
-  :custom
+  :pre-setq
   (nix-indent-function . 'nix-indent-line))
 
 (use-package lua-mode
@@ -270,7 +271,7 @@ depending on the last command issued."
 ;;   :hook (ielm-mode-hook . lispy-mode)
 ;;   :bind (:ielm-map
 ;;          ("<C-return>" . ielm-send-input))
-;;   :custom
+;;   :pre-setq
 ;;   (ielm-dynamic-return . nil)
 ;;   :config
 ;;   (add-hook
@@ -289,7 +290,7 @@ depending on the last command issued."
   :commands sly
   :bind ((:sly-mrepl-mode-map
           ("C-l" . comint-clear-buffer)))
-  :custom
+  :pre-setq
   (inferior-lisp-program . "sbcl"))
 
 (use-package lispy
@@ -391,7 +392,7 @@ depending on the last command issued."
   :straight t
   ;; FIXME: better autoloading
   :bind (("H-M-J" . projectile-command-map))
-  :custom
+  :pre-setq
   (projectile-completion-system . 'ivy)
   (projectile-project-root-files-functions . '(projectile-root-top-down))
   (projectile-project-root-files . '(".git" ".bzr" ".svn" ".hg" "_darcs" ".projectile"))
@@ -411,7 +412,7 @@ depending on the last command issued."
          ("RET" . nil)
          ("<return>" . nil)
          ("C-h" . nil))
-  :custom
+  :pre-setq
   (company-minimum-prefix-length . 1)
   (company-idle-delay . 0.2)
   (company-dabbrev-downcase . nil) 
@@ -448,7 +449,7 @@ depending on the last command issued."
 (use-package undohist
   :straight t
   :require t
-  :custom
+  :pre-setq
   (undohist-ignored-files .  '("COMMIT_EDITMSG"))
   `(undohist-directory . ,(no-littering-expand-var-file-name "undohist"))
   :config
