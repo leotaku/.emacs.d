@@ -39,8 +39,13 @@
   (leaf-key "ESC" (kbd "C-g") 'key-translation-map))
 
 (use-config smart-backspace
+  ;; FIXME: stupid hack
   :bind ((:prog-mode-map
-          ("DEL" . smart-backward-delete)))
+          :package emacs
+          ("<backspace>" . smart-backward-delete)))
+  :bind ((:lispy-mode-map
+          :package lispy
+          ("<backspace>" . lispy-delete-backward)))
   :config
   (defun smart-backward-delete ()
     (interactive)
