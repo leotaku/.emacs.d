@@ -31,7 +31,9 @@
          ("A-k" . previous-line))
   :config
   (keyboard-translate ?\C-i ?\H-i)
-  (keyboard-translate ?\C-m ?\H-m)
+  (fi-configure-gui
+   (keyboard-translate ?\C-i ?\H-i)
+   (keyboard-translate ?\C-m ?\H-m))
   (leaf-key "ESC" (kbd "C-g") 'key-translation-map))
 
 (use-config smart-backspace
