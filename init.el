@@ -30,7 +30,6 @@
   :bind (("A-j" . next-line)
          ("A-k" . previous-line))
   :config
-  (keyboard-translate ?\C-i ?\H-i)
   (fi-configure-gui
    (keyboard-translate ?\C-i ?\H-i)
    (keyboard-translate ?\C-m ?\H-m))
