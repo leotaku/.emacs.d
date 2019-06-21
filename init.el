@@ -55,7 +55,8 @@
   :straight t
   :require t
   :config
-  (keyfreq-mode 1))
+  (keyfreq-mode 1)
+  (keyfreq-autosave-mode 1))
 
 (use-config cursor
   :setq-default
