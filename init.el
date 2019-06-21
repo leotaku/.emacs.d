@@ -93,6 +93,10 @@
   :config
   (fset 'yes-or-no-p 'y-or-n-p))
 
+(use-config vc
+  :pre-setq
+  (vc-follow-symlinks . t))
+
 (use-config backups
   :custom
   (backup-by-copying . t)
