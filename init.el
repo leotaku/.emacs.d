@@ -26,6 +26,9 @@
 ;;   :config
 ;;   (objed-mode 1))
 
+(use-package crux
+  :straight t)
+
 (use-config sensible-keys
   :bind (("A-j" . next-line)
          ("A-k" . previous-line))
