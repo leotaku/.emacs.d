@@ -38,6 +38,13 @@
    (keyboard-translate ?\C-m ?\H-m))
   (leaf-key "ESC" (kbd "C-g") 'key-translation-map))
 
+(use-config keyfreq
+  :straight t
+  :require t
+  :config
+  (keyfreq-mode 1)
+  (keyfreq-autosave-mode 1))
+
 (use-config smart-backspace
   ;; FIXME: stupid hack
   :bind ((:prog-mode-map
@@ -59,13 +66,6 @@
                (backward-delete-char 1)))
             (t
              (backward-delete-char 1))))))
-
-(use-config keyfreq
-  :straight t
-  :require t
-  :config
-  (keyfreq-mode 1)
-  (keyfreq-autosave-mode 1))
 
 (use-config cursor
   :setq-default
