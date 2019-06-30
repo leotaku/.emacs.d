@@ -72,6 +72,11 @@ This symbol is simply ignored and only serves to add visual identifiers blocks o
   (setq auto-save-file-name-transforms
         `((".*" ,(no-littering-expand-var-file-name "auto-save/") t))))
 
+(named-progn keyfreq-setup
+  (straight-use-package 'keyfreq)
+  (keyfreq-mode 1)
+  (keyfreq-autosave-mode 1))
+
 (named-progn emacs-stupid
   (setq custom-safe-themes t))
 

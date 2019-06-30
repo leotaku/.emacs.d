@@ -14,20 +14,10 @@
   :leaf-defer nil
   :require fi-auto fi-subr fi-config fi-helpers)
 
-;; (use-config objed
-;;   :straight t
-;;   :leaf-defer nil
-;;   :bind (("M-l" . objed-line-object)
-;;          (:objed-map
-;;           ("j" . objed-next-line)
-;;           ("k" . objed-previous-line)
-;;           ("n" . objed-kill)
-;;           ("p" . objed-toggle-side)))
-;;   :config
-;;   (objed-mode 1))
+(use-package deps
+  :straight crux)
 
-(use-package crux
-  :straight t)
+;; simple keybindings
 
 (use-config sensible-keys
   :bind (("A-j" . next-line)
@@ -38,39 +28,6 @@
    (keyboard-translate ?\C-m ?\H-m))
   (leaf-key "ESC" (kbd "C-g") 'key-translation-map))
 
-(use-config keyfreq
-  :straight t
-  :require t
-  :config
-  (keyfreq-mode 1)
-  (keyfreq-autosave-mode 1))
-
-(use-config smart-backspace
-  ;; FIXME: stupid hack
-  :bind ((:prog-mode-map
-          :package emacs
-          ("<backspace>" . smart-backward-delete)))
-  :bind ((:lispy-mode-map
-          :package lispy
-          ("<backspace>" . lispy-delete-backward)))
-  :config
-  (defun smart-backward-delete ()
-    (interactive)
-    (if (region-active-p)
-        (delete-region (region-beginning)
-                       (region-end))
-      (cond ((looking-back "^")
-             (backward-delete-char 1))
-            ((looking-back (rx blank))
-             (while (looking-back (rx blank))
-               (backward-delete-char 1)))
-            (t
-             (backward-delete-char 1))))))
-
-(use-config cursor
-  :setq-default
-  (cursor-type . '(bar . 2)))
-
 (use-config bad-habits
   :bind (("<XF86Forward>" . nil)
          ("<XF86Back>" . nil)
@@ -80,6 +37,21 @@
          ;; ("<right>" . nil)
          ))
 
+(use-config misc-bindings
+  :bind (("C-c r" . revert-buffer)
+         ("C-x f" . find-file)))
+
+(use-config window-management
+  :straight ace-window
+  :bind `(("C-x o" . ace-window)
+          ("C-x c" . make-frame)
+          ("C-x x" . delete-frame)
+          ("C-x j" . delete-other-windows)
+          ("C-x k" . ,(defun delete-window-or-frame ()
+                        (interactive)
+                        (unless (ignore-errors (delete-window) t)
+                          (delete-frame))))))
+
 (use-config kill-emacs
   :config
   (defun warn-kill-emacs (func &rest args)
@@ -88,6 +60,93 @@
         (message "Fuck you!")
       (apply func args)))
   (advice-add 'kill-emacs :around 'warn-kill-emacs))
+
+(use-config sensible-errors
+  :pre-setq
+  (command-error-function . 'named-error-function)
+  :config
+  (defun named-error-function (data context caller)
+    (discard-input)
+    (ding)
+    (minibuffer-message
+     "%s%s"
+     (if caller (format "%s: " caller) "")
+     (error-message-string data))))
+
+(use-package expand-region
+  :straight t
+  :bind (("M-m" . er/expand-region)
+         ("M-n" . er/contract-region)))
+
+(use-package avy
+  :straight t
+  :bind* (("C-a" . avy-goto-word-or-subword-1)))
+
+(use-package multiple-cursors
+  :straight t
+  :bind* (("M-j" . mc/mark-next-lines)))
+
+(use-config ide-backspace
+  :bind ((:prog-mode-map
+          :package emacs
+          ("<backspace>" . ide-backspace)
+          ("<C-backspace>" . ide-backspace-word))
+         (:text-mode-map
+          :package emacs
+          ("<backspace>" . ide-backspace)
+          ("<C-backspace>" . ide-backspace-word)))
+  :config
+  (defun ide-backspace ()
+    (interactive)
+    (cond
+     ((looking-back "^[[:space:]]+")
+      (sb-delete-to-previous-line))
+     (t
+      ;; delete char normally 
+      (call-interactively 'backward-delete-char))))
+  (defun ide-backspace-word ()
+    (interactive)
+    (cond
+     ((looking-back "^[[:space:]]+")
+      (sb-delete-to-previous-line))
+     (t
+      ;; delete word normally
+      (call-interactively 'backward-kill-word))))
+  (defun ide-delete-to-previous-line ()
+    ;; delete all spaces
+    (while (not (looking-back "[\n]"))
+      (delete-char -1))
+    ;; delete final newline
+    (delete-char -1)
+    ;; go to indentation
+    (when (looking-back "[\n]")
+      (indent-according-to-mode))))
+
+(use-package smartparens
+  :straight t
+  :init
+  (require 'smartparens-config)
+  (smartparens-global-mode 1)
+  :config
+  (defun ide-insert-newlines (&rest _)
+    (newline)
+    (indent-according-to-mode)
+    (forward-line -1)
+    (indent-according-to-mode))
+  (defun ide-insert-spaces (&rest _)
+    (insert " ")
+    (backward-char))
+  (dolist (paren-type '("(" "[" "{"))
+    (sp-local-pair
+     'prog-mode paren-type nil
+     :post-handlers '((ide-insert-newlines "RET")
+                      (ide-insert-spaces "SPC")))))
+
+;; settings
+
+(use-config cursor
+  :setq-default
+  (cursor-type . '(bar . 2)))
 
 (use-config yes-or-no-query
   :config
@@ -120,17 +179,11 @@
   (indent-tabs-mode . nil)
   (tab-width . 4))
 
-(use-config sensible-errors
-  :pre-setq
-  (command-error-function . 'named-error-function)
+;; builtin modes
+
+(use-package savehist
   :config
-  (defun named-error-function (data context caller)
-    (discard-input)
-    (ding)
-    (minibuffer-message
-     "%s%s"
-     (if caller (format "%s: " caller) "")
-     (error-message-string data))))
+  (savehist-mode 1))
 
 (use-package help
   :bind ((:help-mode-map
@@ -138,19 +191,6 @@
           ("k" . previous-line)))
   :pre-setq
   (help-window-select . t))
-
-(use-config window-management
-  :bind `(("C-x c" . make-frame)
-          ("C-x x" . delete-frame)
-          ("C-x j" . delete-other-windows)
-          ("C-x k" . ,(defun delete-window-or-frame ()
-                        (interactive)
-                        (unless (ignore-errors (delete-window) t)
-                          (delete-frame))))))
-
-(use-package ace-window
-  :straight t
-  :bind (("C-x o" . ace-window)))
 
 (use-package recentf
   :bind (("C-x l" . counsel-recentf))
@@ -171,19 +211,7 @@
           ("s" . swiper)
           ("DEL" . dired-up-directory))))
 
-;; bindings
-
-(use-config revert
-  :bind (("C-c r" . revert-buffer)))
-
-(use-config file-access
-  :bind (("C-x f" . find-file)))
-
-(use-package savehist
-  :config
-  (savehist-mode 1))
-
-;; languages
+;; major modes
 
 (use-package nix-mode
   :straight t
@@ -244,14 +272,12 @@ depending on the last command issued."
 (use-package emacs-lisp-mode
   :mode "\\.el\\'"
   :hook
-  (emacs-lisp-mode-hook . lispy-mode)
-  (emacs-lisp-mode-hook . aggressive-indent-mode))
+  (emacs-lisp-mode-hook . lispy-mode))
 
 (use-package common-lisp-mode
   :mode ("\\.cl\\'" "\\.lisp\\'")
   :hook
   (lisp-mode-hook . lispy-mode)
-  (lisp-mode-hook . aggressive-indent-mode)
   :config
   (setq-mode-local
    lisp-mode lisp-indent-function
@@ -294,62 +320,21 @@ depending on the last command issued."
   (inferior-lisp-program . "sbcl"))
 
 (use-package lispy
-  :straight t
-  :hook ((minibuffer-setup-hook . conditionally-enable-lispy))
+  :straight t aggressive-indent
+  :hook ((minibuffer-setup-hook . conditionally-enable-lispy)
+         (lispy-mode-hook . aggressive-indent-mode))
   :config
   (defun conditionally-enable-lispy ()
     (when (eq this-command 'eval-expression)
       (lispy-mode 1))))
 
-(use-package aggressive-indent
-  :straight t)
-
-(use-package pcre2el
-  :straight t)
-
-(use-package bpvr
-  :straight (bpvr :type git :host github
-                  :repo "leotaku/buffer-preview.el")
-  :require t
-  :bind (("M-r" . bpvr/replace)))
-
-(use-package multiple-cursors
-  :straight t)
-
-(use-package flycheck
-  :straight t
-  :commands flycheck-mode)
-
-;; (use-package flycheck-aspell
-;;   :straight (flycheck-aspell :type git :host github
-;;                              :repo "leotaku/flycheck-aspell")
-;;   :after flycheck
-;;   :init
-;;   (straight-use-package 'async)
-;;   :config
-;;   (add-to-list 'flycheck-checkers 'tex-aspell-dynamic))
-
 (use-package ispell
-  :bind (("M-." . ispell-word))
+  :bind (("C-." . ispell-word))
   :init
   (setq ispell-dictionary "en_US"
         ispell-program-name "aspell"
         ispell-really-hunspell nil
-        ispell-silently-savep t) 
-  :config
-  (advice-add
-   'ispell-pdict-save :after 'flycheck-maybe-recheck)
-  (defun flycheck-maybe-recheck (_)
-    (when (bound-and-true-p flycheck-mode)
-      (flycheck-buffer))))
-
-(use-package expand-region
-  :straight t
-  :bind (("M-m" . er/expand-region)
-         ("M-n" . er/contract-region)))
-
-(use-package el2org
-  :straight t ox-gfm)
+        ispell-silently-savep t))
 
 (use-package which-key
   :straight t
@@ -389,9 +374,9 @@ depending on the last command issued."
   (counsel-mode 1))
 
 (use-package projectile
-  :straight t
+  :straight t counsel-projectile
   ;; FIXME: better autoloading
-  :bind (("H-M-J" . projectile-command-map))
+  :commands projectile-commander
   :pre-setq
   (projectile-completion-system . 'ivy)
   (projectile-project-root-files-functions . '(projectile-root-top-down))
@@ -402,16 +387,15 @@ depending on the last command issued."
   (projectile-mode 1)
   (counsel-projectile-mode 1))
 
-(use-package counsel-projectile
-  :straight t)
-
 (use-package company
   :straight t
   :leaf-defer nil
   :bind (:company-active-map
          ("RET" . nil)
          ("<return>" . nil)
-         ("C-h" . nil))
+         ("C-h" . nil)
+         ("<tab>" . company-complete-common-or-cycle)
+         ("<backtab>" . company-select-previous))
   :pre-setq
   (company-minimum-prefix-length . 1)
   (company-idle-delay . 0.2)
@@ -424,6 +408,20 @@ depending on the last command issued."
                          company-echo-metadata-frontend))
   :config
   (global-company-mode 1))
+
+(use-package amx
+  :straight t
+  :config
+  (amx-mode 1))
+
+(use-package undohist
+  :straight t
+  :require t
+  :pre-setq
+  (undohist-ignored-files .  '("COMMIT_EDITMSG"))
+  `(undohist-directory . ,(no-littering-expand-var-file-name "undohist"))
+  :config
+  (undohist-initialize))
 
 (use-package magit
   :straight t
@@ -441,19 +439,8 @@ depending on the last command issued."
         (deactivate-mark)
       (set-mark-command nil))))
 
-(use-package amx
-  :straight t
-  :config
-  (amx-mode 1))
-
-(use-package undohist
-  :straight t
-  :require t
-  :pre-setq
-  (undohist-ignored-files .  '("COMMIT_EDITMSG"))
-  `(undohist-directory . ,(no-littering-expand-var-file-name "undohist"))
-  :config
-  (undohist-initialize))
+(use-package el2org
+  :straight t ox-gfm)
 
 (use-package solarized-theme
   :straight t
