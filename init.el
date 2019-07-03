@@ -76,7 +76,21 @@
 (use-package expand-region
   :straight t
   :bind (("M-m" . er/expand-region)
-         ("M-n" . er/contract-region)))
+         ("M-n" . er/contract-region))
+  :config
+  (setq er/try-expand-list
+        (fi-insert-after
+         er/try-expand-list
+         'er/mark-defun
+         'er/mark-text-paragraph))
+  :config
+  (defun er/mark-line ()
+    (interactive)
+    (setf (point) (point-at-eol))
+    (forward-char)
+    (set-mark (point))
+    (backward-char)
+    (setf (point) (point-at-bol))))
 
 (use-package avy
   :straight t
