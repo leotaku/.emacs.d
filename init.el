@@ -143,10 +143,9 @@
 
 (use-package smartparens
   :straight t
-  :init
-  (require 'smartparens-config)
-  (smartparens-global-mode 1)
+  :hook (prog-mode-hook . smartparens-mode)
   :config
+  (require 'smartparens-config)
   (defun ide-insert-newlines (&rest _)
     (newline)
     (indent-according-to-mode)
