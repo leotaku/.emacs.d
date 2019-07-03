@@ -459,6 +459,10 @@ depending on the last command issued."
 (use-package el2org
   :straight t ox-gfm)
 
+(use-config sensible-gui
+  :pre-setq
+  (frame-resize-pixelwise . t))
+
 (use-package solarized-theme
   :straight t
   :require t
