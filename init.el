@@ -29,7 +29,8 @@
   (leaf-key "ESC" (kbd "C-g") 'key-translation-map))
 
 (use-package ryo-modal
-  :straight t kakoune
+  :straight t kakoune (theist-mode :type git :host github
+                                   :repo "leotaku/theist-mode")
   :require viper expand-region
   :commands ryo-modal-mode
   :bind* (("<f6>" . ryo-modal-mode-back))
