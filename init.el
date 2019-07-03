@@ -406,7 +406,7 @@ depending on the last command issued."
 
 (use-package company
   :straight t
-  :hook (prog-mode . company-mode)
+  :hook ((prog-mode-hook text-mode-hook) . company-mode)
   :bind (:company-active-map
          ("RET" . nil)
          ("<return>" . nil)
@@ -422,9 +422,7 @@ depending on the last command issued."
   (company-tooltip-align-annotations . t)
   (company-frontends . '(company-tng-frontend
                          company-pseudo-tooltip-frontend
-                         company-echo-metadata-frontend))
-  :config
-  (global-company-mode 1))
+                         company-echo-metadata-frontend)))
 
 (use-package amx
   :straight t
