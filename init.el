@@ -108,13 +108,18 @@
          (:text-mode-map
           :package emacs
           ("<backspace>" . ide-backspace)
-          ("<C-backspace>" . ide-backspace-word)))
+          ("<C-backspace>" . ide-backspace-word))
+         (:lispy-mode-map
+          :package lispy
+          ("<backspace>" . lispy-delete-backward)))
   :config
   (defun ide-backspace ()
     (interactive)
     (cond
+     ((region-active-p)
+      (kill-region (region-beginning) (region-end)))
      ((looking-back "^[[:space:]]+")
-      (sb-delete-to-previous-line))
+      (ide-delete-to-previous-line))
      (t
       ;; delete char normally 
       (call-interactively 'backward-delete-char))))
@@ -122,7 +127,7 @@
     (interactive)
     (cond
      ((looking-back "^[[:space:]]+")
-      (sb-delete-to-previous-line))
+      (ide-delete-to-previous-line))
      (t
       ;; delete word normally
       (call-interactively 'backward-kill-word))))
