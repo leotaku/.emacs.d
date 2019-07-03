@@ -399,14 +399,14 @@ depending on the last command issued."
   (projectile-project-root-files-functions . '(projectile-root-top-down))
   (projectile-project-root-files . '(".git" ".bzr" ".svn" ".hg" "_darcs" ".projectile"))
   :preface
-  (fi-auto-bind (kbd "C-x p") projectile-command-map 'projectile)
+  (fi-auto-keymap (kbd "C-x p") 'projectile-command-map 'projectile)
   :config
   (projectile-mode 1)
   (counsel-projectile-mode 1))
 
 (use-package company
   :straight t
-  :leaf-defer nil
+  :hook (prog-mode . company-mode)
   :bind (:company-active-map
          ("RET" . nil)
          ("<return>" . nil)
