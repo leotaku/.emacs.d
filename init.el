@@ -33,11 +33,11 @@
                                    :repo "leotaku/theist-mode")
   :require viper expand-region
   :commands ryo-modal-mode
-  :bind* (("<f6>" . ryo-modal-mode-back))
+  :bind* (("<f7>" . ryo-modal-mode-back))
   :config
   (ryo-modal-keys
    ;; back to insert
-   ("<f6>" forward-char :exit t)
+   ("<f7>" forward-char :exit t)
    ("i" ryo-modal-mode)
    ("I" back-to-indentation :exit t)
    ("a" forward-char :exit t)
