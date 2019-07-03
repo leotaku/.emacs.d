@@ -465,7 +465,6 @@ depending on the last command issued."
 
 (use-package solarized-theme
   :straight t
-  :require t
   :init
   (fi-configure-gui
    (load-theme 'solarized-light)))
