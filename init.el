@@ -28,6 +28,89 @@
    (keyboard-translate ?\C-m ?\H-m))
   (leaf-key "ESC" (kbd "C-g") 'key-translation-map))
 
+(use-package ryo-modal
+  :straight t kakoune
+  :require viper expand-region
+  :commands ryo-modal-mode
+  :bind* (("<f6>" . ryo-modal-mode-back))
+  :config
+  (ryo-modal-keys
+   ;; back to insert
+   ("<f6>" forward-char :exit t)
+   ("i" ryo-modal-mode)
+   ("I" back-to-indentation :exit t)
+   ("a" forward-char :exit t)
+   ("A" move-end-of-line :exit t)
+   ;; hjkl
+   ("h" backward-char :first '(do-deactivate-mark))
+   ("k" previous-line :first '(do-deactivate-mark))
+   ("j" next-line :first '(do-deactivate-mark))
+   ("l" forward-char :first '(do-deactivate-mark))
+   ;; movement
+   ("w" viper-forward-word)
+   ("W" viper-forward-Word)
+   ("b" viper-backward-word)
+   ("B" viper-backward-Word)
+   ("e" viper-end-of-word)
+   ("E" viper-end-of-Word)
+   ;; marking
+   ("m" er/expand-region)
+   ("n" er/contract-region)
+   ;; actions
+   ("d" kill-region)
+   ("y" copy-region-as-kill)
+   ;; theist
+   ("c" theist-C-c)
+   ("x" theist-C-x)
+   ;; misc
+   ("g" fi-universal-quit)
+   ("o" exchange-point-and-mark)
+   ("p" yank)
+   ("u" fi-undo-only-global)
+   ("U" fi-undo-global)
+   ("s" avy-goto-word-or-subword-1)
+   ("f" viper-find-char-forward)
+   ("f" viper-find-char-forward)
+   ("t" viper-goto-char-forward)
+   ;; ("n" isearch-repeat-forward)
+   ;; ("N" isearch-repeat-backward)
+   ("SPC" mc/mark-down-or-more)
+   ;; digits
+   ("1" digit-argument)
+   ("2" digit-argument)
+   ("3" digit-argument)
+   ("4" digit-argument)
+   ("5" digit-argument)
+   ("6" digit-argument)
+   ("7" digit-argument)
+   ("8" digit-argument)
+   ("9" digit-argument)
+   ("0" digit-argument)
+   ("-" negative-argument))
+  :init
+  (defun mc/mark-down-or-more (arg)
+    (interactive "p")
+    (if (region-active-p)
+        (dotimes (_ arg) (mc/mark-next-like-this 1))
+      (mc/mark-next-lines arg)))
+  (defun do-deactivate-mark ()
+    (interactive)
+    (deactivate-mark))
+  (defun ryo-modal-mode-back (arg)
+    (interactive "p")
+    (ignore-errors (backward-char))
+    (ryo-modal-mode arg))
+  :config
+  (setq ryo-modal-cursor-type 'box)
+  (defun advice-ryo-modal (func args)
+    (let ((inhibit-message t))
+      (funcall func args)))
+  (advice-add 'ryo-modal-mode :around 'advice-ryo-modal)
+  (fset 'ryo-modal--cursor-color-update (lambda (&rest _) nil))
+  (add-to-list
+   'emulation-mode-map-alists
+   `((ryo-modal-mode . ,ryo-modal-mode-map))))
+
 (use-config bad-habits
   :bind (("<XF86Forward>" . nil)
          ("<XF86Back>" . nil)
@@ -38,19 +121,21 @@
          ))
 
 (use-config misc-bindings
-  :bind (("C-c r" . revert-buffer)
-         ("C-x f" . find-file)))
+  :bind (("C-x r" . revert-buffer)
+         ("C-x f" . find-file)
+         ("C-x s" . save-buffer)))
 
 (use-config window-management
   :straight ace-window
   :bind `(("C-x o" . ace-window)
           ("C-x c" . make-frame)
-          ("C-x x" . delete-frame)
           ("C-x j" . delete-other-windows)
+          ("C-x d" . kill-buffer)
           ("C-x k" . ,(defun delete-window-or-frame ()
                         (interactive)
                         (unless (ignore-errors (delete-window) t)
-                          (delete-frame))))))
+                          (unless (ignore-errors (delete-frame) t)
+                            (save-buffers-kill-emacs)))))))
 
 (use-config kill-emacs
   :config
