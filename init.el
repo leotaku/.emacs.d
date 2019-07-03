@@ -219,8 +219,7 @@
   (recentf-max-menu-items . 1000)
   :config
   (add-to-list 'recentf-exclude no-littering-var-directory)
-  (add-to-list 'recentf-exclude no-littering-etc-directory)
-  (add-hook 'find-file-hook 'recentf-save-list))
+  (add-to-list 'recentf-exclude no-littering-etc-directory))
 
 (use-package dired
   :bind ((:dired-mode-map
