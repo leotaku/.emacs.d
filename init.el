@@ -440,6 +440,13 @@ depending on the last command issued."
   :config
   (undohist-initialize))
 
+(use-package yankpad
+  :straight t
+  :bind (("C-x y" . yankpad-insert)
+         ("C-x Y" . yankpad-capture-snippet))
+  :pre-setq
+  `(yankpad-file . ,(expand-file-name "yankpad.org" "~")))
+
 (use-package magit
   :straight t
   :bind (("C-x g" . magit-status)
