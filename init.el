@@ -1,25 +1,78 @@
 ;;; init.el --- my emacs config for fastiter
 
-;; run early configuration
+;; early-init.el before 27.01
 
-(push (expand-file-name "etc" user-emacs-directory) load-path)
-(require 'early-init)
-(require 'boilerplate-init)
+(load
+ (expand-file-name "early-init.el" user-emacs-directory))
 
-;; fastiter
+;;;; fastiter
 
-(use-package fi
-  :straight (fi :type git :host github
-                :repo "leotaku/fi-emacs")
-  :leaf-defer nil
-  :require fi-auto fi-subr fi-config fi-helpers)
+(prog1 "fi-setup"
+  (straight-use-package
+   '(fi :type git :host github
+	    :repo "leotaku/fi-emacs"
+	    :files ("*.el")))
+  (straight-use-package 'leaf)
+  (straight-use-package 'leaf-keywords)
+  ;; (require 'bk-block)
+  (require 'fi-subr)
+  (require 'fi-auto)
+  (require 'fi-config)
+  (require 'fi-helpers)
+  (require 'leaf)
+  (leaf-keywords-init))
 
-(use-package deps
+;; configuration dependencies
+
+(leaf benchmark-init
+  :straight t
+  :require benchmark-init-modes)
+
+(leaf no-littering
+  :straight t
+  :require no-littering
+  :config
+  (setq custom-file (no-littering-expand-etc-file-name "custom.el"))
+  (setq auto-save-file-name-transforms
+	`((".*" ,(no-littering-expand-var-file-name "auto-save/") t))))
+
+(leaf dependencies
   :straight crux)
+
+(leaf keyfreq
+  :straight t
+  :config (keyfreq-mode) (keyfreq-autosave-mode))
+
+;; emacs configuration
+
+;; (leaf configuration
+;;   :load "lisp/basics.el")
+;; (leaf visual
+;;   :load "lisp/visual.el")
+;; (leaf usability
+;;   :load "lisp/usability.el")
+;; (leaf major
+;;   :load "lisp/major.el")
+
+(load-file (expand-file-name "lisp/basics.el" user-emacs-directory))
+(load-file (expand-file-name "lisp/visual.el" user-emacs-directory))
+(load-file (expand-file-name "lisp/usability.el" user-emacs-directory))
+(load-file (expand-file-name "lisp/major.el" user-emacs-directory))
+
+;; keytheme
+
+(leaf theist-mode
+  :straight (theist-mode :type git :host github
+                         :repo "leotaku/theist-mode"))
+
+(leaf keytheme
+  :config (load-file (expand-file-name "lisp/keytheme.el" user-emacs-directory))
+  :custom
+  (viper-mode . nil))
 
 ;; simple keybindings
 
-(use-config sensible-keys
+(leaf sensible-keys
   :bind (("A-j" . next-line)
          ("A-k" . previous-line))
   :config
@@ -28,117 +81,35 @@
    (keyboard-translate ?\C-m ?\H-m))
   (leaf-key "ESC" (kbd "C-g") 'key-translation-map))
 
-(use-package ryo-modal
-  :straight t kakoune (theist-mode :type git :host github
-                                   :repo "leotaku/theist-mode")
-  :require viper expand-region
-  :commands ryo-modal-mode
-  :bind* (("<f7>" . ryo-modal-mode-back))
-  :config
-  (ryo-modal-keys
-   ;; back to insert
-   ("<f7>" forward-char :exit t)
-   ("i" ryo-modal-mode)
-   ("I" back-to-indentation :exit t)
-   ("a" forward-char :exit t)
-   ("A" move-end-of-line :exit t)
-   ;; hjkl
-   ("h" backward-char :first '(do-deactivate-mark))
-   ("k" previous-line :first '(do-deactivate-mark))
-   ("j" next-line :first '(do-deactivate-mark))
-   ("l" forward-char :first '(do-deactivate-mark))
-   ;; movement
-   ("w" viper-forward-word)
-   ("W" viper-forward-Word)
-   ("b" viper-backward-word)
-   ("B" viper-backward-Word)
-   ("e" viper-end-of-word)
-   ("E" viper-end-of-Word)
-   ;; marking
-   ("m" er/expand-region)
-   ("n" er/contract-region)
-   ;; actions
-   ("d" kill-region)
-   ("y" copy-region-as-kill)
-   ;; theist
-   ("c" theist-C-c)
-   ("x" theist-C-x)
-   ;; misc
-   ("g" fi-universal-quit)
-   ("o" exchange-point-and-mark)
-   ("p" yank)
-   ("u" fi-undo-only-global)
-   ("U" fi-undo-global)
-   ("s" avy-goto-word-or-subword-1)
-   ("f" viper-find-char-forward)
-   ("f" viper-find-char-forward)
-   ("t" viper-goto-char-forward)
-   ;; ("n" isearch-repeat-forward)
-   ;; ("N" isearch-repeat-backward)
-   ("SPC" mc/mark-down-or-more)
-   ;; digits
-   ("1" digit-argument)
-   ("2" digit-argument)
-   ("3" digit-argument)
-   ("4" digit-argument)
-   ("5" digit-argument)
-   ("6" digit-argument)
-   ("7" digit-argument)
-   ("8" digit-argument)
-   ("9" digit-argument)
-   ("0" digit-argument)
-   ("-" negative-argument))
-  :init
-  (defun mc/mark-down-or-more (arg)
-    (interactive "p")
-    (if (region-active-p)
-        (dotimes (_ arg) (mc/mark-next-like-this 1))
-      (mc/mark-next-lines arg)))
-  (defun do-deactivate-mark ()
-    (interactive)
-    (deactivate-mark))
-  (defun ryo-modal-mode-back (arg)
-    (interactive "p")
-    (ignore-errors (backward-char))
-    (ryo-modal-mode arg))
-  :config
-  (setq ryo-modal-cursor-type 'box)
-  (defun advice-ryo-modal (func args)
-    (let ((inhibit-message t))
-      (funcall func args)))
-  (advice-add 'ryo-modal-mode :around 'advice-ryo-modal)
-  (fset 'ryo-modal--cursor-color-update (lambda (&rest _) nil))
-  (add-to-list
-   'emulation-mode-map-alists
-   `((ryo-modal-mode . ,ryo-modal-mode-map))))
-
-(use-config bad-habits
+(leaf bad-habits
   :bind (("<XF86Forward>" . nil)
          ("<XF86Back>" . nil)
-         ;; ("<up>" . nil)
-         ;; ("<down>" . nil)
-         ;; ("<left>" . nil)
-         ;; ("<right>" . nil)
-         ))
+         ("<prior>" . nil)
+         ("<next>" . nil)))
 
-(use-config misc-bindings
+(leaf misc-bindings
   :bind (("C-x r" . revert-buffer)
          ("C-x f" . find-file)
+         ("C-x e" . eval-defun)
          ("C-x s" . save-buffer)))
 
-(use-config window-management
+(leaf window-management
   :straight ace-window
-  :bind `(("C-x o" . ace-window)
-          ("C-x c" . make-frame)
-          ("C-x j" . delete-other-windows)
-          ("C-x d" . kill-buffer)
-          ("C-x k" . ,(defun delete-window-or-frame ()
-                        (interactive)
-                        (unless (ignore-errors (delete-window) t)
-                          (unless (ignore-errors (delete-frame) t)
-                            (save-buffers-kill-emacs)))))))
+  :bind (("C-x o" . ace-window)
+         ("C-x c" . make-frame)
+         ("C-x j" . delete-other-windows)
+         ("C-x d" . kill-buffer)
+         ("C-x k" . delete-window-or-frame))
+  :config
+  (defun delete-window-or-frame ()
+    (interactive)
+    (unless (ignore-errors (delete-window) t)
+      (unless (ignore-errors (delete-frame) t)
+        (save-buffers-kill-emacs)))))
 
-(use-config kill-emacs
+;; tweaks
+
+(leaf kill-emacs
   :config
   (defun warn-kill-emacs (func &rest args)
     "Whitelist kill-emacs from being run interactively."
@@ -147,9 +118,9 @@
       (apply func args)))
   (advice-add 'kill-emacs :around 'warn-kill-emacs))
 
-(use-config sensible-errors
-  :pre-setq
-  (command-error-function . 'named-error-function)
+(leaf sensible-errors
+  :custom
+  (command-error-function . 'command-error-default-function)
   :config
   (defun named-error-function (data context caller)
     (discard-input)
@@ -159,427 +130,23 @@
      (if caller (format "%s: " caller) "")
      (error-message-string data))))
 
-(use-package expand-region
-  :straight t
-  :bind (("M-m" . er/expand-region)
-         ("M-n" . er/contract-region))
-  :config
-  (setq er/try-expand-list
-        (fi-insert-after
-         er/try-expand-list
-         'er/mark-defun
-         'er/mark-text-paragraph))
-  :config
-  (defun er/mark-line ()
-    (interactive)
-    (setf (point) (point-at-eol))
-    (forward-char)
-    (set-mark (point))
-    (backward-char)
-    (setf (point) (point-at-bol))))
+;; magit
 
-(use-package avy
-  :straight t
-  :bind* (("C-a" . avy-goto-word-or-subword-1)))
-
-(use-package multiple-cursors
-  :straight t
-  :bind* (("M-j" . mc/mark-next-lines)))
-
-(use-config ide-backspace
-  :bind ((:prog-mode-map
-          :package emacs
-          ("<backspace>" . ide-backspace)
-          ("<C-backspace>" . ide-backspace-word))
-         (:text-mode-map
-          :package emacs
-          ("<backspace>" . ide-backspace)
-          ("<C-backspace>" . ide-backspace-word))
-         (:lispy-mode-map
-          :package lispy
-          ("<backspace>" . lispy-delete-backward)))
-  :config
-  (defun ide-backspace ()
-    (interactive)
-    (cond
-     ((region-active-p)
-      (kill-region (region-beginning) (region-end)))
-     ((looking-back "^[[:space:]]+")
-      (ide-delete-to-previous-line))
-     (t
-      ;; delete char normally 
-      (call-interactively 'backward-delete-char))))
-  (defun ide-backspace-word ()
-    (interactive)
-    (cond
-     ((looking-back "^[[:space:]]+")
-      (ide-delete-to-previous-line))
-     (t
-      ;; delete word normally
-      (call-interactively 'backward-kill-word))))
-  (defun ide-delete-to-previous-line ()
-    ;; delete all spaces
-    (while (not (looking-back "[\n]"))
-      (delete-char -1))
-    ;; delete final newline
-    (delete-char -1)
-    ;; go to indentation
-    (when (looking-back "[\n]")
-      (indent-according-to-mode))))
-
-(use-package smartparens
-  :straight t
-  :hook ((prog-mode-hook text-mode-hook). smartparens-mode)
-  :config
-  (require 'smartparens-config)
-  (defun ide-insert-newlines (&rest _)
-    (newline)
-    (indent-according-to-mode)
-    (forward-line -1)
-    (indent-according-to-mode))
-  (defun ide-insert-spaces (&rest _)
-    (insert " ")
-    (backward-char))
-  (dolist (paren-type '("(" "[" "{"))
-    (sp-local-pair
-     'prog-mode paren-type nil
-     :post-handlers '((ide-insert-newlines "RET")
-                      (ide-insert-spaces "SPC")))))
-
-;; settings
-
-(use-config cursor
-  :setq-default
-  (cursor-type . '(bar . 2)))
-
-(use-config yes-or-no-query
-  :config
-  (fset 'yes-or-no-p 'y-or-n-p))
-
-(use-config vc
-  :pre-setq
-  (vc-follow-symlinks . t))
-
-(use-config backups
-  :pre-setq
-  (backup-by-copying . t)
-  (delete-old-versions . t)
-  (kept-new-versions . 6)
-  (kept-old-versions . 2)
-  (version-control . t))
-
-(use-config truncate-lines
-  :setq-default
-  (truncate-lines . t))
-
-(use-config show-paren
-  :pre-setq
-  (show-paren-delay . 0)
-  :config
-  (show-paren-mode 1))
-
-(use-config tabs
-  :setq-default
-  (indent-tabs-mode . nil)
-  (tab-width . 4))
-
-;; builtin modes
-
-(use-package savehist
-  :config
-  (savehist-mode 1))
-
-(use-package help
-  :bind ((:help-mode-map
-          ("j" . next-line)
-          ("k" . previous-line)))
-  :pre-setq
-  (help-window-select . t))
-
-(use-package recentf
-  :bind (("C-x l" . counsel-recentf))
-  :leaf-defer nil
-  :require t
-  :pre-setq
-  (recentf-max-saved-items . 4000)
-  (recentf-max-menu-items . 1000)
-  :config
-  (add-to-list 'recentf-exclude no-littering-var-directory)
-  (add-to-list 'recentf-exclude no-littering-etc-directory))
-
-(use-package dired
-  :bind ((:dired-mode-map
-          ("j" . next-line)
-          ("k" . previous-line)
-          ("s" . swiper)
-          ("DEL" . dired-up-directory))))
-
-;; major modes
-
-(use-package nix-mode
-  :straight t
-  :mode "\\.nix\\'"
-  :pre-setq
-  (nix-indent-function . 'nix-indent-line))
-
-(use-package lua-mode
-  :straight t
-  :mode "\\.lua\\'")
-
-(use-package rust-mode
-  :straight t
-  :mode "\\.rs\\'")
-
-(use-package toml-mode
-  :straight t
-  :mode "\\.toml\\'")
-
-(use-package markdown-mode
-  :straight t
-  :mode (("\\.md\\'" "\\.markdown\\'") . gfm-mode))
-
-(use-package tex
-  :straight (auctex :type git :host github
-                    :repo "emacs-straight/auctex")
-  :mode ("\\.tex\\'" . TeX-mode)
-  :config
-  (TeX-PDF-mode)
-  (TeX-source-correlate-mode)
-  
-  (setq TeX-view-program-selection
-        (list '(output-pdf "Zathura")))
-  
-  (add-to-list
-   'TeX-expand-list
-   '("%sn" (lambda () server-name)))
-  
-  (setq TeX-view-program-list
-        (list '("Zathura"
-                ("zathura %o"
-                 (mode-io-correlate " --synctex-forward %n:0:%b -x \"emacsclient --socket-name=%sn --no-wait +%{line} %{input}\""))
-                "zathura")))
-
-  (defun TeX-view ()
-    "Start a viewer without confirmation.
-The viewer is started either on region or master file,
-depending on the last command issued."
-    (interactive)
-    (let ((output-file (concat "out/" (TeX-active-master (TeX-output-extension)))))
-      (if (file-exists-p output-file)
-          (TeX-command
-           "View"
-           (lambda (&rest _)
-             output-file)
-           0)))))
-
-(use-package emacs-lisp-mode
-  :mode "\\.el\\'"
-  :hook
-  (emacs-lisp-mode-hook . lispy-mode))
-
-(use-package common-lisp-mode
-  :mode ("\\.cl\\'" "\\.lisp\\'")
-  :hook
-  (lisp-mode-hook . lispy-mode)
-  :config
-  (setq-mode-local
-   lisp-mode lisp-indent-function
-   'common-lisp-indent-function))
-
-;; packages
-
-;; FIXME: this is gabage
-
-;; (use-package comint
-;;   :bind (:comint-mode-map
-;;          ("<up>" . comint-previous-input)
-;;          ("<down>" . comint-next-input)))
-
-;; (use-package ielm
-;;   :commands ielm
-;;   :hook (ielm-mode-hook . lispy-mode)
-;;   :bind (:ielm-map
-;;          ("<C-return>" . ielm-send-input))
-;;   :pre-setq
-;;   (ielm-dynamic-return . nil)
-;;   :config
-;;   (add-hook
-;;    'ielm-mode-hook
-;;    (lambda ()
-;;      (leaf-key "<C-return>" 'ielm-send-input (current-local-map)))))
-
-;; (use-package comint
-;;   :fi-mode comint-mode
-;;   :fi-parent (erc-mode sly-mrepl-mode)
-;;   :fi-bind
-;;   ("C-l" . comint-clear-buffer))
-
-(use-package sly
-  :straight t
-  :commands sly
-  :bind ((:sly-mrepl-mode-map
-          ("C-l" . comint-clear-buffer)))
-  :pre-setq
-  (inferior-lisp-program . "sbcl"))
-
-(use-package lispy
-  :straight t aggressive-indent
-  :hook ((minibuffer-setup-hook . conditionally-enable-lispy)
-         (lispy-mode-hook . aggressive-indent-mode))
-  :config
-  (defun conditionally-enable-lispy ()
-    (when (eq this-command 'eval-expression)
-      (lispy-mode 1))))
-
-(use-package ispell
-  :bind (("C-." . ispell-word))
-  :init
-  (setq ispell-dictionary "en_US"
-        ispell-program-name "aspell"
-        ispell-really-hunspell nil
-        ispell-silently-savep t))
-
-(use-package which-key
-  :straight t
-  :config
-  (which-key-mode 1))
-
-(use-package swiper
-  :straight t
-  :bind ((:ivy-minibuffer-map
-          ("H-i" . ivy-insert-selection)))
-  :config
-  (ivy-mode 1)
-  (defun ivy-insert-selection ()
-    (interactive)
-    (ivy-exit-with-action
-     (lambda (it)
-       (interactive)
-       (insert it)
-       (signal 'quit nil)))))
-
-(use-package counsel
-  :straight t
-  :after swiper
-  :bind (("C-s" . swiper-isearch)
-         (:counsel-describe-map
-          ("C-h" . counsel-lookup-symbol)))
-  :config
-  (defun counsel-lookup-symbol ()
-    "Lookup the current symbol in the help docs."
-    (interactive)
-    (ivy-exit-with-action
-     (lambda (x)
-       (if (featurep 'helpful)
-           (helpful-symbol (intern x))
-         (describe-symbol (intern x))
-         (signal 'quit nil)))))
-  (counsel-mode 1))
-
-(use-package projectile
-  :straight t counsel-projectile
-  ;; FIXME: better autoloading
-  :commands projectile-commander
-  :pre-setq
-  (projectile-completion-system . 'ivy)
-  (projectile-project-root-files-functions . '(projectile-root-top-down))
-  (projectile-project-root-files . '(".git" ".bzr" ".svn" ".hg" "_darcs" ".projectile"))
-  :preface
-  (fi-auto-keymap (kbd "C-x p") 'projectile-command-map 'projectile)
-  :config
-  (projectile-mode 1)
-  (counsel-projectile-mode 1))
-
-(use-package company
-  :straight t
-  :hook ((prog-mode-hook text-mode-hook) . company-mode)
-  :bind (:company-active-map
-         ("RET" . nil)
-         ("<return>" . nil)
-         ("C-h" . nil)
-         ("<tab>" . company-complete-common-or-cycle)
-         ("<backtab>" . company-select-previous))
-  :pre-setq
-  (company-minimum-prefix-length . 1)
-  (company-idle-delay . 0.2)
-  (company-dabbrev-downcase . nil) 
-  (company-dabbrev-ignore-case . nil) 
-  (company-require-match . nil)
-  (company-tooltip-align-annotations . t)
-  (company-frontends . '(company-tng-frontend
-                         company-pseudo-tooltip-frontend
-                         company-echo-metadata-frontend)))
-
-(eval-after-load 'semantic
-  (add-hook 'semantic-mode-hook
-            (lambda ()
-              (dolist (x (default-value 'completion-at-point-functions))
-                (when (string-prefix-p "semantic-" (symbol-name x))
-                  (remove-hook 'completion-at-point-functions x))))))
-
-(use-package amx
-  :straight t
-  :config
-  (amx-mode 1))
-
-(use-package undohist
-  :straight t
-  :require t
-  :pre-setq
-  (undohist-ignored-files .  '("COMMIT_EDITMSG"))
-  `(undohist-directory . ,(no-littering-expand-var-file-name "undohist"))
-  :config
-  (undohist-initialize))
-
-(use-package yankpad
-  :straight t
-  :bind (("C-x y" . yankpad-insert)
-         ("C-x Y" . yankpad-capture-snippet))
-  :pre-setq
-  `(yankpad-file . ,(expand-file-name "yankpad.org" "~")))
-
-(use-package magit
-  :straight t
+(leaf magit
+  :straight t magit-todos
+  :leaf-defer t
   :bind (("C-x g" . magit-status)
          (:magit-status-mode-map
+          :package magit
           ("<return>" . magit-diff-visit-file-other-window)
           ("j" . magit-next-line)
           ("k" . magit-previous-line)
           ("v" . magit-mark)
           ("C-k" . magit-discard)))
+  :config (magit-todos-mode)
   :config
   (defun magit-mark ()
     (interactive)
     (if (region-active-p)
         (deactivate-mark)
       (set-mark-command nil))))
-
-(use-package el2org
-  :straight t ox-gfm)
-
-(use-config sensible-gui
-  :pre-setq
-  (frame-resize-pixelwise . t))
-
-(use-package solarized-theme
-  :straight t
-  :init
-  (fi-configure-gui
-   (load-theme 'solarized-light)))
-
-(use-config mode-line-other
-  :config
-  (column-number-mode 1))
-
-(use-package moody
-  :straight t
-  :config
-  (setq x-underline-at-descent-line t)
-  (moody-replace-mode-line-buffer-identification)
-  (moody-replace-vc-mode))
-
-(use-package minions
-  :straight t
-  :after moody
-  :config
-  (minions-mode 1))

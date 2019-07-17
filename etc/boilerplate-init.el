@@ -22,55 +22,11 @@ This symbol is simply ignored and only serves to add visual identifiers blocks o
 
 ;; straight.el setup 
 
-(named-progn straight-pre-setup
-  (setq straight-enable-use-package-integration t
-        straight-fix-org t)
-  (setq straight-check-for-modifications
-        '(find-when-checking check-on-save)
-        straight-recipe-repositories
-        '(org-elpa melpa emacsmirror gnu-elpa-mirror)))
-
-(named-progn straight-bootstrap
-  (defvar bootstrap-version)
-  (let ((bootstrap-file
-         (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
-        (bootstrap-version 5))
-    (unless (file-exists-p bootstrap-file)
-      (with-current-buffer
-          (url-retrieve-synchronously
-           "https://raw.githubusercontent.com/raxod502/straight.el/develop/install.el"
-           'silent 'inhibit-cookies)
-        (goto-char (point-max))
-        (eval-print-last-sexp)))
-    (load bootstrap-file nil 'nomessage))
-  (require 'straight-x))
-
 ;; intrinsic packages - these packages are needed for basic emacs functionality
 
-(named-progn leaf-setup
-  (straight-use-package '(leaf :type git :host github
-                           :repo "conao3/leaf.el"))
-  (straight-use-package '(leaf-keywords :type git :host github
-                                        :repo "conao3/leaf-keywords.el"))
-  (require 'leaf)
-  (require 'leaf-keywords)
-  (leaf-keywords-init)
-  (defmacro use-package (name &rest args)
-    (declare (indent defun))
-    `(leaf ,name ,@args))
-  (defmacro use-config (name &rest args)
-    (declare (indent defun))
-    `(leaf ,name ,@args :leaf-defer nil))
-  (with-eval-after-load 'lispy
-    (push '(use-config . 1)
-          (alist-get 'emacs-lisp-mode lispy-tag-arity))))
-
-(named-progn no-littering-setup
-  (straight-use-package 'no-littering)
-  (require 'no-littering)
-  (setq custom-file (no-littering-expand-etc-file-name "custom.el"))
-  (setq auto-save-file-name-transforms
-        `((".*" ,(no-littering-expand-var-file-name "auto-save/") t))))
+(named-progn benchmark-init-setup
+  "benchmark-init is loaded in early-init.el"
+  (straight-use-package 'benchmark-init))
 
 (named-progn keyfreq-setup
   (straight-use-package 'keyfreq)

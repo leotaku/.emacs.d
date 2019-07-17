@@ -4,7 +4,7 @@
 
 ;;; Commentary:
 
-;; This file is loaded before init.el and init-boilerplate.el.
+;; This file is loaded before init.el.
 
 ;; early-init.el is a new concept introduced in Emacs 27.
 ;; Until that becomes stable I simply require the file at the top of my
@@ -17,7 +17,7 @@
       (init-gc-cons-threshold (* 256 1024 1024)))
   (setq gc-cons-threshold init-gc-cons-threshold)
   (add-hook 'emacs-startup-hook
-	    (lambda () (setq gc-cons-threshold normal-gc-cons-threshold))))
+	        (lambda () (setq gc-cons-threshold normal-gc-cons-threshold))))
 
 ;; Package initialize occurs automatically, before `user-init-file' is loaded,
 ;; but after `early-init-file'
@@ -40,9 +40,29 @@
         (add-to-list 'load-path dir)
         (require 'benchmark-init)
         (benchmark-init/activate)
-        (require 'benchmark-init-modes)
         (add-hook 'after-init-hook 'benchmark-init/deactivate))
     (warn "The benchmark-init package is missing from your straight directory!")))
+
+;; emacs wants to load package.el before the init file, so we do the
+;; same with straight.el
+
+(setq straight-enable-use-package-integration nil
+      straight-fix-org t
+      straight-check-for-modifications '(find-when-checking check-on-save)
+      straight-recipe-repositories '(org-elpa melpa emacsmirror gnu-elpa-mirror))
+
+(let ((bootstrap-file
+       (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
+      (bootstrap-version 5))
+  (unless (file-exists-p bootstrap-file)
+    (with-current-buffer
+        (url-retrieve-synchronously
+         "https://raw.githubusercontent.com/raxod502/straight.el/develop/install.el"
+         'silent 'inhibit-cookies)
+      (goto-char (point-max))
+      (eval-print-last-sexp)))
+  (load bootstrap-file nil 'nomessage))
+(require 'straight-x)
 
 (provide 'early-init)
 
