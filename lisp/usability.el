@@ -5,15 +5,15 @@
 
 ;;; Code:
 
-(leaf visual-regexp
-  :straight t visual-regexp-steroids pcre2el
-  :require visual-regexp-steroids
+(bk-block visual-regexp
+  :requires .visual-regexp-steroids
   :custom
-  (vr/engine . 'pcre2el)
-  ;; :load "lisp/visual-regexp.el"
-  )
+  (vr/engine . 'pcre2el))
 
-(leaf ispell
+(bk-block wgrep
+  :requires .wgrep)
+
+(bk-block ispell
   :bind (("C-." . ispell-word))
   :custom
   (ispell-dictionary . "en_US")
@@ -21,85 +21,70 @@
   (ispell-really-hunspell . nil)
   (ispell-silently-savep . t))
 
-(leaf which-key
-  :straight t
-  :config (which-key-mode)
-  ;; :start which-key-mode
-  )
+(bk-block which-key
+  :start which-key-mode)
 
-(leaf ivy
-  :straight swiper
+(bk-block ivy
   :bind ((:ivy-minibuffer-map
           :package ivy
           ("H-i" . ivy-insert-selection)))
-  :config (ivy-mode)
-  ;; :start ivy-mode
+  :start ivy-mode
   :custom
-  (ivy-use-selectable-prompt . t)
-  :config
-  (defun ivy-insert-selection ()
-    (interactive)
-    (ivy-exit-with-action
-     (lambda (it)
-       (interactive)
-       (insert it)
-       (signal 'quit nil)))))
+  (ivy-use-selectable-prompt . t))
 
-(leaf counsel
-  :straight t
+(defun ivy-insert-selection ()
+  (interactive)
+  (ivy-exit-with-action
+   (lambda (it)
+     (interactive)
+     (insert it)
+     (signal 'quit nil))))
+
+(bk-block counsel
   :bind (("C-s" . swiper-isearch)
          (:counsel-describe-map
           :package counsel
           ("C-h" . counsel-lookup-symbol)))
-  :config (counsel-mode)
-  ;; :start counsel-mode
-  :config
-  (defun counsel-lookup-symbol ()
-    "Lookup the current symbol in the help docs."
-    (interactive)
-    (ivy-exit-with-action
-     (lambda (x)
-       (if (featurep 'helpful)
-           (helpful-symbol (intern x))
-         (describe-symbol (intern x))
-         (signal 'quit nil))))))
+  :start counsel-mode)
 
-(leaf projectile
-  :straight t counsel-projectile
-  :leaf-defer t
+(defun counsel-lookup-symbol ()
+  "Lookup the current symbol in the help docs."
+  (interactive)
+  (ivy-exit-with-action
+   (lambda (x)
+     (if (featurep 'helpful)
+         (helpful-symbol (intern x))
+       (describe-symbol (intern x))
+       (signal 'quit nil)))))
+
+(bk-block projectile
   :init
   (fi-auto-keymap (kbd "C-x p") 'projectile-command-map 'projectile)
   :custom
   (projectile-completion-system . 'ivy)
   (projectile-project-root-files-functions . '(projectile-root-top-down))
   (projectile-project-root-files . '(".git" ".bzr" ".svn" ".hg" "_darcs" ".projectile"))
+  :start projectile-mode counsel-projectile-mode
   :config
-  (projectile-mode)
-  (counsel-projectile-mode)
-  ;; :start projectile-mode counsel-projectile-mode
-  )
+  (projectile-load-known-projects))
 
-(leaf amx
-  :straight t
-  :config (amx-mode)
-  ;; :start amx-mode
-  )
+(bk-block amx
+  :config
+  (amx-mode))
 
-(leaf undohist
-  :straight t
-  :require undohist
+(bk-block! undohist
+  :requires .undohist no-littering
   :config
   (setq undohist-ignored-files  '("COMMIT_EDITMSG"))
   (setq undohist-directory (no-littering-expand-var-file-name "undohist"))
   :config
   (undohist-initialize))
 
-(leaf yankpad
-  :straight t yasnippet
-  :leaf-defer t
-  :require yasnippet
+(bk-block yankpad
+  :requires .yasnippet
   :bind (("C-x y" . yankpad-insert)
          ("C-x Y" . yankpad-capture-snippet))
+  :start yas-global-mode
   :config
   (setq yankpad-file (expand-file-name "yankpad.org" "~")))
 

@@ -1,100 +1,112 @@
 ;;; init.el --- my emacs config for fastiter
 
-;; early-init.el before 27.01
+;;; Commentary:
 
-(load
- (expand-file-name "early-init.el" user-emacs-directory))
+;; TODO: ivy sort by shortest
+;; TODO: use compdef for local completion settings
+;; TODO: investigate handle, hercules
+;; TODO: use eglot, maybe request
 
-;;;; fastiter
+;;; Setup:
+
+;; Load `early-init.el' before Emacs 27.0
+
+(unless (featurep 'early-init)
+  (message "Early init: Emacs Version < 27.0")
+  (load
+   (expand-file-name "early-init.el" user-emacs-directory)))
+
+;; Load `fi-emacs' dependencies
 
 (prog1 "fi-setup"
-  (straight-use-package
-   '(fi :type git :host github
-	    :repo "leotaku/fi-emacs"
-	    :files ("*.el")))
-  (straight-use-package 'leaf)
-  (straight-use-package 'leaf-keywords)
-  ;; (require 'bk-block)
+  (require 'bk-block)
   (require 'fi-subr)
   (require 'fi-auto)
   (require 'fi-config)
   (require 'fi-helpers)
-  (require 'leaf)
-  (leaf-keywords-init))
+  (require 'leaf))
 
-;; configuration dependencies
+;;; Configuration:
 
-(leaf benchmark-init
-  :straight t
-  :require benchmark-init-modes)
+(bk-block benchmark-init
+  :requires .benchmark-init-modes)
 
-(leaf no-littering
-  :straight t
-  :require no-littering
+(bk-block!* no-littering
   :config
-  (setq custom-file (no-littering-expand-etc-file-name "custom.el"))
   (setq auto-save-file-name-transforms
-	`((".*" ,(no-littering-expand-var-file-name "auto-save/") t))))
+        `((".*" ,(no-littering-expand-var-file-name "auto-save/") t)))
+  (setq projectile-known-projects-file
+        (no-littering-expand-var-file-name "projectile-bookmarks.eld"))
+  (require 'no-littering))
 
-(leaf dependencies
-  :straight crux)
+;; TODO: Do something about unwanted customization
 
-(leaf keyfreq
-  :straight t
-  :config (keyfreq-mode) (keyfreq-autosave-mode))
+(bk-block! custom-pre
+  :requires .no-littering
+  :config
+  (setq custom-file
+        (no-littering-expand-etc-file-name
+         "custom.el"))
+  (when (file-exists-p custom-file)
+    (load-file custom-file)))
 
-;; emacs configuration
+(bk-block! dependencies
+  :load "lisp/helpers.el")
 
-;; (leaf configuration
-;;   :load "lisp/basics.el")
-;; (leaf visual
-;;   :load "lisp/visual.el")
-;; (leaf usability
-;;   :load "lisp/usability.el")
-;; (leaf major
-;;   :load "lisp/major.el")
+(bk-block* keyfreq
+  :config
+  (keyfreq-mode)
+  (keyfreq-autosave-mode))
 
-(load-file (expand-file-name "lisp/basics.el" user-emacs-directory))
-(load-file (expand-file-name "lisp/visual.el" user-emacs-directory))
-(load-file (expand-file-name "lisp/usability.el" user-emacs-directory))
-(load-file (expand-file-name "lisp/major.el" user-emacs-directory))
+;; Load configuration files
 
-;; keytheme
+(bk-block! at-init
+  :load "lisp/visual.el"
+  :load "lisp/basics.el")
 
-(leaf theist-mode
-  :straight (theist-mode :type git :host github
-                         :repo "leotaku/theist-mode"))
+(bk-block at-gui
+  :load "lisp/usability.el"
+  :load "lisp/ide.el"
+  :load "lisp/major.el")
 
-(leaf keytheme
-  :config (load-file (expand-file-name "lisp/keytheme.el" user-emacs-directory))
+;; Load keytheme config
+
+(bk-block! keytheme
+  :requires theist-mode
+  :load "lisp/keytheme.el"
   :custom
   (viper-mode . nil))
 
-;; simple keybindings
+;; Execute some simple keybinds
 
-(leaf sensible-keys
+(bk-block! sensible-keys
   :bind (("A-j" . next-line)
-         ("A-k" . previous-line))
+         ("A-k" . previous-line)
+         ("<C-return>" . open-line)
+         ("C-x m" . counsel-M-x))
   :config
   (fi-configure-gui
    (keyboard-translate ?\C-i ?\H-i)
    (keyboard-translate ?\C-m ?\H-m))
   (leaf-key "ESC" (kbd "C-g") 'key-translation-map))
 
-(leaf bad-habits
+(bk-block! cua-keys
+  :requires .cua-base
+  :bind* (("C-v" . yank)))
+
+(bk-block! bad-habits
   :bind (("<XF86Forward>" . nil)
          ("<XF86Back>" . nil)
          ("<prior>" . nil)
          ("<next>" . nil)))
 
-(leaf misc-bindings
+(bk-block! misc-bindings
   :bind (("C-x r" . revert-buffer)
          ("C-x f" . find-file)
          ("C-x e" . eval-defun)
          ("C-x s" . save-buffer)))
 
-(leaf window-management
-  :straight ace-window
+(bk-block! window-management
   :bind (("C-x o" . ace-window)
          ("C-x c" . make-frame)
          ("C-x j" . delete-other-windows)
@@ -107,18 +119,19 @@
       (unless (ignore-errors (delete-frame) t)
         (save-buffers-kill-emacs)))))
 
-;; tweaks
+;; Small tweaks
 
-(leaf kill-emacs
+(bk-block! kill-emacs
   :config
   (defun warn-kill-emacs (func &rest args)
     "Whitelist kill-emacs from being run interactively."
     (if (equal this-command 'kill-emacs)
-        (message "Fuck you!")
+        (let ((this-command nil))
+          (save-buffers-kill-emacs))
       (apply func args)))
   (advice-add 'kill-emacs :around 'warn-kill-emacs))
 
-(leaf sensible-errors
+(bk-block! sensible-errors
   :custom
   (command-error-function . 'command-error-default-function)
   :config
@@ -130,11 +143,8 @@
      (if caller (format "%s: " caller) "")
      (error-message-string data))))
 
-;; magit
-
-(leaf magit
-  :straight t magit-todos
-  :leaf-defer t
+(bk-block magit
+  "ugly autoload hack because magit-todos acts up"
   :bind (("C-x g" . magit-status)
          (:magit-status-mode-map
           :package magit
@@ -143,10 +153,46 @@
           ("k" . magit-previous-line)
           ("v" . magit-mark)
           ("C-k" . magit-discard)))
-  :config (magit-todos-mode)
+  :config
+  (global-hl-todo-mode)
+  (with-eval-after-load 'magit
+    (let ((inhibit-message t))
+      (magit-todos-mode)))
   :config
   (defun magit-mark ()
     (interactive)
     (if (region-active-p)
         (deactivate-mark)
       (set-mark-command nil))))
+
+(bk-block* flymake-aspell
+  :requires flymake
+  :config
+  (add-hook 'text-mode-hook 'flymake-aspell-setup))
+
+(bk-block* flymake
+  :requires .flymake-diagnostic-at-point
+  :config
+  (setq flymake-diagnostic-at-point-display-diagnostic-function
+        'flymake-diagnostic-at-point-display-minibuffer)
+  (add-hook 'flymake-mode-hook #'flymake-diagnostic-at-point-mode))
+
+;; Execute `bk-block' system startup
+
+(bk-register-unit 'theme-target)
+(bk-register-unit 'init-target)
+(bk-register-unit
+ 'gui-target
+ '(with-current-buffer "*scratch*"
+    (emacs-lisp-mode))
+ '(init-target theme-target))
+
+(bk-reach-target 'init-target)
+(bk-reach-target 'theme-target)
+(add-hook
+ 'focus-in-hook
+ (lambda () (bk-reach-target 'gui-target)))
+
+(provide 'init)
+
+;;; init.el ends here

@@ -1,26 +1,32 @@
 ;;; early-init.el --- Early initialisation -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2019-2019 Leo Gaskin
-
 ;;; Commentary:
 
 ;; This file is loaded before init.el.
-
-;; early-init.el is a new concept introduced in Emacs 27.
-;; Until that becomes stable I simply require the file at the top of my
-;; `user-init-file'
+;; 
+;; `early-init.el' is a new concept introduced in Emacs 27.
+;; 
+;; Until that becomes stable I simply require the file at the top of
+;; my `user-init-file'
 
 ;;; Code:
 
+;; Never load outdated bytecode (why is this not the default?)
+(setq load-prefer-newer t)
+
 ;; Defer garbage collection further back in the startup process
-(let ((normal-gc-cons-threshold (* 32 1024 1024))
+(let ((normal-gc-cons-threshold (* 8 1024 1024))
       (init-gc-cons-threshold (* 256 1024 1024)))
   (setq gc-cons-threshold init-gc-cons-threshold)
-  (add-hook 'emacs-startup-hook
-	        (lambda () (setq gc-cons-threshold normal-gc-cons-threshold))))
+  (run-with-idle-timer
+   5 nil 
+   (lambda () (setq gc-cons-threshold normal-gc-cons-threshold))))
 
-;; Package initialize occurs automatically, before `user-init-file' is loaded,
-;; but after `early-init-file'
+;; Debug garbage collection performance
+(setq garbage-collection-messages nil)
+
+;; Package initialization normally occurs automatically, but this can
+;; be unset in the `early-init-file'.
 (setq package-enable-at-startup nil)
 
 ;; Prevent the glimpse of un-styled Emacs by setting these early
@@ -31,7 +37,7 @@
 ;; One less file to load at startup
 (setq site-run-file nil)
 
-;; load benchmarking utility from local dir, bypassing straight.el
+;; Load benchmarking utility from local dir, bypassing `straight.el'
 (let ((dir (expand-file-name
             "straight/build/benchmark-init"
             user-emacs-directory)))
@@ -43,13 +49,13 @@
         (add-hook 'after-init-hook 'benchmark-init/deactivate))
     (warn "The benchmark-init package is missing from your straight directory!")))
 
-;; emacs wants to load package.el before the init file, so we do the
-;; same with straight.el
-
+;; Emacs wants to load `package.el' before the init file,
+;; so we do the same with `straight.el'
 (setq straight-enable-use-package-integration nil
+      straight-recipes-gnu-elpa-use-mirror t
       straight-fix-org t
       straight-check-for-modifications '(find-when-checking check-on-save)
-      straight-recipe-repositories '(org-elpa melpa emacsmirror gnu-elpa-mirror))
+      straight-recipe-repositories '(org-elpa melpa emacsmirror-mirror gnu-elpa-mirror))
 
 (let ((bootstrap-file
        (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
@@ -62,7 +68,19 @@
       (goto-char (point-max))
       (eval-print-last-sexp)))
   (load bootstrap-file nil 'nomessage))
+
 (require 'straight-x)
+
+;; Load all external packages
+(mapc
+ 'straight-use-package
+ (with-current-buffer
+     (let ((default-directory user-emacs-directory))
+       (find-file-noselect "package-set.el"))
+   (goto-char (point-min))
+   (prog1
+       (read (current-buffer))
+     (kill-buffer (current-buffer)))))
 
 (provide 'early-init)
 

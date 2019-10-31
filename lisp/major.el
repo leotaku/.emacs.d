@@ -1,43 +1,59 @@
-(leaf org-mode
-  :straight org-cliplink
+;;; major.el --- major-mode configurations for fi-emacs
+
+;;; Commentary:
+;; 
+
+;;; Code:
+
+(leaf org
+  :leaf-autoload nil
+  :mode ("\\.org\\'" . org-mode)
   :leaf-defer t
   :custom
-  (org-adapt-indentation . nil))
+  (org-adapt-indentation . nil)
+  (org-tags-column . 0)
+  :config
+  (set-face-attribute
+   'org-document-title nil
+   :inherit 'variable-pitch
+   :height 150)
+  (defun org-clip ()
+    (interactive)
+    (require 'org-cliplink)
+    (if (region-active-p)
+        (let ((old (region-beginning)))
+          (setf (point) old)
+          (insert "[[")
+          (insert (org-cliplink-clipboard-content))
+          (insert "][")
+          (setf (point) (region-end))
+          (insert "]]")
+          (setf (point) old))
+      (org-cliplink))))
 
 (leaf nix-mode
-  :straight t
   :leaf-defer t
   :mode "\\.nix\\'"
   :custom
   (nix-indent-function . 'nix-indent-line))
 
 (leaf lua-mode
-  :straight t
   :leaf-defer t
-  :mode "\\.lua\\'"
-  )
+  :mode "\\.lua\\'")
 
 (leaf rust-mode
-  :straight t
   :leaf-defer t
-  :mode "\\.rs\\'"
-  )
+  :mode "\\.rs\\'" "\\.lalrpop\\'" "\\.rustpeg\\'")
 
 (leaf toml-mode
-  :straight t
   :leaf-defer t
-  :mode "\\.toml\\'"
-  )
+  :mode "\\.toml\\'")
 
 (leaf markdown-mode
-  :straight t
   :leaf-defer t
-  :mode (("\\.md\\'" "\\.markdown\\'") . gfm-mode)
-  )
+  :mode (("\\.md\\'" "\\.markdown\\'") . gfm-mode))
 
 (leaf tex
-  :straight (auctex :type git :host github
-                    :repo "emacs-straight/auctex")
   :leaf-defer t
   :mode ("\\.tex\\'" . TeX-mode)
   :config
@@ -55,29 +71,28 @@
         (list '("Zathura"
                 ("zathura %o"
                  (mode-io-correlate " --synctex-forward %n:0:%b -x \"emacsclient --socket-name=%sn --no-wait +%{line} %{input}\""))
-                "zathura")))
+                "zathura"))))
 
-  (defun TeX-view ()
-    "Start a viewer without confirmation.
+(defun TeX-view ()
+  "Start a viewer without confirmation.
 The viewer is started either on region or master file,
 depending on the last command issued."
-    (interactive)
-    (let ((output-file (concat "out/" (TeX-active-master (TeX-output-extension)))))
-      (if (file-exists-p output-file)
-          (TeX-command
-           "View"
-           (lambda (&rest _)
-             output-file)
-           0)))))
+  (interactive)
+  (let ((output-file (concat "out/" (TeX-active-master (TeX-output-extension)))))
+    (if (file-exists-p output-file)
+        (TeX-command
+         "View"
+         (lambda (&rest _)
+           output-file)
+         0))))
 
 (leaf emacs-lisp-mode
   :leaf-defer t
   :mode "\\.el\\'"
   :hook (emacs-lisp-mode-hook . lispy-mode))
 
-(leaf lispy
-  :straight t aggressive-indent
-  :leaf-defer t
+(bk-block* lispy
+  :requires theist-mode
   :hook
   (minibuffer-setup-hook . conditionally-enable-lispy)
   (lispy-mode-hook . aggressive-indent-mode)
@@ -89,8 +104,7 @@ depending on the last command issued."
   (lispy-define-key lispy-mode-map "x" 'theist-C-x))
 
 (leaf el2org
-  :leaf-defer t
-  :straight t ox-gfm)
+  :leaf-defer t)
 
 ;; (leaf common-lisp-mode
 ;;   :mode ("\\.cl\\'" "\\.lisp\\'")
@@ -108,3 +122,7 @@ depending on the last command issued."
 ;;           ("C-l" . comint-clear-buffer)))
 ;;   :custom
 ;;   (inferior-lisp-program . "sbcl"))
+
+(provide 'major)
+
+;;; major.el ends here

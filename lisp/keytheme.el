@@ -1,154 +1,105 @@
-;;; keytheme.el --- custom keybinding themes
+;;; keytheme.el --- custom keybinding theme
 
 ;;; Code:
 
-(leaf ryo-modal
-  :straight t
-  :leaf-defer t
-  :bind* (("<f7>" . ryo-modal-mode-back))
-  :require viper expand-region avy
+(bk-block modal-editing
+  :requires .viper-cmd .modalka theist-mode expand-region .multiple-cursors
   :custom
-  (ryo-modal-cursor-type . 'box)
+  (modalka-cursor-type . 'box)
+  (cursor-type . 'bar)
   :config
-  (ryo-modal-keys
-   ;; back to insert
-   ("<f7>" forward-char-on-line :exit t)
-   ("i" ryo-modal-mode)
-   ("I" back-to-indentation :exit t)
-   ("a" forward-char-on-line :exit t)
-   ("A" move-end-of-line :exit t)
-   ;; hjkl
-   ("h" backward-char)
-   ("k" previous-line)
-   ("j" next-line)
-   ("l" forward-char)
-   ;; movement
-   ("H" beginning-of-visual-line)
-   ("L" end-of-visual-line)
-   ("w" viper-forward-word)
-   ("W" viper-forward-Word)
-   ("b" viper-backward-word)
-   ("B" viper-backward-Word)
-   ("e" viper-end-of-word)
-   ("E" viper-end-of-Word)
-   ;; marking
-   ("v" toggle-region)
-   ("m" er/expand-region)
-   ("n" er/contract-region)
-   ;; actions
-   ("d" kill-region-or-line)
-   ("y" copy-region-or-line)
-   ("c" kill-region-or-line :exit t)
-   ;; default
-   ("p" viper-put-back)
-   ("P" viper-Put-back)
-   ;; theist
-   ("x" theist-C-x)
-   ("z" theist-C-c)
-   ;; misc
-   ("g" goto-or-quit)
-   ("o" exchange-point-and-mark)
-   ("u" fi-undo-only-global)
-   ("U" fi-undo-global)
-   ("s" avy-goto-word-or-subword-1)
-   ("f" viper-find-char-forward)
-   ("t" viper-goto-char-forward)
-   ("SPC" mc/mark-down-or-more)
-   ;; digits
-   ("1" digit-argument)
-   ("2" digit-argument)
-   ("3" digit-argument)
-   ("4" digit-argument)
-   ("5" digit-argument)
-   ("6" digit-argument)
-   ("7" digit-argument)
-   ("8" digit-argument)
-   ("9" digit-argument)
-   ("0" digit-argument)
-   ("-" negative-argument))
-  '|config
-  (defun advice-ryo-modal (func args)
-    (let ((inhibit-message t))
-      (funcall func args)))
-  (advice-add 'ryo-modal-mode :around 'advice-ryo-modal)
-  (fset 'ryo-modal--cursor-color-update (lambda (&rest _) nil))
+  (leaf-key "<f7>" 'modalka-mode)
+  (advice-add 'modalka-mode :around 'fi-call-silent)
   (add-to-list
    'emulation-mode-map-alists
-   `((ryo-modal-mode . ,ryo-modal-mode-map))))
+   `((modalka-mode . ,modalka-mode-map)))
+  :config
+  (modalka-reserve (identity capitalize)
+    "q" "w" "e" "r" "t" "z" "u" "i" "o" "p" "ü"
+    "a" "s" "d" "f" "g" "h" "j" "k" "l" "ö" "ä"
+    "y" "x" "c" "v" "b" "n" "m")
+  (modalka-keys
+   ("-" . negative-argument))
+  (modalka-multiplex 'digit-argument (identity)
+    "0" "1" "2" "3" "4" "5" "6" "7" "8" "9")
+  (modalka-keys
+   ("i" . modalka-mode)
+   ("a" . ((when (/= (point) (point-at-eol))
+             (forward-char))
+           (modalka-mode -1)))
+   ("I" . ((back-to-indentation) (modalka-mode -1)))
+   ("A" . ((end-of-line) (modalka-mode -1)))
+   ("h" . backward-char)
+   ("j" . next-line)
+   ("k" . previous-line)
+   ("l" . forward-char)
+   ("w" . viper-forward-word)
+   ("W" . viper-forward-Word)
+   ("b" . viper-backward-word)
+   ("B" . viper-backward-Word)
+   ("e" . viper-end-of-word)
+   ("E" . viper-end-of-Word))
+  (modalka-keys
+   ("c" . ((kill-region-or-line arg) (modalka-mode -1)))
+   ("d" . kill-region-or-line)
+   ("y" . copy-region-or-line))
+  (modalka-keys
+   ("<f7>" . modalka-mode)
+   ("SPC" . mc/mark-down-or-more)
+   ("<backspace>" . ((if (region-active-p)
+                         (delete-region
+                          (region-beginning)
+                          (region-end))
+                       (delete-char 1))))
+   ("g" . goto-or-quit)
+   ("x" . theist-C-x)
+   ("z" . theist-C-c)
+   ("m" . er/expand-region)
+   ("n" . er/contract-region)
+   ("s" . avy-goto-word-or-subword-1))
+  (modalka-keys
+   ("v" . set-mark-command)
+   ("r" . viper-replace-char)
+   ("o" . exchange-point-and-mark)
+   ("U" . fi-undo-only-global)
+   ("u" . fi-undo-global)
+   ("p" . viper-put-back)
+   ("P" . viper-Put-back)
+   (";" . comment-or-uncomment-region)
+   ("f" . viper-find-char-forward)
+   ("t" . viper-goto-char-forward)
+   ("," . viper-repeat-find)))
 
-(leaf expand-region
-  :straight t
-  :leaf-defer t
+(bk-block0 theist-mode
+  "Managed by straight.el")
+
+(bk-block expand-region
+  :requires .mode-local .expand-region
   :bind (("M-m" . er/expand-region)
          ("M-n" . er/contract-region))
   :config
-  (setq  er/try-expand-list (fi-insert-after
-                             er/try-expand-list
-                             'er/mark-defun
-                             'er/mark-text-paragraph))
-  (defun er/mark-line ()
+  (setq-mode-local
+   org-mode
+   er/try-expand-list
+   '(er/mark-line
+     er/mark-inside-pairs
+     er/mark-inside-quotes
+     er/mark-block
+     er/mark-sentence
+     er/mark-word))
+  (defun er/mark-outside-quotes ()
+    "Mark the inside of the current string, not including the quotation marks."
     (interactive)
-    (setf (point) (point-at-eol))
-    (forward-char)
-    (set-mark (point))
-    (backward-char)
-    (setf (point) (point-at-bol))))
+    (when (er--point-inside-string-p)
+      (er--move-point-backward-out-of-string)
+      (set-mark (point))
+      (forward-char)
+      (er--move-point-forward-out-of-string)
+      (exchange-point-and-mark))))
 
-(leaf multiple-cursors
-  :straight t
-  :leaf-defer t
-  :bind* (("M-j" . mc/mark-next-lines)))
-
-;; custom commands
-
-(defun ryo-modal-mode-back (arg)
-  (interactive "p")
-  (unless (= (point) (point-at-bol))
-    (ignore-errors
-      (backward-char arg)))
-  (ryo-modal-mode 1))
-
-(defun toggle-region ()
-  (interactive)
-  (if (region-active-p)
-      (deactivate-mark)
-    (set-mark (1+ (point)))))
-
-(defun kill-region-or-line (arg)
-  (interactive "p")
-  (if (region-active-p)
-      (kill-region (region-beginning) (region-end))
-    (kill-whole-line arg)))
-
-(defun copy-region-or-line (arg)
-  (interactive "p")
-  (if (region-active-p)
-      (copy-region-as-kill (region-beginning) (region-end))
-    (viper-yank-line arg)))
-
-(defun goto-or-quit (arg)
-  (interactive "P")
-  (if (numberp arg)
-      (if (> arg 0)
-          (goto-line arg)
-        (goto-line (+ arg (line-number-at-pos (point-max)))))
-    (fi-universal-quit)))
-
-(defun mc/mark-down-or-more (arg)
-  (interactive "p")
-  (if (region-active-p)
-      (dotimes (_ arg) (mc/mark-next-like-this 1))
-    (mc/mark-next-lines arg)))
-
-(defun do-deactivate-mark ()
-  (interactive)
-  (deactivate-mark))
-
-(defun forward-char-on-line (arg)
-  (interactive "p")
-  (unless (= (point) (point-at-eol))
-    (ignore-errors
-      (forward-char arg))))
+;; (bk-block multiple-cursors
+;;   :bind (("M-j" . mc/mark-next-lines)))
 
 (provide 'keytheme)
+
 ;;; keytheme.el ends here
