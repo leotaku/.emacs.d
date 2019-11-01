@@ -127,7 +127,7 @@
     "Whitelist kill-emacs from being run interactively."
     (if (equal this-command 'kill-emacs)
         (let ((this-command nil))
-          (save-buffers-kill-emacs))
+          (message "Fuck you!"))
       (apply func args)))
   (advice-add 'kill-emacs :around 'warn-kill-emacs))
 
