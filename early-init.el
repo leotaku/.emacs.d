@@ -51,11 +51,9 @@
 
 ;; Emacs wants to load `package.el' before the init file,
 ;; so we do the same with `straight.el'
-(setq straight-enable-use-package-integration nil
-      straight-recipes-gnu-elpa-use-mirror t
-      straight-fix-org t
-      straight-check-for-modifications '(find-when-checking check-on-save)
-      straight-recipe-repositories '(org-elpa melpa emacsmirror-mirror gnu-elpa-mirror))
+(setq straight-fix-org t
+      straight-enable-use-package-integration nil
+      straight-check-for-modifications '(find-when-checking check-on-save))
 
 (let ((bootstrap-file
        (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
@@ -69,18 +67,22 @@
       (eval-print-last-sexp)))
   (load bootstrap-file nil 'nomessage))
 
+(require 'straight)
 (require 'straight-x)
 
-;; Load all external packages
-(mapc
- 'straight-use-package
- (with-current-buffer
-     (let ((default-directory user-emacs-directory))
-       (find-file-noselect "package-set.el"))
-   (goto-char (point-min))
-   (prog1
-       (read (current-buffer))
-     (kill-buffer (current-buffer)))))
+;; `package-set.el' loading mechanism
+(let* ((contents
+        (with-current-buffer
+            (let ((default-directory user-emacs-directory))
+              (find-file-noselect "package-set.el"))
+          (goto-char (point-min))
+          (prog1
+              (read (current-buffer))
+            (kill-buffer (current-buffer)))))
+       (repos (nth 0 contents))
+       (packages (nth 1 contents)))
+  (setq straight-recipe-repositories (append repos nil))
+  (mapc 'straight-use-package packages))
 
 (provide 'early-init)
 
