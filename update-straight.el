@@ -36,14 +36,15 @@
           (prog1
               (read (current-buffer))
             (kill-buffer (current-buffer)))))
-       (repos (nth 0 contents))
-       (packages (nth 1 contents)))
-  (setq straight-recipe-repositories (append repos nil))
+       (repos (append (nth 0 contents) nil))
+       (packages (append (nth 1 contents) nil)))
+  (setq straight-recipe-repositories repos)
+  (setq update--all-packages packages)
   (mapc 'straight-use-package packages))
 
 ;; Update all available packages
 
-(setq valid-recipes '())
+(setq update--valid-recipes '())
 
 (straight--map-repos
  (lambda (package)
@@ -55,13 +56,13 @@
                          "git" "-c" "status.branch=false"
                          "status" "--short")))
            (if (string-empty-p status)
-               (push package valid-recipes)
+               (push package update--valid-recipes)
              (message "Dirty repository: \"%s\"" local-repo)))
        (message "Unavailable repository: \"%s\"" local-repo)))))
 
 (switch-to-buffer "*straight*")
 
-(setq straight-x-all valid-recipes
+(setq straight-x-all update--valid-recipes
       straight-x-waiting straight-x-all
       straight-x-running nil
       straight-x-finished nil)
@@ -80,7 +81,7 @@
            (length straight-x-all)))
 
 (message "Merging repos...")
-(dolist (recipe valid-recipes)
+(dolist (recipe update--valid-recipes)
   (straight-vc-merge-from-remote recipe))
 
 (message "Freezing versions...")
