@@ -9,7 +9,7 @@
   :leaf-autoload nil
   :mode ("\\.org\\'" . org-mode)
   :leaf-defer t
-  :custom
+  :pre-setq
   (org-adapt-indentation . nil)
   (org-tags-column . 0)
   :config
@@ -34,7 +34,7 @@
 (leaf nix-mode
   :leaf-defer t
   :mode "\\.nix\\'"
-  :custom
+  :pre-setq
   (nix-indent-function . 'nix-indent-line))
 
 (leaf lua-mode
