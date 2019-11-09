@@ -41,6 +41,10 @@
   :leaf-defer t
   :mode "\\.lua\\'")
 
+(leaf makefile-mode
+  :leaf-defer t
+  :mode "Makfile" "Justfile" "justfile")
+
 (leaf rust-mode
   :leaf-defer t
   :mode "\\.rs\\'" "\\.lalrpop\\'" "\\.rustpeg\\'")
