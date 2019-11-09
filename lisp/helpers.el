@@ -63,13 +63,13 @@
 (defun kill-region-or-line (arg)
   (interactive "p")
   (if (region-active-p)
-      (kill-region (region-beginning) (region-end))
+      (call-interactively 'kill-region)
     (kill-whole-line arg)))
 
 (defun copy-region-or-line (arg)
   (interactive "p")
   (if (region-active-p)
-      (copy-region-as-kill (region-beginning) (region-end))
+      (call-interactively 'copy-region-as-kill)
     (let ((begin (point-at-bol)))
       (save-excursion
         (forward-line arg)
@@ -83,6 +83,14 @@
           (goto-line arg)
         (goto-line (+ arg (line-number-at-pos (point-max)))))
     (fi-universal-quit)))
+
+(defun switch-mark-command ()
+  (interactive)
+  (if (region-active-p)
+      (if (null rectangle-mark-mode)
+          (rectangle-mark-mode)
+        (deactivate-mark))
+    (set-mark-command nil)))
 
 (provide 'helpers)
 

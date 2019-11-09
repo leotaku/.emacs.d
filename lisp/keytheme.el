@@ -58,7 +58,7 @@
    ("n" . er/contract-region)
    ("s" . avy-goto-word-or-subword-1))
   (modalka-keys
-   ("v" . set-mark-command)
+   ("v" . switch-mark-command)
    ("r" . viper-replace-char)
    ("o" . exchange-point-and-mark)
    ("U" . fi-undo-only-global)
@@ -66,9 +66,20 @@
    ("p" . viper-put-back)
    ("P" . viper-Put-back)
    (";" . comment-or-uncomment-region)
-   ("f" . viper-find-char-forward)
-   ("t" . viper-goto-char-forward)
-   ("," . viper-repeat-find)))
+   ("f" . ((let ((beg (mark)))
+             (call-interactively 'viper-find-char-forward)
+             (when (region-active-p)
+               (set-mark beg)))))
+   ("t" . ((let ((beg (mark)))
+             (call-interactively 'viper-goto-char-forward)
+             (when (region-active-p)
+               (set-mark beg)))))
+   ("," . ((let ((beg (mark))
+                 (active (region-active-p)))
+             (call-interactively 'viper-repeat-find)
+             (when active
+               (set-mark beg)
+               (transient-mark-mode)))))))
 
 (bk-block0 theist-mode
   "Managed by straight.el")
