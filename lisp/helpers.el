@@ -92,6 +92,24 @@
         (deactivate-mark))
     (set-mark-command nil)))
 
+;;;; Window management commands
+
+(defun delete-window-or-frame ()
+  (interactive)
+  (unless (ignore-errors (delete-window) t)
+    (unless (ignore-errors (delete-frame) t)
+      (save-buffers-kill-emacs))))
+
+(defun split-window-left (&optional size)
+  (interactive)
+  (split-window-right size)
+  (other-window 1))
+
+(defun split-window-above (&optional size)
+  (interactive)
+  (split-window-below size)
+  (other-window 1))
+
 (provide 'helpers)
 
 ;;; helpers.el ends here

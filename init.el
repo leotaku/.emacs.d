@@ -107,17 +107,13 @@
          ("C-x s" . save-buffer)))
 
 (bk-block! window-management
-  :bind (("C-x o" . ace-window)
+  :bind (("C-x q" . split-window-left)
+         ("C-x w" . split-window-above)
+         ("C-x o" . ace-window)
          ("C-x c" . make-frame)
          ("C-x j" . delete-other-windows)
          ("C-x d" . kill-buffer)
-         ("C-x k" . delete-window-or-frame))
-  :config
-  (defun delete-window-or-frame ()
-    (interactive)
-    (unless (ignore-errors (delete-window) t)
-      (unless (ignore-errors (delete-frame) t)
-        (save-buffers-kill-emacs)))))
+         ("C-x k" . delete-window-or-frame)))
 
 ;; Small tweaks
 
