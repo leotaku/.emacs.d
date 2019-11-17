@@ -43,7 +43,7 @@
 
 (leaf makefile-mode
   :leaf-defer t
-  :mode "Makfile" "Justfile" "justfile")
+  :mode "Makefile" "Justfile" "justfile")
 
 (leaf rust-mode
   :leaf-defer t
