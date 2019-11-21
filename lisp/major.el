@@ -119,22 +119,21 @@ depending on the last command issued."
 (leaf el2org
   :leaf-defer t)
 
-;; (leaf common-lisp-mode
-;;   :mode ("\\.cl\\'" "\\.lisp\\'")
-;;   :hook
-;;   (lisp-mode-hook . lispy-mode)
-;;   :config
-;;   (setq-mode-local
-;;    lisp-mode lisp-indent-function
-;;    'common-lisp-indent-function))
+(leaf common-lisp-mode
+  :mode ("\\.cl\\'" "\\.lisp\\'")
+  :hook
+  (lisp-mode-hook . lispy-mode)
+  :config
+  (setq-mode-local
+   lisp-mode lisp-indent-function
+   'common-lisp-indent-function))
 
-;; (leaf sly
-;;   :straight t
-;;   :commands sly
-;;   :bind ((:sly-mrepl-mode-map
-;;           ("C-l" . comint-clear-buffer)))
-;;   :custom
-;;   (inferior-lisp-program . "sbcl"))
+(leaf sly
+  :commands sly
+  :bind ((:sly-mrepl-mode-map
+          ("C-l" . comint-clear-buffer)))
+  :custom
+  (inferior-lisp-program . "sbcl"))
 
 (provide 'major)
 
