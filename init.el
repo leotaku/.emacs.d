@@ -178,6 +178,16 @@
         'flymake-diagnostic-at-point-display-minibuffer)
   (add-hook 'flymake-mode-hook #'flymake-diagnostic-at-point-mode))
 
+(bk-block notmuch
+  :requires .notmuch)
+
+(bk-block vterm
+  :requires .vterm
+  :bind ((:vterm-mode-map
+          :package vterm
+          ("q" . vterm--self-insert)
+          ("<C-backspace>" . vterm-send-backspace))))
+
 ;; Execute `bk-block' system startup
 
 (bk-register-unit 'theme-target)
