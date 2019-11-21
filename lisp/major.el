@@ -60,7 +60,16 @@
 (leaf tex
   :leaf-defer t
   :mode ("\\.tex\\'" . TeX-mode)
+  :bind ((:tex-mode-map
+          :package tex
+          ("C-c c" . ivy-bibtex)))
+  :pre-setq
+  (bibtex-completion-cite-default-command
+   . "autocite")
+  (ivy-bibtex-default-action
+   . 'ivy-bibtex-insert-citation)
   :config
+  (auctex-latexmk-setup)
   (TeX-PDF-mode)
   (TeX-source-correlate-mode)
   
