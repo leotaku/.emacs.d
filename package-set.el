@@ -12,59 +12,63 @@
   (auctex
    :type git :host github
    :repo "emacs-straight/auctex")
-  leaf
+  ace-window
+  aggressive-indent
+  amx
+  auctex-latexmk
+  avy
   benchmark-init
-  no-littering
-  crux
-  suggest
-  deadgrep
-  keyfreq
-  doom-themes
-  moody
-  minions
-  diredfl
-  openwith
-  visual-regexp
-  visual-regexp-steroids
-  pcre2el
-  wgrep
-  which-key
-  swiper
-  counsel
-  projectile
-  counsel-projectile
+  cargo
   company
   company-posframe
-  smartparens
-  amx
-  undohist
-  yankpad
-  yasnippet
-  editorconfig
+  compdef
+  counsel
+  counsel-projectile
+  crux
+  deadgrep
+  diredfl
   direnv
+  doom-themes
+  editorconfig
   eglot
-  lispy
-  aggressive-indent
-  modalka
+  el2org
   evil
-  avy
   expand-region
-  multiple-cursors
-  ace-window
+  flymake-diagnostic-at-point
+  handle
+  hl-todo
+  ivy-bibtex
+  keyfreq
+  lice
+  lispy
+  lua-mode
   magit
   magit-todos
-  hl-todo
-  flymake-diagnostic-at-point
-  org-plus-contrib
-  org-cliplink
+  markdown-mode
+  minions
+  modalka
+  moody
+  multiple-cursors
   nix-mode
-  lua-mode
+  no-littering
+  openwith
+  org-cliplink
+  org-plus-contrib
+  ox-gfm
+  pcre2el
+  projectile
   rust-mode
   rustfmt
-  cargo
+  sly
+  smartparens
+  suggest
+  swiper
   toml-mode
-  markdown-mode
-  el2org
-  ox-gfm
-  handle
-  compdef])
+  undohist
+  visual-regexp
+  visual-regexp-steroids
+  wgrep
+  which-key
+  yankpad
+  yasnippet
+  leaf])
