@@ -84,9 +84,9 @@
   :requires .yasnippet
   :bind (("C-x y" . yankpad-insert)
          ("C-x Y" . yankpad-capture-snippet))
-  :start yas-global-mode
-  :config
-  (setq yankpad-file (expand-file-name "yankpad.org" "~")))
+  :custom (yankpad-file
+           . (expand-file-name "yankpad.org" "~/sync"))
+  :start yas-global-mode)
 
 (provide 'usability)
 
