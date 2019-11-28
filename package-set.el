@@ -57,6 +57,7 @@
   ox-gfm
   pcre2el
   projectile
+  rainbow-mode
   rust-mode
   rustfmt
   sly
@@ -69,6 +70,7 @@
   visual-regexp-steroids
   wgrep
   which-key
+  yaml-mode
   yankpad
   yasnippet
   leaf])
