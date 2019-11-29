@@ -87,6 +87,11 @@
 (message "Freezing versions...")
 (straight-freeze-versions t)
 
+(message "Checking packages...")
+(straight-check-all)
+
+(kill-buffer "*straight*")
+
 (provide 'update-straight)
 
 ;;; update-straight.el ends here
