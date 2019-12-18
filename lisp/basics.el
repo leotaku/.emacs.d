@@ -5,6 +5,13 @@
 
 ;;; Code:
 
+(bk-block! emacs-basics
+  :custom
+  (disabled-command-function . nil)
+  (save-interprogram-paste-before-kill . t)
+  :config
+  (fset 'yes-or-no-p 'y-or-n-p))
+
 (bk-block! fundamental
   :custom
   (major-mode . 'text-mode)
@@ -28,10 +35,6 @@
 (bk-block0 cursor
   :custom
   (cursor-type . '(bar . 2)))
-
-(bk-block! yes-or-no-query
-  :config
-  (fset 'yes-or-no-p 'y-or-n-p))
 
 (bk-block0 vc
   :custom
@@ -69,6 +72,10 @@
   (indent-tabs-mode . nil)
   (tab-width . 4))
 
+(bk-block! save-place
+  :config
+  (save-place-mode 1))
+
 (bk-block! savehist
   :config
   (savehist-mode 1))
@@ -88,7 +95,9 @@
   (recentf-max-menu-items . 1000)
   :config
   (add-to-list 'recentf-exclude no-littering-var-directory)
-  (add-to-list 'recentf-exclude no-littering-etc-directory))
+  (add-to-list 'recentf-exclude no-littering-etc-directory)
+  (add-to-list 'recentf-exclude (getenv "TMPDIR"))
+  (add-to-list 'recentf-exclude "/tmp"))
 
 (bk-block dired
   :bind ((:dired-mode-map
