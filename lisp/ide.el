@@ -80,7 +80,7 @@
   (backward-char))
 
 (bk-block company
-  :requires .company
+  :requires .company .company-posframe
   :hook
   (prog-mode-hook . company-mode)
   (text-mode-hook . company-mode)
@@ -102,6 +102,7 @@
   (company-frontends . '(company-tng-frontend
                          company-pseudo-tooltip-frontend
                          company-echo-metadata-frontend))
+  (company-posframe-show-indicator . nil)
   :config
   (fi-configure-gui
    (company-posframe-mode)))
