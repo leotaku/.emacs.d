@@ -110,13 +110,6 @@
   :config
   (diredfl-global-mode))
 
-(bk-block openwith
-  "I'd rather not depend on this package, but whatever."
-  :config
-  (openwith-mode t)
-  (setq openwith-associations
-        '(("\\.pdf\\'" "zathura" (file)))))
-
 (provide 'basics)
 
 ;;; basics.el ends here

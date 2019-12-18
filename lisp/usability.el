@@ -88,6 +88,16 @@
            . (expand-file-name "yankpad.org" "~/sync"))
   :start yas-global-mode)
 
+(bk-block openwith
+  "I'd rather not depend on this package, but whatever."
+  :config
+  (with-eval-after-load 'mm-util
+    (add-to-list 'mm-inhibit-file-name-handlers
+                 'openwith-file-handler))
+  (openwith-mode t)
+  (setq openwith-associations
+        '(("\\.pdf\\'" "xdg-open" (file) "-x" "emacsclient +%{line} %{input}"))))
+
 (provide 'usability)
 
 ;;; usability.el ends here
