@@ -141,11 +141,15 @@
 
 ;; FIXME: Ugly autoload hack because magit-todos acts up
 
+(bk-block forge
+  :requires magit)
+
 (bk-block magit
-  :requires .forge .hl-todo
+  :wanted-by delayed-target
+  :requires .hl-todo .magit-todos
   :bind (("C-x g" . magit-status)
          (:magit-status-mode-map
-          :package forge
+          :package magit
           ("<return>" . magit-diff-visit-file-other-window)
           ("j" . magit-next-line)
           ("k" . magit-previous-line)
