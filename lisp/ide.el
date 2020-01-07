@@ -53,7 +53,7 @@
     (indent-according-to-mode)))
 
 (bk-block smartparens
-  :requires .smartparens-config
+  :requires .smartparens .smartparens-config
   :hook
   (prog-mode-hook . smartparens-mode)
   (text-mode-hook . smartparens-mode)
@@ -114,13 +114,13 @@
                 (when (string-prefix-p "semantic-" (symbol-name x))
                   (remove-hook 'completion-at-point-functions x))))))
 
-(bk-block editorconfig
+(bk-block* editorconfig
   :start editorconfig-mode)
 
-(bk-block direnv
+(bk-block* direnv
   :start direnv-mode)
 
-(bk-block eglot
+(bk-block* eglot
   :config
   (add-hook 'eglot--managed-mode-hook (lambda () (flymake-mode -1))))
 

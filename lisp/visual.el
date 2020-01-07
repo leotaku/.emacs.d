@@ -16,8 +16,8 @@
 
 (bk-block theme
   :wanted-by theme-target
+  :requires .doom-themes
   :config
-  (require 'doom-themes)
   (load-theme 'doom-one)
   '(fi-configure-gui
     (let ((line (face-attribute 'mode-line :underline)))
@@ -35,20 +35,18 @@
   :config
   (column-number-mode))
 
-(bk-block moody
+(bk-block* moody
   :wanted-by theme-target
   :custom
   (moody-mode-line-height . 50)
   (x-underline-at-descent-line . t)
   :config
-  (require 'moody)
   (moody-replace-mode-line-buffer-identification)
   (moody-replace-vc-mode))
 
-(bk-block minions
+(bk-block* minions
   :wanted-by theme-target
   :config
-  (require 'minions)
   (minions-mode))
 
 (provide 'visual)

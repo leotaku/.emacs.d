@@ -5,7 +5,7 @@
 
 ;;; Code:
 
-(bk-block visual-regexp
+(bk-block* visual-regexp
   :requires .visual-regexp-steroids
   :custom
   (vr/engine . 'pcre2el))
@@ -13,7 +13,7 @@
 (bk-block wgrep
   :requires .wgrep)
 
-(bk-block ispell
+(bk-block* ispell
   :bind (("C-." . ispell-word))
   :custom
   (ispell-dictionary . "en_US")
@@ -21,10 +21,10 @@
   (ispell-really-hunspell . nil)
   (ispell-silently-savep . t))
 
-(bk-block which-key
+(bk-block* which-key
   :start which-key-mode)
 
-(bk-block ivy
+(bk-block* ivy
   :bind ((:ivy-minibuffer-map
           :package ivy
           ("H-i" . ivy-insert-selection)))
@@ -40,7 +40,7 @@
      (insert it)
      (signal 'quit nil))))
 
-(bk-block counsel
+(bk-block* counsel
   :bind (("C-s" . swiper-isearch)
          (:counsel-describe-map
           :package counsel
@@ -58,6 +58,7 @@
        (signal 'quit nil)))))
 
 (bk-block projectile
+  :requires .counsel-projectile .projectile counsel
   :init
   (fi-auto-keymap (kbd "C-x p") 'projectile-command-map 'projectile)
   :custom
@@ -68,7 +69,7 @@
   :config
   (projectile-load-known-projects))
 
-(bk-block amx
+(bk-block* amx
   :config
   (amx-mode))
 
@@ -81,15 +82,16 @@
   (undohist-initialize))
 
 (bk-block yankpad
-  :requires .yasnippet
+  :requires .yankpad .yasnippet projectile
   :bind (("C-x y" . yankpad-insert)
          ("C-x Y" . yankpad-capture-snippet))
   :custom (yankpad-file
            . (expand-file-name "yankpad.org" "~/sync"))
   :start yas-global-mode)
 
-(bk-block openwith
-  "I'd rather not depend on this package, but whatever."
+;; I'd rather not depend on this package, but whatever.
+
+(bk-block* openwith
   :config
   (with-eval-after-load 'mm-util
     (add-to-list 'mm-inhibit-file-name-handlers

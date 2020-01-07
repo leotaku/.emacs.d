@@ -3,7 +3,7 @@
 ;;; Code:
 
 (bk-block modal-editing
-  :requires .viper-cmd .modalka theist-mode expand-region .multiple-cursors
+  :requires .theist-mode .viper-cmd .modalka expand-region .multiple-cursors
   :custom
   (modalka-cursor-type . 'box)
   (cursor-type . 'bar)
@@ -81,9 +81,6 @@
                (set-mark beg)
                (transient-mark-mode)))))))
 
-(bk-block0 theist-mode
-  "Managed by straight.el")
-
 (bk-block expand-region
   :requires .mode-local .expand-region
   :bind (("M-m" . er/expand-region)
@@ -107,9 +104,6 @@
       (forward-char)
       (er--move-point-forward-out-of-string)
       (exchange-point-and-mark))))
-
-;; (bk-block multiple-cursors
-;;   :bind (("M-j" . mc/mark-next-lines)))
 
 (provide 'keytheme)
 

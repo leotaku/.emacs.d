@@ -88,8 +88,8 @@
   (help-window-select . t))
 
 (bk-block! recentf
+  :requires .recentf counsel no-littering
   :bind (("C-x l" . counsel-recentf))
-  :requires .recentf no-littering
   :custom
   (recentf-max-saved-items . 4000)
   (recentf-max-menu-items . 1000)
@@ -100,6 +100,7 @@
   (add-to-list 'recentf-exclude "/tmp"))
 
 (bk-block dired
+  :requires .dired .diredfl
   :bind ((:dired-mode-map
           :package dired
           ("j" . next-line)

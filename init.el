@@ -72,7 +72,6 @@
 ;; Load keytheme config
 
 (bk-block! keytheme
-  :requires theist-mode
   :load "lisp/keytheme.el"
   :custom
   (viper-mode . nil))
@@ -141,9 +140,6 @@
 
 ;; FIXME: Ugly autoload hack because magit-todos acts up
 
-(bk-block forge
-  :requires magit)
-
 (bk-block magit
   :wanted-by delayed-target
   :requires .hl-todo .magit-todos
@@ -160,6 +156,9 @@
           ("j" . magit-next-line)
           ("k" . magit-previous-line)))
   :config
+  (condition-case-unless-debug err
+      (require 'forge)
+    (error))
   (global-hl-todo-mode)
   (with-eval-after-load 'magit
     (let ((inhibit-message t))
@@ -184,6 +183,7 @@
   (add-hook 'flymake-mode-hook #'flymake-diagnostic-at-point-mode))
 
 (bk-block notmuch
+  :wanted-by delayed-target
   :requires .notmuch)
 
 (bk-block vterm

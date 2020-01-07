@@ -128,9 +128,10 @@ depending on the last command issued."
    lisp-mode lisp-indent-function
    'common-lisp-indent-function))
 
-(leaf sly
-  :commands sly
+(bk-block sly
+  :wanted-by delayed-target
   :bind ((:sly-mrepl-mode-map
+          :package sly-mrepl
           ("C-l" . comint-clear-buffer)))
   :custom
   (inferior-lisp-program . "sbcl"))
