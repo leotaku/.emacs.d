@@ -195,19 +195,34 @@
 
 ;; Execute `bk-block' system startup
 
-(bk-register-unit 'theme-target)
+(bk-block0 setup-initial-buffer
+  :wanted-by gui-target
+  :requires .lispy .elisp-mode
+  :custom
+  (initial-major-mode . 'emacs-lisp-mode)
+  :config
+  (with-current-buffer "*scratch*"
+    (emacs-lisp-mode)))
+
 (bk-register-unit 'init-target)
+(bk-register-unit 'theme-target)
+(bk-register-unit 'gui-target)
+(bk-register-unit 'delayed-target)
 (bk-register-unit
- 'gui-target
- '(with-current-buffer "*scratch*"
-    (emacs-lisp-mode))
- '(init-target theme-target))
+ 'start-delayed-target
+ '(run-with-timer
+   3 nil
+   (lambda ()
+     (let ((inhibit-message t))
+       (bk-reach-target 'delayed-target)))))
 
 (bk-reach-target 'init-target)
 (bk-reach-target 'theme-target)
 (add-hook
  'focus-in-hook
- (lambda () (bk-reach-target 'gui-target)))
+ (lambda ()
+   (bk-reach-target 'gui-target)
+   (bk-reach-target 'start-delayed-target)))
 
 (provide 'init)
 
