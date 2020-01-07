@@ -79,7 +79,8 @@
 ;; Execute some simple keybinds
 
 (bk-block! sensible-keys
-  :bind (("A-j" . next-line)
+  :bind (("<insert>" . nil)
+         ("A-j" . next-line)
          ("A-k" . previous-line)
          ("<C-return>" . open-line)
          ("C-x m" . counsel-M-x))
