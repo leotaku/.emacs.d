@@ -170,11 +170,6 @@
         (deactivate-mark)
       (set-mark-command nil))))
 
-(bk-block* flymake-aspell
-  :requires flymake
-  :config
-  (add-hook 'text-mode-hook 'flymake-aspell-setup))
-
 (bk-block* flymake
   :requires .flymake-diagnostic-at-point
   :config
