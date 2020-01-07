@@ -12,6 +12,12 @@
   (auctex
    :type git :host github
    :repo "emacs-straight/auctex")
+  (doom-themes
+   :type git :flavor melpa
+   :files (:defaults "themes/*.el"
+                     "doom-themes-pkg.el")
+   :host github
+   :repo "leotaku/emacs-doom-themes")
   ace-window
   aggressive-indent
   amx
@@ -19,6 +25,7 @@
   avy
   benchmark-init
   cargo
+  company
   company
   company-posframe
   compdef
@@ -28,10 +35,10 @@
   deadgrep
   diredfl
   direnv
-  doom-themes
-  editorconfig
   eglot
   el2org
+  elfeed
+  elfeed-protocol
   evil
   expand-region
   flymake-diagnostic-at-point
@@ -39,6 +46,7 @@
   hl-todo
   ivy-bibtex
   keyfreq
+  leaf
   lice
   lispy
   lua-mode
@@ -72,5 +80,4 @@
   which-key
   yaml-mode
   yankpad
-  yasnippet
-  leaf])
+  yasnippet])
