@@ -88,7 +88,7 @@
   (help-window-select . t))
 
 (bk-block! recentf
-  :requires .recentf counsel no-littering
+  :requires .recentf no-littering
   :bind (("C-x l" . counsel-recentf))
   :custom
   (recentf-max-saved-items . 4000)
