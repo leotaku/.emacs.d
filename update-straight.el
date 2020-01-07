@@ -26,7 +26,7 @@
 (require 'straight)
 (require 'straight-x)
 
-;; Get al packages
+;; Get all packages
 
 (let* ((contents
         (with-current-buffer
