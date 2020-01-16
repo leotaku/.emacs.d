@@ -67,6 +67,7 @@
   (projectile-project-root-files . '(".git" ".bzr" ".svn" ".hg" "_darcs" ".projectile"))
   :start projectile-mode counsel-projectile-mode
   :config
+  (setf (car counsel-projectile-switch-project-action) 4)
   (projectile-load-known-projects))
 
 (bk-block* amx
