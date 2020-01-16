@@ -92,13 +92,15 @@
 ;; I'd rather not depend on this package, but whatever.
 
 (bk-block* openwith
+  :custom
+  (openwith-associations
+   . '(("\\.pdf\\'"
+        "zathura" (file) "-x" "emacsclient" "+%{line}" "%{input}")))
+  :start openwith-mode
   :config
   (with-eval-after-load 'mm-util
     (add-to-list 'mm-inhibit-file-name-handlers
-                 'openwith-file-handler))
-  (openwith-mode t)
-  (setq openwith-associations
-        '(("\\.pdf\\'" "xdg-open" (file) "-x" "emacsclient +%{line} %{input}"))))
+                 'openwith-file-handler)))
 
 (provide 'usability)
 
