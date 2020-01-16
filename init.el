@@ -1,4 +1,4 @@
-;;; init.el --- my emacs config for fastiter
+;;; init.el --- my emacs config for fastiter -*- lexical-binding: t; -*-
 
 ;;; Commentary:
 

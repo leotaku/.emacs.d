@@ -1,4 +1,4 @@
-;;; usability.el --- basic usability packages for emacs
+;;; usability.el --- basic usability packages for emacs -*- lexical-binding: t; -*-
 
 ;;; Commentary:
 ;; 

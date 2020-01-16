@@ -1,4 +1,4 @@
-;;; major.el --- major-mode configurations for fi-emacs
+;;; major.el --- major-mode configurations for fi-emacs -*- lexical-binding: t; -*-
 
 ;;; Commentary:
 ;; 

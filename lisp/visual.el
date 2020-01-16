@@ -1,4 +1,4 @@
-;;; visual.el --- visual configuration for emacs
+;;; visual.el --- visual configuration for emacs -*- lexical-binding: t; -*-
 
 ;;; Commentary:
 ;; 

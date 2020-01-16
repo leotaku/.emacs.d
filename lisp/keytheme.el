@@ -1,4 +1,4 @@
-;;; keytheme.el --- custom keybinding theme
+;;; keytheme.el --- custom keybinding theme -*- lexical-binding: t; -*-
 
 ;;; Code:
 
