@@ -116,9 +116,6 @@ depending on the last command issued."
   :config
   (lispy-define-key lispy-mode-map "x" 'theist-C-x))
 
-(leaf el2org
-  :leaf-defer t)
-
 (leaf common-lisp-mode
   :mode ("\\.cl\\'" "\\.lisp\\'")
   :hook
@@ -128,7 +125,7 @@ depending on the last command issued."
    lisp-mode lisp-indent-function
    'common-lisp-indent-function))
 
-(bk-block sly
+(bk-block* sly
   :wanted-by delayed-target
   :bind ((:sly-mrepl-mode-map
           :package sly-mrepl
