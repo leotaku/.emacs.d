@@ -44,6 +44,7 @@
           :package tex
           ("C-c c" . ivy-bibtex)))
   :pre-setq
+  :custom
   (bibtex-completion-cite-default-command
    . "autocite")
   (ivy-bibtex-default-action
