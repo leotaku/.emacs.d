@@ -5,11 +5,10 @@
 
 ;;; Code:
 
-(leaf org
-  :leaf-autoload nil
-  :mode ("\\.org\\'" . org-mode)
-  :leaf-defer t
-  :pre-setq
+(bk-block org
+  :wanted-by delayed-target
+  :requires .org .org-cliplink
+  :custom
   (org-adapt-indentation . nil)
   (org-tags-column . 0)
   :config
@@ -18,36 +17,30 @@
    :inherit 'variable-pitch
    :height 150))
 
-(leaf nix-mode
-  :leaf-defer t
-  :mode "\\.nix\\'"
-  :pre-setq
+(bk-block* nix-mode
+  :custom
   (nix-indent-function . 'nix-indent-line))
 
-(leaf lua-mode
-  :leaf-defer t
-  :mode "\\.lua\\'")
-
-(leaf makefile-mode
-  :leaf-defer t
+(bk-block makefile-mode
+  :requires .make-mode
   :mode "Makefile" "Justfile" "justfile")
 
-(leaf rust-mode
-  :leaf-defer t
-  :mode "\\.rs\\'" "\\.lalrpop\\'" "\\.rustpeg\\'")
+(bk-block* rust-mode
+  :mode "\\.lalrpop\\'" "\\.rustpeg\\'")
 
-(leaf toml-mode
-  :leaf-defer t
-  :mode "\\.toml\\'")
+(bk-block python-mode
+  :requires .python
+  :mode "SConstruct")
 
-(leaf markdown-mode
-  :leaf-defer t
-  :mode (("\\.md\\'" "\\.markdown\\'") . gfm-mode))
+(bk-block* markdown-mode
+  :mode
+  ("\\.md\\'" . gfm-mode)
+  ("\\.markdown\\'" . gfm-mode))
 
-(leaf tex
-  :leaf-defer t
-  :mode ("\\.tex\\'" . TeX-mode)
-  :bind ((:tex-mode-map
+(bk-block tex
+  :wanted-by delayed-target
+  :requires .auctex-latexmk .tex
+  :bind ((:TeX-mode-map
           :package tex
           ("C-c c" . ivy-bibtex)))
   :pre-setq
@@ -73,16 +66,12 @@
                  (mode-io-correlate " --synctex-forward %n:0:%b -x \"emacsclient --socket-name=%sn --no-wait +%{line} %{input}\""))
                 "zathura"))))
 
-(leaf emacs-lisp-mode
-  :leaf-defer t
-  :mode "\\.el\\'"
-  :hook (emacs-lisp-mode-hook . lispy-mode))
-
-(bk-block* lispy
-  :requires theist-mode
+(bk-block lispy
+  :requires .lispy .theist-mode .aggressive-indent
   :hook
   (minibuffer-setup-hook . conditionally-enable-lispy)
   (lispy-mode-hook . aggressive-indent-mode)
+  (emacs-lisp-mode-hook . lispy-mode)
   :init
   (defun conditionally-enable-lispy ()
     (when (eq this-command 'eval-expression)
@@ -90,7 +79,8 @@
   :config
   (lispy-define-key lispy-mode-map "x" 'theist-C-x))
 
-(leaf common-lisp-mode
+(bk-block common-lisp-mode
+  :wanted-by delayed-target
   :mode ("\\.cl\\'" "\\.lisp\\'")
   :hook
   (lisp-mode-hook . lispy-mode)
