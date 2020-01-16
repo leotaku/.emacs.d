@@ -16,20 +16,7 @@
   (set-face-attribute
    'org-document-title nil
    :inherit 'variable-pitch
-   :height 150)
-  (defun org-clip ()
-    (interactive)
-    (require 'org-cliplink)
-    (if (region-active-p)
-        (let ((old (region-beginning)))
-          (setf (point) old)
-          (insert "[[")
-          (insert (org-cliplink-clipboard-content))
-          (insert "][")
-          (setf (point) (region-end))
-          (insert "]]")
-          (setf (point) old))
-      (org-cliplink))))
+   :height 150))
 
 (leaf nix-mode
   :leaf-defer t
