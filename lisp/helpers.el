@@ -110,6 +110,21 @@
   (split-window-below size)
   (other-window 1))
 
+;;;; Org-mode
+
+(defun org-clip ()
+  (interactive)
+  (if (region-active-p)
+      (let ((old (region-beginning)))
+        (setf (point) old)
+        (insert "[[")
+        (insert (org-cliplink-clipboard-content))
+        (insert "][")
+        (setf (point) (region-end))
+        (insert "]]")
+        (setf (point) old))
+    (org-cliplink)))
+
 (provide 'helpers)
 
 ;;; helpers.el ends here
