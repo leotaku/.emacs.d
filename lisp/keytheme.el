@@ -81,6 +81,12 @@
                (set-mark beg)
                (transient-mark-mode)))))))
 
+(bk-block multiple-cursors
+  :requires .multiple-cursors
+  :bind ((:mc/keymap
+          :package multiple-cursors
+          ("<return>" . nil))))
+
 (bk-block expand-region
   :requires .mode-local .expand-region
   :bind (("M-m" . er/expand-region)
