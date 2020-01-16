@@ -42,7 +42,7 @@
   :requires .auctex-latexmk .tex
   :bind ((:TeX-mode-map
           :package tex
-          ("C-c c" . ivy-bibtex)))
+          ("C-c c" . ivy-bibtex-with-local-bibliography)))
   :custom
   (bibtex-completion-cite-default-command
    . "autocite")
