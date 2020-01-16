@@ -80,6 +80,7 @@
 
 (bk-block! sensible-keys
   :bind (("<insert>" . nil)
+         ("H-m" . newline)
          ("A-j" . next-line)
          ("A-k" . previous-line)
          ("<C-return>" . open-line)
