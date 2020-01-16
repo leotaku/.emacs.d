@@ -73,19 +73,6 @@
                  (mode-io-correlate " --synctex-forward %n:0:%b -x \"emacsclient --socket-name=%sn --no-wait +%{line} %{input}\""))
                 "zathura"))))
 
-(defun TeX-view ()
-  "Start a viewer without confirmation.
-The viewer is started either on region or master file,
-depending on the last command issued."
-  (interactive)
-  (let ((output-file (concat "out/" (TeX-active-master (TeX-output-extension)))))
-    (if (file-exists-p output-file)
-        (TeX-command
-         "View"
-         (lambda (&rest _)
-           output-file)
-         0))))
-
 (leaf emacs-lisp-mode
   :leaf-defer t
   :mode "\\.el\\'"
