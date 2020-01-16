@@ -90,7 +90,7 @@
           ("<return>" . nil)
           ("C-h" . nil)
           ("<escape>" . nil)
-          ("<tab>" . company-complete-common-or-cycle)
+          ("<tab>" . company-complete-selection)
           ("<backtab>" . company-select-previous)))
   :custom
   (company-minimum-prefix-length . 1)
@@ -103,6 +103,8 @@
                          company-pseudo-tooltip-frontend
                          company-echo-metadata-frontend))
   (company-posframe-show-indicator . nil)
+  (company-posframe-show-metadata . nil)
+  (company-posframe-quickhelp-delay . nil)
   :config
   (fi-configure-gui
    (company-posframe-mode)))
