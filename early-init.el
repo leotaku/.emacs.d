@@ -51,10 +51,6 @@
 (add-to-list 'default-frame-alist '(menu-bar-lines . 0))
 (add-to-list 'default-frame-alist '(vertical-scroll-bars))
 
-;; One less file to load at startup
-
-(setq site-run-file nil)
-
 ;; Load straight and packages
 
 (load-file
