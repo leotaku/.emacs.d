@@ -80,7 +80,7 @@
   (setq undohist-ignored-files  '("COMMIT_EDITMSG"))
   (setq undohist-directory (no-littering-expand-var-file-name "undohist"))
   :config
-  (undohist-initialize))
+  (global-undohist-mode))
 
 (bk-block yankpad
   :requires .yankpad .yasnippet projectile
