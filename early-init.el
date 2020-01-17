@@ -59,7 +59,7 @@
 
 (load-file
  (expand-file-name "load-packages.el"
-		   user-emacs-directory))
+                   user-emacs-directory))
 
 (provide 'early-init)
 
