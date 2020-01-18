@@ -20,7 +20,7 @@
 (let ((normal-gc-cons-threshold (* 8 1024 1024))
       (init-gc-cons-threshold (* 256 1024 1024)))
   (setq gc-cons-threshold init-gc-cons-threshold)
-  (run-with-idle-timer
+  (run-with-timer
    5 nil 
    (lambda () (setq gc-cons-threshold normal-gc-cons-threshold))))
 
