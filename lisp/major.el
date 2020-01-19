@@ -30,7 +30,7 @@
 
 (bk-block python-mode
   :requires .python
-  :mode "SConstruct")
+  :mode "SConstruct" "SConscript")
 
 (bk-block* markdown-mode
   :mode
