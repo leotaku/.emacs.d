@@ -95,8 +95,8 @@
 (bk-block* openwith
   :custom
   (openwith-associations
-   . '(("\\.pdf\\'"
-        "zathura" (file) "-x" "emacsclient" "+%{line}" "%{input}")))
+   . '(("\\.pdf\\'" "zathura"
+        (file "-x" "emacsclient +%{line} %{input}"))))
   :start openwith-mode
   :config
   (with-eval-after-load 'mm-util
