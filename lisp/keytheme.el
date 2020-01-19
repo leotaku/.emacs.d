@@ -9,6 +9,7 @@
   (cursor-type . 'bar)
   :config
   (leaf-key "<f7>" 'modalka-mode)
+  (leaf-key "<escape>" 'modalka-mode)
   (advice-add 'modalka-mode :around 'fi-call-silent)
   (add-to-list
    'emulation-mode-map-alists
