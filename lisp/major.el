@@ -81,7 +81,8 @@
 
 (bk-block common-lisp-mode
   :wanted-by delayed-target
-  :mode ("\\.cl\\'" "\\.lisp\\'")
+  :mode
+  ("\\.cl\\'" . common-lisp-mode)
   :hook
   (lisp-mode-hook . lispy-mode)
   :config
