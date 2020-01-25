@@ -11,7 +11,10 @@
   (vr/engine . 'pcre2el))
 
 (bk-block wgrep
-  :requires .wgrep)
+  :requires .wgrep
+  :bind ((:ivy-occur-grep-mode-map
+          :package ivy
+          ("e" . wgrep-change-to-wgrep-mode))))
 
 (bk-block* ispell
   :bind (("C-." . ispell-word))
