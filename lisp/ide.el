@@ -54,9 +54,7 @@
 
 (bk-block smartparens
   :requires .smartparens .smartparens-config
-  :hook
-  (prog-mode-hook . smartparens-mode)
-  (text-mode-hook . smartparens-mode)
+  :start smartparens-global-mode
   :bind ((:sp-pair-overlay-keymap
           :package smartparens
           ("TAB" . sp-forward-sexp)
