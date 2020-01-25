@@ -106,6 +106,7 @@
           ("j" . next-line)
           ("k" . previous-line)
           ("s" . swiper)
+          ("e" . wdired-change-to-wdired-mode)
           ("DEL" . dired-up-directory)
           ("TAB" . dired-hide-details-mode)))
   :config
