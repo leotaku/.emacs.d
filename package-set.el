@@ -18,9 +18,6 @@
                      "doom-themes-pkg.el")
    :host github
    :repo "leotaku/emacs-doom-themes")
-  (undohist
-   :type git :host gitlab
-   :repo "ideasman42/emacs-undohist")
   ace-window
   aggressive-indent
   amx
@@ -74,10 +71,13 @@
   suggest
   swiper
   toml-mode
+  undo-fu
+  undo-fu-session
   visual-regexp
   visual-regexp-steroids
   wgrep
   which-key
+  worf
   yaml-mode
   yankpad
   yasnippet])

@@ -76,14 +76,15 @@
 (bk-block* amx
   :config
   (amx-mode))
-
-(bk-block! undohist
-  :requires .undohist no-littering
-  :config
-  (setq undohist-ignored-files  '("COMMIT_EDITMSG"))
-  (setq undohist-directory (no-littering-expand-var-file-name "undohist"))
-  :config
-  (global-undohist-mode))
+(bk-block! undo-fu
+  :requires .undo-fu .undo-fu-session no-littering
+  :custom*
+  (undo-fu-session-incompatible-files
+   . '("COMMIT_EDITMSG$"
+       "git-rebase-todo$"))
+  (undo-fu-session-directory
+   . (no-littering-expand-var-file-name "undo-fu-session"))
+  :start global-undo-fu-session-mode)
 
 (bk-block yankpad
   :requires .yankpad .yasnippet projectile
