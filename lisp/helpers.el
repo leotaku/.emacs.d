@@ -100,6 +100,12 @@
     (unless (ignore-errors (delete-frame) t)
       (save-buffers-kill-emacs))))
 
+(defun delete-window-or-buffer ()
+  (interactive)
+  (if (= (count-windows) 1)
+      (kill-buffer)
+    (delete-window)))
+
 (defun split-window-left (&optional size)
   (interactive)
   (split-window-right size)

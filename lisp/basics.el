@@ -18,7 +18,7 @@
   :config
   (leaf-key "q" (lambda () (interactive)
                   (if (eq major-mode 'fundamental-mode)
-                      (delete-window-or-frame)
+                      (delete-window-or-buffer)
                     (insert "q")))))
 
 (bk-block0 scratch
