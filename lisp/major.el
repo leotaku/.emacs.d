@@ -17,6 +17,17 @@
    :inherit 'variable-pitch
    :height 150))
 
+(bk-block worf
+  :requires .worf
+  :hook (org-mode-hook . worf-mode)
+  :config
+  (worf-define-key
+   worf-mode-map
+   (kbd "x") 'theist-C-x)
+  (worf-define-key
+   worf-mode-map
+   (kbd "z")
+   'theist-C-c))
 (bk-block* nix-mode
   :custom
   (nix-indent-function . 'nix-indent-line))
