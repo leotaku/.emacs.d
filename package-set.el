@@ -29,7 +29,6 @@
   benchmark-init
   cargo
   company
-  company
   company-posframe
   compdef
   counsel
@@ -42,7 +41,6 @@
   el2org
   elfeed
   elfeed-protocol
-  evil
   expand-region
   flymake-diagnostic-at-point
   handle
