@@ -86,6 +86,12 @@
    . (no-littering-expand-var-file-name "undo-fu-session"))
   :start global-undo-fu-session-mode)
 
+(bk-block* ace-link
+  :bind
+  (("C-x a" . ace-link))
+  :custom
+  (ace-link-fallback-function . 'ace-link-org))
+
 (bk-block yankpad
   :requires .yankpad .yasnippet projectile
   :bind (("C-x y" . yankpad-insert)

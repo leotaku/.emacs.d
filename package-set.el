@@ -18,6 +18,7 @@
                      "doom-themes-pkg.el")
    :host github
    :repo "leotaku/emacs-doom-themes")
+  ace-link
   ace-window
   aggressive-indent
   amx
