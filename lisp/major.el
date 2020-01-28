@@ -7,7 +7,7 @@
 
 (bk-block org
   :wanted-by delayed-target
-  :requires .org .org-cliplink
+  :requires .org .org-tempo .org-cliplink org-capture worf
   :custom
   (org-adapt-indentation . nil)
   (org-tags-column . 0)
