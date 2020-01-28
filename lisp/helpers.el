@@ -131,6 +131,12 @@
         (setf (point) old))
     (org-cliplink)))
 
+(defun org-clean-description (str)
+  (car (split-string str " [-–|]" t)))
+
+(defun org-clean-link (str)
+  (car (split-string str "?" t)))
+
 (provide 'helpers)
 
 ;;; helpers.el ends here
