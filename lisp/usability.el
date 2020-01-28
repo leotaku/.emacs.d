@@ -74,8 +74,8 @@
   (projectile-load-known-projects))
 
 (bk-block* amx
-  :config
-  (amx-mode))
+  :start amx-mode)
+
 (bk-block! undo-fu
   :requires .undo-fu .undo-fu-session no-littering
   :custom*
