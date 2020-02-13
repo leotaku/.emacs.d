@@ -12,12 +12,16 @@
   (auctex
    :type git :host github
    :repo "emacs-straight/auctex")
+  (ivy-taskrunner
+   :type git :host github
+   :repo "emacs-taskrunner/ivy-taskrunner")
   (doom-themes
    :type git :flavor melpa
    :files (:defaults "themes/*.el"
                      "doom-themes-pkg.el")
    :host github
    :repo "leotaku/emacs-doom-themes")
+  taskrunner
   ace-link
   ace-window
   aggressive-indent
