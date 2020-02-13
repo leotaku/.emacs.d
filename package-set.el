@@ -34,6 +34,7 @@
   crux
   deadgrep
   diredfl
+  dired-filter
   direnv
   eglot
   el2org
