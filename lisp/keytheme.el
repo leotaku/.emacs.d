@@ -7,9 +7,9 @@
   :custom
   (modalka-cursor-type . 'box)
   (cursor-type . 'bar)
+  :bind (("<f7>" . modalka-mode)
+         ("<escape>" . modalka-mode))
   :config
-  (leaf-key "<f7>" 'modalka-mode)
-  (leaf-key "<escape>" 'modalka-mode)
   (advice-add 'modalka-mode :around 'fi-call-silent)
   (add-to-list
    'emulation-mode-map-alists
