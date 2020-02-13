@@ -14,7 +14,7 @@
    '(mode-line-inactive ((t (:font "Alegreya" :height 120))))
    '(default ((t (:font "Fira Mono" :height 110 :weight regular))))))
 
-(bk-block theme
+(bk-block0 theme
   :wanted-by theme-target
   :requires .doom-themes
   :config
@@ -25,10 +25,7 @@
       (set-face-attribute 'mode-line-inactive nil :overline   line)
       (set-face-attribute 'mode-line-inactive nil :underline  line)
       (set-face-attribute 'mode-line          nil :box        nil)
-      (set-face-attribute 'mode-line-inactive nil :box        nil)
-      ;; (set-face-attribute 'mode-line-inactive nil :background "#FDF6E3")
-      ;; (set-face-attribute 'mode-line nil          :background "#f9f2d9")
-      )))
+      (set-face-attribute 'mode-line-inactive nil :box        nil))))
 
 (bk-block mode-line-other
   :wanted-by theme-target
