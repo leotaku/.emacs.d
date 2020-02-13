@@ -80,6 +80,14 @@
   :config
   (savehist-mode 1))
 
+(bk-block! trash
+  :requires .async
+  :custom
+  (delete-by-moving-to-trash . t)
+  (trash-directory . nil)
+  :config
+  (fmakunbound 'system-move-file-to-trash))
+
 (bk-block help
   :bind ((:help-mode-map
           ("j" . next-line)
