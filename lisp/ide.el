@@ -120,9 +120,15 @@
 (bk-block* direnv
   :start direnv-mode)
 
-(bk-block* eglot
-  :config
-  (add-hook 'eglot--managed-mode-hook (lambda () (flymake-mode -1))))
+(bk-block lsp
+  :requires .lsp-mode
+  :wanted-by delayed-target
+  :hook
+  (rust-mode-hook . lsp-deferred)
+  :custom
+  (lsp-enable-symbol-highlighting . nil)
+  (lsp-auto-configure . t)
+  (lsp-prefer-flymake . :none))
 
 (bk-block taskrunner
   :requires .taskrunner .ivy-taskrunner
