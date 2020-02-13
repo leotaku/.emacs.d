@@ -44,12 +44,14 @@
 
 (bk-block projectile
   :requires .counsel-projectile .projectile counsel
-  :init
-  (fi-auto-keymap (kbd "C-x p") 'projectile-command-map 'projectile)
+  :bind (("C-x p" . projectile-command-map))
   :custom
   (projectile-completion-system . 'ivy)
   (projectile-project-root-files-functions . '(projectile-root-top-down))
-  (projectile-project-root-files . '(".git" ".bzr" ".svn" ".hg" "_darcs" ".projectile"))
+  (projectile-project-root-files
+   . '(".git" ".bzr" ".svn" ".hg" "_darcs" ".projectile"))
+  (projectile-known-projects-file
+   . (no-littering-expand-var-file-name "projectile-bookmarks.eld"))
   :start projectile-mode counsel-projectile-mode
   :config
   (setf (car counsel-projectile-switch-project-action) 4)
