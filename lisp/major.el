@@ -25,6 +25,10 @@
   ("\\.md\\'" . gfm-mode)
   ("\\.markdown\\'" . gfm-mode))
 
+(bk-block* haskell-mode
+  :mode
+  ("\\.wrk\\'" . haskell-mode))
+
 (bk-block tex
   :wanted-by delayed-target
   :requires .auctex-latexmk .tex
