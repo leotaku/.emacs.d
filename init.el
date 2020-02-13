@@ -60,14 +60,13 @@
 
 ;; Load configuration files
 
-(bk-block! at-init
+(bk-block! loads
   :load "lisp/visual.el"
-  :load "lisp/basics.el")
-
-(bk-block at-gui
+  :load "lisp/basics.el"
   :load "lisp/usability.el"
   :load "lisp/ide.el"
-  :load "lisp/major.el")
+  :load "lisp/major.el"
+  :load "lisp/org-cfg.el")
 
 ;; Load keytheme config
 
