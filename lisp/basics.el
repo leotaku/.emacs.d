@@ -21,26 +21,26 @@
                       (delete-window-or-buffer)
                     (insert "q")))))
 
-(bk-block0 scratch
+(bk-block! scratch
   :custom
   (initial-major-mode . 'emacs-lisp-mode))
 
-(bk-block sensible-gui
+(bk-block! sensible-gui
   :custom
   (frame-resize-pixelwise . t)
   (custom-safe-themes . t)
   :config
   (blink-cursor-mode -1))
 
-(bk-block0 cursor
+(bk-block! cursor
   :custom
   (cursor-type . '(bar . 2)))
 
-(bk-block0 vc
+(bk-block! vc
   :custom
   (vc-follow-symlinks . t))
 
-(bk-block0 backups
+(bk-block! backups
   :custom
   (backup-by-copying . t)
   (delete-old-versions . t)
@@ -67,7 +67,7 @@
   :config
   (show-paren-mode 1))
 
-(bk-block0 tabs
+(bk-block! tabs
   :custom
   (indent-tabs-mode . nil)
   (tab-width . 4))
@@ -80,7 +80,7 @@
   :config
   (savehist-mode 1))
 
-(bk-block0 help
+(bk-block help
   :bind ((:help-mode-map
           ("j" . next-line)
           ("k" . previous-line)))
