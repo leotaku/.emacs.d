@@ -58,7 +58,6 @@
   multiple-cursors
   nix-mode
   no-littering
-  openwith
   org-cliplink
   org-plus-contrib
   ox-gfm

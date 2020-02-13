@@ -100,19 +100,6 @@
            . (expand-file-name "yankpad.org" "~/sync"))
   :start yas-global-mode)
 
-;; I'd rather not depend on this package, but whatever.
-
-(bk-block* openwith
-  :custom
-  (openwith-associations
-   . '(("\\.pdf\\'" "zathura"
-        (file "-x" "emacsclient +%{line} %{input}"))))
-  :start openwith-mode
-  :config
-  (with-eval-after-load 'mm-util
-    (add-to-list 'mm-inhibit-file-name-handlers
-                 'openwith-file-handler)))
-
 (provide 'usability)
 
 ;;; usability.el ends here
