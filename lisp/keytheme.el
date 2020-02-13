@@ -93,24 +93,10 @@
   :bind (("M-m" . er/expand-region)
          ("M-n" . er/contract-region))
   :config
-  (setq-mode-local
-   org-mode
-   er/try-expand-list
-   '(er/mark-line
-     er/mark-inside-pairs
-     er/mark-inside-quotes
-     er/mark-block
-     er/mark-sentence
-     er/mark-word))
-  (defun er/mark-outside-quotes ()
-    "Mark the inside of the current string, not including the quotation marks."
-    (interactive)
-    (when (er--point-inside-string-p)
-      (er--move-point-backward-out-of-string)
-      (set-mark (point))
-      (forward-char)
-      (er--move-point-forward-out-of-string)
-      (exchange-point-and-mark))))
+  (er/define-pair org-table-cell "|" 'org-at-table-p)
+  (er/add-mode-expansions
+   org-mode '(er/mark-inside-org-table-cell
+              er/mark-outside-org-table-cell)))
 
 (provide 'keytheme)
 

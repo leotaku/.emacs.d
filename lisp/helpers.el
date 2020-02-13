@@ -50,6 +50,37 @@
   (forward-line 1)
   (setf (point) (point-at-bol)))
 
+(defmacro er/add-mode-expansions (mode additional-expansions)
+  (let ((name (intern (concat (symbol-name mode) "-hook"))))
+    `(add-hook ',name (lambda ()
+                        (set (make-local-variable 'er/try-expand-list)
+                             (append er/try-expand-list
+                                     ,additional-expansions))))))
+
+(defmacro er/define-pair (name char &optional test-function)
+  (let ((test-function (or test-function (lambda (_) t)))
+        (inside-name (intern (concat "er/mark-inside-" (symbol-name name))))
+        (outside-name (intern (concat "er/mark-outside-" (symbol-name name)))))
+    `(progn
+       (defun ,outside-name ()
+         (interactive)
+         (when (funcall ,test-function)
+           (search-backward ,char)
+           (set-mark (point))
+           (forward-char)
+           (search-forward ,char)
+           (exchange-point-and-mark)))
+       (defun ,inside-name ()
+         "Marks a table cell"
+         (interactive)
+         (when (funcall ,test-function)
+           (search-backward ,char)
+           (forward-char 2)
+           (set-mark (point))
+           (search-forward ,char)
+           (backward-char 2)
+           (exchange-point-and-mark))))))
+
 ;;;; Multiple-cursors
 
 (defun mc/mark-down-or-more (arg)
