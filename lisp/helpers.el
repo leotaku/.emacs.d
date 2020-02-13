@@ -168,6 +168,11 @@
 (defun org-clean-link (str)
   (car (split-string str "?" t)))
 
+;;;; Lispy
+
+(defun conditionally-enable-lispy ()
+  (when (eq this-command 'eval-expression)
+    (lispy-mode 1)))
 
 ;;;; Ivy
 

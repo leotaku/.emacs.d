@@ -64,10 +64,6 @@
   (minibuffer-setup-hook . conditionally-enable-lispy)
   (lispy-mode-hook . aggressive-indent-mode)
   (emacs-lisp-mode-hook . lispy-mode)
-  :init
-  (defun conditionally-enable-lispy ()
-    (when (eq this-command 'eval-expression)
-      (lispy-mode 1)))
   :config
   (lispy-define-key lispy-mode-map "x" 'theist-C-x))
 
