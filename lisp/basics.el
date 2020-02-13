@@ -1,4 +1,4 @@
-;;; basics.el --- basic configuration for emacs -*- lexical-binding: t; -*-
+;;; basics.el --- basic configurations -*- lexical-binding: t; -*-
 
 ;;; Commentary:
 ;; 

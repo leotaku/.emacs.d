@@ -1,4 +1,4 @@
-;;; ide.el --- settings for emacs as an ide -*- lexical-binding: t; -*-
+;;; ide.el --- configurations for emacs as an ide -*- lexical-binding: t; -*-
 
 ;;; Commentary:
 ;; 
