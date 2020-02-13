@@ -108,7 +108,7 @@
   (add-to-list 'recentf-exclude "/tmp"))
 
 (bk-block dired
-  :requires .dired .diredfl
+  :requires .dired .diredfl .dired-filter trash
   :bind ((:dired-mode-map
           :package dired
           ("j" . next-line)
@@ -117,6 +117,11 @@
           ("e" . wdired-change-to-wdired-mode)
           ("DEL" . dired-up-directory)
           ("TAB" . dired-hide-details-mode)))
+  :custom
+  (dired-filter-stack . '((omit) (dot-files)))
+  (dired-clean-confirm-killing-deleted-buffers . nil)
+  :hook
+  (dired-mode-hook . dired-filter-mode)
   :config
   (diredfl-global-mode))
 
