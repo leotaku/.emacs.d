@@ -5,44 +5,6 @@
 
 ;;; Code:
 
-(bk-block org
-  :wanted-by delayed-target
-  :requires .org .org-tempo .org-cliplink org-capture worf
-  :custom
-  (org-adapt-indentation . nil)
-  (org-tags-column . 0)
-  :config
-  (set-face-attribute
-   'org-document-title nil
-   :inherit 'variable-pitch
-   :height 150))
-
-(bk-block worf
-  :requires .worf
-  :hook (org-mode-hook . worf-mode)
-  :config
-  (worf-define-key
-   worf-mode-map
-   (kbd "x") 'theist-C-x)
-  (worf-define-key
-   worf-mode-map
-   (kbd "z")
-   'theist-C-c))
-
-(bk-block0 org-capture
-  :requires .org-capture .org-protocol
-  :custom
-  (org-capture-templates
-   . '(("w" "web-capture" item (file+headline "~/sync/things.org" "Capture")
-        "+ [[%(org-clean-link \"%:link\")][%(org-clean-description \"%:description\")]]"
-        :immediate-finish t)
-       ("c" "web-context" item (file+headline "~/sync/things.org" "Capture")
-        "+ [[%(org-clean-link \"%:link\")][%(org-clean-description \"%:description\")]] :: %i"
-        :immediate-finish t)
-       ("t" "web-todo" entry (file "~/sync/homework.org")
-        "* TODO %i"
-        :immediate-finish t))))
-
 (bk-block* nix-mode
   :custom
   (nix-indent-function . 'nix-indent-line))
