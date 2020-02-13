@@ -143,7 +143,7 @@
 
 (bk-block magit
   :wanted-by delayed-target
-  :requires .hl-todo .magit-todos
+  :requires .magit .hl-todo .magit-todos
   :bind (("C-x g" . magit-status)
          (:magit-status-mode-map
           :package magit
