@@ -42,12 +42,14 @@
   expand-region
   flymake-diagnostic-at-point
   handle
+  haskell-mode
   hl-todo
   ivy-bibtex
   keyfreq
   leaf
   lice
   lispy
+  lsp-mode
   lua-mode
   magit
   magit-todos
