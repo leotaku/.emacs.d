@@ -168,6 +168,27 @@
 (defun org-clean-link (str)
   (car (split-string str "?" t)))
 
+
+;;;; Ivy
+
+(defun ivy-insert-selection ()
+  (interactive)
+  (ivy-exit-with-action
+   (lambda (it)
+     (interactive)
+     (insert it)
+     (signal 'quit nil))))
+
+(defun counsel-lookup-symbol ()
+  "Lookup the current symbol in the help docs."
+  (interactive)
+  (ivy-exit-with-action
+   (lambda (x)
+     (if (featurep 'helpful)
+         (helpful-symbol (intern x))
+       (describe-symbol (intern x))
+       (signal 'quit nil)))))
+
 (provide 'helpers)
 
 ;;; helpers.el ends here

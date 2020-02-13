@@ -35,30 +35,12 @@
   :custom
   (ivy-use-selectable-prompt . t))
 
-(defun ivy-insert-selection ()
-  (interactive)
-  (ivy-exit-with-action
-   (lambda (it)
-     (interactive)
-     (insert it)
-     (signal 'quit nil))))
-
 (bk-block* counsel
   :bind (("C-s" . swiper-isearch)
          (:counsel-describe-map
           :package counsel
           ("C-h" . counsel-lookup-symbol)))
   :start counsel-mode)
-
-(defun counsel-lookup-symbol ()
-  "Lookup the current symbol in the help docs."
-  (interactive)
-  (ivy-exit-with-action
-   (lambda (x)
-     (if (featurep 'helpful)
-         (helpful-symbol (intern x))
-       (describe-symbol (intern x))
-       (signal 'quit nil)))))
 
 (bk-block projectile
   :requires .counsel-projectile .projectile counsel
