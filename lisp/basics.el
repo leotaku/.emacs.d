@@ -97,11 +97,11 @@
   (help-window-select . t))
 
 (bk-block! recentf
-  :requires .recentf no-littering
+  :requires .recentf
   :bind (("C-x l" . counsel-recentf))
-  :custom
-  (recentf-max-saved-items . 4000)
-  (recentf-max-menu-items . 1000)
+  :at-load
+  (setq recentf-max-saved-items 4000)
+  (setq recentf-max-menu-items 1000)
   :config
   (add-to-list 'recentf-exclude no-littering-var-directory)
   (add-to-list 'recentf-exclude no-littering-etc-directory)

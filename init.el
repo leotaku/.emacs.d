@@ -28,21 +28,17 @@
 
 ;;; Configuration:
 
+(prog1 "no-littering"
+  (require 'no-littering)
+  (setq auto-save-file-name-transforms
+        `((".*" ,(no-littering-expand-var-file-name "auto-save/") t))))
+
 (bk-block benchmark-init
   :requires .benchmark-init-modes)
-
-(bk-block!* no-littering
-  :config
-  (setq auto-save-file-name-transforms
-        `((".*" ,(no-littering-expand-var-file-name "auto-save/") t)))
-  (setq projectile-known-projects-file
-        (no-littering-expand-var-file-name "projectile-bookmarks.eld"))
-  (require 'no-littering))
 
 ;; TODO: Do something about unwanted customization
 
 (bk-block! custom-pre
-  :requires .no-littering
   :config
   (setq custom-file
         (no-littering-expand-etc-file-name
@@ -193,9 +189,9 @@
 
 (bk-block0 setup-initial-buffer
   :wanted-by gui-target
-  :requires .lispy .elisp-mode
-  :custom
-  (initial-major-mode . 'emacs-lisp-mode)
+  :requires lispy .elisp-mode
+  :at-load
+  (setq initial-major-mode 'text-mode)
   :config
   (with-current-buffer "*scratch*"
     (emacs-lisp-mode)))
