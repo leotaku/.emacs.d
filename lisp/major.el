@@ -31,7 +31,7 @@
 
 (bk-block tex
   :wanted-by delayed-target
-  :requires .auctex-latexmk .tex
+  :requires .auctex-latexmk .latex
   :bind ((:TeX-mode-map
           :package tex
           ("C-c c" . ivy-bibtex-with-local-bibliography)))
@@ -57,6 +57,13 @@
                 ("zathura %o"
                  (mode-io-correlate " --synctex-forward %n:0:%b -x \"emacsclient --socket-name=%sn --no-wait +%{line} %{input}\""))
                 "zathura"))))
+
+(advice-add 'TeX-active-master :around 'advice-TeX-active-master-pdf)
+
+(defun advice-TeX-active-master-pdf (fun &optional extension nondirectory ignore)
+  (if (string= extension "pdf")
+      (concat "out/" (apply fun extension nondirectory ignore))
+    (apply fun extension nondirectory ignore)))
 
 (bk-block lispy
   :requires .lispy .theist-mode .aggressive-indent
