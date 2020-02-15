@@ -28,6 +28,10 @@
         (define-key modalka-mode-map (kbd key) `(lambda (&optional arg) (interactive "p") ,@command)))
        (otherwise (error "Invalid entry: %S" pair)))))
 
+(defun modalka-deactivate ()
+  (interactive)
+  (modalka-mode -1))
+
 ;;;; Expand-region 
 
 (defun er/mark-line ()
