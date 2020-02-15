@@ -75,6 +75,7 @@
   (lispy-define-key lispy-mode-map "x" 'theist-C-x))
 
 (bk-block common-lisp-mode
+  :requires .lisp-mode .mode-local
   :wanted-by delayed-target
   :mode
   ("\\.cl\\'" . common-lisp-mode)
