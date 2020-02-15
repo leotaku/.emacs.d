@@ -76,14 +76,6 @@
   :custom
   (ace-link-fallback-function . 'ace-link-org))
 
-(bk-block yankpad
-  :requires .yankpad .yasnippet projectile
-  :bind (("C-x y" . yankpad-insert)
-         ("C-x Y" . yankpad-capture-snippet))
-  :custom (yankpad-file
-           . (expand-file-name "yankpad.org" "~/sync"))
-  :start yas-global-mode)
-
 (provide 'usability)
 
 ;;; usability.el ends here

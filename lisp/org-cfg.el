@@ -58,6 +58,15 @@
   :config
   (add-hook 'org-capture-mode-hook 'modalka-deactivate))
 
+(bk-block yankpad
+  :wanted-by delayed-target
+  :requires .org .yankpad .yasnippet projectile
+  :bind (("C-x y" . yankpad-insert)
+         ("C-x Y" . yankpad-capture-snippet))
+  :custom (yankpad-file
+           . (expand-file-name "yankpad.org" "~/sync"))
+  :start yas-global-mode)
+
 (provide 'org-cfg)
 
 ;;; org-cfg.el ends here
