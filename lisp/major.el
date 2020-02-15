@@ -71,8 +71,14 @@
   (minibuffer-setup-hook . conditionally-enable-lispy)
   (lispy-mode-hook . aggressive-indent-mode)
   (emacs-lisp-mode-hook . lispy-mode)
+  :bind ((:lispy-mode-map
+          :package lispy
+          ("{" . lispy-backward)
+          ("}" . lispy-forward)))
   :config
-  (lispy-define-key lispy-mode-map "x" 'theist-C-x))
+  (lispy-define-key lispy-mode-map "x" 'theist-C-x)
+  (lispy-define-key lispy-mode-map "[" 'fi-do-nothing)
+  (lispy-define-key lispy-mode-map "]" 'fi-do-nothing))
 
 (bk-block common-lisp-mode
   :requires .lisp-mode .mode-local
