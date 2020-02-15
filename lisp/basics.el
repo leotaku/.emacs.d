@@ -29,6 +29,7 @@
   :custom
   (frame-resize-pixelwise . t)
   (custom-safe-themes . t)
+  (frame-inhibit-implied-resize . t)
   :config
   (blink-cursor-mode -1))
 
