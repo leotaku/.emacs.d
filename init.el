@@ -196,25 +196,24 @@
   (with-current-buffer "*scratch*"
     (emacs-lisp-mode)))
 
-(bk-register-unit 'init-target)
-(bk-register-unit 'theme-target)
-(bk-register-unit 'gui-target)
-(bk-register-unit 'delayed-target)
-(bk-register-unit
- 'start-delayed-target
- '(run-with-timer
-   3 nil
-   (lambda ()
-     (let ((inhibit-message t))
-       (bk-reach-target 'delayed-target)))))
+;; Register all targets
+
+(bk-register-target 'init-target)
+(bk-register-target 'theme-target)
+(bk-register-target 'gui-target)
+(bk-register-target 'delayed-target)
+
+;; Run Emacs startup
 
 (bk-reach-target 'init-target)
 (bk-reach-target 'theme-target)
-(add-hook
- 'focus-in-hook
+(run-with-timer
+ 1 nil
  (lambda ()
-   (bk-reach-target 'gui-target)
-   (bk-reach-target 'start-delayed-target)))
+   (bk-poll-target
+    'gui-target
+    (lambda ()
+      (bk-poll-target 'delayed-target)))))
 
 (provide 'init)
 
