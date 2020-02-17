@@ -13,6 +13,8 @@
   :custom
   (org-adapt-indentation . nil)
   (org-tags-column . 0)
+  (org-blank-before-new-entry
+   . '((heading . nil) (plain-list-item . nil)))
   :config
   (set-face-attribute
    'org-document-title nil
