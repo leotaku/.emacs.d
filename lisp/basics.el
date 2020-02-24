@@ -126,6 +126,4 @@
   :config
   (diredfl-global-mode))
 
-(provide 'basics)
-
 ;;; basics.el ends here

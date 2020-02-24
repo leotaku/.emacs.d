@@ -76,6 +76,4 @@
   :custom
   (ace-link-fallback-function . 'ace-link-org))
 
-(provide 'usability)
-
 ;;; usability.el ends here

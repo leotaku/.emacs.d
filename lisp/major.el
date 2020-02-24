@@ -100,6 +100,4 @@
   :custom
   (inferior-lisp-program . "sbcl"))
 
-(provide 'major)
-
 ;;; major.el ends here

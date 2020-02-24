@@ -136,6 +136,4 @@
   (taskrunner-cache-file
    . (no-littering-expand-var-file-name "taskrunner-cache-file.eld")))
 
-(provide 'ide)
-
 ;;; ide.el ends here

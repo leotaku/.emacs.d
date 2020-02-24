@@ -98,6 +98,4 @@
    org-mode '(er/mark-inside-org-table-cell
               er/mark-outside-org-table-cell)))
 
-(provide 'keytheme)
-
 ;;; keytheme.el ends here

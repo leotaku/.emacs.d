@@ -49,6 +49,4 @@
   :config
   (minions-mode))
 
-(provide 'visual)
-
 ;;; visual.el ends here

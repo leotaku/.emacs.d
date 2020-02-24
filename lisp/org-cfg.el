@@ -69,6 +69,4 @@
            . (expand-file-name "yankpad.org" "~/sync"))
   :start yas-global-mode)
 
-(provide 'org-cfg)
-
 ;;; org-cfg.el ends here

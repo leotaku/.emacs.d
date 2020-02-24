@@ -198,6 +198,4 @@
        (describe-symbol (intern x))
        (signal 'quit nil)))))
 
-(provide 'helpers)
-
 ;;; helpers.el ends here
