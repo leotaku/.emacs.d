@@ -135,11 +135,9 @@
      (if caller (format "%s: " caller) "")
      (error-message-string data))))
 
-;; FIXME: Ugly autoload hack because magit-todos acts up
-
 (bk-block magit
   :wanted-by delayed-target
-  :requires .magit .hl-todo .magit-todos
+  :requires .magit .hl-todo .magit-todos .forge
   :bind (("C-x g" . magit-status)
          (:magit-status-mode-map
           :package magit
@@ -153,13 +151,8 @@
           ("j" . magit-next-line)
           ("k" . magit-previous-line)))
   :config
-  (condition-case-unless-debug err
-      (require 'forge)
-    (error))
   (global-hl-todo-mode)
-  (with-eval-after-load 'magit
-    (let ((inhibit-message t))
-      (magit-todos-mode)))
+  (magit-todos-mode)
   :config
   (defun magit-mark ()
     (interactive)
