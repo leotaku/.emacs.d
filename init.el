@@ -19,11 +19,11 @@
 ;; Load `fi-emacs' dependencies
 
 (prog1 "fi-setup"
-  (require 'bk-block)
   (require 'fi-subr)
   (require 'fi-auto)
   (require 'fi-config)
   (require 'fi-helpers)
+  (require 'bk)
   (require 'leaf))
 
 ;;; Configuration:
