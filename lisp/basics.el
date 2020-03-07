@@ -109,13 +109,14 @@
   (add-to-list 'recentf-exclude "/tmp"))
 
 (bk-block dired
-  :requires .dired .diredfl .dired-filter trash
+  :requires .dired .diredfl .dired-filter .theist-mode trash
   :bind ((:dired-mode-map
           :package dired
           ("j" . next-line)
           ("k" . previous-line)
           ("s" . swiper)
           ("e" . wdired-change-to-wdired-mode)
+          ("x" . theist-C-x)
           ("DEL" . dired-up-directory)
           ("TAB" . dired-hide-details-mode)))
   :custom
