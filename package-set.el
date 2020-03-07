@@ -55,6 +55,8 @@
   lice
   lispy
   lsp-mode
+  company-lsp
+  lsp-ivy
   lua-mode
   magit
   magit-todos
@@ -67,6 +69,7 @@
   no-littering
   org-cliplink
   org-plus-contrib
+  org-reverse-datetree
   ox-gfm
   pcre2el
   projectile
