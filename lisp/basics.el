@@ -119,7 +119,7 @@
           ("DEL" . dired-up-directory)
           ("TAB" . dired-hide-details-mode)))
   :custom
-  (dired-filter-stack . '((omit) (dot-files)))
+  (dired-filter-stack . '((dot-files) (omit)))
   (dired-clean-confirm-killing-deleted-buffers . nil)
   :hook
   (dired-mode-hook . dired-filter-mode)
