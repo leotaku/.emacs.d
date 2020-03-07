@@ -39,34 +39,43 @@
    (kbd "z")
    'theist-C-c))
 
+(bk-block0 local-files
+  :at-load
+  (defun expand-sync-file (name)
+    (expand-file-name name sync-directory))
+  :custom
+  (sync-directory . "~/sync")
+  (todo-file . (expand-sync-file "homework.org"))
+  (things-file . (expand-sync-file "things.org"))
+  (journal-file . (expand-sync-file "journal.org")))
+
+(bk-block yankpad
+  :wanted-by delayed-target
+  :requires local-files projectile .org .yankpad .yasnippet
+  :bind (("C-x y" . yankpad-insert)
+         ("C-x Y" . yankpad-capture-snippet))
+  :custom (yankpad-file
+           . (expand-sync-file "yankpad.org"))
+  :start yas-global-mode)
+
 (bk-block0 org-capture
-  :requires .org-capture .org-protocol
+  :requires local-files .org-capture .org-protocol .org-reverse-datetree
   :custom
   (org-capture-templates
-   . '(("j" "journal" entry (file+function "~/sync/things.org" org-reverse-datetree-goto-date-in-file)
-        "* TODO %?\n:PROPERTIES:\nDATE: %U\n:END:")
-       ("t" "todo" entry (file "~/sync/homework.org")
+   . '(("t" "todo" entry (file todo-file)
         "* TODO %?\n:PROPERTIES:\nDATE: %U\n:END:")
        ("w" "Capture templates using org-protocol")
-       ("ww" "web-capture" item (file+headline "~/sync/things.org" "Capture")
+       ("ww" "web-capture" item (file+headline things-file "Capture")
         "+ [[%(org-clean-link \"%:link\")][%(org-clean-description \"%:description\")]]"
         :immediate-finish t)
-       ("wc" "web-context" item (file+headline "~/sync/things.org" "Capture")
-        "+ [[%(org-clean-link \"%:link\")][%(org-clean-description \"%:description\")]] :: %i"
+       ("wc" "web-context" item (file+headline things-file "Capture")
+        "+ [[%:link][%(org-clean-description \"%:description\")]] :: %i"
         :immediate-finish t)
-       ("wt" "web-todo" entry (file "~/sync/homework.org")
+       ("wt" "web-todo" entry (file todo-file)
         "* TODO %i"
         :immediate-finish t)))
   :config
   (add-hook 'org-capture-mode-hook 'modalka-deactivate))
 
-(bk-block yankpad
-  :wanted-by delayed-target
-  :requires .org .yankpad .yasnippet projectile
-  :bind (("C-x y" . yankpad-insert)
-         ("C-x Y" . yankpad-capture-snippet))
-  :custom (yankpad-file
-           . (expand-file-name "yankpad.org" "~/sync"))
-  :start yas-global-mode)
 
 ;;; org-cfg.el ends here

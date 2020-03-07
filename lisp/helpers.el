@@ -177,9 +177,6 @@
 (defun org-clean-description (str)
   (car (split-string str " [-–|]" t)))
 
-(defun org-clean-link (str)
-  (car (split-string str "?" t)))
-
 ;;;; Lispy
 
 (defun conditionally-enable-lispy ()
