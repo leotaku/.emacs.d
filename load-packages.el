@@ -53,7 +53,8 @@
        (repos (nth 0 contents))
        (packages (nth 1 contents)))
   (setq straight-recipe-repositories (append repos nil))
-  (mapc 'straight-use-package packages))
+  (let ((straight--allow-find t))
+    (mapc 'straight-use-package packages)))
 
 (provide 'load-packages)
 
