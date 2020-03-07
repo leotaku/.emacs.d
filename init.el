@@ -86,10 +86,6 @@
    (keyboard-translate ?\C-m ?\H-m))
   (leaf-key "ESC" (kbd "C-g") 'key-translation-map))
 
-(bk-block! cua-keys
-  :requires .cua-base
-  :bind* (("C-v" . yank)))
-
 (bk-block! bad-habits
   :bind (("<XF86Forward>" . nil)
          ("<XF86Back>" . nil)
@@ -97,10 +93,12 @@
          ("<next>" . nil)))
 
 (bk-block! misc-bindings
-  :bind (("C-x r" . revert-buffer)
-         ("C-x f" . find-file)
-         ("C-x e" . eval-defun)
-         ("C-x s" . save-buffer)))
+  :bind  (("C-x r" . revert-buffer)
+          ("C-x f" . find-file)
+          ("C-x e" . eval-defun)
+          ("C-x s" . save-buffer))
+  :bind* (("C-x i" . ibuffer)
+          ("C-v" . yank)))
 
 (bk-block! window-management
   :bind (("C-x q" . split-window-left)
