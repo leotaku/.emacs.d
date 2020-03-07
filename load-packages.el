@@ -1,4 +1,4 @@
-;;; load-packages.el --- load straight.el packages
+;;; load-packages.el --- load straight.el packages  -*- lexical-binding: t; -*-
 
 ;;; Commentary:
 ;;
