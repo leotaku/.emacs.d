@@ -107,7 +107,14 @@
          ("C-x c" . make-frame)
          ("C-x j" . delete-other-windows)
          ("C-x d" . kill-buffer)
-         ("C-x k" . delete-window-or-frame)))
+         ("C-x k" . delete-window-or-frame))
+  :config
+  (advice-add 'keyboard-quit :around 'advice-keyboard-quit)
+  (defun advice-keyboard-quit (func)
+    (let ((minibuffer (active-minibuffer-window)))
+      (if minibuffer
+          (minibuffer-keyboard-quit)
+        (funcall func)))))
 
 ;; Small tweaks
 
