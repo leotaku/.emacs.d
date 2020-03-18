@@ -105,7 +105,7 @@
   (company-posframe-quickhelp-delay . nil)
   :config
   (fi-configure-gui
-   (company-posframe-mode)))
+   (company-posframe-mode 1)))
 
 (eval-after-load 'semantic
   (add-hook 'semantic-mode-hook
