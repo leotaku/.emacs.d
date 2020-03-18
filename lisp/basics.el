@@ -9,6 +9,7 @@
   :custom
   (disabled-command-function . nil)
   (save-interprogram-paste-before-kill . t)
+  (inhibit-compacting-font-caches . t)
   :config
   (fset 'yes-or-no-p 'y-or-n-p))
 
