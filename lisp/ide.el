@@ -115,14 +115,16 @@
                   (remove-hook 'completion-at-point-functions x))))))
 
 (bk-block lsp
-  :requires .lsp-mode
+  :requires .lsp-mode .company-lsp .lsp-ivy
   :wanted-by delayed-target
-  :hook
-  (rust-mode-hook . lsp-deferred)
+  :hook (rust-mode-hook . lsp)
   :custom
+  (lsp-rust-server . 'rust-analyzer)
+  (lsp-rust-analyzer-server-command
+   . '("~/.cargo/bin/rust-analyzer"))
   (lsp-enable-symbol-highlighting . nil)
   (lsp-auto-configure . t)
-  (lsp-prefer-flymake . :none))
+  (lsp-diagnostic-package . :none))
 
 (bk-block taskrunner
   :requires .taskrunner .ivy-taskrunner
