@@ -96,35 +96,4 @@
   :custom
   (help-window-select . t))
 
-(bk-block! recentf
-  :requires .recentf
-  :bind (("C-x l" . counsel-recentf))
-  :at-load
-  (setq recentf-max-saved-items 4000)
-  (setq recentf-max-menu-items 1000)
-  :config
-  (add-to-list 'recentf-exclude no-littering-var-directory)
-  (add-to-list 'recentf-exclude no-littering-etc-directory)
-  (add-to-list 'recentf-exclude (getenv "TMPDIR"))
-  (add-to-list 'recentf-exclude "/tmp"))
-
-(bk-block dired
-  :requires .dired .diredfl .dired-filter .theist-mode trash
-  :bind ((:dired-mode-map
-          :package dired
-          ("j" . next-line)
-          ("k" . previous-line)
-          ("s" . swiper)
-          ("e" . wdired-change-to-wdired-mode)
-          ("x" . theist-C-x)
-          ("DEL" . dired-up-directory)
-          ("TAB" . dired-hide-details-mode)))
-  :custom
-  (dired-filter-stack . '((dot-files) (omit)))
-  (dired-clean-confirm-killing-deleted-buffers . nil)
-  :hook
-  (dired-mode-hook . dired-filter-mode)
-  :config
-  (diredfl-global-mode))
-
 ;;; basics.el ends here

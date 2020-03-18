@@ -78,8 +78,7 @@
          ("H-m" . newline)
          ("A-j" . next-line)
          ("A-k" . previous-line)
-         ("<C-return>" . open-line)
-         ("C-x m" . counsel-M-x))
+         ("<C-return>" . open-line))
   :config
   (fi-configure-gui
    (keyboard-translate ?\C-i ?\H-i)

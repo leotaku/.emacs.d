@@ -36,14 +36,16 @@
   (ivy-use-selectable-prompt . t))
 
 (bk-block* counsel
-  :bind (("C-s" . swiper-isearch)
+  :bind (("C-x m" . counsel-M-x)
+         ("C-x l" . counsel-recentf)
+         ("C-s" . swiper-isearch)
          (:counsel-describe-map
           :package counsel
           ("C-h" . counsel-lookup-symbol)))
   :start counsel-mode)
 
 (bk-block projectile
-  :requires .counsel-projectile .projectile counsel
+  :requires .projectile .counsel-projectile counsel
   :bind (("C-x p" . projectile-command-map))
   :custom
   (projectile-completion-system . 'ivy)
@@ -75,5 +77,43 @@
   (("C-x a" . ace-link))
   :custom
   (ace-link-fallback-function . 'ace-link-org))
+
+(bk-block! recentf
+  :requires .recentf
+  :at-load
+  (setq recentf-max-saved-items 4000)
+  (setq recentf-max-menu-items 1000)
+  :config
+  (add-to-list 'recentf-exclude no-littering-var-directory)
+  (add-to-list 'recentf-exclude no-littering-etc-directory)
+  (add-to-list 'recentf-exclude (getenv "TMPDIR"))
+  (add-to-list 'recentf-exclude "/tmp"))
+
+(bk-block dired
+  :requires .dired .diredfl .dired-filter .theist-mode trash
+  :bind ((:dired-mode-map
+          :package dired
+          ("j" . next-line)
+          ("k" . previous-line)
+          ("s" . swiper)
+          ("e" . wdired-change-to-wdired-mode)
+          ("x" . theist-C-x)
+          ("DEL" . dired-up-directory)
+          ("TAB" . dired-hide-details-mode)))
+  :custom
+  (dired-filter-stack . '((dot-files) (omit)))
+  (dired-clean-confirm-killing-deleted-buffers . nil)
+  :hook
+  (dired-mode-hook . dired-filter-mode)
+  :config
+  (diredfl-global-mode))
+
+(bk-block ibuffer
+  :requires .ibuffer theist-mode
+  :bind ((:ibuffer-mode-map
+          :package ibuffer
+          ("x" . theist-C-x)
+          ("j" . next-line)
+          ("k" . previous-line))))
 
 ;;; usability.el ends here
