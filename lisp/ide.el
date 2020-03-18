@@ -114,12 +114,6 @@
                 (when (string-prefix-p "semantic-" (symbol-name x))
                   (remove-hook 'completion-at-point-functions x))))))
 
-(bk-block* editorconfig
-  :start editorconfig-mode)
-
-(bk-block* direnv
-  :start direnv-mode)
-
 (bk-block lsp
   :requires .lsp-mode
   :wanted-by delayed-target
@@ -135,5 +129,11 @@
   :custom
   (taskrunner-cache-file
    . (no-littering-expand-var-file-name "taskrunner-cache-file.eld")))
+
+(bk-block* editorconfig
+  :start editorconfig-mode)
+
+(bk-block* direnv
+  :start direnv-mode)
 
 ;;; ide.el ends here
