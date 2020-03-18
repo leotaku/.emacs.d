@@ -25,6 +25,11 @@
   ("\\.md\\'" . gfm-mode)
   ("\\.markdown\\'" . gfm-mode))
 
+(bk-block js-mode
+  :require .js
+  :custom
+  (js-indent-level . 2))
+
 (bk-block* haskell-mode
   :mode
   ("\\.wrk\\'" . haskell-mode))
