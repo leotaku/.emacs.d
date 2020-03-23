@@ -26,7 +26,7 @@
   ("\\.markdown\\'" . gfm-mode))
 
 (bk-block js-mode
-  :require .js
+  :requires .js
   :custom
   (js-indent-level . 2))
 
