@@ -1,8 +1,8 @@
 # Commands
 
-default: update lock
+update: pull lock
 
-update:
+pull:
 	cd straight/repos; \
 	parallel --timeout 30 --bar --halt-on-error soon,fail,1 'cd {}; git pull --quiet' ::: *
 
