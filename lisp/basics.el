@@ -69,6 +69,10 @@
   :config
   (show-paren-mode 1))
 
+(bk-block show-trailing-whitespace
+  :custom
+  (show-trailing-whitespace . t))
+
 (bk-block! tabs
   :custom
   (indent-tabs-mode . nil)
