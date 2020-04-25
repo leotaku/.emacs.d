@@ -78,7 +78,14 @@
 
 (bk-block show-trailing-whitespace
   :custom
-  (show-trailing-whitespace . t))
+  (show-trailing-whitespace . nil)
+  :config
+  (setq-mode-local
+   text-mode
+   show-trailing-whitespace t)
+  (setq-mode-local
+   prog-mode
+   show-trailing-whitespace t))
 
 (bk-block! tabs
   :custom
