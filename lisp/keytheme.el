@@ -55,8 +55,8 @@
    ("g" . goto-or-quit)
    ("x" . theist-C-x)
    ("z" . theist-C-c)
-   ("m" . er/expand-region)
-   ("n" . er/contract-region)
+   ("m" . eri/expand-region)
+   ("n" . eri/contract-region)
    ("s" . avy-goto-word-or-subword-1))
   (modalka-keys
    ("v" . switch-mark-command)
@@ -89,13 +89,13 @@
           ("<return>" . nil))))
 
 (bk-block expand-region
-  :requires .mode-local .expand-region
-  :bind (("M-m" . er/expand-region)
-         ("M-n" . er/contract-region))
+  :requires .mode-local .expand-region-improved
+  :bind (("M-m" . eri/expand-region)
+         ("M-n" . eri/contract-region))
   :config
-  (er/define-pair org-table-cell "|" 'org-at-table-p)
-  (er/add-mode-expansions
-   org-mode '(er/mark-inside-org-table-cell
-              er/mark-outside-org-table-cell)))
+  (eri/define-pair org-table-cell "|" 'org-at-table-p)
+  (eri/add-mode-expansions 'org-mode
+    '((eri/mark-inside-org-table-cell
+       eri/mark-outside-org-table-cell))))
 
 ;;; keytheme.el ends here
