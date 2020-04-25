@@ -86,7 +86,7 @@
   (lispy-define-key lispy-mode-map "]" 'fi-do-nothing))
 
 (bk-block common-lisp-mode
-  :requires .lisp-mode .mode-local
+  :requires .lisp-mode
   :wanted-by delayed-target
   :mode
   ("\\.cl\\'" . common-lisp-mode)

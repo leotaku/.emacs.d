@@ -89,7 +89,7 @@
           ("<return>" . nil))))
 
 (bk-block expand-region
-  :requires .mode-local .expand-region-improved
+  :requires .expand-region-improved
   :bind (("M-m" . eri/expand-region)
          ("M-n" . eri/contract-region))
   :config
