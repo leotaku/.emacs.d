@@ -1,5 +1,8 @@
 ([org-elpa melpa emacsmirror-mirror gnu-elpa-mirror]
- [(fi
+ [(expand-region-improved
+   :type git :host github
+   :repo "leotaku/expand-region-improved")
+  (fi
    :type git :host github
    :repo "leotaku/fi-emacs"
    :files ("*.el"))
@@ -12,15 +15,15 @@
   (auctex
    :type git :host github
    :repo "emacs-straight/auctex")
-  (ivy-taskrunner
-   :type git :host github
-   :repo "emacs-taskrunner/ivy-taskrunner")
   (doom-themes
    :type git :flavor melpa
    :files (:defaults "themes/*.el"
                      "doom-themes-pkg.el")
    :host github
    :repo "leotaku/emacs-doom-themes")
+  (ivy-taskrunner
+   :type git :host github
+   :repo "emacs-taskrunner/ivy-taskrunner")
   taskrunner
   ace-link
   ace-window
@@ -32,7 +35,6 @@
   cargo
   company
   company-posframe
-  compdef
   counsel
   counsel-projectile
   crux
@@ -42,11 +44,8 @@
   direnv
   eglot
   el2org
-  elfeed
-  elfeed-protocol
   expand-region
   flymake-diagnostic-at-point
-  handle
   haskell-mode
   hl-todo
   ivy-bibtex
@@ -55,6 +54,7 @@
   lice
   lispy
   lsp-mode
+  lsp-ui
   company-lsp
   lsp-ivy
   lua-mode
@@ -72,15 +72,15 @@
   org-reverse-datetree
   ox-gfm
   pcre2el
+  poly-org
+  polymode
   projectile
   rainbow-mode
   rust-mode
   rustfmt
   sly
   smartparens
-  suggest
   swiper
-  toml-mode
   undo-fu
   undo-fu-session
   visual-regexp
