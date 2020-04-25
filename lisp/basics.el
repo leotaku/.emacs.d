@@ -13,6 +13,13 @@
   :config
   (fset 'yes-or-no-p 'y-or-n-p))
 
+(bk-block! utf-8
+  :config
+  (prefer-coding-system 'utf-8)
+  (set-default-coding-systems 'utf-8)
+  (set-language-environment 'utf-8)
+  (set-selection-coding-system 'utf-8))
+
 (bk-block! fundamental
   :custom
   (major-mode . 'text-mode)
