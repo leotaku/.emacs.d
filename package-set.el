@@ -77,7 +77,6 @@
   projectile
   rainbow-mode
   rust-mode
-  rustfmt
   sly
   smartparens
   swiper
