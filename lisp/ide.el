@@ -77,6 +77,9 @@
   (insert " ")
   (backward-char))
 
+(bk-block polymode
+  :requires .polymode .poly-org)
+
 (bk-block company
   :requires .company .company-posframe
   :hook
