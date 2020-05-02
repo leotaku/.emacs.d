@@ -25,10 +25,20 @@
   ("\\.md\\'" . gfm-mode)
   ("\\.markdown\\'" . gfm-mode))
 
+(bk-block* css-mode
+  :mode "\\.rasi\\'")
+
 (bk-block js-mode
   :requires .js
   :custom
   (js-indent-level . 2))
+
+(bk-block conf-mode
+  :requires .conf-mode .js
+  :config
+  (setq-mode-local
+   conf-mode
+   indent-line-function 'js-indent-line))
 
 (bk-block* haskell-mode
   :mode
