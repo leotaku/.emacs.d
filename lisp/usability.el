@@ -21,8 +21,17 @@
   :custom
   (ispell-dictionary . "en_US")
   (ispell-program-name . "aspell")
-  (ispell-really-hunspell . nil)
-  (ispell-silently-savep . t))
+  (ispell-really-aspell . t)
+  (ispell-silently-savep . t)
+  ;; TODO: Aspell modes for all relevant minor-modes
+  (ispell-extra-args . '("-W" "2" "--mode" "tex"))
+  :config
+  (defun hook-ispell-save-local-dictionary ()
+    (save-excursion
+      (add-file-local-variable
+       'ispell-local-dictionary
+       ispell-local-dictionary)))
+  (add-hook 'ispell-change-dictionary-hook 'hook-ispell-save-local-dictionary))
 
 (bk-block* which-key
   :start which-key-mode)
