@@ -115,16 +115,20 @@
   (add-hook 'semantic-mode-hook 'hook-semantic-fix-lispy))
 
 (bk-block lsp
-  :requires .lsp-mode .company-lsp .lsp-ivy
+  :requires .lsp-mode .company-lsp .lsp-ivy .lsp-ui
   :wanted-by delayed-target
-  :hook (rust-mode-hook . lsp)
+  :hook
+  (rust-mode-hook . lsp)
+  (lsp-mode-hook . lsp-ui-mode)
   :custom
-  (lsp-rust-server . 'rust-analyzer)
-  (lsp-rust-analyzer-server-command
-   . '("~/.cargo/bin/rust-analyzer"))
   (lsp-enable-symbol-highlighting . nil)
   (lsp-auto-configure . t)
-  (lsp-diagnostic-package . :none))
+  (lsp-diagnostic-package . :none)
+  (lsp-ui-doc-enable . nil)
+  ;; rust-analyzer
+  (lsp-rust-server . 'rust-analyzer)
+  (lsp-rust-analyzer-server-command
+   .  (concat (getenv "CARGO_HOME") "/bin/rust-analyzer")))
 
 (bk-block taskrunner
   :requires .taskrunner .ivy-taskrunner
