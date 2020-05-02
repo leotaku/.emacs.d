@@ -123,6 +123,7 @@
           :package ibuffer
           ("x" . theist-C-x)
           ("j" . next-line)
-          ("k" . previous-line))))
+          ("k" . previous-line)
+          ("d" . ibuffer-do-delete))))
 
 ;;; usability.el ends here
