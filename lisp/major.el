@@ -45,23 +45,20 @@
    . "autocite")
   (ivy-bibtex-default-action
    . 'ivy-bibtex-insert-citation)
+  (TeX-view-program-selection
+   . (list '(output-pdf "Zathura")))
+  (TeX-view-program-list
+   . (list '("Zathura"
+             ("zathura %o"
+              (mode-io-correlate " --synctex-forward %n:0:%b -x \"emacsclient --socket-name=%sn --no-wait +%{line} %{input}\""))
+             "zathura")))
   :config
   (auctex-latexmk-setup)
   (TeX-PDF-mode)
   (TeX-source-correlate-mode)
-  
-  (setq TeX-view-program-selection
-        (list '(output-pdf "Zathura")))
-  
   (add-to-list
    'TeX-expand-list
-   '("%sn" (lambda () server-name)))
-  
-  (setq TeX-view-program-list
-        (list '("Zathura"
-                ("zathura %o"
-                 (mode-io-correlate " --synctex-forward %n:0:%b -x \"emacsclient --socket-name=%sn --no-wait +%{line} %{input}\""))
-                "zathura"))))
+   '("%sn" (lambda () server-name))))
 
 (advice-add 'TeX-active-master :around 'advice-TeX-active-master-pdf)
 
