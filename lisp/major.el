@@ -46,7 +46,7 @@
 
 (bk-block tex
   :wanted-by delayed-target
-  :requires .auctex-latexmk .latex
+  :requires .auctex-latexmk .latex .ivy-bibtex
   :bind ((:TeX-mode-map
           :package tex
           ("C-c c" . ivy-bibtex-with-local-bibliography)))
