@@ -12,6 +12,7 @@ It uses my own [fi-emacs](https://github.com/leotaku/fi-emacs) to structure its 
 **Screenshot**
 
 ![Fastiter Emacs Screenshot](screenshot.png)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fleotaku%2F.emacs.d.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fleotaku%2F.emacs.d?ref=badge_shield)
 
 **Configuration**
 
@@ -20,3 +21,7 @@ Visuals are supported by a customized versions of [doom-themes](https://github.c
 Fonts used are [Fira Mono](https://github.com/mozilla/Fira) and [Alegreya Sans](https://github.com/huertatipografica/Alegreya-Sans).
 Other than that, we use many more great and helpful packages from the Emacs community. 
 Simply visit [package-set.el](package-set.el) to find them.
+
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fleotaku%2F.emacs.d.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fleotaku%2F.emacs.d?ref=badge_large)
