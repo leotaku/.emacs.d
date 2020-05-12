@@ -62,7 +62,7 @@
   :load "lisp/usability.el"
   :load "lisp/ide.el"
   :load "lisp/major.el"
-  :load "lisp/org-cfg.el")
+  :load "lisp/org.el")
 
 ;; Load keytheme config
 
