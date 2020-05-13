@@ -1,22 +1,52 @@
 <div align="center">
-    <h1><i>Fastiter Emacs</i></h1>
-    simple Emacs configuration using custom tooling
+    <h1><i>Fi-Emacs</i></h1>
+    Robust Emacs configuration using custom tooling
 </div>
-<h3></h3>
 
-**About**
+## About
 
-This is my new Emacs configuration, after having given up my literate and evil-centric [old setup](https://github.com/leotaku/literate-emacs).
-It uses my own [fi-emacs](https://github.com/leotaku/fi-emacs) to structure its init file in a file-centric and consistent manner.
+This is my new Emacs configuration, after having given up my old literate and evil-centric [setup](https://github.com/leotaku/literate-emacs).
 
-**Screenshot**
+## Central Features
 
-![Fastiter Emacs Screenshot](screenshot.png)
++ Keybindings
+  + [modalka](https://github.com/mrkkrp/modalka) :: Modal editing
+  + [theist-mode (mine)](https://github.com/leotaku/theist-mode) :: Automatic efficient keystrokes
+  + [expand-region-improved (mine)](https://github.com/leotaku/expand-region-improved) :: Semantic region selection
++ Configuration
+  + [fi-emacs (mine)](https://github.com/leotaku/fi-emacs) :: Miscellaneous functionality
+    + bk :: Faster, more reliable use-package replacement
+    + sd :: Asynchronous, traceable Emacs startup
+  + [straight](https://github.com/raxod502/straight.el) :: Package management based on Git
++ Visuals
+  + [doom-one (custom)](https://github.com/leotaku/emacs-doom-themes) :: Dark theme
+  + [moody](https://github.com/tarsius/moody) :: Emacs mode-line
++ Fonts
+  + [Fira Mono](https://github.com/mozilla/Fira) :: Monospaced font
+  + [Alegreya Sans](https://github.com/huertatipografica/Alegreya-Sans) :: Variable font
 
-**Configuration**
-
-The custom vi-like keybinding theme centers around [modalka](https://github.com/mrkkrp/modalka) and my own [theist-mode](https://github.com/leotaku/theist-mode).
-Visuals are supported by a customized versions of [doom-themes](https://github.com/leotaku/emacs-doom-themes), [moody](https://github.com/tarsius/moody) and [minions](https://github.com/tarsius/minions).
-Fonts used are [Fira Mono](https://github.com/mozilla/Fira) and [Alegreya Sans](https://github.com/huertatipografica/Alegreya-Sans).
-Other than that, we use many more great and helpful packages from the Emacs community. 
+Other than that, we use many more great and helpful packages provided by the Emacs community.
 Simply visit [package-set.el](package-set.el) to find them.
+
+## Motivation
+
+My previous Emacs configuration had multiple glaring issues.
+
+First of all, it was undeniably bloated.
+Me being inexperienced in the Emacs ecosystem, I simply added every package I could find to my configuration.
+This issue was further compounded by my usage of Literate Configuration, as well as my reliance on evil-mode.
+Literate Configuration majorly slowed me down and prevented me from removing useless parts of my configuration, which I had spent time documenting.
+Evil on the other hand interacts so deeply with Emacs internals that it makes the entire system essentially completely unpredictable.
+
+Even the much loved use-package, in my opinion, only amplifies these issues.
+By encouraging users to defer parts of their configuration, bugs become harder to reproduce.
+Moreover, the non-insignificant amount of magic involved makes understanding any configuration harder than necessary.
+
+As such, the main goal of my newer configuration has been robustness, determinism and low complexity at reasonable performance cost.
+Evil has been replaced with the decidedly minimal modalka, which interacts predictably with all packages in the non-evil ecosystem, while my own theist-mode largely eliminates the need for excessive custom keybindings or complex modal interfaces, which are all too common in evil-based configurations.
+
+As for configuration utilities, I have replaced use-package with parts of my modular fi-emacs system, which this configuration also inherits its name from.
+Unlike use-package, this system works by defining an explicit tree of dependencies and loading said tree at specific times during the Emacs initialization.
+This allows for a entirely deterministic startup sequence, as well as detailed error backtraces.
+Still, in order to improve performance, large trees of dependencies may be loaded concurrently and during normal Emacs operation.
+The modular and minimal architecture should also aid in adapting fi-emacs to newer features of emacs (e.g. parallelism, dumping).
