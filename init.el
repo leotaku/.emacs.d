@@ -190,7 +190,7 @@
 
 (bk-block0 setup-initial-buffer
   :wanted-by gui-target
-  :requires lispy .elisp-mode
+  :requires emacs-lisp-mode
   :at-load
   (setq initial-major-mode 'text-mode)
   :config

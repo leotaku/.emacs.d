@@ -76,8 +76,9 @@
       (concat "out/" (apply fun extension nondirectory ignore))
     (apply fun extension nondirectory ignore)))
 
-(bk-block lispy
-  :requires .lispy .theist-mode .aggressive-indent
+(bk-block emacs-lisp-mode
+  :requires .elisp-mode .lispy .theist-mode .aggressive-indent
+  :mode ".dir-locals.el"
   :hook
   (minibuffer-setup-hook . conditionally-enable-lispy)
   (lispy-mode-hook . aggressive-indent-mode)

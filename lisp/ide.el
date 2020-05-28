@@ -110,12 +110,15 @@
   (fi-configure-gui
    (company-posframe-mode 1)))
 
-(with-eval-after-load 'semantic
-  (defun hook-semantic-fix-lispy ()
-    (dolist (x (default-value 'completion-at-point-functions))
-      (when (string-prefix-p "semantic-" (symbol-name x))
-        (remove-hook 'completion-at-point-functions x))))
-  (add-hook 'semantic-mode-hook 'hook-semantic-fix-lispy))
+(bk-block fix-semantic
+  :requires .semantic/db-file
+  :at-load
+  (with-eval-after-load 'semantic
+    (defun hook-semantic-fix-lispy ()
+      (dolist (x (default-value 'completion-at-point-functions))
+        (when (string-prefix-p "semantic-" (symbol-name x))
+          (remove-hook 'completion-at-point-functions x))))
+    (add-hook 'semantic-mode-hook 'hook-semantic-fix-lispy)))
 
 (bk-block lsp
   :requires .lsp-mode .company-lsp .lsp-ui
