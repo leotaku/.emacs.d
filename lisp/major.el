@@ -46,7 +46,7 @@
 
 (bk-block tex
   :wanted-by delayed-target
-  :requires .auctex-latexmk .latex .ivy-bibtex
+  :requires .latex .ivy-bibtex
   :bind ((:TeX-mode-map
           :package tex
           ("C-c c" . ivy-bibtex-with-local-bibliography)))
@@ -63,7 +63,6 @@
               (mode-io-correlate " --synctex-forward %n:0:%b -x \"emacsclient --socket-name=%sn --no-wait +%{line} %{input}\""))
              "zathura")))
   :config
-  (auctex-latexmk-setup)
   (TeX-PDF-mode)
   (TeX-source-correlate-mode)
   (add-to-list

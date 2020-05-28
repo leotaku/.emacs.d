@@ -11,7 +11,8 @@
    :repo "leotaku/theist-mode")
   (flycheck-aspell
    :type git :host github
-   :repo "leotaku/flycheck-aspell")
+   :repo "leotaku/flycheck-aspell"
+   :files ("flymake-aspell.el"))
   (auctex
    :type git :host github
    :repo "emacs-straight/auctex")
@@ -21,18 +22,12 @@
                      "doom-themes-pkg.el")
    :host github
    :repo "leotaku/emacs-doom-themes")
-  (ivy-taskrunner
-   :type git :host github
-   :repo "emacs-taskrunner/ivy-taskrunner")
-  taskrunner
   ace-link
   ace-window
   aggressive-indent
   amx
-  auctex-latexmk
   avy
   benchmark-init
-  cargo
   company
   company-posframe
   counsel
@@ -42,9 +37,6 @@
   diredfl
   dired-filter
   direnv
-  eglot
-  el2org
-  expand-region
   flymake-diagnostic-at-point
   haskell-mode
   hl-todo
@@ -56,7 +48,6 @@
   lsp-mode
   lsp-ui
   company-lsp
-  lsp-ivy
   lua-mode
   magit
   magit-todos
@@ -70,7 +61,6 @@
   org-cliplink
   org-plus-contrib
   org-reverse-datetree
-  ox-gfm
   pcre2el
   poly-org
   polymode

@@ -118,7 +118,7 @@
   (add-hook 'semantic-mode-hook 'hook-semantic-fix-lispy))
 
 (bk-block lsp
-  :requires .lsp-mode .company-lsp .lsp-ivy .lsp-ui
+  :requires .lsp-mode .company-lsp .lsp-ui
   :wanted-by delayed-target
   :hook
   (rust-mode-hook . lsp)
@@ -132,12 +132,6 @@
   (lsp-rust-server . 'rust-analyzer)
   (lsp-rust-analyzer-server-command
    .  (concat (getenv "CARGO_HOME") "/bin/rust-analyzer")))
-
-(bk-block taskrunner
-  :requires .taskrunner .ivy-taskrunner
-  :custom
-  (taskrunner-cache-file
-   . (no-littering-expand-var-file-name "taskrunner-cache-file.eld")))
 
 (bk-block* editorconfig
   :start editorconfig-mode)
