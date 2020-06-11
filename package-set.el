@@ -36,7 +36,7 @@
   deadgrep
   diredfl
   dired-filter
-  direnv
+  envrc
   flymake-diagnostic-at-point
   haskell-mode
   hl-todo

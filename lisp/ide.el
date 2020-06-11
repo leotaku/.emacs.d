@@ -132,10 +132,9 @@
   (lsp-rust-analyzer-server-command
    .  (concat (getenv "CARGO_HOME") "/bin/rust-analyzer")))
 
-(bk-block* editorconfig
-  :start editorconfig-mode)
-
-(bk-block* direnv
-  :start direnv-mode)
+(bk-block standard-env
+  :requires .envrc .editorconfig
+  :start editorconfig-mode
+  :start envrc-global-mode)
 
 ;;; ide.el ends here
