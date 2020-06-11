@@ -3,9 +3,9 @@
 ;;; Commentary:
 
 ;; This file is loaded before init.el.
-;; 
+;;
 ;; `early-init.el' is a new concept introduced in Emacs 27.
-;; 
+;;
 ;; Until that becomes stable I simply require the file at the top of
 ;; my `user-init-file'
 

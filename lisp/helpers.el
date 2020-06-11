@@ -1,7 +1,6 @@
 ;;; helpers.el --- small helper functions -*- lexical-binding: t -*-
 
 ;;; Commentary:
-;; 
 
 ;;;; Modalka
 

@@ -1,7 +1,6 @@
 ;;; basics.el --- basic configurations -*- lexical-binding: t; -*-
 
 ;;; Commentary:
-;; 
 
 ;;; Code:
 

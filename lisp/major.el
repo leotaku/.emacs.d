@@ -1,7 +1,6 @@
 ;;; major.el --- major-mode configurations -*- lexical-binding: t; -*-
 
 ;;; Commentary:
-;; 
 
 ;;; Code:
 

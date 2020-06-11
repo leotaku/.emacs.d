@@ -1,7 +1,6 @@
 ;;; visual.el --- visual configurations -*- lexical-binding: t; -*-
 
 ;;; Commentary:
-;; 
 
 ;;; Code:
 

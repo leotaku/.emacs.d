@@ -1,7 +1,6 @@
 ;;; org-cfg.el --- org-mode related configurations -*- lexical-binding: t; -*-
 
 ;;; Commentary:
-;; 
 
 ;;; Code:
 

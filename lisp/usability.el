@@ -1,7 +1,6 @@
 ;;; usability.el --- basic usability configurations -*- lexical-binding: t; -*-
 
 ;;; Commentary:
-;; 
 
 ;;; Code:
 
