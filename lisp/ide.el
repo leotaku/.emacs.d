@@ -107,7 +107,7 @@
   (company-posframe-show-metadata . nil)
   (company-posframe-quickhelp-delay . nil)
   :config
-  (fi-configure-gui
+  (fi-with-gui
    (company-posframe-mode 1)))
 
 (bk-block fix-semantic

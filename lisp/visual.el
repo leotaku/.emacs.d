@@ -14,7 +14,7 @@
    '(mode-line-inactive ((t (:font "Alegreya" :height 120))))
    '(default ((t (:font "Fira Mono" :height 110 :weight regular)))))
   :config
-  (fi-configure-gui
+  (fi-with-gui
    (set-fontset-font t 'symbol (font-spec :family "JoyPixels") nil t)))
 
 (bk-block0 theme
@@ -22,7 +22,7 @@
   :requires .doom-themes
   :config
   (load-theme 'doom-one)
-  '(fi-configure-gui
+  '(fi-with-gui
     (let ((line (face-attribute 'mode-line :underline)))
       (set-face-attribute 'mode-line          nil :overline   line)
       (set-face-attribute 'mode-line-inactive nil :overline   line)

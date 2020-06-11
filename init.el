@@ -19,8 +19,6 @@
 ;; Load `fi-emacs' dependencies
 
 (prog1 "fi-setup"
-  (require 'fi-subr)
-  (require 'fi-auto)
   (require 'fi-config)
   (require 'fi-helpers)
   (require 'bk)
@@ -80,7 +78,7 @@
          ("A-k" . previous-line)
          ("<C-return>" . open-line))
   :config
-  (fi-configure-gui
+  (fi-with-gui
    (keyboard-translate ?\C-i ?\H-i)
    (keyboard-translate ?\C-m ?\H-m))
   (leaf-key "ESC" (kbd "C-g") 'key-translation-map))
