@@ -114,8 +114,4 @@
   :custom
   (help-window-select . t))
 
-(bk-block tramp
-  :custom
-  (tramp-default-method . "ssh"))
-
 ;;; basics.el ends here

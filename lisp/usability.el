@@ -117,6 +117,20 @@
   :config
   (diredfl-global-mode))
 
+(bk-block tramp
+  :config
+  (defun tramp (system)
+    (interactive "MSystem: ")
+    (find-file (format "/-:%s:/" system)))
+  :custom
+  (tramp-default-method . "ssh"))
+
+(bk-block shell-and-terminal
+  :config
+  (defun advice-term-exit (&rest _)
+    (kill-buffer))
+  (advice-add 'term-handle-exit :after 'advice-term-exit))
+
 (bk-block ibuffer
   :requires .ibuffer .theist-mode
   :bind ((:ibuffer-mode-map
