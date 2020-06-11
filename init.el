@@ -177,13 +177,6 @@
   :wanted-by delayed-target
   :requires .notmuch)
 
-(bk-block vterm
-  :requires .vterm
-  :bind ((:vterm-mode-map
-          :package vterm
-          ("q" . vterm--self-insert)
-          ("<C-backspace>" . vterm-send-backspace))))
-
 ;; Execute `bk-block' system startup
 
 (bk-block0 setup-initial-buffer
