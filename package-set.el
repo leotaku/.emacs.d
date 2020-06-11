@@ -62,8 +62,6 @@
   org-plus-contrib
   org-reverse-datetree
   pcre2el
-  poly-org
-  polymode
   projectile
   rainbow-mode
   rust-mode
