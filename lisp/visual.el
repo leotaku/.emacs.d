@@ -29,23 +29,16 @@
       (set-face-attribute 'mode-line          nil :box        nil)
       (set-face-attribute 'mode-line-inactive nil :box        nil))))
 
-(bk-block mode-line-other
-  :wanted-by theme-target
-  :config
-  (column-number-mode))
-
-(bk-block* moody
+(bk-block mode-line
+  :requires .moody .minions
   :wanted-by theme-target
   :custom
   (moody-mode-line-height . 50)
   (x-underline-at-descent-line . t)
   :config
   (moody-replace-mode-line-buffer-identification)
-  (moody-replace-vc-mode))
-
-(bk-block* minions
-  :wanted-by theme-target
-  :config
-  (minions-mode))
+  (moody-replace-vc-mode)
+  (minions-mode)
+  (column-number-mode))
 
 ;;; visual.el ends here
