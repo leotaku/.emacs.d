@@ -136,7 +136,7 @@
   (ivy-exit-with-action
    (lambda (it)
      (interactive)
-     (insert it)
+     (insert (file-name-shortest it))
      (signal 'quit nil))))
 
 (defun counsel-lookup-symbol ()
@@ -148,5 +148,12 @@
          (helpful-symbol (intern x))
        (describe-symbol (intern x))
        (signal 'quit nil)))))
+
+(defun file-name-shortest (file)
+  "Return the shortest possible FILE name.
+Expands relative to `default-directory' and the home directory."
+  (let ((rel (file-relative-name file))
+        (home (concat "~/" (file-relative-name file "~"))))
+    (car (seq-sort-by 'length '< (list rel home file)))))
 
 ;;; helpers.el ends here
