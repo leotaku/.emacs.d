@@ -9,6 +9,7 @@
   (cursor-type . 'bar)
   :bind (("<f7>" . modalka-mode)
          ("<escape>" . modalka-mode))
+  :bind* (("C-x C-x" . theist-C-c))
   :config
   (advice-add 'modalka-mode :around 'fi-call-silent)
   (add-to-list
