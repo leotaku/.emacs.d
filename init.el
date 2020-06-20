@@ -207,6 +207,10 @@
     (lambda ()
       (bk-poll-target 'delayed-target)))))
 
+(fi-with-gui
+ (when (get-buffer "*Warnings*")
+   (warn "Warnings were emitted during Emacs startup!")))
+
 (provide 'init)
 
 ;;; init.el ends here
