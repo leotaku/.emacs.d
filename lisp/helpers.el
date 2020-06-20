@@ -156,4 +156,17 @@ Expands relative to `default-directory' and the home directory."
         (home (concat "~/" (file-relative-name file "~"))))
     (car (seq-sort-by 'length '< (list rel home file)))))
 
+;;;; Dired
+
+(defun dired-better-find-file ()
+  (interactive)
+  (let ((file (dired-get-file-for-visit)))
+    (if (file-directory-p file)
+        (find-alternate-file file)
+      (find-file file))))
+
+(defun dired-better-up-directory ()
+  (interactive)
+  (find-alternate-file ".."))
+
 ;;; helpers.el ends here
