@@ -38,8 +38,10 @@
    ("W" . viper-forward-Word)
    ("b" . viper-backward-word)
    ("B" . viper-backward-Word)
-   ("e" . viper-end-of-word)
-   ("E" . viper-end-of-Word))
+   ("e" . ((viper-end-of-word arg)
+           (forward-char 1)))
+   ("E" . ((viper-end-of-Word arg)
+           (forward-char 1))))
   (modalka-keys
    ("c" . ((kill-region-or-line arg) (modalka-mode -1)))
    ("d" . kill-region-or-line)
