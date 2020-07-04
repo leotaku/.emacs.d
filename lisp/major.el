@@ -13,6 +13,9 @@
   :mode "Makefile" "Justfile" "justfile")
 
 (bk-block* rust-mode
+  :bind ((:rust-mode-map
+          :package rust-mode
+          ("C-c C-f" . nil)))
   :mode "\\.lalrpop\\'" "\\.rustpeg\\'")
 
 (bk-block python-mode
