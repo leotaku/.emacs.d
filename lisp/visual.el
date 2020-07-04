@@ -20,7 +20,7 @@
   :wanted-by theme-target
   :requires .doom-themes
   :config
-  (load-theme 'doom-one)
+  (load-theme 'doom-aurora)
   '(fi-with-gui
     (let ((line (face-attribute 'mode-line :underline)))
       (set-face-attribute 'mode-line          nil :overline   line)
