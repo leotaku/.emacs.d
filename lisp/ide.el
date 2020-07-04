@@ -5,17 +5,19 @@
 ;;; Code:
 
 (bk-block ide-backspace
-  :bind ((:prog-mode-map
-          :package emacs
-          ("<backspace>" . ide-backspace)
-          ("<C-backspace>" . ide-backspace-word))
-         (:text-mode-map
-          :package emacs
-          ("<backspace>" . ide-backspace)
-          ("<C-backspace>" . ide-backspace-word))
-         (:lispy-mode-map
-          :package lispy
-          ("<backspace>" . lispy-delete-backward))))
+  :hook
+  (prog-mode-hook . ide-mode)
+  (text-mode-hook . ide-mode)
+  (conf-mode-hook . ide-mode)
+  (TeX-mode-hook . ide-mode)
+  (lispy-mode-hook . (lambda () (ide-mode -1)))
+  :config
+  (define-minor-mode ide-mode
+    "IDE style backspace key."
+    nil
+    "IDE"
+    '(([backspace] . ide-backspace)
+      ([C-backspace] . ide-backspace-word))))
 
 (defun ide-backspace ()
   (interactive)
