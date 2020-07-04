@@ -37,7 +37,6 @@
   diredfl
   dired-filter
   envrc
-  flymake-diagnostic-at-point
   haskell-mode
   hl-todo
   ivy-bibtex

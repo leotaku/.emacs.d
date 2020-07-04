@@ -167,11 +167,12 @@
       (set-mark-command nil))))
 
 (bk-block* flymake
-  :requires .flymake-diagnostic-at-point
+  :requires .flymake .help-at-pt
+  :custom
+  (help-at-pt-display-when-idle . t)
   :config
-  (setq flymake-diagnostic-at-point-display-diagnostic-function
-        'flymake-diagnostic-at-point-display-minibuffer)
-  (add-hook 'flymake-mode-hook 'flymake-diagnostic-at-point-mode))
+  (defun help-at-pt-maybe-display (&rest _)
+    (display-local-help t)))
 
 (bk-block notmuch
   :wanted-by delayed-target
