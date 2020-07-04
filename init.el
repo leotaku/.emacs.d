@@ -5,7 +5,7 @@
 ;; TODO: ivy sort by shortest
 ;; TODO: use compdef for local completion settings
 ;; TODO: investigate handle, hercules
-;; TODO: use eglot, maybe request
+;; TODO: investigate note-taking setup
 
 ;;; Setup:
 
