@@ -100,7 +100,6 @@
   (savehist-mode 1))
 
 (bk-block! trash
-  :requires .async
   :custom
   (delete-by-moving-to-trash . t)
   (trash-directory . nil)
