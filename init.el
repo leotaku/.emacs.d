@@ -1,11 +1,4 @@
-;;; init.el --- my emacs config for fastiter -*- lexical-binding: t; -*-
-
-;;; Commentary:
-
-;; TODO: ivy sort by shortest
-;; TODO: use compdef for local completion settings
-;; TODO: investigate handle, hercules
-;; TODO: investigate note-taking setup
+;;; init.el --- Emacs configuration -*- lexical-binding: t; -*-
 
 ;;; Setup:
 
@@ -33,8 +26,6 @@
 
 (bk-block benchmark-init
   :requires .benchmark-init-modes)
-
-;; TODO: Do something about unwanted customization
 
 (bk-block! custom-pre
   :config
