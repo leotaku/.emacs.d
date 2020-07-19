@@ -122,17 +122,26 @@
   :requires .lsp-mode .company-lsp .lsp-ui
   :wanted-by delayed-target
   :hook
-  (rust-mode-hook . lsp)
+  (prog-mode-hook . lsp-maybe)
   (lsp-mode-hook . lsp-ui-mode)
+  :bind ((:lsp-mode-map
+          :package lsp-mode
+          ("C-c C-f" . lsp-format-buffer)))
   :custom
+  (lsp-signature-auto-activate . nil)
   (lsp-enable-symbol-highlighting . nil)
   (lsp-auto-configure . t)
-  (lsp-diagnostic-package . :none)
+  (lsp-diagnostic-package . :flymake)
   (lsp-ui-doc-enable . nil)
+  (lsp-ui-sideline-enable . nil)
   ;; rust-analyzer
   (lsp-rust-server . 'rust-analyzer)
   (lsp-rust-analyzer-server-command
-   .  (concat (getenv "CARGO_HOME") "/bin/rust-analyzer")))
+   .  (concat (getenv "CARGO_HOME") "/bin/rust-analyzer"))
+  :config
+  (defun lsp-maybe ()
+    (when (lsp-workspace-root)
+      (lsp-deferred))))
 
 (bk-block standard-env
   :requires .envrc .editorconfig
