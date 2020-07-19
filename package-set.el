@@ -29,13 +29,14 @@
   avy
   benchmark-init
   company
+  company-lsp
   company-posframe
   counsel
   counsel-projectile
   crux
   deadgrep
-  diredfl
   dired-filter
+  diredfl
   envrc
   fish-mode
   git-modes
@@ -48,7 +49,6 @@
   lispy
   lsp-mode
   lsp-ui
-  company-lsp
   lua-mode
   magit
   magit-todos
