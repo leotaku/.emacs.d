@@ -37,6 +37,8 @@
   diredfl
   dired-filter
   envrc
+  fish-mode
+  git-modes
   haskell-mode
   hl-todo
   ivy-bibtex
@@ -69,6 +71,7 @@
   swiper
   undo-fu
   undo-fu-session
+  visual-fill-column
   visual-regexp
   visual-regexp-steroids
   wgrep
