@@ -120,7 +120,7 @@
   :custom
   (command-error-function . 'command-error-default-function)
   :config
-  (defun named-error-function (data context caller)
+  (defun named-error-function (data _context caller)
     (discard-input)
     (ding)
     (minibuffer-message
