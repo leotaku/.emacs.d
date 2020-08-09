@@ -19,7 +19,7 @@ This is my new Emacs configuration, after having given up my old literate and ev
     + sd :: Asynchronous, traceable Emacs startup
   + [straight](https://github.com/raxod502/straight.el) :: Package management based on Git
 + Visuals
-  + [doom-one (custom)](https://github.com/leotaku/emacs-doom-themes) :: Dark theme
+  + [doom-aurora (custom)](https://github.com/leotaku/emacs-doom-themes) :: Dark theme
   + [moody](https://github.com/tarsius/moody) :: Emacs mode-line
 + Fonts
   + [Fira Mono](https://github.com/mozilla/Fira) :: Monospaced font
