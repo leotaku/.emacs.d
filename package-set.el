@@ -40,6 +40,7 @@
   envrc
   fish-mode
   git-modes
+  go-mode
   haskell-mode
   hl-todo
   ivy-bibtex
