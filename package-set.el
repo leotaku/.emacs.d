@@ -42,7 +42,6 @@
   git-modes
   go-mode
   haskell-mode
-  hl-todo
   ivy-bibtex
   keyfreq
   leaf
@@ -52,7 +51,6 @@
   lsp-ui
   lua-mode
   magit
-  magit-todos
   markdown-mode
   minions
   modalka

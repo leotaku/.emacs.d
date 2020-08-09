@@ -130,7 +130,7 @@
 
 (bk-block magit
   :wanted-by delayed-target
-  :requires .magit .hl-todo .magit-todos .forge .theist-mode
+  :requires .magit .forge .theist-mode
   :bind (("C-x g" . magit-status)
          (:magit-status-mode-map
           :package magit
@@ -139,17 +139,7 @@
           ("k" . magit-previous-line)
           ("v" . magit-mark)
           ("x" . theist-C-x)
-          ("C-k" . magit-discard))
-         (:magit-todos-item-section-map
-          :package magit-todos
-          ("<return>" . magit-todos-peek-at-item)
-          ("j" . nil))
-         (:magit-todos-section-map
-          :package magit-todos
-          ("j" . nil)))
-  :config
-  (global-hl-todo-mode)
-  (magit-todos-mode)
+          ("C-k" . magit-discard)))
   :config
   (defun magit-mark ()
     (interactive)
