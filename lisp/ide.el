@@ -4,20 +4,20 @@
 
 ;;; Code:
 
-(bk-block ide-backspace
+(bk-block ide-backspace-mode
   :hook
-  (prog-mode-hook . ide-mode)
-  (text-mode-hook . ide-mode)
-  (conf-mode-hook . ide-mode)
-  (TeX-mode-hook . ide-mode)
-  (lispy-mode-hook . (lambda () (ide-mode -1)))
-  :config
-  (define-minor-mode ide-mode
-    "IDE style backspace key."
-    nil
-    "IDE"
-    '(([backspace] . ide-backspace)
-      ([C-backspace] . ide-backspace-word))))
+  (prog-mode-hook . ide-backspace-mode)
+  (text-mode-hook . ide-backspace-mode)
+  (conf-mode-hook . ide-backspace-mode)
+  (TeX-mode-hook . ide-backspace-mode)
+  (lispy-mode-hook . (lambda () (ide-backspace-mode -1))))
+
+(define-minor-mode ide-backspace-mode
+  "IDE style backspace key."
+  nil
+  "IDE"
+  '(([backspace] . ide-backspace)
+    ([C-backspace] . ide-backspace-word)))
 
 (defun ide-backspace ()
   (interactive)
