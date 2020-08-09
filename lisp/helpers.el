@@ -44,13 +44,13 @@
 (defun kill-region-or-line (arg)
   (interactive "p")
   (if (region-active-p)
-      (call-interactively 'kill-region)
+      (call-interactively #'kill-region)
     (kill-whole-line arg)))
 
 (defun copy-region-or-line (arg)
   (interactive "p")
   (if (region-active-p)
-      (call-interactively 'copy-region-as-kill)
+      (call-interactively #'copy-region-as-kill)
     (let ((begin (point-at-bol)))
       (save-excursion
         (forward-line arg)

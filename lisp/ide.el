@@ -28,7 +28,7 @@
     (ide-delete-to-previous-line))
    (t
     ;; delete char normally
-    (call-interactively 'backward-delete-char))))
+    (call-interactively #'backward-delete-char))))
 
 (defun ide-backspace-word ()
   (interactive)
@@ -37,7 +37,7 @@
     (ide-delete-to-previous-line))
    (t
     ;; delete word normally
-    (call-interactively 'backward-delete-word))))
+    (call-interactively #'backward-delete-word))))
 
 (defun backward-delete-word (arg)
   (interactive "p")
