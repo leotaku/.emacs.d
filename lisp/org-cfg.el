@@ -6,7 +6,7 @@
 
 (bk-block org
   :wanted-by delayed-target
-  :requires .org .org-tempo .org-cliplink worf org-capture
+  :requires .org .org-tempo worf org-capture
   :hook
   (org-mode-hook . auto-revert-mode)
   :custom
