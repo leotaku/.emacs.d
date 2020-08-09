@@ -65,7 +65,7 @@
         "* TODO %?\n:PROPERTIES:\nDATE: %U\n:END:")
        ("w" "Capture templates using org-protocol")
        ("ww" "web-capture" item (file+headline things-file "Capture")
-        "+ [[%(org-clean-link \"%:link\")][%(org-clean-description \"%:description\")]]"
+        "+ [[%:link][%(org-clean-description \"%:description\")]]"
         :immediate-finish t)
        ("wc" "web-context" item (file+headline things-file "Capture")
         "+ [[%:link][%(org-clean-description \"%:description\")]] :: %i"
