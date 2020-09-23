@@ -12,6 +12,29 @@
   :requires .make-mode
   :mode "Makefile" "Justfile" "justfile")
 
+(bk-block c++-mode
+  :requires .cc-mode
+  :mode
+  ("\\.txx\\'" . c++-mode)
+  ("\\.ixx\\'" . c++-mode)
+  :config
+  (setf (alist-get 'c++-mode c-default-style) "mine++")
+  (c-add-style
+   "mine++"
+   '("gnu" (c-offsets-alist (innamespace . 0)))))
+
+(bk-block build2-mode
+  :requires .conf-mode .cc-mode
+  :mode
+  ("buildfile" . conf-mode)
+  ("manifest" . conf-mode)
+  ("testscript" . conf-mode)
+  ("\\.build\\'" . conf-mode)
+  ("\\.cli\\'" . cli-mode)
+  :config
+  (define-derived-mode cli-mode
+    c++-mode "Cli"))
+
 (bk-block* rust-mode
   :bind ((:rust-mode-map
           :package rust-mode
