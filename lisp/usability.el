@@ -116,6 +116,7 @@
   :custom
   (dired-filter-stack . '((dot-files) (omit)))
   (dired-clean-confirm-killing-deleted-buffers . nil)
+  (dired-listing-switches . "-al --group-directories-first")
   :hook
   (dired-mode-hook . dired-filter-mode)
   :config
