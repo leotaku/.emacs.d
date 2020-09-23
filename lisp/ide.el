@@ -98,9 +98,6 @@
   (company-dabbrev-ignore-case . nil)
   (company-require-match . nil)
   (company-tooltip-align-annotations . t)
-  (company-frontends . '(company-tng-frontend
-                         company-pseudo-tooltip-frontend
-                         company-echo-metadata-frontend))
   (company-posframe-show-indicator . nil)
   (company-posframe-show-metadata . nil)
   (company-posframe-quickhelp-delay . nil)
