@@ -15,6 +15,7 @@
   (org-blank-before-new-entry
    . '((heading . nil) (plain-list-item . nil)))
   :config
+  (advice-add 'org-return :override 'newline)
   (set-face-attribute
    'org-document-title nil
    :inherit 'variable-pitch
@@ -30,13 +31,13 @@
           ("<backtab>" . nil)
           ("<S-iso-lefttab>" . nil)))
   :config
-  (worf-define-key
-   worf-mode-map
-   (kbd "x") 'theist-C-x)
-  (worf-define-key
-   worf-mode-map
-   (kbd "z")
-   'theist-C-c))
+  (let ((map worf-mode-map))
+    (worf-define-key map "x" #'theist-C-x)
+    (worf-define-key map "z" #'theist-C-c)
+    (worf-define-key map "P" #'org-priority))
+  (advice-add
+   'org-insert-heading
+   :after 'beginning-of-line))
 
 (bk-block0 local-files
   :at-load
@@ -76,5 +77,33 @@
   :config
   (add-hook 'org-capture-mode-hook 'modalka-deactivate))
 
+;;; New functionality
+
+(defun org-journal (arg)
+  "Visit journal entry for current day.
+Offer day selection when ARG is non-nil."
+  (interactive "P")
+  (with-current-buffer (find-file-noselect journal-file)
+    (save-excursion
+      (if arg
+          (org-reverse-datetree-goto-read-date-in-file)
+        (org-reverse-datetree-goto-date-in-file))
+      (org-tree-to-indirect-buffer)))
+  (select-window (get-buffer-window org-last-indirect-buffer))
+  (setf (point) (point-at-bol))
+  (quick-commit-mode))
+
+(define-minor-mode quick-commit-mode
+  "Buffers that can quickly be commited and discarded."
+  nil
+  "Quick"
+  '(("\C-c\C-c" . quick-commit-buffer)
+    ("\C-c\C-k" . delete-window-and-buffer)))
+
+(defun quick-commit-buffer ()
+  "Save the current buffer, then kill it and its window."
+  (interactive)
+  (save-buffer)
+  (delete-window-and-buffer))
 
 ;;; org-cfg.el ends here
