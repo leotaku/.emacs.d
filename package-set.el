@@ -47,6 +47,7 @@
   leaf
   lice
   lispy
+  lsp-haskell
   lsp-mode
   lsp-ui
   lua-mode

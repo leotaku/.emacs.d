@@ -116,7 +116,7 @@
     (add-hook 'semantic-mode-hook 'hook-semantic-fix-lispy)))
 
 (bk-block lsp
-  :requires .lsp-mode .company-lsp .lsp-ui
+  :requires .lsp-mode .company-lsp .lsp-ui .lsp-haskell
   :wanted-by delayed-target
   :hook
   (prog-mode-hook . lsp-maybe)
@@ -135,6 +135,9 @@
   (lsp-rust-server . 'rust-analyzer)
   (lsp-rust-analyzer-server-command
    .  (concat (getenv "CARGO_HOME") "/bin/rust-analyzer"))
+  ;; ghcide
+  (lsp-haskell-process-path-hie . "ghcide")
+  (lsp-haskell-process-args-hie . '())
   :config
   (defun lsp-maybe ()
     (when (lsp-workspace-root)
