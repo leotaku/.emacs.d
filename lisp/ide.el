@@ -136,8 +136,8 @@
   (lsp-rust-analyzer-server-command
    .  (concat (getenv "CARGO_HOME") "/bin/rust-analyzer"))
   ;; ghcide
-  (lsp-haskell-process-path-hie . "ghcide")
-  (lsp-haskell-process-args-hie . '())
+  (lsp-haskell-server-path . "ghcide")
+  (lsp-haskell-server-args . '())
   :config
   (defun lsp-maybe ()
     (when (lsp-workspace-root)
