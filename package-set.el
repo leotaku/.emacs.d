@@ -59,6 +59,7 @@
   multiple-cursors
   nix-mode
   no-littering
+  org-cliplink
   org-plus-contrib
   org-reverse-datetree
   pcre2el

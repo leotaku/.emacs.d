@@ -57,6 +57,7 @@
  ("nix-mode" . "bb0b49e3ac1579d3d811529ed274272c54a9fe3c")
  ("no-littering" . "184551890f721da2f7eed093f93f90e41c1b62dc")
  ("org" . "920da33f11614f4707ac7405fce1a3ce5c0321dd")
+ ("org-cliplink" . "82402cae7e118d67de7328417fd018a18f95fac2")
  ("org-reverse-datetree" . "29ed12a75f4adcfb4689c5b68eee581f3adf3624")
  ("parsebib" . "3497b6068d78ae15ba1eaf94e4315d18e9ae6b00")
  ("pcre2el" . "0b5b2a2c173aab3fd14aac6cf5e90ad3bf58fa7d")
