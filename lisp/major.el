@@ -59,7 +59,9 @@
   :mode "\\.html?\\'")
 
 (bk-block* css-mode
-  :mode "\\.rasi\\'")
+  :mode "\\.rasi\\'"
+  :custom
+  (css-indent-offset . 2))
 
 (bk-block js-mode
   :requires .js
