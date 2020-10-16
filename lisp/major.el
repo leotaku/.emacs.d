@@ -55,6 +55,9 @@
   ("\\.md\\'" . gfm-mode)
   ("\\.markdown\\'" . gfm-mode))
 
+(bk-block* web-mode
+  :mode "\\.html?\\'")
+
 (bk-block* css-mode
   :mode "\\.rasi\\'")
 

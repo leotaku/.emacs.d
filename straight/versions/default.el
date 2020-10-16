@@ -76,6 +76,7 @@
  ("visual-fill-column" . "64d38bc1c00953be05c193c01332a633be67aac2")
  ("visual-regexp-steroids.el" . "a6420b25ec0fbba43bf57875827092e1196d8a9e")
  ("visual-regexp.el" . "3e3ed81a3cbadef1f1f4cb16f9112a58641d70ca")
+ ("web-mode" . "b4b0a857088d12cf254f6a2105c58039f29a0d04")
  ("with-editor" . "c4768f51c7415119519b4626d8643d60e584098c")
  ("worf" . "bdc8240ff4188c7403a020eb58dc10eea104b7df")
  ("yaml-mode" . "68fecb5f0dec712a10c8655df6881392a4613617")

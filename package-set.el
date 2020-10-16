@@ -73,6 +73,7 @@
   visual-fill-column
   visual-regexp
   visual-regexp-steroids
+  web-mode
   wgrep
   which-key
   worf
