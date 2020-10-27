@@ -70,8 +70,8 @@
 (bk-block* amx
   :start amx-mode)
 
-(bk-block! undo-fu
-  :requires .undo-fu .undo-fu-session
+(bk-block! undo-fu-session
+  :requires .undo-fu-session
   :custom
   (undo-fu-session-incompatible-files
    . '("COMMIT_EDITMSG$"

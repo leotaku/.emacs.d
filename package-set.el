@@ -69,7 +69,6 @@
   sly
   smartparens
   swiper
-  undo-fu
   undo-fu-session
   visual-fill-column
   visual-regexp
