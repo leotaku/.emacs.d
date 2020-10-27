@@ -143,9 +143,8 @@
     (when (lsp-workspace-root)
       (lsp-deferred))))
 
-(bk-block standard-env
-  :requires .envrc .editorconfig
-  :start editorconfig-mode
+(bk-block direnv
+  :requires .envrc
   :start envrc-global-mode)
 
 ;;; ide.el ends here
