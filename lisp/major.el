@@ -53,7 +53,9 @@
 (bk-block* markdown-mode
   :mode
   ("\\.md\\'" . gfm-mode)
-  ("\\.markdown\\'" . gfm-mode))
+  ("\\.markdown\\'" . gfm-mode)
+  :custom
+  (markdown-hide-urls . t))
 
 (bk-block* web-mode
   :mode "\\.html?\\'")
