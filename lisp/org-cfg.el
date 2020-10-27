@@ -62,11 +62,7 @@
   :requires local-files .org-capture .org-protocol .org-reverse-datetree
   :custom
   (org-capture-templates
-   . '(("t" "todo" entry (file todo-file)
-        "* TODO %?\n:PROPERTIES:\nDATE: %U\n:END:")
-       ("j" "journal" entry (file+function journal-file org-reverse-datetree-goto-date-in-file)
-        "* %?")
-       ("w" "Capture templates using org-protocol")
+   . '(("w" "Capture templates using org-protocol")
        ("ww" "web-capture" item (file+headline things-file "Capture")
         "+ [[%:link][%(org-clean-description \"%:description\")]]"
         :immediate-finish t)
