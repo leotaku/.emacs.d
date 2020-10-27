@@ -76,8 +76,6 @@
   (undo-fu-session-incompatible-files
    . '("COMMIT_EDITMSG$"
        "git-rebase-todo$"))
-  (undo-fu-session-directory
-   . (no-littering-expand-var-file-name "undo-fu-session"))
   (undo-fu-session-linear . t)
   :start global-undo-fu-session-mode)
 
