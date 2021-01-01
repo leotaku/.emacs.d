@@ -68,7 +68,9 @@
 (bk-block js-mode
   :requires .js
   :custom
-  (js-indent-level . 2))
+  (js-indent-level . 2)
+  (js-jsx-indent-level . 2)
+  (js-jsx-syntax . t))
 
 (bk-block conf-mode
   :requires .conf-mode .js
