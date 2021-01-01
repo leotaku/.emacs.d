@@ -131,6 +131,8 @@
   (lsp-diagnostic-package . :flymake)
   (lsp-ui-doc-enable . nil)
   (lsp-ui-sideline-enable . nil)
+  ;; internal
+  (read-process-output-max . (expt 2 16))
   ;; rust-analyzer
   (lsp-rust-server . 'rust-analyzer)
   (lsp-rust-analyzer-server-command
