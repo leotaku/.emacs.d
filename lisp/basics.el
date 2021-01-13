@@ -64,10 +64,14 @@
 
 (bk-block auto-fill
   :custom
-  (comment-auto-fill-only-comments . t)
+  (comment-auto-fill-only-comments . nil)
   :hook
   (prog-mode-hook . auto-fill-mode)
-  (message-mode . auto-fill-mode))
+  (prog-mode-hook . hook-auto-fill-comments)
+  (message-mode . auto-fill-mode)
+  :config
+  (defun hook-auto-fill-comments ()
+    (setq-local comment-auto-fill-only-comments t)))
 
 (bk-block show-paren
   :custom
