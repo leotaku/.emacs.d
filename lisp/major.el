@@ -131,24 +131,4 @@
   (lispy-define-key lispy-mode-map "[" 'fi-do-nothing)
   (lispy-define-key lispy-mode-map "]" 'fi-do-nothing))
 
-(bk-block common-lisp-mode
-  :requires .lisp-mode
-  :wanted-by delayed-target
-  :mode
-  ("\\.cl\\'" . common-lisp-mode)
-  :hook
-  (lisp-mode-hook . lispy-mode)
-  :config
-  (setq-mode-local
-   lisp-mode lisp-indent-function
-   'common-lisp-indent-function))
-
-(bk-block* sly
-  :wanted-by delayed-target
-  :bind ((:sly-mrepl-mode-map
-          :package sly-mrepl
-          ("C-l" . comint-clear-buffer)))
-  :custom
-  (inferior-lisp-program . "sbcl"))
-
 ;;; major.el ends here

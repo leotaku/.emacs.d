@@ -66,7 +66,6 @@
  ("rainbow-mode" . "3a5a7aa5fd90378effbf4a3a8c9c8ff06603e70c")
  ("rust-mode" . "ca7d99c6fd90fc1e636aa9d4020a2f077786a0c3")
  ("s.el" . "43ba8b563bee3426cead0e6d4ddc09398e1a349d")
- ("sly" . "fce4f9be39b6a40a4128458ff34151eecb5e27de")
  ("smartparens" . "c59bfef7e8f1687ac77b0afaaaed86d8051d3de1")
  ("spinner" . "d15e7a7b6395be69acda9d6464acc81d3e2ad07d")
  ("straight.el" . "f6663b1de0fb5d9c64528e4f7f8bb914f49bb6d2")

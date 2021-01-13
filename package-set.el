@@ -66,7 +66,6 @@
   projectile
   rainbow-mode
   rust-mode
-  sly
   smartparens
   swiper
   undo-fu-session
