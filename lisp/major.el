@@ -62,10 +62,6 @@
    conf-mode
    indent-line-function 'js-indent-line))
 
-(bk-block* haskell-mode
-  :mode
-  ("\\.wrk\\'" . haskell-mode))
-
 (bk-block tex
   :wanted-by delayed-target
   :requires .latex .ivy-bibtex
