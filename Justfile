@@ -8,7 +8,7 @@ pull:
 
 force-pull:
 	cd straight/repos; \
-	parallel --timeout 30 --bar 'cd {}; git pull --quiet' ::: *
+	parallel --timeout 30 --bar --halt-on-error never 'cd {}; git pull --quiet' ::: *
 
 lock:
 	emacs --batch -q -l ./load-packages.el --eval "(straight-freeze-versions t)"
