@@ -20,18 +20,6 @@
    "mine++"
    '("gnu" (c-offsets-alist (innamespace . 0)))))
 
-(bk-block build2-mode
-  :requires .conf-mode .cc-mode
-  :mode
-  ("buildfile" . conf-mode)
-  ("manifest" . conf-mode)
-  ("testscript" . conf-mode)
-  ("\\.build\\'" . conf-mode)
-  ("\\.cli\\'" . cli-mode)
-  :config
-  (define-derived-mode cli-mode
-    c++-mode "Cli"))
-
 (bk-block* rust-mode
   :bind ((:rust-mode-map
           :package rust-mode
