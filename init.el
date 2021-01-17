@@ -25,9 +25,6 @@
   (setq auto-save-file-name-transforms
         `((".*" ,(no-littering-expand-var-file-name "auto-save/") t))))
 
-(bk-block benchmark-init
-  :requires .benchmark-init-modes)
-
 (bk-block custom-pre
   :config
   (setq custom-file
@@ -156,9 +153,6 @@
   :config
   (defun help-at-pt-maybe-display (&rest _)
     (display-local-help t)))
-
-(bk-block notmuch
-  :requires .notmuch)
 
 ;; Execute `bk-block' system startup
 
