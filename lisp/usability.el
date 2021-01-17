@@ -68,14 +68,14 @@
 (bk-block* amx
   :start amx-mode)
 
-(bk-block! undo-fu-session
+(bk-block!* undo-fu-session
   :requires .undo-fu-session
+  :start global-undo-fu-session-mode
   :custom
   (undo-fu-session-incompatible-files
    . '("COMMIT_EDITMSG$"
        "git-rebase-todo$"))
-  (undo-fu-session-linear . t)
-  :start global-undo-fu-session-mode)
+  (undo-fu-session-linear . t))
 
 (bk-block* ace-link
   :bind
