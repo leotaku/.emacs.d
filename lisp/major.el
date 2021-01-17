@@ -14,11 +14,6 @@
 
 (bk-block c++-mode
   :requires .cc-mode
-  :mode
-  ("\\.txx\\'" . c++-mode)
-  ("\\.ixx\\'" . c++-mode)
-  ("\\.tpp\\'" . c++-mode)
-  ("\\.ipp\\'" . c++-mode)
   :config
   (setf (alist-get 'c++-mode c-default-style) "mine++")
   (c-add-style
