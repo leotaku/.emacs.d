@@ -63,7 +63,6 @@
    indent-line-function 'js-indent-line))
 
 (bk-block tex
-  :wanted-by delayed-target
   :requires .latex .ivy-bibtex
   :bind ((:TeX-mode-map
           :package tex

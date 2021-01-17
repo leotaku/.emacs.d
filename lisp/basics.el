@@ -4,7 +4,7 @@
 
 ;;; Code:
 
-(bk-block! emacs-basics
+(bk-block emacs-basics
   :custom
   (disabled-command-function . nil)
   (save-interprogram-paste-before-kill . t)
@@ -12,14 +12,14 @@
   :config
   (fset 'yes-or-no-p 'y-or-n-p))
 
-(bk-block! utf-8
+(bk-block utf-8
   :config
   (prefer-coding-system 'utf-8)
   (set-default-coding-systems 'utf-8)
   (set-language-environment 'utf-8)
   (set-selection-coding-system 'utf-8))
 
-(bk-block! fundamental
+(bk-block fundamental
   :custom
   (major-mode . 'text-mode)
   :config
@@ -28,11 +28,11 @@
                       (delete-window-and-buffer)
                     (insert "q")))))
 
-(bk-block! scratch
+(bk-block scratch
   :custom
   (initial-major-mode . 'emacs-lisp-mode))
 
-(bk-block! sensible-gui
+(bk-block sensible-gui
   :custom
   (frame-resize-pixelwise . t)
   (custom-safe-themes . t)
@@ -40,15 +40,15 @@
   :config
   (blink-cursor-mode -1))
 
-(bk-block! cursor
+(bk-block cursor
   :custom
   (cursor-type . '(bar . 2)))
 
-(bk-block! vc
+(bk-block vc
   :custom
   (vc-follow-symlinks . t))
 
-(bk-block! backups
+(bk-block backups
   :custom
   (backup-by-copying . t)
   (delete-old-versions . t)
@@ -90,20 +90,20 @@
    prog-mode
    show-trailing-whitespace t))
 
-(bk-block! tabs
+(bk-block tabs
   :custom
   (indent-tabs-mode . nil)
   (tab-width . 4))
 
-(bk-block! save-place
+(bk-block save-place
   :config
   (save-place-mode 1))
 
-(bk-block! savehist
+(bk-block savehist
   :config
   (savehist-mode 1))
 
-(bk-block! trash
+(bk-block trash
   :custom
   (delete-by-moving-to-trash . t)
   (trash-directory . nil)

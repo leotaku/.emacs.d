@@ -28,7 +28,7 @@
 (bk-block benchmark-init
   :requires .benchmark-init-modes)
 
-(bk-block! custom-pre
+(bk-block custom-pre
   :config
   (setq custom-file
         (no-littering-expand-etc-file-name
@@ -36,7 +36,7 @@
   (when (file-exists-p custom-file)
     (load-file custom-file)))
 
-(bk-block! dependencies
+(bk-block dependencies
   :load "lisp/helpers.el")
 
 (bk-block* keyfreq
@@ -46,7 +46,7 @@
 
 ;; Load configuration files
 
-(bk-block! loads
+(bk-block loads
   :load "lisp/visual.el"
   :load "lisp/basics.el"
   :load "lisp/usability.el"
@@ -56,14 +56,14 @@
 
 ;; Load keytheme config
 
-(bk-block! keytheme
+(bk-block keytheme
   :load "lisp/keytheme.el"
   :custom
   (viper-mode . nil))
 
 ;; Execute some simple keybinds
 
-(bk-block! sensible-keys
+(bk-block sensible-keys
   :bind (("<insert>" . nil)
          ("H-m" . newline)
          ("A-j" . next-line)
@@ -75,13 +75,13 @@
    (keyboard-translate ?\C-m ?\H-m))
   (leaf-key "ESC" (kbd "C-g") 'key-translation-map))
 
-(bk-block! bad-habits
+(bk-block bad-habits
   :bind (("<XF86Forward>" . nil)
          ("<XF86Back>" . nil)
          ("<prior>" . nil)
          ("<next>" . nil)))
 
-(bk-block! misc-bindings
+(bk-block misc-bindings
   :bind  (("C-x r" . revert-buffer)
           ("C-x f" . find-file)
           ("C-x e" . eval-defun)
@@ -89,7 +89,7 @@
   :bind* (("C-x i" . ibuffer)
           ("C-v" . yank)))
 
-(bk-block! window-management
+(bk-block window-management
   :bind (("C-x q" . split-window-left)
          ("C-x w" . split-window-above)
          ("C-x o" . ace-window)
@@ -109,7 +109,7 @@
 
 ;; Small tweaks
 
-(bk-block! kill-emacs
+(bk-block kill-emacs
   :config
   (defun advice-kill-emacs (func &rest args)
     "Whitelist kill-emacs from being run interactively."
@@ -119,7 +119,7 @@
       (apply func args)))
   (advice-add 'kill-emacs :around 'advice-kill-emacs))
 
-(bk-block! sensible-errors
+(bk-block sensible-errors
   :custom
   (command-error-function . 'command-error-default-function)
   :config
@@ -132,7 +132,6 @@
      (error-message-string data))))
 
 (bk-block magit
-  :wanted-by delayed-target
   :requires .magit .forge .theist-mode
   :bind (("C-x g" . magit-status)
          (:magit-status-mode-map
@@ -159,13 +158,11 @@
     (display-local-help t)))
 
 (bk-block notmuch
-  :wanted-by delayed-target
   :requires .notmuch)
 
 ;; Execute `bk-block' system startup
 
-(bk-block0 setup-initial-buffer
-  :wanted-by gui-target
+(bk-block setup-initial-buffer
   :requires emacs-lisp-mode
   :at-load
   (setq initial-major-mode 'text-mode)
@@ -173,24 +170,10 @@
   (with-current-buffer "*scratch*"
     (emacs-lisp-mode)))
 
-;; Register all targets
-
-(bk-register-target 'init-target)
-(bk-register-target 'theme-target)
-(bk-register-target 'gui-target)
-(bk-register-target 'delayed-target)
-
 ;; Run Emacs startup
 
-(bk-reach-target 'init-target)
-(bk-reach-target 'theme-target)
-(run-with-timer
- 1 nil
- (lambda ()
-   (bk-poll-target
-    'gui-target
-    (lambda ()
-      (bk-poll-target 'delayed-target)))))
+(bk-register-target 'default-target)
+(bk-reach-target 'default-target)
 
 (fi-with-gui
  (when (get-buffer "*Warnings*")

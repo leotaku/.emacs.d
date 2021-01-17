@@ -5,7 +5,6 @@
 ;;; Code:
 
 (bk-block fonts
-  :wanted-by theme-target
   :config
   (custom-set-faces
    '(variable-pitch ((t (:font "Alegreya SC" :height 110))))
@@ -16,8 +15,7 @@
   (fi-with-gui
    (set-fontset-font t 'symbol (font-spec :family "JoyPixels") nil t)))
 
-(bk-block0 theme
-  :wanted-by theme-target
+(bk-block theme
   :requires .doom-themes
   :config
   (load-theme 'doom-aurora)
@@ -31,7 +29,6 @@
 
 (bk-block mode-line
   :requires .moody .minions
-  :wanted-by theme-target
   :custom
   (moody-mode-line-height . 50)
   (x-underline-at-descent-line . t)

@@ -5,7 +5,6 @@
 ;;; Code:
 
 (bk-block org
-  :wanted-by delayed-target
   :requires .org .org-tempo worf org-capture
   :hook
   (org-mode-hook . auto-revert-mode)
@@ -50,7 +49,6 @@
   (journal-file . (expand-sync-file "journal.org")))
 
 (bk-block yankpad
-  :wanted-by delayed-target
   :requires local-files projectile .org .yankpad .yasnippet
   :bind (("C-x y" . yankpad-insert)
          ("C-x Y" . yankpad-capture-snippet))

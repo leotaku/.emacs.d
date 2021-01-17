@@ -117,7 +117,6 @@
 
 (bk-block lsp
   :requires .lsp-mode .company-lsp .lsp-ui .lsp-haskell
-  :wanted-by delayed-target
   :hook
   (prog-mode-hook . lsp-maybe)
   (lsp-mode-hook . lsp-ui-mode)

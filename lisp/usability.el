@@ -68,7 +68,7 @@
 (bk-block* amx
   :start amx-mode)
 
-(bk-block!* undo-fu-session
+(bk-block* undo-fu-session
   :requires .undo-fu-session
   :start global-undo-fu-session-mode
   :custom
@@ -83,7 +83,7 @@
   :custom
   (ace-link-fallback-function . 'ace-link-org))
 
-(bk-block! recentf
+(bk-block recentf
   :requires .recentf
   :at-load
   (setq recentf-max-saved-items 4000)
