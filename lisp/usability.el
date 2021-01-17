@@ -118,7 +118,7 @@
   :config
   (diredfl-global-mode))
 
-(bk-block tramp
+(bk-block* tramp
   :config
   (defun tramp (system)
     (interactive "MSystem: ")
