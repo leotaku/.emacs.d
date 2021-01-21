@@ -47,7 +47,7 @@ Evil has been replaced with the decidedly minimal modalka, which interacts predi
 
 As for configuration utilities, I have replaced use-package with parts of my modular fi-emacs system, which this configuration also inherits its name from.
 Unlike use-package, this system works by defining an explicit tree of dependencies and loading said tree at specific times during the Emacs initialization.
-This allows for a entirely deterministic startup sequence, as well as detailed error backtraces.
+This allows for an entirely deterministic startup sequence, as well as detailed error backtraces.
 Still, in order to improve performance, large trees of dependencies may be loaded concurrently and during normal Emacs operation.
 The modular and minimal architecture should also aid in adapting fi-emacs to newer features of emacs (e.g. parallelism, dumping).
 
