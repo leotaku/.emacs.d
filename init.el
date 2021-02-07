@@ -161,8 +161,9 @@
   :at-load
   (setq initial-major-mode 'text-mode)
   :config
-  (with-current-buffer "*scratch*"
-    (emacs-lisp-mode)))
+  (fi-with-gui
+   (with-current-buffer "*scratch*"
+     (emacs-lisp-mode))))
 
 ;; Run Emacs startup
 
