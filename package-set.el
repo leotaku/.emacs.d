@@ -68,6 +68,7 @@
   rust-mode
   smartparens
   swiper
+  tide
   undo-fu-session
   visual-fill-column
   visual-regexp

@@ -41,19 +41,33 @@
   (markdown-hide-urls . t))
 
 (bk-block* web-mode
-  :mode "\\.html?\\'")
+  :mode "\\.html?\\'"
+  :custom
+  (web-mode-code-indent-offset . 2)
+  (web-mode-markup-indent-offset . 2)
+  (web-mode-css-indent-offset . 2))
+
+(bk-block js-mode
+  :requires .js
+  :mode "\\.jsx?\\'" "\\.json\\'"
+  :custom
+  (js-indent-level . 2)
+  (js-jsx-indent-level . 2)
+  (js-jsx-syntax . t))
+
+(bk-block* typescript-mode
+  :requires .tide
+  :mode "\\.tsx?\\'"
+  :hook
+  (typescript-mode-hook . tide-setup)
+  (tide-mode-hook . flycheck-mode)
+  :custom
+  (typescript-indent-level . 2))
 
 (bk-block* css-mode
   :mode "\\.rasi\\'"
   :custom
   (css-indent-offset . 2))
-
-(bk-block js-mode
-  :requires .js
-  :custom
-  (js-indent-level . 2)
-  (js-jsx-indent-level . 2)
-  (js-jsx-syntax . t))
 
 (bk-block conf-mode
   :requires .conf-mode .js
