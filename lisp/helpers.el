@@ -136,12 +136,6 @@
        (describe-symbol (intern x))
        (signal 'quit nil)))))
 
-(defun file-name-shortest (file)
-  "Return the shortest possible FILE name.
-Expands relative to `default-directory' and the home directory."
-  (let ((rel (file-relative-name file))
-        (home (concat "~/" (file-relative-name file "~"))))
-    (car (seq-sort-by 'length '< (list rel home file)))))
 
 (defun ivy-better-switch-buffer-transformer (str)
   "Transform candidate STR when switching buffers."
@@ -160,5 +154,14 @@ Expands relative to `default-directory' and the home directory."
 (defun dired-better-up-directory ()
   (interactive)
   (find-alternate-file ".."))
+
+;;;; Generic
+
+(defun file-name-shortest (file)
+  "Return the shortest possible FILE name.
+Expands relative to `default-directory' and the home directory."
+  (let ((rel (file-relative-name file))
+        (home (concat "~/" (file-relative-name file "~"))))
+    (car (seq-sort-by 'length '< (list rel home file)))))
 
 ;;; helpers.el ends here
