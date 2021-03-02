@@ -53,7 +53,8 @@
   :custom
   (js-indent-level . 2)
   (js-jsx-indent-level . 2)
-  (js-jsx-syntax . t))
+  (js-jsx-syntax . t)
+  (js-switch-indent-offset . 2))
 
 (bk-block* typescript-mode
   :requires .tide
