@@ -46,7 +46,8 @@
   (sync-directory . "~/sync")
   (todo-file . (expand-sync-file "homework.org"))
   (things-file . (expand-sync-file "things.org"))
-  (journal-file . (expand-sync-file "journal.org")))
+  (journal-file . (expand-sync-file "journal.org"))
+  (org-agenda-files . (list todo-file things-file journal-file)))
 
 (bk-block yankpad
   :requires local-files projectile .org .yankpad .yasnippet
