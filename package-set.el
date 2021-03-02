@@ -28,6 +28,7 @@
   amx
   avy
   benchmark-init
+  circe
   company
   company-lsp
   company-posframe

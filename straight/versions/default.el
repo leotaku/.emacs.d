@@ -7,6 +7,7 @@
  ("avy" . "e92cb37457b43336b765630dbfbea8ba4be601fa")
  ("benchmark-init-el" . "7a0f263282bbc86b01b662636306f22813082647")
  ("biblio.el" . "eb9baf1d2bf6a073d24ccb717025baa693e98f3e")
+ ("circe" . "265f36c1e6c8db598742778dc64f9799896f5dc1")
  ("company-lsp" . "f921ffa0cdc542c21dc3dd85f2c93df4288e83bd")
  ("company-mode" . "5c25e114c3ac1bee3671abd47f46592a3151d549")
  ("company-posframe" . "5ea0b565972ca8d80f29a40068c65bab97384748")
