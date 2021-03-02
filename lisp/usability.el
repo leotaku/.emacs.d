@@ -38,8 +38,11 @@
           :package ivy
           ("H-i" . ivy-insert-selection)))
   :start ivy-mode
-  :custom
-  (ivy-use-selectable-prompt . t))
+  :custom (ivy-use-selectable-prompt . t)
+  :config
+  (advice-add
+   'ivy-switch-buffer-transformer
+   :override 'ivy-better-switch-buffer-transformer))
 
 (bk-block* counsel
   :bind (("C-x m" . counsel-M-x)
@@ -150,7 +153,17 @@
           ("x" . theist-C-x)
           ("j" . next-line)
           ("k" . previous-line)
-          ("d" . ibuffer-do-delete))))
+          ("d" . ibuffer-do-delete)))
+  :custom
+  (ibuffer-fontification-alist
+   . '((10 (derived-mode-p 'org-mode) ivy-org)
+       (20 (buffer-modified-p) ivy-modified-buffer)
+       (25 (not (buffer-file-name)) font-lock-constant-face)
+       (30 (string-match "^\\*" (buffer-name)) ivy-virtual)
+       (40 (memq major-mode ibuffer-help-buffer-modes) font-lock-comment-face)
+       (40 (derived-mode-p 'circe-mode) ivy-remote)
+       (40 (derived-mode-p 'dired-mode) ivy-subdir)
+       (50 (ivy--remote-buffer-p (current-buffer)) ivy-remote))))
 
 (bk-block visual-fill-column
   :requires .visual-fill-column

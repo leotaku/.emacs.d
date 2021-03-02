@@ -143,6 +143,11 @@ Expands relative to `default-directory' and the home directory."
         (home (concat "~/" (file-relative-name file "~"))))
     (car (seq-sort-by 'length '< (list rel home file)))))
 
+(defun ivy-better-switch-buffer-transformer (str)
+  "Transform candidate STR when switching buffers."
+  (let ((face (ibuffer-buffer-name-face str 0)))
+    (ivy-append-face str face)))
+
 ;;;; Dired
 
 (defun dired-better-find-file ()
