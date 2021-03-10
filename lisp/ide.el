@@ -9,7 +9,6 @@
   (prog-mode-hook . ide-backspace-mode)
   (text-mode-hook . ide-backspace-mode)
   (conf-mode-hook . ide-backspace-mode)
-  (TeX-mode-hook . ide-backspace-mode)
   (lispy-mode-hook . (lambda () (ide-backspace-mode -1))))
 
 (define-minor-mode ide-backspace-mode
@@ -55,7 +54,10 @@
 
 (bk-block smartparens
   :requires .smartparens .smartparens-config
-  :start smartparens-global-mode
+  :hook
+  (prog-mode-hook . smartparens-mode)
+  (text-mode-hook . smartparens-mode)
+  (conf-mode-hook . smartparens-mode)
   :bind ((:sp-pair-overlay-keymap
           :package smartparens
           ("TAB" . sp-forward-sexp)
@@ -83,6 +85,7 @@
   :hook
   (prog-mode-hook . company-mode)
   (text-mode-hook . company-mode)
+  (conf-mode-hook . company-mode)
   :bind ((:company-active-map
           :package company
           ("RET" . nil)
