@@ -97,11 +97,12 @@
   :config
   (TeX-PDF-mode)
   (TeX-source-correlate-mode)
+  (advice-add
+   'TeX-active-master
+   :around 'advice-TeX-active-master-pdf)
   (add-to-list
    'TeX-expand-list
    '("%sn" (lambda () server-name))))
-
-(advice-add 'TeX-active-master :around 'advice-TeX-active-master-pdf)
 
 (defun advice-TeX-active-master-pdf (fun &optional extension nondirectory ignore)
   (if (string= extension "pdf")
