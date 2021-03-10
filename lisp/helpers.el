@@ -95,6 +95,13 @@
       (delete-window)
       (kill-buffer b))))
 
+(defun delete-if-fundamental ()
+  (interactive)
+  (if (and (eq major-mode 'fundamental-mode)
+           (not (active-minibuffer-window)))
+      (delete-window-and-buffer)
+    (insert (char-to-string last-command-event))))
+
 (defun split-window-left (&optional size)
   (interactive)
   (split-window-right size)

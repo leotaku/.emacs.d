@@ -20,13 +20,8 @@
   (set-selection-coding-system 'utf-8))
 
 (bk-block fundamental
-  :custom
-  (major-mode . 'text-mode)
-  :config
-  (leaf-key "q" (lambda () (interactive)
-                  (if (eq major-mode 'fundamental-mode)
-                      (delete-window-and-buffer)
-                    (insert "q")))))
+  :custom (major-mode . 'text-mode)
+  :bind (("q" . delete-if-fundamental)))
 
 (bk-block scratch
   :custom
