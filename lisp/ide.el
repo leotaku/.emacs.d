@@ -141,11 +141,7 @@
    .  (concat (getenv "CARGO_HOME") "/bin/rust-analyzer"))
   ;; ghcide
   (lsp-haskell-server-path . "ghcide")
-  (lsp-haskell-server-args . '())
-  :config
-  (defun lsp-maybe ()
-    (when (lsp-workspace-root)
-      (lsp-deferred))))
+  (lsp-haskell-server-args . '()))
 
 (bk-block direnv
   :requires .envrc

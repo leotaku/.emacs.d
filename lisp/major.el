@@ -56,14 +56,13 @@
   (js-jsx-syntax . t)
   (js-switch-indent-offset . 2))
 
-(bk-block* typescript-mode
-  :requires .tide
-  :mode "\\.tsx?\\'"
+(bk-block typescript-mode
+  :requires .web-mode .tide
+  :mode ("\\.tsx?\\'" . web-mode)
   :hook
-  (typescript-mode-hook . tide-setup)
+  (web-mode-hook . tide-maybe)
   (tide-mode-hook . flycheck-mode)
-  :custom
-  (typescript-indent-level . 2))
+  (tide-mode-hook . eldoc-mode))
 
 (bk-block* css-mode
   :mode "\\.rasi\\'"
