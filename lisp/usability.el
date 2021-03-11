@@ -167,16 +167,11 @@
 
 (bk-block visual-fill-column
   :requires .visual-fill-column
-  :hook
-  (text-mode-hook . visual-fill-column-mode)
+  :hook (text-mode-hook . visual-fill-column-mode)
   :bind ((:visual-fill-column-mode-map
           :package visual-fill-column
           ([remap fill-column] . visual-fill-column-warn-fill)
           ([remap org-fill-paragraph] . visual-fill-column-warn-fill)
-          ([remap fill-paragraph] . visual-fill-column-warn-fill)))
-  :config
-  (defun visual-fill-column-warn-fill ()
-    (interactive)
-    (message "Auto-fill should not be used with visual-fill-column")))
+          ([remap fill-paragraph] . visual-fill-column-warn-fill))))
 
 ;;; usability.el ends here
