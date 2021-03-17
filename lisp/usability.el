@@ -167,7 +167,9 @@
 
 (bk-block visual-fill-column
   :requires .visual-fill-column
-  :hook (text-mode-hook . visual-fill-column-mode)
+  :hook
+  (markdown-mode-hook . visual-fill-column-mode)
+  (org-mode-hook . visual-fill-column-mode)
   :bind ((:visual-fill-column-mode-map
           :package visual-fill-column
           ([remap fill-column] . visual-fill-column-warn-fill)
