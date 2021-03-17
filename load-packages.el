@@ -21,8 +21,7 @@
 ;; Emacs wants to load `package.el' before the init file,
 ;; so we do the same with `straight.el'
 
-(setq straight-fix-org t
-      straight-enable-use-package-integration nil
+(setq straight-enable-use-package-integration nil
       straight-check-for-modifications '(find-when-checking check-on-save))
 
 (let ((bootstrap-file
