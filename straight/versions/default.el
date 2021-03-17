@@ -17,6 +17,7 @@
  ("deadgrep" . "ca16c37ffa5caa5f698bc049012489a2e3071bcc")
  ("dired-hacks" . "d1a2bda6aa8f890cb367297ed93aee6d3b5ba388")
  ("diredfl" . "cd052dfef602fe79d8dfbcf9f06e6da74412218b")
+ ("el-get" . "84dd1837f9ac80a329ab0c2de6859777f445f8ff")
  ("emacs-doom-themes" . "a57f8093219214747c84e222d469fd830f8c0b34")
  ("emacs-fish" . "a7c953b1491ac3a3e00a7b560f2c9f46b3cb5c04")
  ("emacs-undo-fu-session" . "a0389147365c10c974ad68b797b185affb935fe3")
