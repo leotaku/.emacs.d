@@ -135,10 +135,6 @@
   (lsp-ui-sideline-enable . nil)
   ;; internal
   (read-process-output-max . (expt 2 16))
-  ;; rust-analyzer
-  (lsp-rust-server . 'rust-analyzer)
-  (lsp-rust-analyzer-server-command
-   . (concat (getenv "CARGO_HOME") "/bin/rust-analyzer"))
   ;; ghcide
   (lsp-haskell-server-path . "ghcide")
   (lsp-haskell-server-args . '()))
