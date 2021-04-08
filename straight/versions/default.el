@@ -13,7 +13,6 @@
  ("counsel-projectile" . "06b03c1080d3ccc3fa9b9c41b1ccbcf13f058e4b")
  ("crux" . "20c07848049716a0e1aa2560e23b5f4149f2a74f")
  ("dash.el" . "a17b6b5409825891423b3867cd7bea84852d6ddd")
- ("deadgrep" . "ca16c37ffa5caa5f698bc049012489a2e3071bcc")
  ("dired-hacks" . "d1a2bda6aa8f890cb367297ed93aee6d3b5ba388")
  ("diredfl" . "cd052dfef602fe79d8dfbcf9f06e6da74412218b")
  ("el-get" . "84dd1837f9ac80a329ab0c2de6859777f445f8ff")

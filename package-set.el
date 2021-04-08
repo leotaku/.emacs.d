@@ -34,7 +34,6 @@
   counsel
   counsel-projectile
   crux
-  deadgrep
   dired-filter
   diredfl
   envrc
