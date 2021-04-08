@@ -8,7 +8,6 @@
  ("benchmark-init-el" . "7a0f263282bbc86b01b662636306f22813082647")
  ("biblio.el" . "242c3f3ac1198b1e969e2a34d6348354a9d83345")
  ("circe" . "265f36c1e6c8db598742778dc64f9799896f5dc1")
- ("company-lsp" . "f921ffa0cdc542c21dc3dd85f2c93df4288e83bd")
  ("company-mode" . "88001d794d963049339883216b6606de0a1209ea")
  ("company-posframe" . "5ea0b565972ca8d80f29a40068c65bab97384748")
  ("counsel-projectile" . "06b03c1080d3ccc3fa9b9c41b1ccbcf13f058e4b")

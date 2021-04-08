@@ -30,7 +30,6 @@
   benchmark-init
   circe
   company
-  company-lsp
   company-posframe
   counsel
   counsel-projectile

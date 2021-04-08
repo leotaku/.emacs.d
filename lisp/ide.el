@@ -119,7 +119,7 @@
     (add-hook 'semantic-mode-hook 'hook-semantic-fix-lispy)))
 
 (bk-block lsp
-  :requires .lsp-mode .company-lsp .lsp-ui .lsp-haskell
+  :requires .lsp-mode .lsp-ui .lsp-haskell
   :hook
   (prog-mode-hook . lsp-maybe)
   (lsp-mode-hook . lsp-ui-mode)
