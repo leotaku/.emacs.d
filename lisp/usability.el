@@ -5,9 +5,13 @@
 ;;; Code:
 
 (bk-block* visual-regexp
-  :requires .visual-regexp-steroids
-  :custom
-  (vr/engine . 'pcre2el))
+  :requires .visual-regexp .pcre2el
+  :config
+  (advice-add 'vr--get-regexp-string :around 'advice-vr-pcre))
+
+(defun advice-vr-pcre (func &optional for-display)
+  (let ((text (funcall func)))
+    (pcre-to-elisp text)))
 
 (bk-block wgrep
   :requires .wgrep

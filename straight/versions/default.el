@@ -78,7 +78,6 @@
  ("transient" . "cc16a5eaa73617a281b0bbf71b24432c38994e30")
  ("typescript.el" . "1043025d42602d560949955410d3afa2562130ee")
  ("visual-fill-column" . "5b08b9ae9da5b95e42e94e4c9ec01d63e8848ea2")
- ("visual-regexp-steroids.el" . "a6420b25ec0fbba43bf57875827092e1196d8a9e")
  ("visual-regexp.el" . "3e3ed81a3cbadef1f1f4cb16f9112a58641d70ca")
  ("web-mode" . "8ef47935d638902ba35a557cae5edd6ab6ab1346")
  ("with-editor" . "36e163ca80f74905ba3c1cf7b596a0ccc8bc5cac")
