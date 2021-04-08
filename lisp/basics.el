@@ -9,6 +9,7 @@
   (disabled-command-function . nil)
   (save-interprogram-paste-before-kill . t)
   (inhibit-compacting-font-caches . t)
+  (read-process-output-max . (expt 2 16))
   :config
   (fset 'yes-or-no-p 'y-or-n-p))
 

@@ -133,8 +133,6 @@
   (lsp-diagnostic-package . :flymake)
   (lsp-ui-doc-enable . nil)
   (lsp-ui-sideline-enable . nil)
-  ;; internal
-  (read-process-output-max . (expt 2 16))
   ;; ghcide
   (lsp-haskell-server-path . "ghcide")
   (lsp-haskell-server-args . '()))
