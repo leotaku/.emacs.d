@@ -36,7 +36,7 @@
   crux
   dired-filter
   diredfl
-  envrc
+  direnv
   fish-mode
   git-modes
   go-mode

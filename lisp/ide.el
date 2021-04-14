@@ -138,7 +138,9 @@
   (lsp-haskell-server-args . '()))
 
 (bk-block direnv
-  :requires .envrc
-  :start envrc-global-mode)
+  :requires .direnv
+  :start direnv-mode
+  :custom
+  (direnv-always-show-summary . nil))
 
 ;;; ide.el ends here
