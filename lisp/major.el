@@ -5,6 +5,9 @@
 ;;; Code:
 
 (bk-block* nix-mode
+  :bind ((:nix-mode-map
+          :package nix-mode
+          ("C-c C-f" . nix-format-buffer)))
   :custom
   (nix-indent-function . 'nix-indent-line))
 
@@ -59,6 +62,9 @@
 (bk-block typescript-mode
   :requires .web-mode .tide
   :mode ("\\.tsx?\\'" . web-mode)
+  :bind ((:tide-mode-map
+          :package tide
+          ("C-c C-f" . tide-format)))
   :hook
   (web-mode-hook . tide-maybe)
   (tide-mode-hook . flycheck-mode)
