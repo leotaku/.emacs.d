@@ -120,8 +120,8 @@
           ("{" . lispy-backward)
           ("}" . lispy-forward)))
   :config
-  (lispy-define-key lispy-mode-map "x" 'theist-C-x)
-  (lispy-define-key lispy-mode-map "[" 'fi-do-nothing)
-  (lispy-define-key lispy-mode-map "]" 'fi-do-nothing))
+  (lispy-define-key lispy-mode-map "x" #'theist-C-x)
+  (lispy-define-key lispy-mode-map "[" #'ignore)
+  (lispy-define-key lispy-mode-map "]" #'ignore))
 
 ;;; major.el ends here
