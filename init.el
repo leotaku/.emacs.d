@@ -14,8 +14,7 @@
 (prog1 "fi-setup"
   (require 'fi-config)
   (require 'fi-helpers)
-  (require 'bk)
-  (require 'leaf))
+  (require 'bk))
 
 ;;; Configuration:
 
@@ -71,7 +70,8 @@
   (fi-with-gui
    (keyboard-translate ?\C-i ?\H-i)
    (keyboard-translate ?\C-m ?\H-m))
-  (leaf-key "ESC" (kbd "C-g") 'key-translation-map))
+  (define-key key-translation-map
+    (kbd "ESC") (kbd "C-g")))
 
 (bk-block bad-habits
   :bind (("<XF86Forward>" . nil)

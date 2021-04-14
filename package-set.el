@@ -43,7 +43,6 @@
   haskell-mode
   ivy-bibtex
   keyfreq
-  leaf
   lice
   lispy
   lsp-haskell
