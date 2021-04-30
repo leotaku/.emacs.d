@@ -3,7 +3,7 @@
 ;;; Code:
 
 (bk-block modal-editing
-  :requires .theist-mode .viper-cmd .modalka expand-region .multiple-cursors
+  :requires .theist-mode .viper-cmd .modalka expand-region multiple-cursors
   :custom
   (modalka-cursor-type . 'box)
   (cursor-type . 'bar)
