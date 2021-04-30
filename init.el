@@ -108,7 +108,7 @@
 ;; Small tweaks
 
 
-;; Execute `bk-block' system startup
+;; Run Emacs startup
 
 (bk-block setup-initial-buffer
   :requires emacs-lisp-mode
@@ -118,8 +118,6 @@
   (fi-with-gui
    (with-current-buffer "*scratch*"
      (emacs-lisp-mode))))
-
-;; Run Emacs startup
 
 (bk-register-target 'default-target)
 (bk-reach-target 'default-target)
