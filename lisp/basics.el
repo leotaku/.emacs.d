@@ -75,6 +75,14 @@
   :config
   (show-paren-mode 1))
 
+(bk-block flymake
+  :requires .flymake .help-at-pt
+  :custom
+  (help-at-pt-display-when-idle . t)
+  :config
+  (defun help-at-pt-maybe-display (&rest _)
+    (display-local-help t)))
+
 (bk-block show-trailing-whitespace
   :custom
   (show-trailing-whitespace . nil)

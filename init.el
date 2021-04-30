@@ -108,14 +108,6 @@
 ;; Small tweaks
 
 
-(bk-block* flymake
-  :requires .flymake .help-at-pt
-  :custom
-  (help-at-pt-display-when-idle . t)
-  :config
-  (defun help-at-pt-maybe-display (&rest _)
-    (display-local-help t)))
-
 ;; Execute `bk-block' system startup
 
 (bk-block setup-initial-buffer
