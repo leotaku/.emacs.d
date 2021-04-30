@@ -38,14 +38,6 @@
    'org-insert-heading
    :after 'beginning-of-line))
 
-(bk-block yankpad
-  :requires local-files projectile .org .yankpad .yasnippet
-  :bind (("C-x y" . yankpad-insert)
-         ("C-x Y" . yankpad-capture-snippet))
-  :custom (yankpad-file
-           . (expand-sync-file "yankpad.org"))
-  :start yas-global-mode)
-
 (bk-block0 org-capture
   :requires local-files .org-capture .org-protocol .org-reverse-datetree
   :custom

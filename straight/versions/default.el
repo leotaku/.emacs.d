@@ -77,7 +77,5 @@
  ("with-editor" . "ebcbd3b137154e6c5a2b976bacbb89d48ddfa242")
  ("worf" . "fff12d4d3bb1ddf70cd0abb78aecd9133b367990")
  ("yaml-mode" . "fc5e1c58f94472944c4aa838f00f6adcac6fa992")
- ("yankpad" . "fb9cb7753af971701dcd96a51efb4d70e2b2a18f")
- ("yasnippet" . "5cbdbf0d2015540c59ed8ee0fcf4788effdf75b6")
  ("zoutline" . "63756846f8540b6faf89d885438186e4fe1c7d8a"))
 :beta
