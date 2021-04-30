@@ -107,18 +107,6 @@
 
 ;; Small tweaks
 
-(bk-block sensible-errors
-  :custom
-  (command-error-function . 'command-error-default-function)
-  :config
-  (defun named-error-function (data _context caller)
-    (discard-input)
-    (ding)
-    (minibuffer-message
-     "%s%s"
-     (if caller (format "%s: " caller) "")
-     (error-message-string data))))
-
 (bk-block magit
   :requires .magit .forge .theist-mode
   :bind (("C-x g" . magit-status)
