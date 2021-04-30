@@ -32,9 +32,6 @@
   (when (file-exists-p custom-file)
     (load-file custom-file)))
 
-(bk-block dependencies
-  :load "lisp/helpers.el")
-
 (bk-block* keyfreq
   :config
   (keyfreq-mode)
@@ -43,6 +40,7 @@
 ;; Load configuration files
 
 (bk-block loads
+  :load "lisp/helpers.el"
   :load "lisp/visual.el"
   :load "lisp/basics.el"
   :load "lisp/usability.el"
