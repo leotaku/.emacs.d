@@ -107,6 +107,20 @@
 
 ;; Small tweaks
 
+(bk-block0 local-files
+  :at-load
+  (defun expand-sync-file (name)
+    (expand-file-name name sync-directory))
+  :custom
+  (sync-directory . "~/sync")
+  (todo-file . (expand-sync-file "homework.org"))
+  (things-file . (expand-sync-file "things.org"))
+  (journal-file . (expand-sync-file "journal.org"))
+  (archive-file . (expand-sync-file "archive.org"))
+  (diary-file . (expand-sync-file "diary"))
+  :custom
+  (org-agenda-files . (list todo-file things-file journal-file))
+  (org-archive-location . (concat archive-file "::* %s")))
 
 ;; Run Emacs startup
 
