@@ -4,6 +4,18 @@
 
 ;;; Code:
 
+(bk-block magit
+  :requires .magit .forge .theist-mode
+  :bind (("C-x g" . magit-status)
+         (:magit-status-mode-map
+          :package magit
+          ("<return>" . magit-diff-visit-file-other-window)
+          ("j" . magit-next-line)
+          ("k" . magit-previous-line)
+          ("v" . switch-mark-command)
+          ("x" . theist-C-x)
+          ("C-k" . magit-discard))))
+
 (bk-block circe
   :requires .circe
   :custom
