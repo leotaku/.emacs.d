@@ -41,7 +41,6 @@
   git-modes
   go-mode
   haskell-mode
-  ivy-bibtex
   keyfreq
   lice
   lispy

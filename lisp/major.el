@@ -83,15 +83,8 @@
    indent-line-function 'js-indent-line))
 
 (bk-block tex
-  :requires .latex .ivy-bibtex
-  :bind ((:TeX-mode-map
-          :package tex
-          ("C-c c" . ivy-bibtex-with-local-bibliography)))
+  :requires .latex
   :custom
-  (bibtex-completion-cite-default-command
-   . "autocite")
-  (ivy-bibtex-default-action
-   . 'ivy-bibtex-insert-citation)
   (TeX-view-program-selection
    . (list '(output-pdf "Zathura")))
   (TeX-view-program-list
