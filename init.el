@@ -107,16 +107,6 @@
 
 ;; Small tweaks
 
-(bk-block kill-emacs
-  :config
-  (defun advice-kill-emacs (func &rest args)
-    "Whitelist kill-emacs from being run interactively."
-    (if (equal this-command 'kill-emacs)
-        (let ((this-command nil))
-          (message "Fuck you!"))
-      (apply func args)))
-  (advice-add 'kill-emacs :around 'advice-kill-emacs))
-
 (bk-block sensible-errors
   :custom
   (command-error-function . 'command-error-default-function)
