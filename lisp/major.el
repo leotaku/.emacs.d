@@ -94,9 +94,7 @@
                    ((output-pdf mode-io-correlate)
                     " -x 'emacsclient --socket-name=%sn --no-wait +%{line} %{input}'")))))
   :config
-  (add-to-list
-   'TeX-expand-list
-   '("%sn" (lambda () server-name))))
+  (add-to-list 'TeX-expand-list '("%sn" (lambda () server-name))))
 
 (bk-block emacs-lisp-mode
   :requires .elisp-mode .lispy .theist-mode .aggressive-indent
