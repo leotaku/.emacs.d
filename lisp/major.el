@@ -84,17 +84,16 @@
 
 (bk-block tex
   :requires .latex
+  :start TeX-PDF-mode TeX-source-correlate-mode
   :custom
-  (TeX-view-program-selection
-   . (list '(output-pdf "Zathura")))
+  (TeX-view-program-selection . '((output-pdf "Zathura")))
   (TeX-view-program-list
-   . (list '("Zathura"
-             ("zathura %o"
-              (mode-io-correlate " --synctex-forward %n:0:%b -x \"emacsclient --socket-name=%sn --no-wait +%{line} %{input}\""))
-             "zathura")))
+   . '(("Zathura" (((output-pdf) "zathura %o")
+                   ((output-pdf mode-io-correlate)
+                    " --synctex-forward %n:0:%b")
+                   ((output-pdf mode-io-correlate)
+                    " -x 'emacsclient --socket-name=%sn --no-wait +%{line} %{input}'")))))
   :config
-  (TeX-PDF-mode)
-  (TeX-source-correlate-mode)
   (advice-add
    'TeX-active-master
    :around 'advice-TeX-active-master-pdf)
