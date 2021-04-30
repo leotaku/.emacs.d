@@ -135,7 +135,10 @@
   (lsp-ui-sideline-enable . nil)
   ;; ghcide
   (lsp-haskell-server-path . "ghcide")
-  (lsp-haskell-server-args . '()))
+  (lsp-haskell-server-args . '())
+  ;; clang
+  (lsp-clients-clangd-args
+   . '("-header-insertion=never")))
 
 (bk-block direnv
   :requires .direnv
