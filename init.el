@@ -25,10 +25,9 @@
         `((".*" ,(no-littering-expand-var-file-name "auto-save/") t))))
 
 (bk-block custom-pre
+  :custom
+  (custom-file . (no-littering-expand-etc-file-name "custom.el"))
   :config
-  (setq custom-file
-        (no-littering-expand-etc-file-name
-         "custom.el"))
   (when (file-exists-p custom-file)
     (load-file custom-file)))
 
