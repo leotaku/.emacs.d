@@ -115,15 +115,9 @@
           ("<return>" . magit-diff-visit-file-other-window)
           ("j" . magit-next-line)
           ("k" . magit-previous-line)
-          ("v" . magit-mark)
+          ("v" . switch-mark-command)
           ("x" . theist-C-x)
-          ("C-k" . magit-discard)))
-  :config
-  (defun magit-mark ()
-    (interactive)
-    (if (region-active-p)
-        (deactivate-mark)
-      (set-mark-command nil))))
+          ("C-k" . magit-discard))))
 
 (bk-block* flymake
   :requires .flymake .help-at-pt
