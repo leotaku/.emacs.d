@@ -14,7 +14,7 @@
   (org-blank-before-new-entry
    . '((heading . nil) (plain-list-item . nil)))
   :config
-  (advice-add 'org-return :override 'newline)
+  (advice-add 'org-return :override #'newline)
   (set-face-attribute
    'org-document-title nil
    :inherit 'variable-pitch
@@ -36,7 +36,7 @@
     (worf-define-key map "P" #'org-priority))
   (advice-add
    'org-insert-heading
-   :after 'beginning-of-line))
+   :after #'beginning-of-line))
 
 (bk-block0 org-capture
   :requires local-files .org-capture .org-protocol .org-reverse-datetree

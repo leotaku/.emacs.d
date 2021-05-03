@@ -95,7 +95,7 @@
   :custom
   (aw-scope . 'frame)
   :config
-  (advice-add 'keyboard-quit :around 'advice-keyboard-quit)
+  (advice-add 'keyboard-quit :around #'advice-keyboard-quit)
   (defun advice-keyboard-quit (func)
     (let ((minibuffer (active-minibuffer-window)))
       (if minibuffer

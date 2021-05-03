@@ -39,7 +39,7 @@
    'lui-mode-hook
    (lambda () (setq-local completion-in-region-function #'completion--in-region)))
   (enable-circe-color-nicks)
-  (advice-add 'lui-send-input :around 'advice-lui-send-input))
+  (advice-add 'lui-send-input :around #'advice-lui-send-input))
 
 (defun circe-command-EXIT (&optional ignored)
   "Exit the current circe buffer."

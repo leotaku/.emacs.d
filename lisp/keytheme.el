@@ -12,7 +12,7 @@
   :bind* (("C-x C-x" . theist-C-c)
           ("<C-return>" . open-line))
   :config
-  (advice-add 'modalka-mode :around 'fi-call-silent)
+  (advice-add 'modalka-mode :around #'fi-call-silent)
   (add-to-list
    'emulation-mode-map-alists
    `((modalka-mode . ,modalka-mode-map)))

@@ -7,7 +7,7 @@
 (bk-block* visual-regexp
   :requires .visual-regexp .pcre2el
   :config
-  (advice-add 'vr--get-regexp-string :around 'advice-vr-pcre))
+  (advice-add 'vr--get-regexp-string :around #'advice-vr-pcre))
 
 (defun advice-vr-pcre (func &optional for-display)
   (let ((text (funcall func)))
@@ -46,7 +46,7 @@
   :config
   (advice-add
    'ivy-switch-buffer-transformer
-   :override 'ivy-better-switch-buffer-transformer))
+   :override #'ivy-better-switch-buffer-transformer))
 
 (bk-block* counsel
   :bind (("C-x m" . counsel-M-x)
@@ -57,7 +57,7 @@
           ("C-h" . counsel-lookup-symbol)))
   :start counsel-mode
   :config
-  (advice-add 'counsel-M-x-action :after 'advice-M-x-action))
+  (advice-add 'counsel-M-x-action :after #'advice-M-x-action))
 
 (defun advice-M-x-action (command)
   (setq command (intern (subst-char-in-string ?\s ?- (string-remove-prefix "^" command))))
@@ -148,7 +148,7 @@
   :config
   (defun advice-term-exit (&rest _)
     (kill-buffer))
-  (advice-add 'term-handle-exit :after 'advice-term-exit))
+  (advice-add 'term-handle-exit :after #'advice-term-exit))
 
 (bk-block ibuffer
   :requires .ibuffer .theist-mode
