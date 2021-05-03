@@ -100,6 +100,7 @@
   (company-dabbrev-downcase . nil)
   (company-dabbrev-ignore-case . nil)
   (company-require-match . nil)
+  (company-format-margin-function . nil)
   (company-tooltip-align-annotations . t)
   (company-posframe-show-indicator . nil)
   (company-posframe-show-metadata . nil)
