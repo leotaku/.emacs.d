@@ -81,7 +81,8 @@
   (backward-char))
 
 (bk-block company
-  :requires .company .company-posframe
+  :requires .company .company-posframe .yasnippet
+  :start yas-global-mode
   :hook
   (prog-mode-hook . company-mode)
   (text-mode-hook . company-mode)
@@ -120,7 +121,7 @@
     (add-hook 'semantic-mode-hook 'hook-semantic-fix-lispy)))
 
 (bk-block lsp
-  :requires .lsp-mode .lsp-ui .lsp-haskell
+  :requires company .lsp-mode .lsp-ui .lsp-haskell
   :hook
   (prog-mode-hook . lsp-maybe)
   (lsp-mode-hook . lsp-ui-mode)
