@@ -135,9 +135,6 @@
   (lsp-diagnostic-package . :flymake)
   (lsp-ui-doc-enable . nil)
   (lsp-ui-sideline-enable . nil)
-  ;; ghcide
-  (lsp-haskell-server-path . "ghcide")
-  (lsp-haskell-server-args . '())
   ;; clang
   (lsp-clients-clangd-args
    . '("-header-insertion=never")))
