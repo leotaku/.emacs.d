@@ -74,7 +74,9 @@
   :bind (("<XF86Forward>" . nil)
          ("<XF86Back>" . nil)
          ("<prior>" . nil)
-         ("<next>" . nil)))
+         ("<next>" . nil)
+         ("C-<prior>" . nil)
+         ("C-<next>" . nil)))
 
 (bk-block misc-bindings
   :bind  (("C-x r" . revert-buffer)
