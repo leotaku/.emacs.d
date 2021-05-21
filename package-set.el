@@ -1,4 +1,4 @@
-([org-elpa melpa emacsmirror-mirror gnu-elpa-mirror]
+([melpa gnu-elpa-mirror emacsmirror-mirror]
  [(expand-region-improved
    :type git :host github
    :repo "leotaku/expand-region-improved")
@@ -57,7 +57,7 @@
   nix-mode
   no-littering
   org-cliplink
-  org-plus-contrib
+  org
   org-reverse-datetree
   pcre2el
   projectile
