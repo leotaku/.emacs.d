@@ -109,7 +109,7 @@
 
 (bk-block trash
   :custom
-  (delete-by-moving-to-trash . t)
+  (delete-by-moving-to-trash . nil)
   (trash-directory . nil)
   :config
   (fmakunbound 'system-move-file-to-trash))
