@@ -26,14 +26,14 @@
   (circe-network-options
    . `(("freenode"
         :host "raw.le0.gs"
-        :use-tls nil
-        :port 6667
+        :use-tls t
+        :port 6697
         :user "leotaku/freenode"
         :pass ,circe-znc-password)
        ("irchighway"
         :host "raw.le0.gs"
-        :use-tls nil
-        :port 6667
+        :use-tls t
+        :port 6697
         :user "leotaku/irchighway"
         :pass ,circe-znc-password)))
   :config
