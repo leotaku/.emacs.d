@@ -30,6 +30,12 @@
         :port 6697
         :user "leotaku/freenode"
         :pass ,circe-znc-password)
+       ("libera"
+        :host "raw.le0.gs"
+        :use-tls t
+        :port 6697
+        :user "leotaku/libera"
+        :pass ,circe-znc-password)
        ("irchighway"
         :host "raw.le0.gs"
         :use-tls t
