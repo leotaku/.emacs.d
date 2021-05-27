@@ -17,29 +17,35 @@
           ("C-k" . magit-discard))))
 
 (bk-block circe
-  :requires .circe
+  :requires .circe .auth-source
   :custom
   (circe-reduce-lurker-spam . t)
   (circe-network-defaults . nil)
+  (circe-znc-password . (auth-source-secret :user "leotaku^znc"))
   (circe-network-options
-   . '(("freenode"
+   . `(("freenode"
         :host "raw.le0.gs"
         :use-tls nil
         :port 6667
         :user "leotaku/freenode"
-        :pass "passwort")
+        :pass ,circe-znc-password)
        ("irchighway"
         :host "raw.le0.gs"
         :use-tls nil
         :port 6667
         :user "leotaku/irchighway"
-        :pass "passwort")))
+        :pass ,circe-znc-password)))
   :config
   (add-hook
    'lui-mode-hook
    (lambda () (setq-local completion-in-region-function #'completion--in-region)))
   (enable-circe-color-nicks)
   (advice-add 'lui-send-input :around #'advice-lui-send-input))
+
+(defun auth-source-secret (&rest query)
+  (let* ((matches (apply #'auth-source-search query))
+         (secret (plist-get (car-safe matches) :secret)))
+    (lambda (&rest _) (funcall secret))))
 
 (defun circe-command-EXIT (&optional ignored)
   "Exit the current circe buffer."
