@@ -21,6 +21,7 @@
   :custom
   (circe-reduce-lurker-spam . t)
   (circe-network-defaults . nil)
+  (circe-server-buffer-name . "{network}")
   (circe-znc-password . (auth-source-secret :user "leotaku^znc"))
   (circe-network-options
    . `(("freenode"
