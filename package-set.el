@@ -50,6 +50,7 @@
   lua-mode
   magit
   markdown-mode
+  meson-mode
   minions
   modalka
   moody

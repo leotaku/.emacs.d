@@ -45,6 +45,7 @@
  ("magit" . "e37882710bd91d95bac967d342e5aea846cce783")
  ("markdown-mode" . "de365c070c7deecbabfd5a7294bc8c2603d9ec22")
  ("melpa" . "efd5910f51ffe2fa220ddd98dad57373e5dcfbf5")
+ ("meson-mode" . "69fdb63b59ec7d1acd427cb7de7219c18af46f40")
  ("minions" . "4a81446e13f5bfb514e593d0e1c5253a60113301")
  ("modalka" . "0accefac11451b9c9196a56223b5fe1e26d75e6e")
  ("moody" . "2a29baa0cb6e364c5acbbf590a6d7c936c4378ae")
