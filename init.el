@@ -98,12 +98,15 @@
   :custom
   (aw-scope . 'visible)
   :config
-  (advice-add 'keyboard-quit :around #'advice-keyboard-quit)
-  (defun advice-keyboard-quit (func)
-    (let ((minibuffer (active-minibuffer-window)))
-      (if minibuffer
-          (minibuffer-keyboard-quit)
-        (funcall func)))))
+  (advice-add
+   'keyboard-quit
+   :around #'advice-keyboard-quit))
+
+(defun advice-keyboard-quit (func)
+  (let ((minibuffer (active-minibuffer-window)))
+    (if minibuffer
+        (minibuffer-keyboard-quit)
+      (funcall func))))
 
 ;; Small tweaks
 
