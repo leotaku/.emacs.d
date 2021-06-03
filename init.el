@@ -87,6 +87,7 @@
           ("C-v" . yank)))
 
 (bk-block window-management
+  :requires .ace-window
   :bind (("C-x q" . split-window-left)
          ("C-x w" . split-window-above)
          ("C-x o" . ace-window)
