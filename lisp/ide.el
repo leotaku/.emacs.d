@@ -106,6 +106,8 @@
   (company-posframe-show-indicator . nil)
   (company-posframe-show-metadata . nil)
   (company-posframe-quickhelp-delay . nil)
+  (company-backends
+   . (seq-difference company-backends '(company-cmake company-clang)))
   :config
   (fi-with-gui
    (company-posframe-mode 1)))
