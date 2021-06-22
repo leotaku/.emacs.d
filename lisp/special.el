@@ -24,13 +24,7 @@
   (circe-server-buffer-name . "{network}")
   (circe-znc-password . (auth-source-secret :user "leotaku^znc"))
   (circe-network-options
-   . `(("freenode"
-        :host "raw.le0.gs"
-        :use-tls t
-        :port 6697
-        :user "leotaku/freenode"
-        :pass ,circe-znc-password)
-       ("libera"
+   . `(("libera"
         :host "raw.le0.gs"
         :use-tls t
         :port 6697
