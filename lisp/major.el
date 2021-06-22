@@ -32,10 +32,6 @@
   (define-derived-mode lalrpop-mode
     rust-mode "Lalrpop"))
 
-(bk-block python-mode
-  :requires .python
-  :mode "SConstruct" "SConscript")
-
 (bk-block* markdown-mode
   :mode
   ("\\.md\\'" . gfm-mode)
