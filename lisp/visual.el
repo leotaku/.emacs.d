@@ -28,11 +28,12 @@
       (set-face-attribute 'mode-line-inactive nil :box        nil))))
 
 (bk-block mode-line
-  :requires .moody .minions
+  :requires .moody .minions .tracking
   :custom
   (moody-mode-line-height . 50)
   (x-underline-at-descent-line . t)
   :config
+  (tracking-mode)
   (moody-replace-mode-line-buffer-identification)
   (moody-replace-vc-mode)
   (minions-mode)
