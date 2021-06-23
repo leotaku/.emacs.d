@@ -175,6 +175,11 @@
   (when (lsp-workspace-root)
     (lsp-deferred)))
 
+(defun tide-maybe ()
+  (when (member (file-name-extension buffer-file-name)
+                '("tsx" "ts" "jsx" "js"))
+    (run-with-timer 0 nil 'tide-setup)))
+
 ;;;; Generic
 
 (defun file-name-shortest (file)
