@@ -7,8 +7,7 @@
   :custom
   (modalka-cursor-type . 'box)
   (cursor-type . 'bar)
-  :bind (("<f7>" . modalka-mode)
-         ("<escape>" . modalka-mode))
+  :bind (("<escape>" . modalka-mode))
   :bind* (("C-x C-x" . theist-C-c)
           ("<C-return>" . open-line))
   :config
@@ -49,7 +48,6 @@
    ("d" . kill-region-or-line)
    ("y" . copy-region-or-line))
   (modalka-keys
-   ("<f7>" . modalka-mode)
    ("SPC" . mc/mark-down-or-more)
    ("<backspace>" . ((if (region-active-p)
                          (delete-region
