@@ -121,7 +121,8 @@
 
 (defun conditionally-enable-lispy ()
   (when (eq this-command 'eval-expression)
-    (setq-local indent-line-function (lambda () ()))
+    (setq-local completion-in-region-function #'completion--in-region)
+    (setq-local indent-line-function #'lisp-indent-line)
     (lispy-mode 1)))
 
 ;;;; Visual-fill-column
