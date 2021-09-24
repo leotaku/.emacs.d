@@ -5,19 +5,6 @@
 
 ;;; Code:
 
-;; Load benchmarking utility from local dir, bypassing `straight.el'
-
-(let ((dir (expand-file-name
-            "straight/build/benchmark-init"
-            user-emacs-directory)))
-  (if (file-directory-p dir)
-      (progn
-        (add-to-list 'load-path dir)
-        (require 'benchmark-init)
-        (benchmark-init/activate)
-        (add-hook 'after-init-hook 'benchmark-init/deactivate))
-    (warn "The benchmark-init package is missing from your straight directory!")))
-
 ;; Emacs wants to load `package.el' before the init file,
 ;; so we do the same with `straight.el'
 

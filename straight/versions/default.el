@@ -5,7 +5,6 @@
  ("amx" . "37f9c7ae55eb0331b27200fb745206fc58ceffc0")
  ("auctex" . "ea410dce4f24908b46649b77a4881f7454a9de04")
  ("avy" . "e92cb37457b43336b765630dbfbea8ba4be601fa")
- ("benchmark-init-el" . "7a0f263282bbc86b01b662636306f22813082647")
  ("circe" . "d6f1fa18646f6ed2a1c0f06a4888130bd694ff19")
  ("company-mode" . "1fd1b363eee68e4cdcf0e610005c0bdbf9940604")
  ("company-posframe" . "c7a820a35ff132aaec53c81e05afc829de39eb68")

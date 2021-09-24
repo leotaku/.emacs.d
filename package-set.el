@@ -27,7 +27,6 @@
   aggressive-indent
   amx
   avy
-  benchmark-init
   circe
   company
   company-posframe
