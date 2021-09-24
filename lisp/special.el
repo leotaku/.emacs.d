@@ -46,6 +46,8 @@
 
 (bk-block circe
   :requires .circe .auth-source
+  :hook
+  (circe-mode-hook . visual-line-mode)
   :custom
   (circe-reduce-lurker-spam . t)
   (circe-network-defaults . nil)
