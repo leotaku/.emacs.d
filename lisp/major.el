@@ -56,12 +56,13 @@
 
 (bk-block typescript-mode
   :requires .web-mode .tide
-  :mode ("\\.tsx?\\'" . web-mode)
+  :mode ("\\.tsx\\'" . web-mode)
   :bind ((:tide-mode-map
           :package tide
           ("C-c C-f" . tide-format)))
   :hook
   (web-mode-hook . tide-maybe)
+  (typescript-mode-hook . tide-maybe)
   (tide-mode-hook . flycheck-mode)
   (tide-mode-hook . eldoc-mode))
 
