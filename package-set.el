@@ -41,6 +41,7 @@
   go-mode
   haskell-mode
   keyfreq
+  ledger-mode
   lice
   lispy
   lsp-haskell

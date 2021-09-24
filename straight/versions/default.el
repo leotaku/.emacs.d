@@ -36,6 +36,7 @@
  ("iedit" . "3247f3029a4e309c71a5b066fa4299d4cbb79fbc")
  ("keyfreq" . "e5fe9d585ce882f1ba9afa5d894eaa82c79be4f4")
  ("leaf.el" . "a4fd520f5c31f54e0797155866e0b35df277664e")
+ ("ledger-mode" . "19b84dc7664ea069e1a9fd446daf699574c44986")
  ("lice-el" . "482e58ab83fff86ed754b00be27b62a219597e7c")
  ("lispy" . "38a7df4cbb16cfe3d62dc8ea98b50e2d9a572e58")
  ("lsp-haskell" . "eb37ac4a6a43277263bbb17aed6a862a0992ae8e")

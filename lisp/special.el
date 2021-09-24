@@ -36,6 +36,13 @@
         (modalka-deactivate))
     (error (message "advice diary: %v" err))))
 
+(bk-block ledger
+  :requires .ledger-mode
+  :hook
+  (ledger-mode-hook . aggressive-indent-mode)
+  :custom
+  (ledger-post-amount-alignment-at . :decimal)
+  (ledger-default-date-format . "%Y-%m-%d"))
 
 (bk-block circe
   :requires .circe .auth-source
