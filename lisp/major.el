@@ -18,10 +18,9 @@
 (bk-block c++-mode
   :requires .cc-mode
   :config
-  (setf (alist-get 'c++-mode c-default-style) "mine++")
-  (c-add-style
-   "mine++"
-   '("gnu" (c-offsets-alist (innamespace . 0)))))
+  (setf (alist-get 'c++-mode c-default-style) "modern")
+  (c-add-style "modern" '("gnu" (c-offsets-alist (innamespace . 0))))
+  (c-add-style "wierdo" '("ellemtel" (c-basic-offset . 4))))
 
 (bk-block* rust-mode
   :bind ((:rust-mode-map
