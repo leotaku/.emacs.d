@@ -12,6 +12,7 @@
   (save-interprogram-paste-before-kill . t)
   (inhibit-compacting-font-caches . t)
   (read-process-output-max . (expt 2 16))
+  (enable-recursive-minibuffers . t)
   :config
   (fset 'yes-or-no-p 'y-or-n-p))
 
