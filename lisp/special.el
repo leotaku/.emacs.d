@@ -15,6 +15,27 @@
           ("v" . switch-mark-command)
           ("x" . theist-C-x)
           ("C-k" . magit-discard))))
+(bk-block calendar
+  :requires .calendar .diary-lib keytheme local-files
+  :custom (calendar-date-style . 'iso)
+  :hook (diary-mode-hook . auto-revert-mode)
+  :bind (("C-x c" . calendar)
+         (:calendar-mode-map
+          :package calendar
+          ("h" . calendar-backward-day)
+          ("j" . calendar-forward-week)
+          ("k" . calendar-backward-week)
+          ("l" . calendar-forward-day)))
+  :config
+  (advice-add 'diary-make-entry :after #'advice-diary-make-entry)
+  (setq-mode-local diary-mode indent-line-function #'ignore))
+
+(defun advice-diary-make-entry (&rest _)
+  (condition-case err
+      (with-current-buffer (find-file-noselect diary-file)
+        (modalka-deactivate))
+    (error (message "advice diary: %v" err))))
+
 
 (bk-block circe
   :requires .circe .auth-source

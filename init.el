@@ -91,7 +91,6 @@
   :bind (("C-x q" . split-window-left)
          ("C-x w" . split-window-above)
          ("C-x o" . ace-window)
-         ("C-x c" . make-frame)
          ("C-x j" . delete-other-windows)
          ("C-x d" . kill-buffer)
          ("C-x k" . delete-window-or-frame))
