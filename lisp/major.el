@@ -60,6 +60,8 @@
   :bind ((:tide-mode-map
           :package tide
           ("C-c C-f" . tide-format)))
+  :custom
+  (typescript-indent-level . 2)
   :hook
   (web-mode-hook . tide-maybe)
   (typescript-mode-hook . tide-maybe)
