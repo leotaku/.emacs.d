@@ -60,9 +60,7 @@
   (conf-mode-hook . smartparens-mode)
   :bind ((:sp-pair-overlay-keymap
           :package smartparens
-          ("TAB" . sp-forward-sexp)
-          (">" . nil)
-          ("<" . nil)))
+          ("TAB" . sp-forward-sexp)))
   :config
   (dolist (paren-type '("(" "[" "{"))
     (sp-local-pair
