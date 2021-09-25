@@ -98,6 +98,8 @@
   :bind ((:lsp-mode-map
           :package lsp-mode
           ("C-c C-f" . lsp-format-buffer)))
+  :at-load
+  (setq lsp-keymap-prefix "C-c l")
   :custom
   (lsp-signature-auto-activate . nil)
   (lsp-enable-symbol-highlighting . nil)
