@@ -96,9 +96,7 @@
          ("C-x k" . delete-window-or-frame))
   :custom (aw-scope . 'visible)
   :config
-  (advice-add
-   'keyboard-quit
-   :around #'advice-keyboard-quit))
+  (advice-add 'keyboard-quit :around #'advice-keyboard-quit))
 
 (defun advice-keyboard-quit (func)
   (let ((minibuffer (active-minibuffer-window)))
