@@ -151,12 +151,6 @@
        (describe-symbol (intern x))
        (signal 'quit nil)))))
 
-
-(defun ivy-better-switch-buffer-transformer (str)
-  "Transform candidate STR when switching buffers."
-  (let ((face (ibuffer-buffer-name-face str 0)))
-    (ivy-append-face str face)))
-
 ;;;; Dired
 
 (defun dired-better-find-file ()

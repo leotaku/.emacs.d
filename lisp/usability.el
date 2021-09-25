@@ -46,7 +46,12 @@
   :config
   (advice-add
    'ivy-switch-buffer-transformer
-   :override #'ivy-better-switch-buffer-transformer))
+   :override #'advice-ivy-switch-buffer-transformer))
+
+(defun advice-ivy-switch-buffer-transformer (str)
+  "Transform candidate STR like dired when switching buffers."
+  (let ((face (ibuffer-buffer-name-face str 0)))
+    (ivy-append-face str face)))
 
 (bk-block* counsel
   :bind (("C-x m" . counsel-M-x)
