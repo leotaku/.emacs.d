@@ -101,7 +101,8 @@
 (defun advice-keyboard-quit (func)
   (let ((minibuffer (active-minibuffer-window)))
     (if minibuffer
-        (minibuffer-keyboard-quit)
+        (with-selected-window minibuffer
+          (minibuffer-keyboard-quit))
       (funcall func))))
 
 ;; Small tweaks
