@@ -48,12 +48,12 @@
    ("d" . kill-region-or-line)
    ("y" . copy-region-or-line))
   (modalka-keys
-   ("SPC" . mc/mark-down-or-more)
    ("<backspace>" . ((if (region-active-p)
                          (delete-region
                           (region-beginning)
                           (region-end))
                        (delete-char 1))))
+   ("SPC" . mc/mark-next-like-this)
    ("g" . goto-or-quit)
    ("x" . theist-C-x)
    ("z" . theist-C-c)

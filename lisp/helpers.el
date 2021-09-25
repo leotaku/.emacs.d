@@ -31,14 +31,6 @@
   (interactive)
   (modalka-mode -1))
 
-;;;; Multiple-cursors
-
-(defun mc/mark-down-or-more (arg)
-  (interactive "p")
-  (if (region-active-p)
-      (dotimes (_ arg) (mc/mark-next-like-this 1))
-    (mc/mark-next-lines arg)))
-
 ;;;; Editing commands
 
 (defun kill-region-or-line (arg)
