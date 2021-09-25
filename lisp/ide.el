@@ -4,53 +4,23 @@
 
 ;;; Code:
 
-(bk-block ide-backspace-mode
+(bk-block aggressive-backspace-mode
+  :requires .aggressive-indent
   :hook
-  (prog-mode-hook . ide-backspace-mode)
-  (text-mode-hook . ide-backspace-mode)
-  (conf-mode-hook . ide-backspace-mode)
-  (lispy-mode-hook . (lambda () (ide-backspace-mode -1))))
+  (prog-mode-hook . aggressive-backspace-mode)
+  (text-mode-hook . aggressive-backspace-mode)
+  (conf-mode-hook . aggressive-backspace-mode))
 
-(define-minor-mode ide-backspace-mode
-  "IDE style backspace key."
-  nil
-  "IDE"
-  '(([backspace] . ide-backspace)
-    ([C-backspace] . ide-backspace-word)))
-
-(defun ide-backspace ()
-  (interactive)
-  (cond
-   ((region-active-p)
-    (delete-region (region-beginning) (region-end)))
-   ((looking-back "^[[:space:]]+")
-    (ide-delete-to-previous-line))
-   (t
-    ;; delete char normally
-    (call-interactively #'backward-delete-char))))
-
-(defun ide-backspace-word ()
-  (interactive)
-  (cond
-   ((looking-back "^[[:space:]]+")
-    (ide-delete-to-previous-line))
-   (t
-    ;; delete word normally
-    (call-interactively #'backward-delete-word))))
-
-(defun backward-delete-word (arg)
-  (interactive "p")
-  (delete-region (point) (progn (backward-word arg) (point))))
-
-(defun ide-delete-to-previous-line ()
-  ;; delete all spaces
-  (while (not (looking-back "[\n]"))
-    (delete-char -1))
-  ;; delete final newline
-  (delete-char -1)
-  ;; go to indentation
-  (when (looking-back "[\n]")
-    (indent-according-to-mode)))
+(define-minor-mode aggressive-backspace-mode
+  nil nil " <="
+  `(([backspace]
+     menu-item "maybe-delete-indentation" ignore :filter
+     (lambda (&optional _)
+       (when (and (not aggressive-indent-mode)
+                  (looking-back "^[[:blank:]]+")
+                  (not (run-hook-wrapped 'aggressive-indent--internal-dont-indent-if #'eval))
+                  (not (aggressive-indent--run-user-hooks)))
+         #'delete-indentation)))))
 
 (bk-block smartparens
   :requires .smartparens .smartparens-config
