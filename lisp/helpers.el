@@ -238,14 +238,6 @@
   (split-window-below size)
   (other-window 1))
 
-;;;; Lispy
-
-(defun conditionally-enable-lispy ()
-  (when (eq this-command 'eval-expression)
-    (setq-local completion-in-region-function #'completion--in-region)
-    (setq-local indent-line-function #'lisp-indent-line)
-    (lispy-mode 1)))
-
 ;;;; Ivy
 
 (defun ivy-insert-selection ()
