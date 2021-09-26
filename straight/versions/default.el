@@ -53,7 +53,7 @@
  ("multiple-cursors.el" . "616fbdd3696f99d85660ad57ebbb0c44d6c7f426")
  ("nix-mode" . "1b1b9fb61d6ce4819d400ecefc7421be7623b369")
  ("no-littering" . "b12a85a5afff7b5d60f889c1c2e8f5deab7fdbae")
- ("org" . "5e4815f816e80e1f21795ee502f40e135a237a19")
+ ("org" . "f33b92dea77f6679b4a5978218989dc7d6a0ed7d")
  ("org-cliplink" . "13e0940b65d22bec34e2de4bc8cba1412a7abfbc")
  ("org-reverse-datetree" . "e7a7109e4c34811d471bf685b710234564a556f6")
  ("pcre2el" . "0b5b2a2c173aab3fd14aac6cf5e90ad3bf58fa7d")

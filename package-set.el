@@ -1,4 +1,5 @@
-([melpa gnu-elpa-mirror emacsmirror-mirror]
+;; FIXME: Org Elpa is outdated but still needed by straight.el
+([org-elpa melpa gnu-elpa-mirror emacsmirror-mirror]
  [(expand-region-improved
    :type git :host github
    :repo "leotaku/expand-region-improved")
