@@ -47,6 +47,7 @@
   lice
   lispy
   lsp-haskell
+  lsp-pyright
   lsp-mode
   lsp-ui
   lua-mode

@@ -91,7 +91,7 @@
     (add-hook 'semantic-mode-hook 'hook-semantic-fix-lispy)))
 
 (bk-block lsp
-  :requires company .lsp-mode .lsp-ui .lsp-haskell
+  :requires company .lsp-mode .lsp-ui .lsp-haskell .lsp-pyright
   :hook
   (prog-mode-hook . lsp-enable-if-workspace)
   (lsp-mode-hook . lsp-ui-mode)
