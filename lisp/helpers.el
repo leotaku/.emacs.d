@@ -74,6 +74,17 @@
     (save-excursion
       (dotimes (_ arg) (delete-char 1) (insert char)))))
 
+(defun kill-ring-uncycle (arg)
+  (interactive "p")
+  (kill-ring-cycle (- arg)))
+
+(defun kill-ring-cycle (arg)
+  (interactive "p")
+  (let* ((length (seq-length kill-ring))
+         (to-append (% (+ length arg) length)))
+    (setq kill-ring (append (seq-drop kill-ring to-append)
+                            (seq-take kill-ring to-append)))))
+
 (defun yank-put-before (arg)
   (interactive "p")
   (dotimes (_ arg) (yank-put nil)))
