@@ -39,7 +39,7 @@
   (markdown-hide-urls . t))
 
 (bk-block* web-mode
-  :mode "\\.html?\\'"
+  :mode "\\.html?\\'" "\\.tsx?\\'"
   :custom
   (web-mode-code-indent-offset . 2)
   (web-mode-markup-indent-offset . 2)
@@ -53,20 +53,6 @@
   (js-jsx-indent-level . 2)
   (js-jsx-syntax . t)
   (js-switch-indent-offset . 2))
-
-(bk-block typescript-mode
-  :requires .web-mode .tide
-  :mode ("\\.tsx\\'" . web-mode)
-  :bind ((:tide-mode-map
-          :package tide
-          ("C-c C-f" . tide-format)))
-  :custom
-  (typescript-indent-level . 2)
-  :hook
-  (web-mode-hook . tide-maybe)
-  (typescript-mode-hook . tide-maybe)
-  (tide-mode-hook . flycheck-mode)
-  (tide-mode-hook . eldoc-mode))
 
 (bk-block* css-mode
   :mode "\\.rasi\\'"
