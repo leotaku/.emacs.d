@@ -46,12 +46,8 @@
    ("d" . kill-region-or-line)
    ("y" . copy-region-or-line))
   (modalka-keys
-   ("<backspace>" . ((if (region-active-p)
-                         (delete-region
-                          (region-beginning)
-                          (region-end))
-                       (delete-char 1))))
    ("SPC" . mc/mark-next-like-this)
+   ("<backspace>" . delete-char-or-region)
    ("g" . goto-or-quit)
    ("x" . theist-C-x)
    ("z" . theist-C-c)
@@ -101,6 +97,11 @@
   (kill-region-or-line arg)
   (modalka-mode -1))
 
+(defun delete-char-or-region (arg)
+  (interactive "p")
+  (if (region-active-p)
+      (delete-region (region-beginning) (region-end))
+    (delete-char arg)))
 
 (bk-block multiple-cursors
   :requires .multiple-cursors
