@@ -64,9 +64,9 @@
    ("P" . yank-put-before)
    (";" . comment-or-uncomment-region)
    ("%" . eri/maximize-region)
-   ("f" . jump-to-char)
-   ("t" . jump-till-char)
-   ("," . jump-repeat)))
+   ("f" . motion-goto-char)
+   ("t" . motion-till-char)
+   ("," . motion-repeat-char)))
 
 (defun replace-char-or-region ()
   (interactive)

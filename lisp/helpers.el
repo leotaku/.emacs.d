@@ -91,42 +91,42 @@
     (dotimes (_ (abs n)) (mapc f syntaxes))
     (if reverse-adjust (and (not (region-active-p)) (< 0 n) (backward-char)) (when (> 0 n) (backward-char)))))
 
-;;;; Editing commands
+(defvar-local motion-last-char nil)
+(defvar-local motion-last-count nil)
+(defvar-local motion-last-until nil)
 
-(defvar-local jump-last-char nil)
-(defvar-local jump-last-count nil)
-(defvar-local jump-last-until nil)
-
-(defun jump-to-char (arg)
+(defun motion-goto-char (arg)
   (interactive "p")
   (let ((char (char-to-string (read-char))))
-    (setf (point) (jump-find-char char arg))
-    (setq jump-last-char char)
-    (setq jump-last-count arg)
-    (setq jump-last-until nil)))
+    (setf (point) (motion-find-char char arg))
+    (setq motion-last-char char)
+    (setq motion-last-count arg)
+    (setq motion-last-until nil)))
 
-(defun jump-till-char (arg)
+(defun motion-till-char (arg)
   (interactive "p")
   (let ((char (char-to-string (read-char))))
-    (setf (point) (jump-find-char char arg t))
-    (setq jump-last-char char)
-    (setq jump-last-count arg)
-    (setq jump-last-until t)))
+    (setf (point) (motion-find-char char arg t))
+    (setq motion-last-char char)
+    (setq motion-last-count arg)
+    (setq motion-last-until t)))
 
-(defun jump-repeat (arg)
+(defun motion-repeat-char (arg)
   (interactive "p")
-  (when (null jump-last-char)
+  (when (null motion-last-char)
     (error "No previous jump that can be repeated"))
-  (let* ((sign (/ jump-last-count (abs jump-last-count)))
-         (point (jump-find-char jump-last-char sign jump-last-until)))
+  (let* ((sign (/ motion-last-count (abs motion-last-count)))
+         (point (motion-find-char motion-last-char sign motion-last-until)))
     (setf (point) point)))
 
-(defun jump-find-char (char count &optional until)
+(defun motion-find-char (char count &optional until)
   (save-excursion
     (forward-char (if (< 0 count) (if until 2 1) (if until -2 -1)))
     (search-forward char nil nil count)
     (backward-char (if (< 0 count) (if until 2 1) (if until -1 0)))
     (point)))
+
+;;;; Editing commands
 
 (defun replace-char (arg)
   (interactive "p")
