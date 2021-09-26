@@ -238,11 +238,6 @@
   (split-window-below size)
   (other-window 1))
 
-;;;; Org-mode
-
-(defun org-clean-description (str)
-  (car (split-string str " [-–|]" t)))
-
 ;;;; Lispy
 
 (defun conditionally-enable-lispy ()

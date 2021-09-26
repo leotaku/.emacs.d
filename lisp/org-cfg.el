@@ -44,10 +44,10 @@
   (org-capture-templates
    . '(("w" "Capture templates using org-protocol")
        ("ww" "web-capture" item (file+headline things-file "Capture")
-        "+ [[%:link][%(org-clean-description \"%:description\")]]"
+        "+ [[%:link][%(string-trim-right \"%:description\" \"\s*[-–|].*\")]]"
         :immediate-finish t)
        ("wc" "web-context" item (file+headline things-file "Capture")
-        "+ [[%:link][%(org-clean-description \"%:description\")]] :: %i"
+        "+ [[%:link][%(string-trim-right \"%:description\" \"\s*[-–|].*\")]] :: %i"
         :immediate-finish t)
        ("wt" "web-todo" entry (file todo-file)
         "* TODO %i"
