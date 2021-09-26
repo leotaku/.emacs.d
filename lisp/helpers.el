@@ -251,20 +251,15 @@
 (defun ivy-insert-selection ()
   (interactive)
   (ivy-exit-with-action
-   (lambda (it)
-     (interactive)
-     (insert (file-name-shortest it))
+   (lambda (it) (insert (file-name-shortest it))
      (signal 'quit nil))))
 
 (defun counsel-lookup-symbol ()
   "Lookup the current symbol in the help docs."
   (interactive)
   (ivy-exit-with-action
-   (lambda (x)
-     (if (featurep 'helpful)
-         (helpful-symbol (intern x))
-       (describe-symbol (intern x))
-       (signal 'quit nil)))))
+   (lambda (x) (describe-symbol (intern x))
+     (signal 'quit nil))))
 
 ;;;; Development servers
 
