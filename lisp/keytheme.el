@@ -53,9 +53,7 @@
    ("z" . theist-C-c)
    ("m" . eri/expand-region)
    ("n" . eri/contract-region)
-   ("s" . ((if (region-active-p)
-               (call-interactively #'vr/mc-mark)
-             (avy-goto-word-or-subword-1)))))
+   ("s" . avy-goto-word-or-subword-1))
   (modalka-keys
    ("v" . switch-mark-command)
    ("r" . replace-char-or-region)
