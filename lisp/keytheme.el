@@ -74,64 +74,6 @@
       (call-interactively #'vr/replace)
     (call-interactively #'replace-char)))
 
-(defcustom motion-mode-function #'ignore
-  "Mode function used for motions that change the editing mode.")
-
-(defun motion-insert ()
-  (interactive)
-  (funcall motion-mode-function -1))
-
-(defun motion-append ()
-  (interactive)
-  (when (/= (point) (point-at-eol))
-    (forward-char))
-  (motion-insert))
-
-(defun motion-Insert ()
-  (interactive)
-  (back-to-indentation)
-  (motion-insert))
-
-(defun motion-Append ()
-  (interactive)
-  (end-of-line)
-  (motion-insert))
-
-(defun motion-change (arg)
-  (interactive "p")
-  (kill-region-or-line arg)
-  (motion-insert))
-
-(defun motion-forward-word (arg)
-  (interactive "p")
-  (motion-syntax arg nil "[:word:]" "^[:word:]"))
-
-(defun motion-forward-end (arg)
-  (interactive "p")
-  (motion-syntax arg t "^[:word:]" "[:word:]"))
-
-(defun motion-backward-word (arg)
-  (interactive "p")
-  (motion-forward-end (- arg)))
-
-(defun motion-forward-Word (arg)
-  (interactive "p")
-  (motion-syntax arg nil "^[:space:]\n" "[:space:]\n"))
-
-(defun motion-forward-End (arg)
-  (interactive "p")
-  (motion-syntax arg t "[:space:]\n" "^[:space:]\n"))
-
-(defun motion-backward-Word (arg)
-  (interactive "p")
-  (motion-forward-End (- arg)))
-
-(defun motion-syntax (n reverse-adjust &rest syntaxes)
-  (let ((f (if (< 0 n) #'skip-chars-forward #'skip-chars-backward)))
-    (if reverse-adjust (when (< 0 n) (forward-char)) (when (> 0 n) (backward-char)))
-    (dotimes (_ (abs n)) (mapc f syntaxes))
-    (if reverse-adjust (and (not (region-active-p)) (< 0 n) (backward-char)) (when (> 0 n) (backward-char)))))
-
 (defun delete-char-or-region (arg)
   (interactive "p")
   (if (region-active-p)
