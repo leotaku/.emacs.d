@@ -272,19 +272,6 @@
        (describe-symbol (intern x))
        (signal 'quit nil)))))
 
-;;;; Dired
-
-(defun dired-better-find-file ()
-  (interactive)
-  (let ((file (dired-get-file-for-visit)))
-    (if (file-directory-p file)
-        (find-alternate-file file)
-      (find-file file))))
-
-(defun dired-better-up-directory ()
-  (interactive)
-  (find-alternate-file ".."))
-
 ;;;; Development servers
 
 (defun lsp-maybe ()

@@ -117,30 +117,6 @@
   (add-to-list 'recentf-exclude (getenv "TMPDIR"))
   (add-to-list 'recentf-exclude "/tmp"))
 
-(bk-block dired
-  :requires .dired .diredfl .dired-filter .theist-mode trash
-  :bind ((:dired-mode-map
-          :package dired
-          ("j" . next-line)
-          ("k" . previous-line)
-          ("s" . swiper)
-          ("x" . theist-C-x)
-          ("d" . dired-do-delete)
-          ("D" . dired-do-delete)
-          ("e" . wdired-change-to-wdired-mode)
-          ("M" . dired-filter-mark-by-regexp)
-          ("RET" . dired-better-find-file)
-          ("DEL" . dired-better-up-directory)
-          ("TAB" . dired-hide-details-mode)))
-  :custom
-  (dired-filter-stack . '((dot-files) (omit)))
-  (dired-clean-confirm-killing-deleted-buffers . nil)
-  (dired-listing-switches . "-al --group-directories-first")
-  :hook
-  (dired-mode-hook . dired-filter-mode)
-  :config
-  (diredfl-global-mode))
-
 (bk-block* tramp
   :config
   (defun tramp (system)

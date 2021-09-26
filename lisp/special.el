@@ -36,6 +36,41 @@
         (modalka-deactivate))
     (error (message "advice diary: %v" err))))
 
+(bk-block dired
+  :requires .dired .diredfl .dired-filter .theist-mode trash
+  :bind ((:dired-mode-map
+          :package dired
+          ("j" . next-line)
+          ("k" . previous-line)
+          ("s" . swiper)
+          ("x" . theist-C-x)
+          ("d" . dired-do-delete)
+          ("D" . dired-do-delete)
+          ("e" . wdired-change-to-wdired-mode)
+          ("M" . dired-filter-mark-by-regexp)
+          ("RET" . dired-interactive-find-file)
+          ("DEL" . dired-interactive-up-directory)
+          ("TAB" . dired-hide-details-mode)))
+  :custom
+  (dired-filter-stack . '((dot-files) (omit)))
+  (dired-clean-confirm-killing-deleted-buffers . nil)
+  (dired-listing-switches . "-al --group-directories-first")
+  :hook
+  (dired-mode-hook . dired-filter-mode)
+  :config
+  (diredfl-global-mode))
+
+(defun dired-interactive-find-file ()
+  (interactive)
+  (let ((file (dired-get-file-for-visit)))
+    (if (file-directory-p file)
+        (find-alternate-file file)
+      (find-file file))))
+
+(defun dired-interactive-up-directory ()
+  (interactive)
+  (find-alternate-file ".."))
+
 (bk-block ledger
   :requires .ledger-mode
   :hook
