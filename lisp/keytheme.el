@@ -7,6 +7,7 @@
   :custom
   (modalka-cursor-type . 'box)
   (cursor-type . 'bar)
+  (motion-mode-function . #'modalka-mode)
   :bind (("<escape>" . modalka-mode))
   :bind* (("C-x C-x" . theist-C-c)
           ("<C-return>" . open-line))
@@ -25,11 +26,11 @@
   (modalka-multiplex 'digit-argument (identity)
     "0" "1" "2" "3" "4" "5" "6" "7" "8" "9")
   (modalka-keys
-   ("i" . modalka-mode)
-   ("h" . backward-char)
-   ("a" . modalka-append)
-   ("I" . modalka-Insert)
-   ("A" . modalka-Append)
+   ("i" . motion-insert)
+   ("a" . motion-append)
+   ("I" . motion-Insert)
+   ("A" . motion-Append)
+   ("(" . backward-char)
    ("j" . next-line)
    ("k" . previous-line)
    ("l" . forward-char)
@@ -40,7 +41,7 @@
    ("e" . motion-forward-end)
    ("E" . motion-forward-End))
   (modalka-keys
-   ("c" . modalka-change)
+   ("c" . motion-change)
    ("d" . kill-region-or-line)
    ("y" . copy-region-or-line))
   (modalka-keys
@@ -72,21 +73,33 @@
       (call-interactively #'vr/replace)
     (call-interactively #'replace-char)))
 
-(defun modalka-append ()
+(defcustom motion-mode-function #'ignore
+  "Mode function used for motions that change the editing mode.")
+
+(defun motion-insert ()
+  (interactive)
+  (funcall motion-mode-function -1))
+
+(defun motion-append ()
   (interactive)
   (when (/= (point) (point-at-eol))
     (forward-char))
-  (modalka-mode -1))
+  (motion-insert))
 
-(defun modalka-Insert ()
+(defun motion-Insert ()
   (interactive)
   (back-to-indentation)
-  (modalka-mode -1))
+  (motion-insert))
 
-(defun modalka-Append ()
+(defun motion-Append ()
   (interactive)
   (end-of-line)
-  (modalka-mode -1))
+  (motion-insert))
+
+(defun motion-change (arg)
+  (interactive "p")
+  (kill-region-or-line arg)
+  (motion-insert))
 
 (defun motion-forward-word (arg)
   (interactive "p")
@@ -117,11 +130,6 @@
     (if reverse-adjust (when (< 0 n) (forward-char)) (when (> 0 n) (backward-char)))
     (dotimes (_ (abs n)) (mapc f syntaxes))
     (if reverse-adjust (and (not (region-active-p)) (< 0 n) (backward-char)) (when (> 0 n) (backward-char)))))
-
-(defun modalka-change (arg)
-  (interactive "p")
-  (kill-region-or-line arg)
-  (modalka-mode -1))
 
 (defun delete-char-or-region (arg)
   (interactive "p")
