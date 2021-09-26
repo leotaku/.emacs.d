@@ -26,12 +26,10 @@
     "0" "1" "2" "3" "4" "5" "6" "7" "8" "9")
   (modalka-keys
    ("i" . modalka-mode)
-   ("a" . ((when (/= (point) (point-at-eol))
-             (forward-char))
-           (modalka-mode -1)))
-   ("I" . ((back-to-indentation) (modalka-mode -1)))
-   ("A" . ((end-of-line) (modalka-mode -1)))
    ("h" . backward-char)
+   ("a" . modalka-append)
+   ("I" . modalka-Insert)
+   ("A" . modalka-Append)
    ("j" . next-line)
    ("k" . previous-line)
    ("l" . forward-char)
@@ -44,7 +42,7 @@
    ("E" . ((viper-end-of-Word arg)
            (forward-char 1))))
   (modalka-keys
-   ("c" . ((kill-region-or-line arg) (modalka-mode -1)))
+   ("c" . modalka-change)
    ("d" . kill-region-or-line)
    ("y" . copy-region-or-line))
   (modalka-keys
@@ -81,6 +79,27 @@
   (if (region-active-p)
       (call-interactively #'vr/replace)
     (call-interactively #'replace-char)))
+
+(defun modalka-append ()
+  (interactive)
+  (when (/= (point) (point-at-eol))
+    (forward-char))
+  (modalka-mode -1))
+
+(defun modalka-Insert ()
+  (interactive)
+  (back-to-indentation)
+  (modalka-mode -1))
+
+(defun modalka-Append ()
+  (interactive)
+  (end-of-line)
+  (modalka-mode -1))
+
+(defun modalka-change (arg)
+  (interactive "p")
+  (kill-region-or-line arg)
+  (modalka-mode -1))
 
 
 (bk-block multiple-cursors
