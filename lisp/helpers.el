@@ -55,7 +55,9 @@
       (if (> arg 0)
           (goto-line arg)
         (goto-line (+ arg (line-number-at-pos (point-max)))))
-    (fi-universal-quit)))
+    (if (bound-and-true-p multiple-cursors-mode)
+        (mc/keyboard-quit)
+      (keyboard-quit))))
 
 (defun switch-mark-command ()
   (interactive)
