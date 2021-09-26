@@ -74,6 +74,28 @@
     (save-excursion
       (dotimes (_ arg) (delete-char 1) (insert char)))))
 
+(defun yank-put-before (arg)
+  (interactive "p")
+  (dotimes (_ arg) (yank-put nil)))
+
+(defun yank-put-after (arg)
+  (interactive "p")
+  (dotimes (_ arg) (yank-put t)))
+
+(defun yank-put (after-p)
+  (let ((kill (car-safe kill-ring))
+        (column (current-column)))
+    (if (string-suffix-p "\n" kill)
+        (progn
+          (beginning-of-line)
+          (when after-p (forward-line))
+          (insert kill)
+          (when after-p (forward-line -2))
+          (move-to-column column))
+      (progn
+        (insert kill)
+        (when after-p (backward-char (length kill)))))))
+
 (defun kill-region-or-line (arg)
   (interactive "p")
   (if (region-active-p)
