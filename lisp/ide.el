@@ -35,16 +35,16 @@
   (dolist (paren-type '("(" "[" "{"))
     (sp-local-pair
      'prog-mode paren-type nil
-     :post-handlers '((ide-insert-newlines "RET")
-                      (ide-insert-spaces "SPC")))))
+     :post-handlers '((sp-pretty-newlines "RET")
+                      (sp-pretty-spaces "SPC")))))
 
-(defun ide-insert-newlines (&rest _)
+(defun sp-pretty-newlines (&rest _)
   (newline)
   (indent-according-to-mode)
   (forward-line -1)
   (indent-according-to-mode))
 
-(defun ide-insert-spaces (&rest _)
+(defun sp-pretty-spaces (&rest _)
   (insert " ")
   (backward-char))
 
