@@ -155,10 +155,15 @@
   :hook
   (markdown-mode-hook . visual-fill-column-mode)
   (org-mode-hook . visual-fill-column-mode)
-  :bind ((:visual-fill-column-mode-map
-          :package visual-fill-column
-          ([remap fill-column] . visual-fill-column-warn-fill)
-          ([remap org-fill-paragraph] . visual-fill-column-warn-fill)
-          ([remap fill-paragraph] . visual-fill-column-warn-fill))))
+  :config
+  (advice-add 'fill-column :around #'advice-visual-fill-column-warn)
+  (advice-add 'org-fill-paragraph :around #'advice-visual-fill-column-warn)
+  (advice-add 'fill-paragraph :around #'advice-visual-fill-column-warn))
+
+(defun advice-visual-fill-column-warn (f &rest args)
+  (interactive)
+  (if (bound-and-true-p visual-fill-column-mode)
+      (message "Auto-fill should not be used with visual-fill-column")
+    (apply f args)))
 
 ;;; usability.el ends here

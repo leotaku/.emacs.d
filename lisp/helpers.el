@@ -246,12 +246,6 @@
     (setq-local indent-line-function #'lisp-indent-line)
     (lispy-mode 1)))
 
-;;;; Visual-fill-column
-
-(defun visual-fill-column-warn-fill ()
-  (interactive)
-  (message "Auto-fill should not be used with visual-fill-column"))
-
 ;;;; Ivy
 
 (defun ivy-insert-selection ()
