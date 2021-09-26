@@ -33,6 +33,41 @@
 
 ;;;; Editing commands
 
+(defvar-local jump-last-char nil)
+(defvar-local jump-last-count nil)
+(defvar-local jump-last-until nil)
+
+(defun jump-to-char (arg)
+  (interactive "p")
+  (let ((char (char-to-string (read-char))))
+    (setf (point) (jump-find-char char arg))
+    (setq jump-last-char char)
+    (setq jump-last-count arg)
+    (setq jump-last-until nil)))
+
+(defun jump-till-char (arg)
+  (interactive "p")
+  (let ((char (char-to-string (read-char))))
+    (setf (point) (jump-find-char char arg t))
+    (setq jump-last-char char)
+    (setq jump-last-count arg)
+    (setq jump-last-until t)))
+
+(defun jump-repeat (arg)
+  (interactive "p")
+  (when (null jump-last-char)
+    (error "No previous jump that can be repeated"))
+  (let* ((sign (/ jump-last-count (abs jump-last-count)))
+         (point (jump-find-char jump-last-char sign jump-last-until)))
+    (setf (point) point)))
+
+(defun jump-find-char (char count &optional until)
+  (save-excursion
+    (forward-char (if (< 0 count) (if until 2 1) (if until -2 -1)))
+    (search-forward char nil nil count)
+    (backward-char (if (< 0 count) (if until 2 1) (if until -1 0)))
+    (point)))
+
 (defun kill-region-or-line (arg)
   (interactive "p")
   (if (region-active-p)

@@ -74,20 +74,10 @@
    ("P" . viper-Put-back)
    (";" . comment-or-uncomment-region)
    ("%" . eri/maximize-region)
-   ("f" . ((let ((beg (mark)))
-             (call-interactively #'viper-find-char-forward)
-             (when (region-active-p)
-               (set-mark beg)))))
-   ("t" . ((let ((beg (mark)))
-             (call-interactively #'viper-goto-char-forward)
-             (when (region-active-p)
-               (set-mark beg)))))
-   ("," . ((let ((beg (mark))
-                 (active (region-active-p)))
-             (call-interactively #'viper-repeat-find)
-             (when active
-               (set-mark beg)
-               (transient-mark-mode)))))))
+   ("f" . jump-to-char)
+   ("t" . jump-till-char)
+   ("," . jump-repeat)))
+
 
 (bk-block multiple-cursors
   :requires .multiple-cursors
