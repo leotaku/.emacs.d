@@ -33,14 +33,12 @@
    ("j" . next-line)
    ("k" . previous-line)
    ("l" . forward-char)
-   ("w" . viper-forward-word)
-   ("W" . viper-forward-Word)
-   ("b" . viper-backward-word)
-   ("B" . viper-backward-Word)
-   ("e" . ((viper-end-of-word arg)
-           (forward-char 1)))
-   ("E" . ((viper-end-of-Word arg)
-           (forward-char 1))))
+   ("w" . motion-forward-word)
+   ("W" . motion-forward-Word)
+   ("b" . motion-backward-word)
+   ("B" . motion-backward-Word)
+   ("e" . motion-forward-end)
+   ("E" . motion-forward-End))
   (modalka-keys
    ("c" . modalka-change)
    ("d" . kill-region-or-line)
@@ -89,6 +87,36 @@
   (interactive)
   (end-of-line)
   (modalka-mode -1))
+
+(defun motion-forward-word (arg)
+  (interactive "p")
+  (motion-syntax arg nil "[:word:]" "^[:word:]"))
+
+(defun motion-forward-end (arg)
+  (interactive "p")
+  (motion-syntax arg t "^[:word:]" "[:word:]"))
+
+(defun motion-backward-word (arg)
+  (interactive "p")
+  (motion-forward-end (- arg)))
+
+(defun motion-forward-Word (arg)
+  (interactive "p")
+  (motion-syntax arg nil "^[:space:]\n" "[:space:]\n"))
+
+(defun motion-forward-End (arg)
+  (interactive "p")
+  (motion-syntax arg t "[:space:]\n" "^[:space:]\n"))
+
+(defun motion-backward-Word (arg)
+  (interactive "p")
+  (motion-forward-End (- arg)))
+
+(defun motion-syntax (n reverse-adjust &rest syntaxes)
+  (let ((f (if (< 0 n) #'skip-chars-forward #'skip-chars-backward)))
+    (if reverse-adjust (when (< 0 n) (forward-char)) (when (> 0 n) (backward-char)))
+    (dotimes (_ (abs n)) (mapc f syntaxes))
+    (if reverse-adjust (and (not (region-active-p)) (< 0 n) (backward-char)) (when (> 0 n) (backward-char)))))
 
 (defun modalka-change (arg)
   (interactive "p")
