@@ -101,8 +101,7 @@
   (undo-fu-session-linear . t))
 
 (bk-block* ace-link
-  :bind
-  (("C-x a" . ace-link))
+  :bind (("C-x a" . ace-link))
   :custom
   (ace-link-fallback-function . 'ace-link-org))
 
