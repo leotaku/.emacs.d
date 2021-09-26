@@ -23,9 +23,7 @@
      (pcase pair
        (`(,key . ,(and command (pred symbolp)))
         (define-key modalka-mode-map (kbd key) command))
-       (`(,key . ,(and command (pred listp)))
-        (define-key modalka-mode-map (kbd key) `(lambda (&optional arg) (interactive "p") ,@command)))
-       (otherwise (error "Invalid entry: %S" pair)))))
+       (otherwise (error "Not a valid binding: %S" pair)))))
 
 (defun modalka-deactivate ()
   (interactive)
