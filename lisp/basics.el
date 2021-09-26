@@ -7,8 +7,6 @@
 (bk-block emacs-basics
   :custom
   (disabled-command-function . nil)
-  (select-enable-primary . t)
-  (select-enable-clipboard . t)
   (save-interprogram-paste-before-kill . t)
   (inhibit-compacting-font-caches . t)
   (read-process-output-max . (expt 2 16))
