@@ -41,6 +41,7 @@
   git-modes
   go-mode
   haskell-mode
+  hcl-mode
   keyfreq
   ledger-mode
   lice
@@ -67,6 +68,7 @@
   rust-mode
   smartparens
   swiper
+  terraform-mode
   undo-fu-session
   visual-fill-column
   visual-regexp
