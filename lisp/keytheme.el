@@ -64,9 +64,7 @@
              (avy-goto-word-or-subword-1)))))
   (modalka-keys
    ("v" . switch-mark-command)
-   ("r" . ((if (region-active-p)
-               (call-interactively #'vr/replace)
-             (call-interactively #'viper-replace-char))))
+   ("r" . replace-char-or-region)
    ("o" . exchange-point-and-mark)
    ("U" . fi-undo-only-global)
    ("u" . fi-undo-global)
@@ -77,6 +75,12 @@
    ("f" . jump-to-char)
    ("t" . jump-till-char)
    ("," . jump-repeat)))
+
+(defun replace-char-or-region ()
+  (interactive)
+  (if (region-active-p)
+      (call-interactively #'vr/replace)
+    (call-interactively #'replace-char)))
 
 
 (bk-block multiple-cursors

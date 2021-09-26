@@ -68,6 +68,12 @@
     (backward-char (if (< 0 count) (if until 2 1) (if until -1 0)))
     (point)))
 
+(defun replace-char (arg)
+  (interactive "p")
+  (let ((char (char-to-string (read-char))))
+    (save-excursion
+      (dotimes (_ arg) (delete-char 1) (insert char)))))
+
 (defun kill-region-or-line (arg)
   (interactive "p")
   (if (region-active-p)
