@@ -93,7 +93,7 @@
 (bk-block lsp
   :requires company .lsp-mode .lsp-ui .lsp-haskell
   :hook
-  (prog-mode-hook . lsp-maybe)
+  (prog-mode-hook . lsp-enable-if-workspace)
   (lsp-mode-hook . lsp-ui-mode)
   :bind ((:lsp-mode-map
           :package lsp-mode
@@ -110,6 +110,10 @@
   ;; clang
   (lsp-clients-clangd-args
    . '("-header-insertion=never")))
+
+(defun lsp-enable-if-workspace ()
+  (when (lsp-workspace-root)
+    (lsp-deferred)))
 
 (bk-block direnv
   :requires .direnv

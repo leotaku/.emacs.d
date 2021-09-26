@@ -253,12 +253,6 @@
    (lambda (x) (describe-symbol (intern x))
      (signal 'quit nil))))
 
-;;;; Development servers
-
-(defun lsp-maybe ()
-  (when (lsp-workspace-root)
-    (lsp-deferred)))
-
 ;;;; Generic
 
 (defun file-name-shortest (file)
