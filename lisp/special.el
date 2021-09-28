@@ -16,7 +16,7 @@
           ("x" . theist-C-x)
           ("C-k" . magit-discard))))
 (bk-block calendar
-  :requires .calendar .diary-lib keytheme local-files
+  :requires .calendar .diary-lib local-files
   :custom (calendar-date-style . 'iso)
   :hook (diary-mode-hook . auto-revert-mode)
   :bind (("C-x c" . calendar)
@@ -33,7 +33,7 @@
 (defun advice-diary-make-entry (&rest _)
   (condition-case err
       (with-current-buffer (find-file-noselect diary-file)
-        (modalka-deactivate))
+        (motion-insert))
     (error (message "advice diary: %v" err))))
 
 (bk-block dired
