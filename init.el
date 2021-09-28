@@ -43,17 +43,11 @@
   :load "lisp/visual.el"
   :load "lisp/basics.el"
   :load "lisp/usability.el"
+  :load "lisp/keytheme.el"
   :load "lisp/ide.el"
   :load "lisp/major.el"
   :load "lisp/org-cfg.el"
   :load "lisp/special.el")
-
-;; Load keytheme config
-
-(bk-block keytheme
-  :load "lisp/keytheme.el"
-  :custom
-  (viper-mode . nil))
 
 ;; Execute some simple keybinds
 
