@@ -53,7 +53,6 @@
 
 (bk-block sensible-keys
   :bind (("<insert>" . nil)
-         ("C-m" . newline)
          ("A-j" . next-line)
          ("A-k" . previous-line)
          ("<C-return>" . open-line))
