@@ -40,7 +40,7 @@
 (bk-block* ivy
   :bind ((:ivy-minibuffer-map
           :package ivy
-          ("H-i" . ivy-insert-selection)))
+          ("C-i" . ivy-insert-selection)))
   :start ivy-mode
   :custom (ivy-use-selectable-prompt . t)
   :config

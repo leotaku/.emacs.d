@@ -53,14 +53,14 @@
 
 (bk-block sensible-keys
   :bind (("<insert>" . nil)
-         ("H-m" . newline)
+         ("C-m" . newline)
          ("A-j" . next-line)
          ("A-k" . previous-line)
          ("<C-return>" . open-line))
   :config
   (fi-with-gui
-   (keyboard-translate ?\C-i ?\H-i)
-   (keyboard-translate ?\C-m ?\H-m))
+   (define-key input-decode-map [?\C-i] [C-i])
+   (define-key input-decode-map [?\C-m] [C-m]))
   (define-key key-translation-map
     (kbd "ESC") (kbd "C-g")))
 
