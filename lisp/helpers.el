@@ -6,10 +6,7 @@
 
 (defmacro modalka-reserve (transforms &rest keys)
   (declare (indent 1))
-  `(modalka-multiplex
-       (lambda () (interactive))
-       ,transforms
-     ,@keys))
+  `(modalka-multiplex #'ignore ,transforms ,@keys))
 
 (defmacro modalka-multiplex (command transforms &rest keys)
   (declare (indent 2))
