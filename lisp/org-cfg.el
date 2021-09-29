@@ -53,7 +53,7 @@
         "* TODO %i"
         :immediate-finish t)))
   :config
-  (add-hook 'org-capture-mode-hook 'modalka-deactivate))
+  (add-hook 'org-capture-mode-hook 'motion-insert))
 
 ;;; New functionality
 
