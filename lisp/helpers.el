@@ -25,10 +25,6 @@
         (define-key modalka-mode-map (kbd key) command))
        (otherwise (error "Not a valid binding: %S" pair)))))
 
-(defun modalka-deactivate ()
-  (interactive)
-  (modalka-mode -1))
-
 ;;;; Motion
 
 (defcustom motion-mode-function #'ignore
