@@ -14,7 +14,12 @@
           ("k" . magit-previous-line)
           ("v" . switch-mark-command)
           ("x" . theist-C-x)
-          ("C-k" . magit-discard))))
+          ("C-k" . magit-discard)))
+  :config
+  (setq-mode-local
+   gitignore-mode
+   indent-line-function #'ignore))
+
 (bk-block calendar
   :requires .calendar .diary-lib local-files
   :custom (calendar-date-style . 'iso)
