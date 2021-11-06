@@ -132,7 +132,8 @@
 (defun kill-ring-cycle (arg)
   (interactive "p")
   (let* ((length (seq-length kill-ring))
-         (to-append (% (+ length arg) length)))
+         (to-append (% (+ length arg) length))
+         (_ (current-kill 0)))
     (setq kill-ring (append (seq-drop kill-ring to-append)
                             (seq-take kill-ring to-append)))))
 
@@ -145,7 +146,7 @@
   (dotimes (_ arg) (yank-put t)))
 
 (defun yank-put (after-p)
-  (let ((kill (car-safe kill-ring))
+  (let ((kill (current-kill 0))
         (column (current-column)))
     (if (string-suffix-p "\n" kill)
         (progn
