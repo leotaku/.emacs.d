@@ -6,6 +6,7 @@
 
 (bk-block magit
   :requires .magit .forge .theist-mode
+  :at-load (setq smerge-command-prefix "C-c s")
   :bind (("C-x g" . magit-status)
          (:magit-status-mode-map
           :package magit
