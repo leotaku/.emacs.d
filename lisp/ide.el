@@ -96,4 +96,33 @@
   :custom
   (direnv-always-show-summary . nil))
 
+(bk-block eglot
+  :requires .eglot
+  :custom (eldoc-echo-area-use-multiline-p . nil)
+  :hook (prog-mode-hook . eglot-ensure)
+  :bind ((:eglot-mode-map
+          :package eglot
+          ("C-c f" . eglot-format)
+          ("C-c r" . eglot-rename)
+          ("C-c a" . eglot-code-actions)))
+  :config
+  (set-face-bold 'eglot-highlight-symbol-face nil)
+  (advice-add 'eglot--connect :around #'advice-eglot-connect)
+  (advice-add 'eglot-ensure :around #'advice-eglot-ensure))
+
+(defun advice-eglot-connect (fn &rest args)
+  (if (eq this-command 'eglot)
+      (apply fn args)
+    (condition-case-unless-debug err
+        (apply fn args)
+      (error nil))))
+
+(defun advice-eglot-ensure (fn &rest args)
+  (direnv-update-directory-environment)
+  (condition-case-unless-debug err
+      (and (eglot--lookup-mode major-mode)
+           (eglot--guess-contact)
+           (apply fn args))
+    (error nil)))
+
 ;;; ide.el ends here

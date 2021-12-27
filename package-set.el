@@ -37,6 +37,7 @@
   dired-filter
   diredfl
   direnv
+  eglot
   fish-mode
   git-modes
   go-mode
