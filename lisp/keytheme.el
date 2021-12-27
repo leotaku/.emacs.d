@@ -9,8 +9,7 @@
   (cursor-type . 'bar)
   (motion-mode-function . #'modalka-mode)
   :bind (("<escape>" . modalka-mode))
-  :bind* (("C-x C-x" . theist-C-c)
-          ("<C-return>" . open-line))
+  :bind* (("<C-return>" . open-line))
   :config
   (advice-add 'modalka-mode :around #'fi-call-silent)
   (add-to-list
@@ -18,6 +17,7 @@
    `((modalka-mode . ,modalka-mode-map)))
   :config
   (define-key modalka-mode-map [remap self-insert-command] #'ignore)
+  (define-key ctl-x-map (kbd "x") (theist-menu (kbd "C-c")))
   (modalka-keys
    ("-" . negative-argument))
   (modalka-multiplex 'digit-argument (identity)
