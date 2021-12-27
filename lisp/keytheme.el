@@ -8,8 +8,8 @@
   (modalka-cursor-type . 'box)
   (cursor-type . 'bar)
   (motion-mode-function . #'modalka-mode)
-  :bind (("<escape>" . modalka-mode))
-  :bind* (("<C-return>" . open-line))
+  :bind (("<escape>" . modalka-mode)
+         ("<C-return>" . open-line))
   :config
   (advice-add 'modalka-mode :around #'fi-call-silent)
   (add-to-list
