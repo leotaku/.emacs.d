@@ -34,7 +34,7 @@
   :at-load (setq ivy-do-completion-in-region nil)
   :bind ((:ivy-minibuffer-map
           :package ivy
-          ("C-i" . ivy-insert-selection)))
+          ("<C-i>" . ivy-insert-selection)))
   :start ivy-mode
   :custom (ivy-use-selectable-prompt . t)
   :config
