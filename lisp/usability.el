@@ -25,14 +25,7 @@
   (ispell-dictionary . "en_US")
   (ispell-program-name . "aspell")
   (ispell-really-aspell . t)
-  (ispell-silently-savep . t)
-  :config
-  (defun hook-ispell-save-local-dictionary ()
-    (save-excursion
-      (add-file-local-variable
-       'ispell-local-dictionary
-       ispell-local-dictionary)))
-  (add-hook 'ispell-change-dictionary-hook 'hook-ispell-save-local-dictionary))
+  (ispell-silently-savep . t))
 
 (bk-block* which-key
   :start which-key-mode)
