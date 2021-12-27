@@ -60,8 +60,7 @@
   (fi-with-gui
    (define-key input-decode-map [?\C-i] [C-i])
    (define-key input-decode-map [?\C-m] [C-m]))
-  (define-key key-translation-map
-    (kbd "ESC") (kbd "C-g")))
+  (define-key key-translation-map (kbd "ESC") (kbd "C-g")))
 
 (bk-block bad-habits
   :bind (("<XF86Forward>" . nil)
