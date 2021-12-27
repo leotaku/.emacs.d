@@ -117,9 +117,6 @@
         :user "leotaku/irchighway"
         :pass ,circe-znc-password)))
   :config
-  (add-hook
-   'lui-mode-hook
-   (lambda () (setq-local completion-in-region-function #'completion--in-region)))
   (enable-circe-color-nicks)
   (advice-add 'lui-send-input :around #'advice-lui-send-input))
 
