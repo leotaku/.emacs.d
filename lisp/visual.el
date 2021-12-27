@@ -10,10 +10,7 @@
    '(variable-pitch ((t (:font "Alegreya SC" :height 110))))
    '(mode-line ((t (:font "Alegreya" :height 120))))
    '(mode-line-inactive ((t (:font "Alegreya" :height 120))))
-   '(default ((t (:font "Fira Mono" :height 110 :weight regular)))))
-  :config
-  (fi-with-gui
-   (set-fontset-font t 'symbol (font-spec :family "JoyPixels") nil t)))
+   '(default ((t (:font "Fira Mono" :height 110 :weight regular))))))
 
 (bk-block theme
   :requires .doom-themes
