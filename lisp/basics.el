@@ -23,7 +23,13 @@
 
 (bk-block fundamental
   :custom (major-mode . 'text-mode)
-  :bind (("q" . delete-if-fundamental)))
+  :config
+  (let ((item '(menu-item "quit-findow-if-fundamental" ignore :filter
+                          (lambda (&optional _)
+                            (if (eq major-mode 'fundamental-mode)
+                                #'quit-window
+                              #'self-insert-command)))))
+    (global-set-key (kbd "q") item)))
 
 (bk-block scratch
   :custom
