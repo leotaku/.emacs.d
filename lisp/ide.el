@@ -101,6 +101,7 @@
   :at-load
   (setq lsp-keymap-prefix "C-c l")
   :custom
+  (lsp-modeline-code-actions-segments . '(count))
   (lsp-signature-auto-activate . nil)
   (lsp-enable-symbol-highlighting . nil)
   (lsp-auto-configure . t)
