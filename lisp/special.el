@@ -20,6 +20,15 @@
    gitignore-mode
    indent-line-function #'ignore))
 
+(bk-block ediff
+  :requires .ediff .winner
+  :start winner-mode
+  :custom
+  (ediff-window-setup-function . #'ediff-setup-windows-plain)
+  (ediff-split-window-function . #'split-window-horizontally)
+  :config
+  (add-hook 'ediff-after-quit-hook-internal #'winner-undo))
+
 (bk-block calendar
   :requires .calendar .diary-lib local-files
   :custom (calendar-date-style . 'iso)
