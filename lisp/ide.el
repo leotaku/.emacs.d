@@ -90,32 +90,6 @@
           (remove-hook 'completion-at-point-functions x))))
     (add-hook 'semantic-mode-hook 'hook-semantic-fix-lispy)))
 
-(bk-block lsp
-  :requires company .lsp .lsp-ui .lsp-haskell .lsp-pyright
-  :hook
-  (prog-mode-hook . lsp-enable-if-workspace)
-  (lsp-mode-hook . lsp-ui-mode)
-  :bind ((:lsp-mode-map
-          :package lsp-mode
-          ("C-c C-f" . lsp-format-buffer)))
-  :at-load
-  (setq lsp-keymap-prefix "C-c l")
-  :custom
-  (lsp-modeline-code-actions-segments . '(count))
-  (lsp-signature-auto-activate . nil)
-  (lsp-enable-symbol-highlighting . nil)
-  (lsp-auto-configure . t)
-  (lsp-diagnostic-package . :flymake)
-  (lsp-ui-doc-enable . nil)
-  (lsp-ui-sideline-enable . nil)
-  ;; clang
-  (lsp-clients-clangd-args
-   . '("-header-insertion=never")))
-
-(defun lsp-enable-if-workspace ()
-  (when (lsp-workspace-root)
-    (lsp-deferred)))
-
 (bk-block direnv
   :requires .direnv
   :start direnv-mode
