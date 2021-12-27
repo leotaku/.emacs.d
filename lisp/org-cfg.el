@@ -5,7 +5,7 @@
 ;;; Code:
 
 (bk-block org
-  :requires .org .org-tempo worf org-capture
+  :requires .org .org-tempo .org-timer worf org-capture
   :hook
   (org-mode-hook . auto-revert-mode)
   :custom
