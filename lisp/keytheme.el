@@ -17,10 +17,7 @@
    'emulation-mode-map-alists
    `((modalka-mode . ,modalka-mode-map)))
   :config
-  (modalka-reserve (identity capitalize)
-    "q" "w" "e" "r" "t" "z" "u" "i" "o" "p" "ü"
-    "a" "s" "d" "f" "g" "h" "j" "k" "l" "ö" "ä"
-    "y" "x" "c" "v" "b" "n" "m")
+  (define-key modalka-mode-map [remap self-insert-command] #'ignore)
   (modalka-keys
    ("-" . negative-argument))
   (modalka-multiplex 'digit-argument (identity)
