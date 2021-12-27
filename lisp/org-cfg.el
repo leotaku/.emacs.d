@@ -14,11 +14,7 @@
   (org-blank-before-new-entry
    . '((heading . nil) (plain-list-item . nil)))
   :config
-  (advice-add 'org-return :override #'newline)
-  (set-face-attribute
-   'org-document-title nil
-   :inherit 'variable-pitch
-   :height 150))
+  (advice-add 'org-return :override #'newline))
 
 (bk-block0 worf
   :requires .worf .theist-mode
