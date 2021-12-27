@@ -52,8 +52,7 @@
 ;; Execute some simple keybinds
 
 (bk-block sensible-keys
-  :bind (("<insert>" . nil)
-         ("A-j" . next-line)
+  :bind (("A-j" . next-line)
          ("A-k" . previous-line)
          ("<C-return>" . open-line))
   :config
@@ -67,6 +66,7 @@
          ("<XF86Back>" . nil)
          ("<prior>" . nil)
          ("<next>" . nil)
+         ("<insert>" . nil)
          ("C-<prior>" . nil)
          ("C-<next>" . nil)
          ("C-x C-b" . nil)
