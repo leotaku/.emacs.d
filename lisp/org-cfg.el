@@ -13,6 +13,10 @@
   (org-tags-column . 0)
   (org-blank-before-new-entry
    . '((heading . nil) (plain-list-item . nil)))
+  (org-link-parameters
+   . (assoc-delete-all
+      "file+" org-link-parameters
+      (lambda (it key) (string-prefix-p key it))))
   :config
   (advice-add 'org-return :override #'newline))
 
