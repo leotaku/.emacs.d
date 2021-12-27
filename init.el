@@ -68,7 +68,9 @@
          ("<prior>" . nil)
          ("<next>" . nil)
          ("C-<prior>" . nil)
-         ("C-<next>" . nil)))
+         ("C-<next>" . nil)
+         ("C-x C-b" . nil)
+         ("C-z" . nil)))
 
 (bk-block misc-bindings
   :bind  (("C-x r" . revert-buffer)
