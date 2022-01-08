@@ -36,7 +36,7 @@
     (worf-define-key map "P" #'org-priority))
   (advice-add
    'org-insert-heading
-   :after #'beginning-of-line))
+   :after (lambda (&rest _) (beginning-of-line))))
 
 (bk-block0 org-capture
   :requires local-files .org-capture .org-protocol .org-reverse-datetree
