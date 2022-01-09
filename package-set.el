@@ -57,8 +57,8 @@
   multiple-cursors
   nix-mode
   no-littering
-  org-cliplink
   org
+  org-cliplink
   org-reverse-datetree
   pcre2el
   projectile
