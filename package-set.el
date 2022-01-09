@@ -14,6 +14,10 @@
    :type git :host github
    :repo "leotaku/flycheck-aspell"
    :files ("flymake-aspell.el"))
+  (study
+   :type git :host github
+   :repo "leotaku/study.el"
+   :files ("*.el"))
   (auctex
    :type git :host github
    :repo "emacs-straight/auctex")
