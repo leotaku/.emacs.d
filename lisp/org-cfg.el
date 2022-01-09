@@ -68,6 +68,9 @@ Offer day selection when ARG is non-nil."
         (org-reverse-datetree-goto-date-in-file))
       (org-tree-to-indirect-buffer)))
   (select-window (get-buffer-window org-last-indirect-buffer))
+  (org-map-entries #'outline-hide-subtree nil 'tree)
+  (org-cycle)
+  (run-hooks 'org-capture-mode-hook)
   (setf (point) (point-at-bol))
   (quick-commit-mode))
 
