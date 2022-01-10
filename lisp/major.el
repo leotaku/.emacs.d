@@ -18,7 +18,7 @@
 (bk-block c++-mode
   :requires .cc-mode
   :config
-  (setf (alist-get 'c++-mode c-default-style) "modern")
+  (setf (alist-get 'other c-default-style) "wierdo")
   (c-add-style "modern" '("gnu" (c-offsets-alist (innamespace . 0))))
   (c-add-style "wierdo" '("ellemtel" (c-basic-offset . 4))))
 
