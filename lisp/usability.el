@@ -108,6 +108,7 @@
   (add-to-list 'recentf-exclude no-littering-var-directory)
   (add-to-list 'recentf-exclude no-littering-etc-directory)
   (add-to-list 'recentf-exclude (temporary-file-directory))
+  (add-to-list 'recentf-exclude (expand-file-name straight-build-dir straight-base-dir))
 
 (bk-block* tramp
   :config
