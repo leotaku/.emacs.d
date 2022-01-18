@@ -107,8 +107,7 @@
   :config
   (add-to-list 'recentf-exclude no-littering-var-directory)
   (add-to-list 'recentf-exclude no-littering-etc-directory)
-  (add-to-list 'recentf-exclude (getenv "TMPDIR"))
-  (add-to-list 'recentf-exclude "/tmp"))
+  (add-to-list 'recentf-exclude (temporary-file-directory))
 
 (bk-block* tramp
   :config
