@@ -17,6 +17,7 @@
    `((modalka-mode . ,modalka-mode-map)))
   :config
   (define-key modalka-mode-map [remap self-insert-command] #'ignore)
+  (define-key modalka-mode-map (kbd "x") (theist-menu (kbd "C-x")))
   (define-key ctl-x-map (kbd "x") (theist-menu (kbd "C-c")))
   (modalka-keys
    ("-" . negative-argument))
@@ -45,7 +46,6 @@
    ("SPC" . mc/mark-next-like-this)
    ("<backspace>" . delete-char-or-region)
    ("g" . goto-or-quit)
-   ("x" . theist-C-x)
    ("z" . kill-ring-cycle)
    ("Z" . kill-ring-uncycle)
    ("m" . eri/expand-region)
