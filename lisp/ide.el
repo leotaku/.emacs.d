@@ -118,11 +118,14 @@
       (error nil))))
 
 (defun advice-eglot-ensure (fn &rest args)
-  (direnv-update-directory-environment)
-  (condition-case-unless-debug err
-      (and (eglot--lookup-mode major-mode)
-           (eglot--guess-contact)
-           (apply fn args))
-    (error nil)))
+  (when (or (not (daemonp)) server-process)
+    (run-with-timer
+     0 nil
+     (lambda ()
+       (condition-case-unless-debug err
+           (and (eglot--lookup-mode major-mode)
+                (eglot--guess-contact)
+                (apply fn args))
+         (error nil))))))
 
 ;;; ide.el ends here
