@@ -40,8 +40,8 @@
   crux
   dired-filter
   diredfl
-  direnv
   eglot
+  envrc
   fish-mode
   git-modes
   go-mode

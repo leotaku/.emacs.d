@@ -90,11 +90,9 @@
           (remove-hook 'completion-at-point-functions x))))
     (add-hook 'semantic-mode-hook #'hook-semantic-fix-lispy)))
 
-(bk-block direnv
-  :requires .direnv
-  :start direnv-mode
-  :custom
-  (direnv-always-show-summary . nil))
+(bk-block envrc
+  :requires .envrc
+  :start envrc-global-mode)
 
 (bk-block eglot
   :requires .eglot
