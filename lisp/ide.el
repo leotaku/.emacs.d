@@ -49,8 +49,7 @@
   (backward-char))
 
 (bk-block company
-  :requires .company .company-posframe .yasnippet
-  :start yas-global-mode
+  :requires .company .company-posframe
   :hook
   (prog-mode-hook . company-mode)
   (text-mode-hook . company-mode)

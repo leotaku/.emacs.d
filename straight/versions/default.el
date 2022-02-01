@@ -79,6 +79,5 @@
  ("worf" . "8681241e118585824cd256e5b026978bf06c7e58")
  ("xref" . "622ad62994f1094fa7597f8d77b175f8441f1137")
  ("yaml-mode" . "535273d5a1eb76999d20afbcf4d9f056d8ffd2da")
- ("yasnippet" . "5cbdbf0d2015540c59ed8ee0fcf4788effdf75b6")
  ("zoutline" . "32857c6c4b9b0bcbed14d825a10b91a98d5fed0a"))
 :beta

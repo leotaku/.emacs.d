@@ -78,5 +78,4 @@
   wgrep
   which-key
   worf
-  yaml-mode
-  yasnippet])
+  yaml-mode])
