@@ -39,6 +39,9 @@
   (markdown-hide-urls . t))
 
 (bk-block* web-mode
+  :bind ((:web-mode-map
+          :package web-mode
+          ("C-c C-f" . nil)))
   :mode "\\.html?\\'" "\\.tsx?\\'"
   :custom
   (web-mode-code-indent-offset . 2)
