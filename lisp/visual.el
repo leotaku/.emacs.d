@@ -32,7 +32,9 @@
   :config
   (tracking-mode)
   (moody-replace-mode-line-buffer-identification)
-  (moody-replace-vc-mode)
+  (moody-replace-element
+   '(vc-mode vc-mode)
+   '(vc-mode ((:propertize "." invisible t) moody-vc-mode)))
   (minions-mode)
   (column-number-mode))
 
