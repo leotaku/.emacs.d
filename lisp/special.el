@@ -100,6 +100,10 @@
   :requires .circe .auth-source
   :hook
   (circe-mode-hook . visual-line-mode)
+  :bind ((:lui-mode-map
+          :package lui
+          ("<up>" . lui-previous-input)
+          ("<down>" . lui-next-input)))
   :custom
   (circe-reduce-lurker-spam . t)
   (circe-network-defaults . nil)
