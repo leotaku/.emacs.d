@@ -19,11 +19,10 @@
   (define-key modalka-mode-map [remap self-insert-command] #'ignore)
   (define-key modalka-mode-map (kbd "x") (theist-menu (kbd "C-x")))
   (define-key ctl-x-map (kbd "x") (theist-menu (kbd "C-c")))
-  (modalka-keys
-   ("-" . negative-argument))
   (modalka-multiplex 'digit-argument (identity)
     "0" "1" "2" "3" "4" "5" "6" "7" "8" "9")
   (modalka-keys
+   ("-" . negative-argument)
    ("i" . motion-insert)
    ("a" . motion-append)
    ("I" . motion-Insert)
