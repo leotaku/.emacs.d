@@ -27,6 +27,11 @@
                      "doom-themes-pkg.el")
    :host github
    :repo "leotaku/emacs-doom-themes")
+  (emacsql
+   :type git :host github
+   :files (:defaults "emacsql-sqlite-builtin.el")
+   :repo "tarsiiformes/emacsql"
+   :branch "sqlite-backends")
   ace-link
   ace-window
   aggressive-indent
@@ -43,6 +48,7 @@
   eglot
   envrc
   fish-mode
+  forge
   git-modes
   go-mode
   haskell-mode

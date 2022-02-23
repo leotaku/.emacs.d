@@ -7,6 +7,7 @@
 (bk-block magit
   :requires .magit .forge .theist-mode
   :at-load (setq smerge-command-prefix (kbd "C-c s"))
+  :at-load (setq forge-database-connector 'sqlite-builtin)
   :bind (("C-x g" . magit-status)
          (:magit-status-mode-map
           :package magit
