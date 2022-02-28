@@ -17,15 +17,13 @@
   (study
    :type git :host github
    :repo "leotaku/study.el"
-   :files ("*.el"))
+   :files (:defaults "study-deadgrep.el"))
   (auctex
    :type git :host github
    :repo "emacs-straight/auctex")
   (doom-themes
-   :type git :flavor melpa
-   :files (:defaults "themes/*.el"
-                     "doom-themes-pkg.el")
-   :host github
+   :type git :host github
+   :files (:defaults "themes/*.el" "doom-themes-pkg.el")
    :repo "leotaku/emacs-doom-themes")
   (emacsql
    :type git :host github
