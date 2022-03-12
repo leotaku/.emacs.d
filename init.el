@@ -12,8 +12,7 @@
 ;; Load `fi-emacs' dependencies
 
 (prog1 "fi-setup"
-  (require 'fi-config)
-  (require 'fi-helpers)
+  (require 'fi)
   (require 'bk))
 
 ;;; Configuration:
