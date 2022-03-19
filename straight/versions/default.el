@@ -3,6 +3,7 @@
  ("ace-window" . "0577c426a9833ab107bab46c60d1885c611b2fb9")
  ("aggressive-indent-mode" . "cb416faf61c46977c06cf9d99525b04dc109a33c")
  ("amx" . "37f9c7ae55eb0331b27200fb745206fc58ceffc0")
+ ("apheleia" . "75074a2f11e29aeca376b3004270a93ce44e59de")
  ("auctex" . "830e40a0639aedc6c362a3a01e160aaa8246bb99")
  ("avy" . "ba5f035be33693d1a136a5cbeedb24327f551a92")
  ("circe" . "77e16de3b9fbaa0417b56a9acc70a9bca17c4ad0")

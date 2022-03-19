@@ -34,6 +34,7 @@
   ace-window
   aggressive-indent
   amx
+  apheleia
   avy
   circe
   company
