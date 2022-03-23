@@ -5,19 +5,19 @@
    :repo "leotaku/expand-region-improved")
   (fi
    :type git :host github
-   :repo "leotaku/fi-emacs"
-   :files ("*.el"))
+   :files ("*.el")
+   :repo "leotaku/fi-emacs")
   (theist-mode
    :type git :host github
    :repo "leotaku/theist-mode")
   (flycheck-aspell
    :type git :host github
-   :repo "leotaku/flycheck-aspell"
-   :files ("flymake-aspell.el"))
+   :files ("flymake-aspell.el")
+   :repo "leotaku/flycheck-aspell")
   (study
    :type git :host github
-   :repo "leotaku/study.el"
-   :files (:defaults "study-deadgrep.el"))
+   :files (:defaults "study-deadgrep.el")
+   :repo "leotaku/study.el")
   (auctex
    :type git :host github
    :repo "emacs-straight/auctex")
