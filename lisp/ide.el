@@ -6,6 +6,8 @@
 
 (bk-block aggressive-backspace-mode
   :requires .aggressive-indent
+  :config
+  (add-to-list 'aggressive-indent-dont-indent-if '(eq major-mode 'python-mode))
   :hook
   (prog-mode-hook . aggressive-backspace-mode)
   (text-mode-hook . aggressive-backspace-mode)
