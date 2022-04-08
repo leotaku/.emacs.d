@@ -24,12 +24,12 @@
 (bk-block fundamental
   :custom (major-mode . 'text-mode)
   :config
-  (let ((item '(menu-item "quit-findow-if-fundamental" ignore :filter
-                          (lambda (&optional _)
-                            (if (eq major-mode 'fundamental-mode)
-                                #'quit-window
-                              #'self-insert-command)))))
-    (global-set-key (kbd "q") item)))
+  (let ((menu-item '(menu-item "quit-findow-if-fundamental" ignore :filter
+                               (lambda (&optional _)
+                                 (if (eq major-mode 'fundamental-mode)
+                                     #'quit-window
+                                   #'self-insert-command)))))
+    (global-set-key (kbd "q") menu-item)))
 
 (bk-block scratch
   :custom
