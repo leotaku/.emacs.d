@@ -61,7 +61,6 @@
           ("s" . swiper)
           ("x" . theist-C-x)
           ("d" . dired-do-delete)
-          ("D" . dired-do-delete)
           ("e" . wdired-change-to-wdired-mode)
           ("M" . dired-filter-mark-by-regexp)
           ("RET" . dired-interactive-find-file)
