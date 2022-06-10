@@ -63,9 +63,8 @@
           ("d" . dired-do-delete)
           ("e" . wdired-change-to-wdired-mode)
           ("M" . dired-filter-mark-by-regexp)
-          ("RET" . dired-interactive-find-file)
-          ("DEL" . dired-interactive-up-directory)
-          ("TAB" . dired-hide-details-mode)))
+          ("TAB" . dired-hide-details-mode)
+          ("DEL" . dired-up-directory)))
   :custom
   (dired-filter-stack . '((dot-files) (omit)))
   (dired-clean-confirm-killing-deleted-buffers . nil)
@@ -74,16 +73,18 @@
   :hook
   (dired-mode-hook . dired-filter-mode)
   :config
+  (advice-add 'dired-find-file :override #'advice-dired-find-file)
+  (advice-add 'dired-up-directory :override #'advice-dired-up-directory)
   (diredfl-global-mode))
 
-(defun dired-interactive-find-file ()
+(defun advice-dired-find-file ()
   (interactive)
   (let ((file (dired-get-file-for-visit)))
     (if (file-directory-p file)
         (find-alternate-file file)
       (find-file file))))
 
-(defun dired-interactive-up-directory ()
+(defun advice-dired-up-directory ()
   (interactive)
   (find-alternate-file ".."))
 
