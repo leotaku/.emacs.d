@@ -7,9 +7,6 @@
    :type git :host github
    :files ("*.el")
    :repo "leotaku/fi-emacs")
-  (theist-mode
-   :type git :host github
-   :repo "leotaku/theist-mode")
   (flycheck-aspell
    :type git :host github
    :files ("flymake-aspell.el")
@@ -18,6 +15,9 @@
    :type git :host github
    :files (:defaults "study-deadgrep.el")
    :repo "leotaku/study.el")
+  (theist-mode
+   :type git :host github
+   :repo "leotaku/theist-mode")
   (auctex
    :type git :host github
    :repo "emacs-straight/auctex")
