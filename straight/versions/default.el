@@ -27,6 +27,7 @@
  ("emacs-which-key" . "1ab1d0cc88843c9a614ed3226c5a1070e32e4823")
  ("emacsmirror-mirror" . "634e620eaa04afb10ea292bd039137667fe546d4")
  ("emacsql" . "a881e594b1d4c1aec2a8346f1a81cf8a021c8e85")
+ ("emacsql-sqlite-builtin" . "3e820c66fdaa9937f9e612900954dcd6c7d01943")
  ("envrc" . "7f36664fc6d97a7ca77c6c3e0c6577b72fa0b70d")
  ("expand-region-improved" . "071a01d98246153c547875840909ad17728b7c98")
  ("expand-region.el" . "7e5bbe2763c12bae3e77fe0c49bcad05ff91dbfe")
