@@ -13,7 +13,7 @@
    :repo "leotaku/flycheck-aspell")
   (study
    :type git :host github
-   :files (:defaults "study-deadgrep.el")
+   :files (:defaults "study-*.el")
    :repo "leotaku/study.el")
   (theist-mode
    :type git :host github
@@ -37,6 +37,7 @@
   counsel
   counsel-projectile
   crux
+  deadgrep
   dired-filter
   diredfl
   eglot
