@@ -25,6 +25,8 @@
    :type git :host github
    :files (:defaults "themes/*.el" "doom-themes-pkg.el")
    :repo "leotaku/emacs-doom-themes")
+  (mu4e :type built-in)
+  (vterm :type built-in)
   ace-link
   ace-window
   aggressive-indent
