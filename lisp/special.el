@@ -70,6 +70,7 @@
   (dired-clean-confirm-killing-deleted-buffers . nil)
   (dired-listing-switches . "-al --group-directories-first")
   (dired-filter-mark-prefix . "*")
+  (dired-dwim-target . t)
   :hook
   (dired-mode-hook . dired-filter-mode)
   :config
