@@ -95,6 +95,10 @@
   :requires .envrc
   :start envrc-global-mode)
 
+(bk-block apheleia
+  :requires .apheleia
+  :bind (("C-c f" . apheleia-format-buffer)))
+
 (bk-block eglot
   :requires .eglot
   :custom (eldoc-echo-area-use-multiline-p . nil)
@@ -107,10 +111,6 @@
   (set-face-bold 'eglot-highlight-symbol-face nil)
   (advice-add 'eglot--connect :around #'advice-eglot-connect)
   (advice-add 'eglot-ensure :around #'advice-eglot-ensure))
-
-(bk-block apheleia
-  :requires .apheleia
-  :bind (("C-c f" . apheleia-format-buffer)))
 
 (defun advice-eglot-connect (fn &rest args)
   (if (eq this-command 'eglot)
