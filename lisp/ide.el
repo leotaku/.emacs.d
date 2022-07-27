@@ -108,6 +108,7 @@
           ("C-c a" . tide-fix))))
 
 (defun tide-ensure ()
+  (interactive)
   (run-with-timer
    0 nil (lambda ()
            (tide-setup)
