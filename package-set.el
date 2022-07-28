@@ -72,7 +72,6 @@
   projectile
   rainbow-mode
   rust-mode
-  smartparens
   swiper
   terraform-mode
   tide

@@ -24,22 +24,6 @@
                   (not (aggressive-indent--run-user-hooks)))
          #'delete-indentation)))))
 
-(bk-block smartparens
-  :requires .smartparens .smartparens-config
-  :hook
-  (prog-mode-hook . smartparens-mode)
-  (text-mode-hook . smartparens-mode)
-  (conf-mode-hook . smartparens-mode)
-  :bind ((:sp-pair-overlay-keymap
-          :package smartparens
-          ("TAB" . sp-forward-sexp)))
-  :config
-  (dolist (paren-type '("(" "[" "{"))
-    (sp-local-pair
-     'prog-mode paren-type nil
-     :post-handlers '((sp-pretty-newlines "RET")
-                      (sp-pretty-spaces "SPC")))))
-
 (defun sp-pretty-newlines (&rest _)
   (newline)
   (indent-according-to-mode)
