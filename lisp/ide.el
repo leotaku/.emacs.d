@@ -24,6 +24,10 @@
                   (not (aggressive-indent--run-user-hooks)))
          #'delete-indentation)))))
 
+(bk-block electric
+  :requires .elec-pair
+  :start electric-pair-mode)
+
 (defun sp-pretty-newlines (&rest _)
   (newline)
   (indent-according-to-mode)
