@@ -53,7 +53,6 @@
   hcl-mode
   keyfreq
   ledger-mode
-  lice
   lispy
   lua-mode
   magit

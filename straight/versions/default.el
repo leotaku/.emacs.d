@@ -50,7 +50,6 @@
  ("keyfreq" . "dd88193cd7a91a92113121191573758ea2a3ceb1")
  ("ledger-mode" . "8bad528d43007e0310b5e72e6e021b502b30495c")
  ("let-alist" . "592553db5929b54db40af0df90c5add0aaca045b")
- ("lice-el" . "0b69ba54057146f1473e85c0760029e584e3eb13")
  ("lispy" . "dbab5899f26fa2ee27f5c2e8b32c20f2f69242fb")
  ("lua-mode" . "5a9bee8d5fc978dc64fcb677167417010321ba65")
  ("magit" . "765069add98d64f4ef4961a0aa4b2aa82efb2156")
