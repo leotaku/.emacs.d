@@ -69,7 +69,10 @@
 
 (bk-block projectile
   :requires .projectile .counsel-projectile counsel
-  :bind (("C-x p" . projectile-command-map))
+  :bind (("C-x p" . projectile-command-map)
+         (:projectile-command-map
+          :package projectile
+          ("s d" . counsel-rg)))
   :custom
   (projectile-completion-system . 'ivy)
   (projectile-project-root-files-functions . '(projectile-root-top-down))
