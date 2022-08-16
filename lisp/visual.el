@@ -15,6 +15,8 @@
 (bk-block theme
   :requires .doom-themes
   :config
+  (dolist (theme custom-enabled-themes)
+    (disable-theme theme))
   (load-theme 'doom-aurora))
 
 (bk-block mode-line
