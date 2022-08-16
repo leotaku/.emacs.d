@@ -6,11 +6,11 @@
 
 (bk-block fonts
   :config
-  (custom-set-faces
-   '(variable-pitch ((t (:font "Alegreya SC" :height 110))))
-   '(mode-line ((t (:font "Alegreya" :height 120))))
-   '(mode-line-inactive ((t (:font "Alegreya" :height 120))))
-   '(default ((t (:font "Fira Mono" :height 110 :weight regular))))))
+  (fi-with-gui
+   (set-face-attribute 'default nil :font "Fira Mono" :height 110)
+   (set-face-attribute 'variable-pitch nil :font "Alegreya SC" :height 110)
+   (set-face-attribute 'mode-line-inactive nil :font "Alegreya" :height 120)
+   (set-face-attribute 'mode-line nil :font "Alegreya" :height 120)))
 
 (bk-block theme
   :requires .doom-themes
