@@ -15,14 +15,7 @@
 (bk-block theme
   :requires .doom-themes
   :config
-  (load-theme 'doom-aurora)
-  '(fi-with-gui
-    (let ((line (face-attribute 'mode-line :underline)))
-      (set-face-attribute 'mode-line          nil :overline   line)
-      (set-face-attribute 'mode-line-inactive nil :overline   line)
-      (set-face-attribute 'mode-line-inactive nil :underline  line)
-      (set-face-attribute 'mode-line          nil :box        nil)
-      (set-face-attribute 'mode-line-inactive nil :box        nil))))
+  (load-theme 'doom-aurora))
 
 (bk-block mode-line
   :requires .moody .minions .tracking
