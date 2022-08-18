@@ -80,7 +80,8 @@
   :requires .multiple-cursors
   :bind ((:mc/keymap
           :package multiple-cursors
-          ("<return>" . nil))))
+          ("<return>" . nil)
+          ("C-0" . mc/insert-numbers))))
 
 (bk-block expand-region
   :requires .expand-region-improved
