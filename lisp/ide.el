@@ -28,16 +28,6 @@
   :requires .elec-pair
   :start electric-pair-mode)
 
-(defun sp-pretty-newlines (&rest _)
-  (newline)
-  (indent-according-to-mode)
-  (forward-line -1)
-  (indent-according-to-mode))
-
-(defun sp-pretty-spaces (&rest _)
-  (insert " ")
-  (backward-char))
-
 (bk-block company
   :requires .company .company-posframe
   :hook
