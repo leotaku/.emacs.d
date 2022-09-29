@@ -48,7 +48,6 @@
   eglot
   emacsql-sqlite-builtin
   envrc
-  fish-mode
   forge
   git-modes
   go-mode
@@ -68,7 +67,6 @@
   nix-mode
   no-littering
   org
-  org-cliplink
   org-reverse-datetree
   pcre2el
   projectile
