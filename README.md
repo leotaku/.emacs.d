@@ -1,5 +1,5 @@
 <div align="center">
-    <h1><i>Fi-Emacs</i></h1>
+    <h1>Leo's Emacs Configuration</h1>
     Robust Emacs configuration using custom tooling
 </div>
 
