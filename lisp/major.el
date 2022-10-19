@@ -72,18 +72,10 @@
    indent-line-function 'js-indent-line))
 
 (bk-block tex
-  :requires .latex
+  :requires .latex .study-SyncTeX
   :start TeX-PDF-mode TeX-source-correlate-mode
   :custom
-  (TeX-view-program-selection . '((output-pdf "Zathura")))
-  (TeX-view-program-list
-   . '(("Zathura" (((output-pdf) "zathura %o")
-                   ((output-pdf mode-io-correlate)
-                    " --synctex-forward %n:0:%b")
-                   ((output-pdf mode-io-correlate)
-                    " -x 'emacsclient --socket-name=%sn --no-wait +%{line} %{input}'")))))
-  :config
-  (add-to-list 'TeX-expand-list '("%sn" (lambda () server-name))))
+  (TeX-view-program-selection . '((output-pdf "study-SyncTeX"))))
 
 (bk-block emacs-lisp-mode
   :requires .elisp-mode .lispy .theist-mode .aggressive-indent
