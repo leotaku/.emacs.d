@@ -74,16 +74,16 @@
   :hook
   (dired-mode-hook . dired-filter-mode)
   :config
-  (advice-add 'dired-find-file :override #'advice-dired-find-file)
+  (advice-add 'dired-find-file :around #'advice-dired-find-file)
   (advice-add 'dired-up-directory :override #'advice-dired-up-directory)
   (diredfl-global-mode))
 
-(defun advice-dired-find-file ()
+(defun advice-dired-find-file (fun &rest args)
   (interactive)
   (let ((file (dired-get-file-for-visit)))
     (if (file-directory-p file)
-        (find-alternate-file file)
-      (find-file file))))
+        (dired-find-alternate-file)
+      (apply fun args))))
 
 (defun advice-dired-up-directory ()
   (interactive)
