@@ -74,8 +74,7 @@ Offer day selection when ARG is non-nil."
   (goto-char (point-at-bol))
   (quick-commit-mode))
 
-(define-minor-mode quick-commit-mode
-  "Buffers that can quickly be commited and discarded."
+(define-minor-mode quick-commit-mode nil
   :lighter "Quick"
   '(("\C-c\C-c" . quick-commit-buffer)
     ("\C-c\C-k" . delete-window-and-buffer)))
