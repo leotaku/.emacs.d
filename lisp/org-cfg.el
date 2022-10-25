@@ -71,7 +71,7 @@ Offer day selection when ARG is non-nil."
   (org-map-entries #'outline-hide-subtree nil 'tree)
   (org-cycle)
   (run-hooks 'org-capture-mode-hook)
-  (setf (point) (point-at-bol))
+  (goto-char (point-at-bol))
   (quick-commit-mode))
 
 (define-minor-mode quick-commit-mode

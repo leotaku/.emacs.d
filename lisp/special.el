@@ -139,7 +139,7 @@
 
 (defun advice-lui-send-input (fun &rest args)
   (if (< (point) lui-input-marker)
-      (setf (point) lui-input-marker)
+      (goto-char lui-input-marker)
     (apply fun args)))
 
 ;;; special.el ends here

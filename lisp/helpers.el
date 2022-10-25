@@ -89,7 +89,7 @@
 (defun motion-goto-char (arg)
   (interactive "p")
   (let ((char (char-to-string (read-char))))
-    (setf (point) (motion-find-char char arg))
+    (goto-char (motion-find-char char arg))
     (setq motion-last-char char)
     (setq motion-last-count arg)
     (setq motion-last-until nil)))
@@ -97,7 +97,7 @@
 (defun motion-till-char (arg)
   (interactive "p")
   (let ((char (char-to-string (read-char))))
-    (setf (point) (motion-find-char char arg t))
+    (goto-char (motion-find-char char arg t))
     (setq motion-last-char char)
     (setq motion-last-count arg)
     (setq motion-last-until t)))
@@ -108,7 +108,7 @@
     (error "No previous jump that can be repeated"))
   (let* ((sign (/ motion-last-count (abs motion-last-count)))
          (point (motion-find-char motion-last-char sign motion-last-until)))
-    (setf (point) point)))
+    (goto-char point)))
 
 (defun motion-find-char (char count &optional until)
   (save-excursion
