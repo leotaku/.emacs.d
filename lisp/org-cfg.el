@@ -76,8 +76,7 @@ Offer day selection when ARG is non-nil."
 
 (define-minor-mode quick-commit-mode
   "Buffers that can quickly be commited and discarded."
-  nil
-  "Quick"
+  :lighter "Quick"
   '(("\C-c\C-c" . quick-commit-buffer)
     ("\C-c\C-k" . delete-window-and-buffer)))
 

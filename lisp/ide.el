@@ -13,8 +13,8 @@
   (text-mode-hook . aggressive-backspace-mode)
   (conf-mode-hook . aggressive-backspace-mode))
 
-(define-minor-mode aggressive-backspace-mode
-  nil nil " <="
+(define-minor-mode aggressive-backspace-mode nil
+  :lighter " <="
   `(([backspace]
      menu-item "maybe-delete-indentation" ignore :filter
      (lambda (&optional _)
