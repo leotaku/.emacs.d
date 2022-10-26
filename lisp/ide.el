@@ -15,14 +15,14 @@
 
 (define-minor-mode aggressive-backspace-mode nil
   :lighter " <="
-  `(([backspace]
-     menu-item "maybe-delete-indentation" ignore :filter
-     (lambda (&optional _)
-       (when (and (not aggressive-indent-mode)
-                  (looking-back "^[[:blank:]]+")
-                  (not (run-hook-wrapped 'aggressive-indent--internal-dont-indent-if #'eval))
-                  (not (aggressive-indent--run-user-hooks)))
-         #'delete-indentation)))))
+  :keymap `(([backspace]
+             menu-item "maybe-delete-indentation" ignore :filter
+             (lambda (&optional _)
+               (when (and (not aggressive-indent-mode)
+                          (looking-back "^[[:blank:]]+")
+                          (not (run-hook-wrapped 'aggressive-indent--internal-dont-indent-if #'eval))
+                          (not (aggressive-indent--run-user-hooks)))
+                 #'delete-indentation)))))
 
 (bk-block electric
   :requires .elec-pair
