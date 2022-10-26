@@ -19,6 +19,13 @@
     (disable-theme theme))
   (load-theme 'doom-aurora))
 
+(bk-block icons
+  :custom (icon-preference . '(text))
+  :config
+  (fi-with-gui
+   (face-spec-reset-face 'icon-button)
+   (set-face-attribute 'icon-button nil :inherit 'button :box t)))
+
 (bk-block mode-line
   :requires .moody .minions .tracking
   :custom
