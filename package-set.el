@@ -21,9 +21,6 @@
   (auctex
    :type git :host github
    :repo "emacs-straight/auctex")
-  (emacsql-sqlite-builtin
-   :type git :host github
-   :repo "emacsmirror/emacsql-sqlite-builtin")
   (prisma-mode
    :type git :host github
    :repo "pimeys/emacs-prisma-mode")
@@ -49,6 +46,7 @@
   dired-filter
   diredfl
   eglot
+  emacsql-sqlite-builtin
   envrc
   forge
   git-modes
