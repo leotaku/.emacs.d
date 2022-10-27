@@ -89,6 +89,9 @@
   (interactive)
   (find-alternate-file ".."))
 
+(bk-block study
+  :requires .study-okular .study-dired .study-deadgrep)
+
 (bk-block ledger
   :requires .ledger-mode
   :hook
