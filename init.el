@@ -2,13 +2,6 @@
 
 ;;; Setup:
 
-;; Load `early-init.el' before Emacs 27.0
-
-(unless (featurep 'early-init)
-  (message "Early init: Emacs Version < 27.0")
-  (load
-   (expand-file-name "early-init.el" user-emacs-directory)))
-
 ;;; Configuration:
 
 (bk-block no-littering
