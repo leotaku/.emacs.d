@@ -1,4 +1,4 @@
-;;; load-packages.el --- load straight.el packages  -*- lexical-binding: t; -*-
+;;; load-packages.el --- load elpaca.el packages  -*- lexical-binding: t; -*-
 
 ;;; Commentary:
 ;;
@@ -6,41 +6,54 @@
 ;;; Code:
 
 ;; Emacs wants to load `package.el' before the init file,
-;; so we do the same with `straight.el'
+;; so we do the same with `elpaca.el'
 
-(setq straight-enable-use-package-integration nil
-      straight-check-for-modifications '(find-when-checking check-on-save))
+(declare-function elpaca-generate-autoloads "elpaca")
+(defvar elpaca-directory (expand-file-name "elpaca/" user-emacs-directory))
+(defvar elpaca-builds-directory (expand-file-name "builds/" elpaca-directory))
+(when-let ((elpaca-repo (expand-file-name "repos/elpaca/" elpaca-directory))
+           (elpaca-build (expand-file-name "elpaca/" elpaca-builds-directory))
+           (elpaca-target (if (file-exists-p elpaca-build) elpaca-build elpaca-repo))
+           (elpaca-url  "https://www.github.com/progfolio/elpaca.git")
+           ((add-to-list 'load-path elpaca-target))
+           ((not (file-exists-p elpaca-repo)))
+           (buffer (get-buffer-create "*elpaca-bootstrap*")))
+  (condition-case-unless-debug err
+      (progn
+        (unless (zerop (call-process "git" nil buffer t "clone" elpaca-url elpaca-repo))
+          (error "%s" (list (with-current-buffer buffer (buffer-string)))))
+        (byte-recompile-directory elpaca-repo 0 'force)
+        (require 'elpaca)
+        (elpaca-generate-autoloads "elpaca" elpaca-repo)
+        (kill-buffer buffer))
+    ((error)
+     (delete-directory elpaca-directory 'recursive)
+     (with-current-buffer buffer
+       (goto-char (point-max))
+       (insert (format "\n%S" err))
+       (display-buffer buffer)))))
+(require 'elpaca-autoloads)
+(add-hook 'after-init-hook #'elpaca-process-queues)
+(elpaca (elpaca :host github :repo "progfolio/elpaca"))
 
-(let ((bootstrap-file
-       (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
-      (bootstrap-version 5))
-  (unless (file-exists-p bootstrap-file)
-    (with-current-buffer
-        (url-retrieve-synchronously
-         "https://raw.githubusercontent.com/radian-software/straight.el/develop/install.el"
-         'silent 'inhibit-cookies)
-      (goto-char (point-max))
-      (eval-print-last-sexp)))
-  (load bootstrap-file nil 'nomessage))
+;; Load `fi-emacs' startup utilities
 
-(require 'straight)
-(require 'straight-x)
+(when-let ((fi-emacs-repo (expand-file-name "repos/fi-emacs/" elpaca-directory)))
+  (add-to-list 'load-path fi-emacs-repo)
+  (require 'fi)
+  (require 'bk))
 
 ;; `package-set.el' loading mechanism
 
-(let* ((contents
-        (with-current-buffer
-            (let ((default-directory user-emacs-directory))
-              (find-file-noselect "package-set.el"))
-          (goto-char (point-min))
-          (prog1
-              (read (current-buffer))
-            (kill-buffer (current-buffer)))))
-       (repos (nth 0 contents))
-       (packages (nth 1 contents)))
-  (setq straight-recipe-repositories (append repos nil))
-  (let ((straight--allow-find t))
-    (mapc 'straight-use-package packages)))
+(let ((packages
+       (with-current-buffer
+           (let ((default-directory user-emacs-directory))
+             (find-file-noselect "package-set.el"))
+         (goto-char (point-min))
+         (prog1 (read (current-buffer))
+           (kill-buffer (current-buffer))))))
+  (dolist (package packages)
+    (eval `(elpaca ,package))))
 
 (provide 'load-packages)
 

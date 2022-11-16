@@ -3,8 +3,8 @@
 update: pull lock
 
 pull:
-	cd straight/repos; \
-	parallel --timeout 30 --progress --tag --halt-on-error soon,fail,1 'cd "{}"; git pull --rebase --autostash --quiet' ::: *
+	cd elpaca/repos; \
+	parallel --timeout 30 --progress --tag --halt-on-error soon,fail,1 'cd "{}"; git -c core.askPass=true pull --rebase --autostash --quiet' ::: *
 
 lock:
-	emacs --batch -q -l ./load-packages.el --eval "(straight-freeze-versions t)"
+	emacs --batch -q -l ./load-packages.el --eval '(elpaca-write-lockfile (expand-file-name "lock.el" elpaca-directory))'

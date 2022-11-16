@@ -9,21 +9,17 @@
   (load
    (expand-file-name "early-init.el" user-emacs-directory)))
 
-;; Load `fi-emacs' dependencies
-
-(prog1 "fi-setup"
-  (require 'fi)
-  (require 'bk))
-
 ;;; Configuration:
 
-(prog1 "no-littering"
-  (require 'no-littering)
-  (setq create-lockfiles nil)
-  (setq auto-save-file-name-transforms
-        `((".*" ,(no-littering-expand-var-file-name "auto-save/") t))))
+(bk-block no-littering
+  :requires .no-littering
+  :custom
+  (create-lockfiles . nil)
+  (auto-save-file-name-transforms
+   . `((".*" ,(no-littering-expand-var-file-name "auto-save/") t))))
 
 (bk-block custom-pre
+  :requires .no-littering
   :custom
   (custom-file . (no-littering-expand-etc-file-name "custom.el"))
   :config
@@ -127,12 +123,12 @@
    (with-current-buffer "*scratch*"
      (emacs-lisp-mode))))
 
-(bk-register-target 'default-target)
-(bk-reach-target 'default-target)
-
-(fi-with-gui
- (when (get-buffer "*Warnings*")
-   (warn "Warnings were emitted during Emacs startup!")))
+(elpaca nil
+  (bk-register-target 'default-target)
+  (bk-reach-target 'default-target)
+  (fi-with-gui
+   (when (get-buffer "*Warnings*")
+     (warn "Warnings were emitted during Emacs startup!"))))
 
 (provide 'init)
 

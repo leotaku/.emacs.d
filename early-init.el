@@ -49,7 +49,7 @@
 (add-to-list 'default-frame-alist '(vertical-scroll-bars . nil))
 (add-to-list 'default-frame-alist '(internal-border-width . 12))
 
-;; Load straight and packages
+;; Load packages
 
 (load-file
  (expand-file-name "load-packages.el"

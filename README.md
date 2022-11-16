@@ -17,7 +17,7 @@ This is my new Emacs configuration, after having given up my old literate and ev
   + [fi-emacs (mine)](https://github.com/leotaku/fi-emacs) :: Miscellaneous functionality
     + bk :: Faster, more reliable use-package replacement
     + sd :: Asynchronous, traceable Emacs startup
-  + [straight](https://github.com/raxod502/straight.el) :: Package management based on Git
+  + [elpaca](https://github.com/progfolio/elpaca) :: Package management based on Git
 + Visuals
   + [doom-aurora (custom)](https://github.com/leotaku/emacs-doom-themes) :: Dark theme
   + [moody](https://github.com/tarsius/moody) :: Emacs mode-line

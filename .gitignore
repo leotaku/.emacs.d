@@ -1,4 +1,4 @@
 /var
 /eln-cache
-/straight
-!/straight/versions
+/elpaca/*
+!/elpaca/lock.el

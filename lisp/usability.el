@@ -68,7 +68,7 @@
       (mc/execute-command-for-all-fake-cursors command))))
 
 (bk-block projectile
-  :requires .projectile .counsel-projectile counsel
+  :requires .projectile .counsel-projectile counsel .no-littering
   :bind (("C-x p" . projectile-command-map)
          (:projectile-command-map
           :package projectile
@@ -89,7 +89,7 @@
   :start amx-mode)
 
 (bk-block* undo-fu-session
-  :requires .undo-fu-session
+  :requires .undo-fu-session .no-littering
   :start global-undo-fu-session-mode
   :custom
   (undo-fu-session-incompatible-files
@@ -103,7 +103,7 @@
   (ace-link-fallback-function . 'ace-link-org))
 
 (bk-block recentf
-  :requires .recentf
+  :requires .recentf .elpaca .no-littering
   :at-load
   (setq recentf-max-saved-items 4000)
   (setq recentf-max-menu-items 1000)
@@ -111,7 +111,7 @@
   (add-to-list 'recentf-exclude no-littering-var-directory)
   (add-to-list 'recentf-exclude no-littering-etc-directory)
   (add-to-list 'recentf-exclude (temporary-file-directory))
-  (add-to-list 'recentf-exclude (expand-file-name straight-build-dir straight-base-dir))
+  (add-to-list 'recentf-exclude elpaca-builds-directory)
   (add-hook 'recentf-mode-hook #'recentf-save-list))
 
 (bk-block* tramp
