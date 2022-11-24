@@ -35,7 +35,7 @@
  (terraform-mode :package "terraform-mode" :repo "emacsorphanage/terraform-mode" :fetcher github :files
 		 ("*.el" "*.el.in" "dir" "*.info" "*.texi" "*.texinfo" "doc/dir" "doc/*.info" "doc/*.texi" "doc/*.texinfo" "lisp/*.el"
 		  (:exclude ".dir-locals.el" "test.el" "tests.el" "*-test.el" "*-tests.el" "LICENSE" "README*" "*-pkg.el"))
-		 :protocol https :remotes "origin" :inherit t :depth 1 :ref "e560caaa9d9a11b0868adf6d9dcae5ebb5055730")
+		 :protocol https :remotes "origin" :inherit t :depth 1 :ref "80f0433358b79ed4ba88c51829c7359baa1af8b1")
  (swiper :package "swiper" :repo "abo-abo/swiper" :fetcher github :files
 	 ("swiper.el")
 	 :protocol https :remotes "origin" :inherit t :depth 1 :ref "b8be4913a661b557e0d3275726e36871556569d3")
@@ -49,7 +49,7 @@
  (projectile :package "projectile" :fetcher github :repo "bbatsov/projectile" :files
 	     ("*.el" "*.el.in" "dir" "*.info" "*.texi" "*.texinfo" "doc/dir" "doc/*.info" "doc/*.texi" "doc/*.texinfo" "lisp/*.el"
 	      (:exclude ".dir-locals.el" "test.el" "tests.el" "*-test.el" "*-tests.el" "LICENSE" "README*" "*-pkg.el"))
-	     :protocol https :remotes "origin" :inherit t :depth 1 :ref "7d414ea3421689a766383b03e566c5399419c566")
+	     :protocol https :remotes "origin" :inherit t :depth 1 :ref "036d327b5ad9b970bd1ea3123692a80bc1015b4a")
  (pcre2el :package "pcre2el" :fetcher github :repo "joddie/pcre2el" :files
 	  ("*.el" "*.el.in" "dir" "*.info" "*.texi" "*.texinfo" "doc/dir" "doc/*.info" "doc/*.texi" "doc/*.texinfo" "lisp/*.el"
 	   (:exclude ".dir-locals.el" "test.el" "tests.el" "*-test.el" "*-tests.el" "LICENSE" "README*" "*-pkg.el"))
@@ -57,7 +57,7 @@
  (org-reverse-datetree :package "org-reverse-datetree" :fetcher github :repo "akirak/org-reverse-datetree" :files
 		       ("*.el" "*.el.in" "dir" "*.info" "*.texi" "*.texinfo" "doc/dir" "doc/*.info" "doc/*.texi" "doc/*.texinfo" "lisp/*.el"
 			(:exclude ".dir-locals.el" "test.el" "tests.el" "*-test.el" "*-tests.el" "LICENSE" "README*" "*-pkg.el"))
-		       :protocol https :remotes "origin" :inherit t :depth 1 :ref "67aecbbb55b2e0d1c435e686ac46c37038a981d0")
+		       :protocol https :remotes "origin" :inherit t :depth 1 :ref "127b168960296861f73f8e38247438ebdc575d1e")
  (org :package "org" :local-repo "org" :repo "https://git.savannah.gnu.org/git/emacs/org-mode.git" :depth 1 :pre-build
       (progn
 	(require 'elpaca-menu-org)
@@ -67,11 +67,11 @@
       :files
       (:defaults
        ("etc/styles/" "etc/styles/*"))
-      :protocol https :remotes "origin" :inherit t :ref "fe67cebb3a51833e36ffd23a5c7c7ad2f85b7d76")
+      :protocol https :remotes "origin" :inherit t :ref "f7831cc9aca1139c9b79fdb1b48af95b79c85752")
  (no-littering :package "no-littering" :fetcher github :repo "emacscollective/no-littering" :files
 	       ("*.el" "*.el.in" "dir" "*.info" "*.texi" "*.texinfo" "doc/dir" "doc/*.info" "doc/*.texi" "doc/*.texinfo" "lisp/*.el"
 		(:exclude ".dir-locals.el" "test.el" "tests.el" "*-test.el" "*-tests.el" "LICENSE" "README*" "*-pkg.el"))
-	       :protocol https :remotes "origin" :inherit t :depth 1 :ref "cb277b8a84ca5857b607b3ff6132ee3663a57953")
+	       :protocol https :remotes "origin" :inherit t :depth 1 :ref "fea487d7cb0e9a09fcf0b522c91fbc89d57ef1bb")
  (nix-mode :package "nix-mode" :fetcher github :repo "NixOS/nix-mode" :files
 	   (:defaults
 	    (:exclude "nix-company.el" "nix-mode-mmm.el"))
@@ -103,7 +103,7 @@
  (magit :package "magit" :fetcher github :repo "magit/magit" :files
 	("lisp/magit" "lisp/magit*.el" "lisp/git-rebase.el" "docs/magit.texi" "docs/AUTHORS.md" "LICENSE" "Documentation/magit.texi" "Documentation/AUTHORS.md"
 	 (:exclude "lisp/magit-libgit.el" "lisp/magit-libgit-pkg.el" "lisp/magit-section.el" "lisp/magit-section-pkg.el"))
-	:protocol https :remotes "origin" :inherit t :depth 1 :ref "05b0d99d714350d51676b86da9f5daa2f6b7fa3e")
+	:protocol https :remotes "origin" :inherit t :depth 1 :ref "744818a3be01034a8577063e061e9b9e53ccf890")
  (lua-mode :package "lua-mode" :repo "immerrr/lua-mode" :fetcher github :files
 	   (:defaults
 	    (:exclude "init-tryout.el"))
@@ -139,11 +139,11 @@
  (forge :package "forge" :fetcher github :repo "magit/forge" :files
 	("*.el" "*.el.in" "dir" "*.info" "*.texi" "*.texinfo" "doc/dir" "doc/*.info" "doc/*.texi" "doc/*.texinfo" "lisp/*.el"
 	 (:exclude ".dir-locals.el" "test.el" "tests.el" "*-test.el" "*-tests.el" "LICENSE" "README*" "*-pkg.el"))
-	:protocol https :remotes "origin" :inherit t :depth 1 :ref "45b06b80137e981bca268b800469dada0ef7acb0")
+	:protocol https :remotes "origin" :inherit t :depth 1 :ref "33651c0c8225371c78503b2eb7a543d42e71f885")
  (envrc :package "envrc" :fetcher github :repo "purcell/envrc" :files
 	("*.el" "*.el.in" "dir" "*.info" "*.texi" "*.texinfo" "doc/dir" "doc/*.info" "doc/*.texi" "doc/*.texinfo" "lisp/*.el"
 	 (:exclude ".dir-locals.el" "test.el" "tests.el" "*-test.el" "*-tests.el" "LICENSE" "README*" "*-pkg.el"))
-	:protocol https :remotes "origin" :inherit t :depth 1 :ref "d55ee22573c83ccbb55b8df6360ef3c62d1ce244")
+	:protocol https :remotes "origin" :inherit t :depth 1 :ref "c54bf9e6972c563d345e20571ffd44d7bfb56974")
  (emacsql-sqlite-builtin :package "emacsql-sqlite-builtin" :fetcher github :repo "magit/emacsql" :files
 			 ("emacsql-sqlite-builtin.el")
 			 :protocol https :remotes "origin" :inherit t :depth 1 :ref "e318a6c8f65371e2ab667d811205a0d9a98dacbb")
@@ -165,7 +165,7 @@
  (crux :package "crux" :fetcher github :repo "bbatsov/crux" :files
        ("*.el" "*.el.in" "dir" "*.info" "*.texi" "*.texinfo" "doc/dir" "doc/*.info" "doc/*.texi" "doc/*.texinfo" "lisp/*.el"
 	(:exclude ".dir-locals.el" "test.el" "tests.el" "*-test.el" "*-tests.el" "LICENSE" "README*" "*-pkg.el"))
-       :protocol https :remotes "origin" :inherit t :depth 1 :ref "6bfd212a7f7ae32e455802fde1f9e3f4fba932a0")
+       :protocol https :remotes "origin" :inherit t :depth 1 :ref "f8789f67a9d2e1eb31a0e4531aec9bb6d6ec1282")
  (counsel-projectile :package "counsel-projectile" :fetcher github :repo "ericdanan/counsel-projectile" :files
 		     ("*.el" "*.el.in" "dir" "*.info" "*.texi" "*.texinfo" "doc/dir" "doc/*.info" "doc/*.texi" "doc/*.texinfo" "lisp/*.el"
 		      (:exclude ".dir-locals.el" "test.el" "tests.el" "*-test.el" "*-tests.el" "LICENSE" "README*" "*-pkg.el"))
@@ -176,7 +176,7 @@
  (company-posframe :package "company-posframe" :fetcher github :repo "tumashu/company-posframe" :files
 		   ("*.el" "*.el.in" "dir" "*.info" "*.texi" "*.texinfo" "doc/dir" "doc/*.info" "doc/*.texi" "doc/*.texinfo" "lisp/*.el"
 		    (:exclude ".dir-locals.el" "test.el" "tests.el" "*-test.el" "*-tests.el" "LICENSE" "README*" "*-pkg.el"))
-		   :protocol https :remotes "origin" :inherit t :depth 1 :ref "eefcc72179602f8e0d454405899b0cfa0e7788ec")
+		   :protocol https :remotes "origin" :inherit t :depth 1 :ref "ab58972c2cebc5ecf68c4cdd140c3aed2c68f42b")
  (company :package "company" :repo "company-mode/company-mode" :fetcher github :files
 	  (:defaults "icons"
 		     ("images/small" "doc/images/small/*.png"))
@@ -204,11 +204,11 @@
  (ace-window :package "ace-window" :repo "abo-abo/ace-window" :fetcher github :files
 	     ("*.el" "*.el.in" "dir" "*.info" "*.texi" "*.texinfo" "doc/dir" "doc/*.info" "doc/*.texi" "doc/*.texinfo" "lisp/*.el"
 	      (:exclude ".dir-locals.el" "test.el" "tests.el" "*-test.el" "*-tests.el" "LICENSE" "README*" "*-pkg.el"))
-	     :protocol https :remotes "origin" :inherit t :depth 1 :ref "77115afc1b0b9f633084cf7479c767988106c196")
+	     :protocol https :remotes "origin" :inherit t :depth 1 :ref "43dc77e2136259d5601cc6af5d0f90cbaad79461")
  (ace-link :package "ace-link" :repo "abo-abo/ace-link" :fetcher github :files
 	   ("*.el" "*.el.in" "dir" "*.info" "*.texi" "*.texinfo" "doc/dir" "doc/*.info" "doc/*.texi" "doc/*.texinfo" "lisp/*.el"
 	    (:exclude ".dir-locals.el" "test.el" "tests.el" "*-test.el" "*-tests.el" "LICENSE" "README*" "*-pkg.el"))
-	   :protocol https :remotes "origin" :inherit t :depth 1 :ref "06ab398df85e81d1dc763b3210732dd26cba60a1")
+	   :protocol https :remotes "origin" :inherit t :depth 1 :ref "77c683ef8aaa89e578d7fb248da69eb2e7245ad1")
  (doom-themes :package "doom-themes" :fetcher github :repo "leotaku/emacs-doom-themes" :files
 	      (:defaults "themes/*.el" "doom-themes-pkg.el")
 	      :protocol https :remotes "origin" :inherit t :depth 1 :type git :host github :ref "c50eed2ab185c1772aea438e88509e860c143cc1")
@@ -217,7 +217,7 @@
 	      :ref "f7744a995e84b8cf51265930ce18f6a6b26dade7")
  (auctex :package "auctex" :host github :repo "emacs-straight/auctex" :protocol https :remotes "origin" :inherit t :depth 1 :type git :files
 	 (:defaults)
-	 :ref "138720fcc2348b7ad5739cd02ce82d61255a3fa3")
+	 :ref "ae16c19a599e6bf4507c167e3c8d34870668710f")
  (theist-mode :protocol https :remotes "origin" :inherit t :depth 1 :type git :host github :repo "leotaku/theist-mode" :package "theist-mode" :files
 	      (:defaults)
 	      :ref "278e78e0659dda49cffcb57a1403ae02fb01ceb2")
@@ -232,7 +232,7 @@
      :repo "leotaku/fi-emacs" :package "fi" :ref "baaad90d13a705fc7214a0cc3b1a9800c369041f")
  (expand-region-improved :protocol https :remotes "origin" :inherit t :depth 1 :type git :host github :repo "leotaku/expand-region-improved" :package "expand-region-improved" :files
 			 (:defaults)
-			 :ref "79981fc191ecf35b2dd18866cd22f1e8aa0d7e17")
+			 :ref "ccf8a149670ca901da7095edc71f1f16c9082c85")
  (elpaca :protocol https :remotes "origin" :inherit t :depth 1 :host github :repo "progfolio/elpaca" :package "elpaca" :files
 	 (:defaults)
 	 :ref "728b71598409176c998894d2c3fe93a1d55c55f3"))
