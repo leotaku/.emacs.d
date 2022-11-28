@@ -92,6 +92,11 @@
 (bk-block study
   :requires .study-okular .study-dired .study-deadgrep)
 
+(bk-block vterm
+  :requires .vterm
+  :custom
+  (vterm-shell . "zsh"))
+
 (bk-block ledger
   :requires .ledger-mode
   :hook
