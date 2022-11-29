@@ -106,7 +106,7 @@
   (ledger-default-date-format . "%Y-%m-%d"))
 
 (bk-block circe
-  :requires .circe .auth-source
+  :requires .circe .circe-color-nicks .auth-source
   :hook
   (circe-mode-hook . visual-line-mode)
   :bind ((:lui-mode-map
