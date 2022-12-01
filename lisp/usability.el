@@ -51,6 +51,8 @@
   :bind (("C-x m" . counsel-M-x)
          ("C-x l" . counsel-recentf)
          ("C-s" . swiper-isearch)
+         (:counsel-mode-map
+          ([remap describe-symbol] . nil))
          (:counsel-describe-map
           :package counsel
           ("C-h" . counsel-lookup-symbol)))
