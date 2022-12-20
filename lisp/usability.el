@@ -132,7 +132,8 @@
 
 (bk-block ibuffer
   :requires .ibuffer .theist-mode
-  :bind ((:ibuffer-mode-map
+  :bind (("C-x i" . ibuffer)
+         (:ibuffer-mode-map
           :package ibuffer
           ("x" . theist-C-x)
           ("j" . next-line)

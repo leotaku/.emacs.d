@@ -66,8 +66,7 @@
           ("C-x f" . find-file)
           ("C-x e" . eval-defun)
           ("C-x s" . save-buffer))
-  :bind* (("C-x i" . ibuffer)
-          ("C-v" . yank)))
+  :bind* (("C-v" . yank)))
 
 (bk-block window-management
   :requires .ace-window
