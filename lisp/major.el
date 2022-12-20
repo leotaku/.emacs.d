@@ -25,11 +25,7 @@
 (bk-block* rust-mode
   :bind ((:rust-mode-map
           :package rust-mode
-          ("C-c C-f" . nil)))
-  :mode ("\\.lalrpop\\'" . lalrpop-mode)
-  :config
-  (define-derived-mode lalrpop-mode
-    rust-mode "Lalrpop"))
+          ("C-c C-f" . nil))))
 
 (bk-block* markdown-mode
   :mode
