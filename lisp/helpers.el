@@ -230,14 +230,18 @@
 (defun ivy-insert-selection ()
   (interactive)
   (ivy-exit-with-action
-   (lambda (it) (insert (file-name-shortest it))
+   (lambda (it)
+     (let ((it (or (car-safe it) it)))
+       (insert (file-name-shortest (if (stringp it) it (format "%s" it)))))
      (signal 'quit nil))))
 
 (defun counsel-lookup-symbol ()
   "Lookup the current symbol in the help docs."
   (interactive)
   (ivy-exit-with-action
-   (lambda (x) (describe-symbol (intern x))
+   (lambda (it)
+     (let ((it (or (car-safe it) it)))
+       (describe-symbol (if (symbolp it) it (intern it))))
      (signal 'quit nil))))
 
 ;;;; Generic
