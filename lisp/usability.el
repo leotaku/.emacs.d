@@ -68,7 +68,7 @@
       (mc/execute-command-for-all-fake-cursors command))))
 
 (bk-block projectile
-  :requires .projectile .counsel-projectile counsel .no-littering
+  :requires .projectile .counsel-projectile .no-littering
   :bind (("C-x p" . projectile-command-map)
          (:projectile-command-map
           :package projectile
