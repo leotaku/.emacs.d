@@ -47,11 +47,11 @@
   (let ((face (ibuffer-buffer-name-face str 0)))
     (ivy-append-face str face)))
 
+(bk-block* swiper
+  :bind (("C-s" . swiper-isearch)))
+
 (bk-block* counsel
-  :bind (("C-x m" . counsel-M-x)
-         ("C-x l" . counsel-recentf)
-         ("C-s" . swiper-isearch)
-         (:counsel-mode-map
+  :bind ((:counsel-mode-map
           ([remap describe-symbol] . nil))
          (:counsel-describe-map
           :package counsel
@@ -106,6 +106,7 @@
 
 (bk-block recentf
   :requires .recentf .elpaca .no-littering
+  :bind (("C-x l" . recentf))
   :at-load
   (setq recentf-max-saved-items 4000)
   (setq recentf-max-menu-items 1000)

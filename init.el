@@ -62,7 +62,8 @@
          ("C-x C-b" . nil)))
 
 (bk-block misc-bindings
-  :bind  (("C-x r" . revert-buffer)
+  :bind  (("C-x m" . execute-extended-command)
+          ("C-x r" . revert-buffer)
           ("C-x f" . find-file)
           ("C-x e" . eval-defun)
           ("C-x s" . save-buffer))
