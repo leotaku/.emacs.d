@@ -29,9 +29,6 @@
 		  ("*.el" "*.el.in" "dir" "*.info" "*.texi" "*.texinfo" "doc/dir" "doc/*.info" "doc/*.texi" "doc/*.texinfo" "lisp/*.el"
 		   (:exclude ".dir-locals.el" "test.el" "tests.el" "*-test.el" "*-tests.el" "LICENSE" "README*" "*-pkg.el"))
 		  :protocol https :remotes "origin" :inherit t :depth 1 :ref "e141c929f617acfb888a6e5d72ace740b7c4d535")
- (tide :package "tide" :fetcher github :repo "ananthakumaran/tide" :files
-       (:defaults "tsserver")
-       :protocol https :remotes "origin" :inherit t :depth 1 :ref "4cf6a0d89da7f946565a425a632ee2410a40c7da")
  (terraform-mode :package "terraform-mode" :repo "emacsorphanage/terraform-mode" :fetcher github :files
 		 ("*.el" "*.el.in" "dir" "*.info" "*.texi" "*.texinfo" "doc/dir" "doc/*.info" "doc/*.texi" "doc/*.texinfo" "lisp/*.el"
 		  (:exclude ".dir-locals.el" "test.el" "tests.el" "*-test.el" "*-tests.el" "LICENSE" "README*" "*-pkg.el"))

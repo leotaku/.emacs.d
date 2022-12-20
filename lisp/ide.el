@@ -77,22 +77,6 @@
   :requires .apheleia
   :bind (("C-c f" . apheleia-format-buffer)))
 
-(bk-block tide
-  :requires .tide
-  :hook (web-mode-hook . tide-ensure)
-  :bind ((:tide-mode-map
-          :package tide
-          ("C-c r" . tide-rename-symbol)
-          ("C-c a" . tide-fix))))
-
-(defun tide-ensure ()
-  (interactive)
-  (run-with-timer
-   0 nil (lambda ()
-           (tide-setup)
-           (flycheck-mode)
-           (eldoc-mode))))
-
 (bk-block eglot
   :requires .eglot
   :custom (eldoc-echo-area-use-multiline-p . nil)

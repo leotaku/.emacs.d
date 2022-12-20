@@ -70,7 +70,6 @@
  rust-mode
  swiper
  terraform-mode
- tide
  undo-fu-session
  visual-fill-column
  visual-regexp
