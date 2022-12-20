@@ -253,4 +253,10 @@ Expands relative to `default-directory' and the home directory."
         (home (concat "~/" (file-relative-name file "~"))))
     (car (seq-sort-by 'length '< (list rel home file)))))
 
+(defun file-contained-in-symlink-p (file)
+  "Return non-nil if one of the segments of FILE is a symbolic link."
+  (while (and file (not (file-symlink-p (directory-file-name file))))
+    (setq file (file-name-parent-directory file)))
+  file)
+
 ;;; helpers.el ends here

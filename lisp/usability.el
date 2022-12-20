@@ -113,6 +113,7 @@
   (setq recentf-max-saved-items 4000)
   (setq recentf-max-menu-items 1000)
   :config
+  (add-to-list 'recentf-exclude #'file-contained-in-symlink-p)
   (add-hook 'recentf-mode-hook #'recentf-save-list))
 
 (bk-block* tramp
