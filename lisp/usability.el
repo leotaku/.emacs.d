@@ -88,7 +88,9 @@
 (bk-block* amx
   :start amx-mode
   :custom
-  (amx-map . nil))
+  (amx-map . nil)
+  (amx-ignored-command-matchers . nil)
+  (amx-show-key-bindings . nil))
 
 (bk-block* undo-fu-session
   :requires .undo-fu-session .no-littering
