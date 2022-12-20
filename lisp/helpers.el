@@ -235,7 +235,7 @@
        (insert (file-name-shortest (if (stringp it) it (format "%s" it)))))
      (signal 'quit nil))))
 
-(defun counsel-lookup-symbol ()
+(defun ivy-lookup-symbol ()
   "Lookup the current symbol in the help docs."
   (interactive)
   (ivy-exit-with-action

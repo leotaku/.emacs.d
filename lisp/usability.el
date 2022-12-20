@@ -34,7 +34,8 @@
   :at-load (setq ivy-do-completion-in-region nil)
   :bind ((:ivy-minibuffer-map
           :package ivy
-          ("<C-i>" . ivy-insert-selection)))
+          ("<C-i>" . ivy-insert-selection)
+          ("C-h" . ivy-lookup-symbol)))
   :start ivy-mode
   :custom (ivy-use-selectable-prompt . t)
   :config
@@ -52,10 +53,7 @@
 
 (bk-block* counsel
   :bind ((:counsel-mode-map
-          ([remap describe-symbol] . nil))
-         (:counsel-describe-map
-          :package counsel
-          ("C-h" . counsel-lookup-symbol)))
+          ([remap describe-symbol] . nil)))
   :start counsel-mode
   :config
   (advice-add 'counsel-M-x-action :after #'advice-M-x-action))
@@ -88,7 +86,9 @@
   (projectile-load-known-projects))
 
 (bk-block* amx
-  :start amx-mode)
+  :start amx-mode
+  :custom
+  (amx-map . nil))
 
 (bk-block* undo-fu-session
   :requires .undo-fu-session .no-littering
