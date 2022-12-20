@@ -113,10 +113,6 @@
   (setq recentf-max-saved-items 4000)
   (setq recentf-max-menu-items 1000)
   :config
-  (add-to-list 'recentf-exclude no-littering-var-directory)
-  (add-to-list 'recentf-exclude no-littering-etc-directory)
-  (add-to-list 'recentf-exclude (temporary-file-directory))
-  (add-to-list 'recentf-exclude elpaca-builds-directory)
   (add-hook 'recentf-mode-hook #'recentf-save-list))
 
 (bk-block* tramp
