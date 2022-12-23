@@ -81,7 +81,24 @@
   :bind ((:mc/keymap
           :package multiple-cursors
           ("<return>" . nil)
-          ("C-0" . mc/insert-numbers))))
+          ("C-0" . mc/insert-numbers)))
+  :config
+  (advice-add 'execute-extended-command :around #'advice-M-x-for-multiple-cursors))
+
+(defun advice-M-x-for-multiple-cursors (fun &rest args)
+  (if (<= (mc/num-cursors) 1)
+      (apply fun args)
+    (let ((command (intern (cadr args)))
+          (prefix (car args)))
+      ;; Prompt for inclusion in whitelist
+      (unless (or (memq command mc/cmds-to-run-for-all)
+                  (memq command mc/cmds-to-run-once))
+        (mc/prompt-for-inclusion-in-whitelist command))
+      ;; Execute command
+      (setq current-prefix-arg prefix)
+      (apply fun args)
+      (when (memq command mc/cmds-to-run-for-all)
+        (mc/execute-command-for-all-fake-cursors command)))))
 
 (bk-block expand-region
   :requires .expand-region-improved
