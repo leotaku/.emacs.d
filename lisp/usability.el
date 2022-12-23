@@ -52,20 +52,8 @@
   :bind (("C-s" . swiper-isearch)))
 
 (bk-block* counsel
-  :bind ((:counsel-mode-map
-          ([remap describe-symbol] . nil)))
-  :start counsel-mode
-  :config
-  (advice-add 'counsel-M-x-action :after #'advice-M-x-action))
-
-(defun advice-M-x-action (command)
-  (setq command (intern (subst-char-in-string ?\s ?- (string-remove-prefix "^" command))))
-  (when (> (mc/num-cursors) 1)
-    (unless (or (memq command mc/cmds-to-run-for-all)
-                (memq command mc/cmds-to-run-once))
-      (mc/prompt-for-inclusion-in-whitelist command))
-    (when (memq command mc/cmds-to-run-for-all)
-      (mc/execute-command-for-all-fake-cursors command))))
+  :bind ((:ivy-mode-map
+          ([remap yank-pop] . counsel-yank-pop))))
 
 (bk-block projectile
   :requires .projectile .counsel-projectile .no-littering
