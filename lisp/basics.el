@@ -6,6 +6,7 @@
 
 (bk-block emacs-basics
   :custom
+  (suggest-key-bindings . nil)
   (disabled-command-function . nil)
   (save-interprogram-paste-before-kill . t)
   (inhibit-compacting-font-caches . t)
