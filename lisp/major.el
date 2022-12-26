@@ -48,6 +48,7 @@
 
 (bk-block js-mode
   :requires .js
+  :mode "\\.[cm]js\\'"
   :custom
   (js-indent-level . 2)
   (js-jsx-indent-level . 2)
