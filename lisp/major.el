@@ -38,7 +38,7 @@
   :bind ((:web-mode-map
           :package web-mode
           ("C-c C-f" . nil)))
-  :mode "\\.html?\\'" "\\.tsx?\\'"
+  :mode "\\.html?\\'"
   :custom
   (web-mode-code-indent-offset . 2)
   (web-mode-markup-indent-offset . 2)
@@ -48,7 +48,6 @@
 
 (bk-block js-mode
   :requires .js
-  :mode "\\.jsx?\\'" "\\.json\\'"
   :custom
   (js-indent-level . 2)
   (js-jsx-indent-level . 2)
