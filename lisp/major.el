@@ -13,7 +13,7 @@
 
 (bk-block makefile-mode
   :requires .make-mode
-  :mode "Makefile" "Justfile")
+  :mode "Justfile")
 
 (bk-block c++-mode
   :requires .cc-mode
