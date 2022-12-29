@@ -15,6 +15,11 @@
 
 (setq load-prefer-newer t)
 
+;; Ensure native bytecode is stored somewhere reasonable
+
+(startup-redirect-eln-cache
+ (expand-file-name "var/eln-cache" user-emacs-directory))
+
 ;; Defer garbage collection further back in the startup process
 
 (let ((normal-gc-cons-threshold (* 8 1024 1024))
