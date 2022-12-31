@@ -28,9 +28,6 @@
           ("C-c C-f" . nil))))
 
 (bk-block* markdown-mode
-  :mode
-  ("\\.md\\'" . gfm-mode)
-  ("\\.markdown\\'" . gfm-mode)
   :custom
   (markdown-hide-urls . t))
 
