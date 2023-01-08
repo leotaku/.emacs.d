@@ -55,7 +55,7 @@ The modular and minimal architecture should also aid in adapting fi-emacs to new
 
 This Emacs package is distributed under the terms of the [GPL-3.0-or-later](LICENSE) license, meaning the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
 
-Copyright for all contents of this repository belongs to `Leo Gaskin 2019-2022`.
+Copyright for all contents of this repository belongs to `Leo Gaskin 2019-2023`.
 
 This project makes use of a high number of Emacs packages.
 If you think that the usage of your, or any, package used in this project does not comply with the terms of its license or copyright, please open an issue or pull request.
