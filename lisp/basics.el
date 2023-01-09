@@ -6,6 +6,7 @@
 
 (bk-block emacs-basics
   :custom
+  (ring-bell-function . #'ignore)
   (disabled-command-function . nil)
   (save-interprogram-paste-before-kill . t)
   (inhibit-compacting-font-caches . t)
