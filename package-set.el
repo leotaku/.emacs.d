@@ -16,9 +16,6 @@
  (theist-mode
   :type git :host github
   :repo "leotaku/theist-mode")
- (auctex
-  :type git :host github
-  :repo "emacs-straight/auctex")
  (prisma-mode
   :type git :host github
   :repo "pimeys/emacs-prisma-mode")
@@ -31,6 +28,7 @@
  aggressive-indent
  amx
  apheleia
+ auctex
  avy
  circe
  company
