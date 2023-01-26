@@ -14,7 +14,7 @@
 (when-let ((elpaca-repo (expand-file-name "repos/elpaca/" elpaca-directory))
            (elpaca-build (expand-file-name "elpaca/" elpaca-builds-directory))
            (elpaca-target (if (file-exists-p elpaca-build) elpaca-build elpaca-repo))
-           (elpaca-url  "https://www.github.com/progfolio/elpaca.git")
+           (elpaca-url  "https://github.com/progfolio/elpaca.git")
            ((add-to-list 'load-path elpaca-target))
            ((not (file-exists-p elpaca-repo)))
            (buffer (get-buffer-create "*elpaca-bootstrap*")))
