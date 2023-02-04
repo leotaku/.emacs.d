@@ -151,13 +151,16 @@
     (if (string-suffix-p "\n" kill)
         (progn
           (beginning-of-line)
-          (when after-p (forward-line))
-          (insert kill)
-          (when after-p (forward-line -2))
+          (if after-p
+              (if (and (/= (point-at-eol) (point-max))
+                       (/= (point-at-bol) (point-min)))
+                  (insert kill)
+                (end-of-line)
+                (insert "\n" (string-remove-suffix "\n" kill)))
+            (insert kill))
           (move-to-column column))
-      (progn
-        (insert kill)
-        (when after-p (backward-char (length kill)))))))
+      (insert kill)
+      (when after-p (backward-char (length kill))))))
 
 (defun kill-region-or-line (arg)
   (interactive "p")
@@ -169,10 +172,12 @@
   (interactive "p")
   (if (region-active-p)
       (call-interactively #'copy-region-as-kill)
-    (let ((begin (point-at-bol)))
+    (let ((begin (point-at-bol))
+          (adapt (if (= arg 0) 0 (/ arg (abs arg)))))
       (save-excursion
-        (forward-line arg)
-        (copy-region-as-kill begin (point-at-bol))))))
+        (condition-case nil (forward-line (- arg adapt)) (quit))
+        (copy-region-as-kill begin (point-at-eol))
+        (kill-append "\n" nil)))))
 
 (defun goto-or-quit (arg)
   (interactive "P")
