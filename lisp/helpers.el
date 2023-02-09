@@ -139,26 +139,25 @@
 
 (defun yank-put-before (arg)
   (interactive "p")
-  (dotimes (_ arg)
-    (let ((kill (current-kill 0)))
-      (if (string-suffix-p "\n" kill)
-          (save-excursion
-            (goto-char (point-at-bol))
-            (insert kill))
-        (insert kill)))))
+  (let ((kill (current-kill 0)))
+    (if (string-suffix-p "\n" kill)
+        (save-excursion
+          (goto-char (point-at-bol))
+          (dotimes (_ arg) (insert kill)))
+      (dotimes (_ arg) (insert kill)))))
 
 (defun yank-put-after (arg)
   (interactive "p")
-  (dotimes (_ arg)
-    (let ((kill (current-kill 0)))
-      (if (string-suffix-p "\n" kill)
-          (save-excursion
-            (when (= (point-at-eol) (point-max))
-              (goto-char (point-max))
-              (newline))
-            (forward-line 1)
-            (insert kill)
-            (forward-line -2))
+  (let ((kill (current-kill 0)))
+    (if (string-suffix-p "\n" kill)
+        (save-excursion
+          (when (= (point-at-eol) (point-max))
+            (goto-char (point-max))
+            (newline))
+          (forward-line 1)
+          (dotimes (_ arg) (insert kill))
+          (forward-line -2))
+      (dotimes (_ arg)
         (insert kill)
         (backward-char (length kill))))))
 
