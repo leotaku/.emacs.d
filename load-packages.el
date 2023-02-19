@@ -8,6 +8,7 @@
 ;; Emacs wants to load `package.el' before the init file,
 ;; so we do the same with `elpaca.el'
 
+(defvar elpaca-installer-version 0.1)
 (defvar elpaca-directory (expand-file-name "elpaca/" user-emacs-directory))
 (defvar elpaca-builds-directory (expand-file-name "builds/" elpaca-directory))
 (defvar elpaca-order '(elpaca :repo "https://github.com/progfolio/elpaca.git"
@@ -20,22 +21,20 @@
            ((add-to-list 'load-path (if (file-exists-p build) build repo)))
            ((not (file-exists-p repo))))
   (condition-case-unless-debug err
-      (if-let ((buffer (pop-to-buffer-same-window "*elpaca-bootstrap*"))
+      (if-let ((buffer (pop-to-buffer-same-window "*elpaca-installer*"))
                ((zerop (call-process "git" nil buffer t "clone"
                                      (plist-get order :repo) repo)))
                (default-directory repo)
                ((zerop (call-process "git" nil buffer t "checkout"
-                                     (or (plist-get order :ref) "--")))))
-          (progn
-            (byte-recompile-directory repo 0 'force)
-            (require 'elpaca)
-            (and (fboundp 'elpaca-generate-autoloads)
-                 (elpaca-generate-autoloads "elpaca" repo))
-            (kill-buffer buffer))
+                                     (or (plist-get order :ref) "--"))))
+               (emacs (concat invocation-directory invocation-name))
+               ((zerop (call-process emacs nil buffer nil "-Q" "-L" "." "--batch"
+                                     "--eval" "(byte-recompile-directory \".\" 0 'force)"))))
+          (progn (require 'elpaca)
+                 (elpaca-generate-autoloads "elpaca" repo)
+                 (kill-buffer buffer))
         (error "%s" (with-current-buffer buffer (buffer-string))))
-    ((error)
-     (warn "%s" err)
-     (delete-directory repo 'recursive))))
+    ((error) (warn "%s" err) (delete-directory repo 'recursive))))
 (require 'elpaca-autoloads)
 (add-hook 'after-init-hook #'elpaca-process-queues)
 (elpaca `(,@elpaca-order))
