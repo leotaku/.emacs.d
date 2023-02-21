@@ -32,7 +32,6 @@
  company-posframe
  counsel
  counsel-projectile
- crux
  deadgrep
  dired-filter
  diredfl
