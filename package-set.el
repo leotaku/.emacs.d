@@ -56,7 +56,6 @@
  multiple-cursors
  nix-mode
  no-littering
- org
  org-reverse-datetree
  pcre2el
  projectile
