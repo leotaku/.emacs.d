@@ -16,9 +16,6 @@
  (theist-mode
   :type git :host github
   :repo "leotaku/theist-mode")
- (prisma-mode
-  :type git :host github
-  :repo "pimeys/emacs-prisma-mode")
  (doom-themes
   :type git :host github
   :files (:defaults "themes/*.el" "doom-themes-pkg.el")
