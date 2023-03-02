@@ -5,9 +5,6 @@
 
 ;;; Code:
 
-;; Emacs wants to load `package.el' before the init file,
-;; so we do the same with `elpaca.el'
-
 (defvar elpaca-installer-version 0.2)
 (defvar elpaca-directory (expand-file-name "elpaca/" user-emacs-directory))
 (defvar elpaca-builds-directory (expand-file-name "builds/" elpaca-directory))

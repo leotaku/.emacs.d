@@ -2,6 +2,11 @@
 
 ;;; Setup:
 
+;; Load Packages
+
+(load-file
+ (expand-file-name "load-packages.el" user-emacs-directory))
+
 ;;; Configuration:
 
 (bk-block no-littering

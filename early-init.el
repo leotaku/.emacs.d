@@ -54,11 +54,6 @@
 (add-to-list 'default-frame-alist '(vertical-scroll-bars . nil))
 (add-to-list 'default-frame-alist '(internal-border-width . 12))
 
-;; Load packages
-
-(load-file
- (expand-file-name "load-packages.el" user-emacs-directory))
-
 (provide 'early-init)
 
 ;; early-init.el ends here
