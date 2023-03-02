@@ -39,8 +39,13 @@
 
 ;; Load `fi-emacs' startup utilities
 
-(elpaca (fi :type git :host github :files ("*.el") :repo "leotaku/fi-emacs"))
-(elpaca-wait)
+(let ((fi-build-directory (expand-file-name "fi/" elpaca-builds-directory)))
+  (if (file-directory-p fi-build-directory)
+      (progn (add-to-list 'load-path fi-build-directory)
+             (require 'fi)
+             (require 'bk))
+    (elpaca (fi :type git :host github :files ("*.el") :repo "leotaku/fi-emacs"))
+    (elpaca-wait)))
 
 ;; `package-set.el' loading mechanism
 
