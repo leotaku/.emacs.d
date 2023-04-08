@@ -36,7 +36,6 @@
  dired-filter
  diredfl
  eglot
- emacsql-sqlite-builtin
  envrc
  forge
  git-modes
