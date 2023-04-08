@@ -90,7 +90,6 @@
 (setq package-vc-selected-packages (alist-get 'Git packages-grouped))
 (setq package-selected-packages (mapcar #'car (alist-get nil packages-grouped)))
 
-(setq custom-file (locate-user-emacs-file "etc/custom.el"))
 (setq package-vc-register-as-project nil)
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
 (package-initialize)

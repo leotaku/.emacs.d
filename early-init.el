@@ -42,6 +42,10 @@
 
 (setq package-enable-at-startup nil)
 
+;; Completely disable the `custom.el' permanent customization system
+
+(setq custom-file "/dev/null")
+
 ;; Prevent the glimpse of un-styled Emacs by setting these early
 
 (add-to-list 'default-frame-alist '(tool-bar-lines . 0))

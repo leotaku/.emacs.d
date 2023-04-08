@@ -16,14 +16,6 @@
   (auto-save-file-name-transforms
    . `((".*" ,(no-littering-expand-var-file-name "auto-save/") t))))
 
-(bk-block custom-pre
-  :requires .no-littering
-  :custom
-  (custom-file . (no-littering-expand-etc-file-name "custom.el"))
-  :config
-  (when (file-exists-p custom-file)
-    (load-file custom-file)))
-
 ;; Load configuration files
 
 (bk-block loads
