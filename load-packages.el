@@ -3,6 +3,9 @@
 ;;; Commentary:
 ;;
 
+(require 'package)
+(require 'package-vc)
+
 ;;; Code:
 
 (setq packages
@@ -21,15 +24,21 @@
         (theist-mode
          :vc-backend Git
          :url "git@github.com:leotaku/theist-mode")
+        (ace-window
+         :vc-backend Git
+         :url "git@github.com:leotaku/ace-window")
         (doom-themes
          :vc-backend Git
          :url "git@github.com:leotaku/emacs-doom-themes")
+        (worf
+         :vc-backend Git
+         :url "git@github.com:leotaku/worf"
+         :branch "patch-1")
         ace-link
-        ace-window
         aggressive-indent
         amx
         apheleia
-        (auctex :vc-backend None)
+        auctex
         avy
         circe
         company
@@ -41,15 +50,15 @@
         diredfl
         eglot
         envrc
-        (forge :vc-backend None)
+        forge
         git-modes
         go-mode
         haskell-mode
         hcl-mode
         ledger-mode
-        (lispy :vc-backend None)
+        lispy
         lua-mode
-        (magit :vc-backend None)
+        magit
         markdown-mode
         meson-mode
         minions
@@ -71,22 +80,18 @@
         web-mode
         wgrep
         which-key
-        worf
         yaml-mode))
 
-(setq package-vc-selected-packages
-      (seq-filter
-       (lambda (it) (not (eq (plist-get (cdr it) :vc-backend) 'None)))
-       (mapcar
-        (lambda (it) (ensure-list it)) packages)))
+(setq packages-grouped
+      (seq-group-by
+       (lambda (it) (plist-get (cdr it) :vc-backend))
+       (mapcar #'ensure-list packages)))
 
-(setq package-selected-packages
-      (mapcar (lambda (it) (car (ensure-list it))) packages))
-
-(require 'package)
-(require 'package-vc)
+(setq package-vc-selected-packages (alist-get 'Git packages-grouped))
+(setq package-selected-packages (mapcar #'car (alist-get nil packages-grouped)))
 
 (setq custom-file (locate-user-emacs-file "etc/custom.el"))
+(setq package-vc-register-as-project nil)
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
 (package-initialize)
 
