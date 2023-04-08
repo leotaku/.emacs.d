@@ -32,12 +32,12 @@
   (moody-mode-line-height . 50)
   (x-underline-at-descent-line . t)
   :config
-  (tracking-mode)
+  (tracking-mode 1)
   (moody-replace-mode-line-buffer-identification)
   (moody-replace-element
    '(vc-mode vc-mode)
    '(vc-mode ((:propertize "." invisible t) moody-vc-mode)))
-  (minions-mode)
-  (column-number-mode))
+  (minions-mode 1)
+  (column-number-mode 1))
 
 ;;; visual.el ends here
