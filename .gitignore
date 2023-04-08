@@ -1,4 +1,3 @@
 /var
-/eln-cache
 /elpaca/*
 !/elpaca/lock.el
