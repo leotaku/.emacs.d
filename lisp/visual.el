@@ -31,6 +31,7 @@
   :custom
   (moody-mode-line-height . 50)
   (x-underline-at-descent-line . t)
+  (minions-mode-line-lighter . ";-")
   :config
   (tracking-mode 1)
   (moody-replace-mode-line-buffer-identification)
