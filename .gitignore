@@ -1,3 +1,2 @@
 /var
-/elpaca/*
-!/elpaca/lock.el
+/elpa

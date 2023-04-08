@@ -116,13 +116,12 @@
    (with-current-buffer "*scratch*"
      (emacs-lisp-mode))))
 
-(elpaca nil
-  (unless (sd-access-unit 'default-target)
-    (bk-register-target 'default-target)
-    (bk-reach-target 'default-target)
-    (fi-with-gui
-     (when (get-buffer "*Warnings*")
-       (warn "Warnings were emitted during Emacs startup!")))))
+(unless (sd-access-unit 'default-target)
+  (bk-register-target 'default-target)
+  (bk-reach-target 'default-target)
+  (fi-with-gui
+   (when (get-buffer "*Warnings*")
+     (warn "Warnings were emitted during Emacs startup!"))))
 
 (provide 'init)
 

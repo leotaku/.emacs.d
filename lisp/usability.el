@@ -95,7 +95,7 @@
   (ace-link-fallback-function . 'ace-link-org))
 
 (bk-block recentf
-  :requires .recentf .elpaca .no-littering
+  :requires .recentf .no-littering
   :bind (("C-x l" . recentf))
   :at-load
   (setq recentf-max-saved-items 4000)
