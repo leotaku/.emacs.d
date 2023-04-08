@@ -24,11 +24,6 @@
   (when (file-exists-p custom-file)
     (load-file custom-file)))
 
-(bk-block* keyfreq
-  :config
-  (keyfreq-mode)
-  (keyfreq-autosave-mode))
-
 ;; Load configuration files
 
 (bk-block loads

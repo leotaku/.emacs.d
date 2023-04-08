@@ -42,7 +42,6 @@
  go-mode
  haskell-mode
  hcl-mode
- keyfreq
  ledger-mode
  lispy
  lua-mode
