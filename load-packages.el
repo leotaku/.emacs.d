@@ -82,13 +82,13 @@
         which-key
         yaml-mode))
 
-(setq packages-grouped
-      (seq-group-by
+(setq package-vc-selected-packages
+      (seq-filter
        (lambda (it) (plist-get (cdr it) :vc-backend))
        (mapcar #'ensure-list packages)))
 
-(setq package-vc-selected-packages (alist-get 'Git packages-grouped))
-(setq package-selected-packages (mapcar #'car (alist-get nil packages-grouped)))
+(setq package-selected-packages
+      (mapcar #'car (mapcar #'ensure-list packages)))
 
 (setq package-vc-register-as-project nil)
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
