@@ -12,8 +12,7 @@
 
 ;; Ensure native bytecode is stored somewhere reasonable
 
-(startup-redirect-eln-cache
- (expand-file-name "var/eln-cache" user-emacs-directory))
+(startup-redirect-eln-cache (locate-user-emacs-file "var/eln-cache"))
 
 ;; Defer garbage collection further back in the startup process
 

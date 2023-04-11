@@ -4,8 +4,7 @@
 
 ;; Load Packages
 
-(load-file
- (expand-file-name "load-packages.el" user-emacs-directory))
+(load-file (locate-user-emacs-file "load-packages.el"))
 
 ;;; Configuration:
 
