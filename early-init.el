@@ -43,7 +43,7 @@
 
 ;; Completely disable the `custom.el' permanent customization system
 
-(setq custom-file "/dev/null")
+(setq custom-file (locate-user-emacs-file "var/custom-ignored.el"))
 
 ;; Prevent the glimpse of un-styled Emacs by setting these early
 
