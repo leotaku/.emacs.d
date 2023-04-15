@@ -80,7 +80,8 @@
         web-mode
         wgrep
         which-key
-        yaml-mode))
+        yaml-mode
+        yasnippet))
 
 (setq package-vc-selected-packages
       (seq-filter
