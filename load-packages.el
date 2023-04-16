@@ -41,8 +41,6 @@
         auctex
         avy
         circe
-        company
-        company-posframe
         counsel
         counsel-projectile
         deadgrep

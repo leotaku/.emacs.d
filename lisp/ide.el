@@ -28,37 +28,6 @@
   :requires .elec-pair
   :start electric-pair-mode)
 
-(bk-block company
-  :requires .company .company-posframe
-  :hook
-  (prog-mode-hook . company-mode)
-  (text-mode-hook . company-mode)
-  (conf-mode-hook . company-mode)
-  :bind ((:company-active-map
-          :package company
-          ("RET" . nil)
-          ("<return>" . nil)
-          ("C-h" . nil)
-          ("<escape>" . nil)
-          ("<tab>" . company-complete-selection)
-          ("<backtab>" . company-select-previous)))
-  :custom
-  (company-minimum-prefix-length . 1)
-  (company-idle-delay . 0.2)
-  (company-dabbrev-downcase . nil)
-  (company-dabbrev-ignore-case . nil)
-  (company-require-match . nil)
-  (company-format-margin-function . nil)
-  (company-tooltip-align-annotations . t)
-  (company-posframe-show-indicator . nil)
-  (company-posframe-show-metadata . nil)
-  (company-posframe-quickhelp-delay . nil)
-  (company-backends
-   . (seq-difference company-backends '(company-cmake company-clang)))
-  :config
-  (fi-with-gui
-   (company-posframe-mode 1)))
-
 (bk-block fix-semantic
   :requires .semantic/db-file
   :at-load
