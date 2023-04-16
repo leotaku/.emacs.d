@@ -28,6 +28,21 @@
   :requires .elec-pair
   :start electric-pair-mode)
 
+(bk-block corfu
+  :requires .corfu
+  :start global-corfu-mode
+  :custom
+  (corfu-auto . t)
+  (corfu-auto-prefix . 1)
+  (corfu-auto-delay . 0)
+  (corfu-bar-width . 0)
+  (completion-styles . '(basic))
+  :bind ((:corfu-map
+          :package corfu
+          ("RET" . nil)))
+  :config
+  (setf (alist-get 'child-frame-border-width corfu--frame-parameters) 0))
+
 (bk-block fix-semantic
   :requires .semantic/db-file
   :at-load

@@ -41,6 +41,7 @@
         auctex
         avy
         circe
+        corfu
         counsel
         counsel-projectile
         deadgrep
