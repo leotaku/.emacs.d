@@ -50,6 +50,7 @@
         diredfl
         eglot
         envrc
+        expand-region
         forge
         git-modes
         go-mode
