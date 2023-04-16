@@ -15,9 +15,9 @@
         (fi
          :vc-backend Git
          :url "git@github.com:leotaku/fi-emacs")
-        (flycheck-aspell
-         :vc-backend Git
-         :url "git@github.com:leotaku/flycheck-aspell")
+        ;; (flycheck-aspell
+        ;;  :vc-backend Git
+        ;;  :url "git@github.com:leotaku/flycheck-aspell")
         (study
          :vc-backend Git
          :url "git@github.com:leotaku/study.el")
