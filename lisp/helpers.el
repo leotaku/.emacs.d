@@ -202,8 +202,7 @@
 (defun delete-window-or-frame ()
   (interactive)
   (unless (ignore-errors (delete-window) t)
-    (unless (ignore-errors (delete-frame) t)
-      (save-buffers-kill-emacs))))
+    (delete-frame)))
 
 (defun split-window-left (&optional size)
   (interactive)
