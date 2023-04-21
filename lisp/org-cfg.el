@@ -77,12 +77,12 @@ Offer day selection when ARG is non-nil."
 (define-minor-mode quick-commit-mode nil
   :lighter "Quick"
   :keymap '(("\C-c\C-c" . quick-commit-buffer)
-            ("\C-c\C-k" . delete-window-and-buffer)))
+            ("\C-c\C-k" . kill-buffer-and-window)))
 
 (defun quick-commit-buffer ()
   "Save the current buffer, then kill it and its window."
   (interactive)
   (save-buffer)
-  (delete-window-and-buffer))
+  (kill-buffer-and-window))
 
 ;;; org-cfg.el ends here
