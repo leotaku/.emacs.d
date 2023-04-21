@@ -221,7 +221,7 @@
   (ivy-exit-with-action
    (lambda (it)
      (let ((it (or (car-safe it) it)))
-       (insert (file-name-shortest (if (stringp it) it (format "%s" it)))))
+       (insert (file-name-shortest (format "%s" it))))
      (signal 'quit nil))))
 
 (defun ivy-lookup-symbol ()
