@@ -78,9 +78,13 @@
 
 (defun motion-syntax (n reverse-adjust &rest syntaxes)
   (let ((f (if (< 0 n) #'skip-chars-forward #'skip-chars-backward)))
-    (if reverse-adjust (when (< 0 n) (forward-char)) (when (> 0 n) (backward-char)))
+    (if reverse-adjust
+        (when (< 0 n) (forward-char))
+      (when (> 0 n) (backward-char)))
     (dotimes (_ (abs n)) (mapc f syntaxes))
-    (if reverse-adjust (and (not (region-active-p)) (< 0 n) (backward-char)) (when (> 0 n) (backward-char)))))
+    (if reverse-adjust
+        (when (and (not (region-active-p)) (< 0 n)) (backward-char))
+      (when (> 0 n) (backward-char)))))
 
 (defvar-local motion-last-char nil)
 (defvar-local motion-last-count nil)
