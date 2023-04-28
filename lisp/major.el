@@ -74,7 +74,7 @@
   :requires .elisp-mode .lispy .theist-mode .aggressive-indent
   :mode ".dir-locals.el"
   :hook
-  (minibuffer-setup-hook . conditionally-enable-lispy)
+  (minibuffer-setup-hook . minibuffer-lisp-config-enable)
   (lispy-mode-hook . aggressive-indent-mode)
   (emacs-lisp-mode-hook . lispy-mode)
   :bind ((:lispy-mode-map
@@ -86,7 +86,7 @@
   (lispy-define-key lispy-mode-map "[" #'ignore)
   (lispy-define-key lispy-mode-map "]" #'ignore))
 
-(defun conditionally-enable-lispy ()
+(defun minibuffer-lisp-config-enable ()
   (when (eq this-command 'eval-expression)
     (setq-local indent-line-function #'lisp-indent-line)
     (lispy-mode 1)))
