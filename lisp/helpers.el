@@ -184,14 +184,12 @@
 
 (defun goto-or-quit (arg)
   (interactive "P")
-  (if (and (not (bound-and-true-p multiple-cursors-mode))
-           (numberp arg))
+  (if (numberp arg)
       (if (> arg 0)
           (goto-line arg)
         (goto-line (+ arg (line-number-at-pos (point-max)))))
-    (if (bound-and-true-p multiple-cursors-mode)
-        (mc/keyboard-quit)
-      (keyboard-quit))))
+    (let ((keys (listify-key-sequence (kbd "C-g"))))
+      (setq unread-command-events (nconc unread-command-events keys)))))
 
 (defun switch-mark-command ()
   (interactive)
