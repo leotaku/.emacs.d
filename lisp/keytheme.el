@@ -39,25 +39,25 @@
    ("E" . motion-forward-End))
   (modalka-keys
    ("c" . motion-change)
-   ("d" . kill-region-or-line)
-   ("y" . copy-region-or-line))
+   ("d" . motion-kill-region-or-line)
+   ("y" . motion-copy-region-or-line))
   (modalka-keys
    ("SPC" . mc/mark-next-like-this)
-   ("<backspace>" . delete-char-or-region)
-   ("g" . goto-or-quit)
-   ("z" . kill-ring-cycle)
-   ("Z" . kill-ring-uncycle)
+   ("<backspace>" . motion-delete)
+   ("g" . motion-goto-or-quit)
+   ("z" . motion-kill-cycle)
+   ("Z" . motion-kill-uncycle)
    ("m" . eri/expand-region)
    ("n" . eri/contract-region)
    ("s" . avy-goto-word-or-subword-1))
   (modalka-keys
-   ("v" . switch-mark-command)
+   ("v" . motion-mark-cycle)
    ("r" . replace-char-or-region)
    ("o" . exchange-point-and-mark)
    ("u" . undo)
    ("U" . undo-redo)
-   ("p" . yank-put-after)
-   ("P" . yank-put-before)
+   ("p" . motion-put-after)
+   ("P" . motion-put-before)
    (";" . comment-or-uncomment-region)
    ("%" . eri/maximize-region)
    ("f" . motion-goto-char)
@@ -68,15 +68,7 @@
   (interactive)
   (if (use-region-p)
       (call-interactively #'vr/replace)
-    (call-interactively #'replace-char)))
-
-(defun delete-char-or-region (arg)
-  (interactive "p")
-  (if (use-region-p)
-      (mapc
-       (lambda (it) (delete-region (car it) (cdr it)))
-       (region-bounds))
-    (delete-char arg)))
+    (call-interactively #'motion-replace-char)))
 
 (bk-block multiple-cursors
   :requires .multiple-cursors

@@ -13,7 +13,7 @@
           ("<return>" . magit-diff-visit-file-other-window)
           ("j" . magit-next-line)
           ("k" . magit-previous-line)
-          ("v" . switch-mark-command)
+          ("v" . motion-mark-cycle)
           ("x" . theist-C-x)
           ("C-k" . magit-discard)))
   :config
