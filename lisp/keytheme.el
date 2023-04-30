@@ -73,7 +73,9 @@
 (defun delete-char-or-region (arg)
   (interactive "p")
   (if (region-active-p)
-      (delete-region (region-beginning) (region-end))
+      (mapc
+       (lambda (it) (delete-region (car it) (cdr it)))
+       (region-bounds))
     (delete-char arg)))
 
 (bk-block multiple-cursors
