@@ -66,13 +66,13 @@
 
 (defun replace-char-or-region ()
   (interactive)
-  (if (region-active-p)
+  (if (use-region-p)
       (call-interactively #'vr/replace)
     (call-interactively #'replace-char)))
 
 (defun delete-char-or-region (arg)
   (interactive "p")
-  (if (region-active-p)
+  (if (use-region-p)
       (mapc
        (lambda (it) (delete-region (car it) (cdr it)))
        (region-bounds))
