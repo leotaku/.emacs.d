@@ -8,30 +8,6 @@
 
 ;;; Code:
 
-(defun package-generate-autoloads (name pkg-dir)
-  "Generate autoloads in PKG-DIR for package named NAME."
-  (let* ((auto-name (format "%s-autoloads.el" name))
-         ;;(ignore-name (concat name "-pkg.el"))
-         (output-file (expand-file-name auto-name pkg-dir))
-         ;; We don't need 'em, and this makes the output reproducible.
-         (autoload-timestamps nil)
-         (backup-inhibited t)
-         (version-control 'never))
-    (loaddefs-generate
-     pkg-dir output-file nil
-     (prin1-to-string
-      '(add-to-list
-        'load-path
-        ;; Add the directory that will contain the autoload file to
-        ;; the load path.  We don't hard-code `pkg-dir', to avoid
-        ;; issues if the package directory is moved around.
-        (or (and load-file-name (file-name-directory load-file-name))
-            (car load-path))))
-     nil t)
-    (let ((buf (find-buffer-visiting output-file)))
-      (when buf (kill-buffer buf)))
-    auto-name))
-
 (setq packages
       '((expand-region-improved
          :vc-backend Git
