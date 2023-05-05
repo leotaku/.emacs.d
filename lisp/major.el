@@ -23,6 +23,7 @@
   (c-add-style "wierdo" '("ellemtel" (c-basic-offset . 4))))
 
 (bk-block* rust-mode
+  :requires .rust-mode
   :bind ((:rust-mode-map
           :package rust-mode
           ("C-c C-f" . nil))))
