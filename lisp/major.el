@@ -26,7 +26,14 @@
   :requires .rust-mode
   :bind ((:rust-mode-map
           :package rust-mode
-          ("C-c C-f" . nil))))
+          ("C-c C-f" . nil)))
+  :config
+  (with-eval-after-load 'rust-ts-mode
+    (setq auto-mode-alist
+          (seq-reduce
+           (lambda (acc it) (rassq-delete-all it acc))
+           '(rust-ts-mode)
+           auto-mode-alist))))
 
 (bk-block* markdown-mode
   :custom
