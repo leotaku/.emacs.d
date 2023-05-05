@@ -60,6 +60,16 @@
   (js-jsx-syntax . t)
   (js-switch-indent-offset . 2))
 
+(bk-block go-mode
+  :requires .go-mode
+  :config
+  (with-eval-after-load 'go-ts-mode
+    (setq auto-mode-alist
+          (seq-reduce
+           (lambda (acc it) (rassq-delete-all it acc))
+           '(go-ts-mode go-mod-ts-mode)
+           auto-mode-alist))))
+
 (bk-block* css-mode
   :mode "\\.rasi\\'"
   :custom
