@@ -13,7 +13,9 @@
   :custom
   (create-lockfiles . nil)
   (auto-save-file-name-transforms
-   . `((".*" ,(no-littering-expand-var-file-name "auto-save/") t))))
+   . `((".*" ,(no-littering-expand-var-file-name "auto-save/") t)))
+  (backup-directory-alist
+   . `((".*" . ,(no-littering-expand-var-file-name "backup/")))))
 
 ;; Load configuration files
 
