@@ -26,7 +26,7 @@ This is my new Emacs configuration, after having given up my old literate and ev
   + [Alegreya Sans](https://github.com/huertatipografica/Alegreya-Sans) :: Variable font
 
 Other than that, we use many more great and helpful packages provided by the Emacs community.
-Simply visit [package-set.el](package-set.el) to find them.
+Simply visit [load-packages.el](load-packages.el) to find them.
 
 ## Motivation
 
