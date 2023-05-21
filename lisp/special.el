@@ -91,6 +91,12 @@
 (bk-block study
   :requires .study-okular .study-dired .study-deadgrep)
 
+(bk-block deadgrep
+  :requires .deadgrep
+  :custom
+  (deadgrep-project-root-function
+   . (lambda () default-directory)))
+
 (bk-block ledger
   :requires .ledger-mode
   :hook
