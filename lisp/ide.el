@@ -62,7 +62,7 @@
   :bind (("C-c f" . apheleia-format-buffer)))
 
 (bk-block eglot
-  :requires .eglot
+  :requires .eglot .yasnippet
   :at-load (setq eglot-stay-out-of '(company))
   :custom (eldoc-echo-area-use-multiline-p . nil)
   :hook (prog-mode-hook . eglot-ensure)
