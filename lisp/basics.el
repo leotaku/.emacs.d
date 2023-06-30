@@ -12,6 +12,7 @@
   (inhibit-compacting-font-caches . t)
   (read-process-output-max . (expt 2 16))
   (enable-recursive-minibuffers . t)
+  (warning-suppress-types . '((comp)))
   :config
   (fset 'yes-or-no-p 'y-or-n-p))
 
