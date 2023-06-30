@@ -103,11 +103,8 @@
 (bk-block setup-initial-buffer
   :requires emacs-lisp-mode
   :at-load
-  (setq initial-major-mode 'text-mode)
-  :config
-  (fi-with-gui
-   (with-current-buffer "*scratch*"
-     (emacs-lisp-mode))))
+  (setq initial-buffer-choice "~/scratch.txt")
+  (setq initial-major-mode 'emacs-lisp-mode))
 
 (unless (sd-access-unit 'default-target)
   (bk-register-target 'default-target)
