@@ -42,18 +42,6 @@
    (define-key input-decode-map [?\C-m] [C-m]))
   (define-key key-translation-map (kbd "ESC") (kbd "C-g")))
 
-(bk-block bad-habits
-  :bind (("<XF86Forward>" . nil)
-         ("<XF86Back>" . nil)
-         ("<prior>" . nil)
-         ("<next>" . nil)
-         ("<insert>" . nil)
-         ("C-<prior>" . nil)
-         ("C-<next>" . nil))
-  :bind (("C-z" . nil)
-         ("C-x C-z" . nil)
-         ("C-x C-b" . nil)))
-
 (bk-block misc-bindings
   :bind  (("C-x m" . execute-extended-command)
           ("C-x r" . revert-buffer)
