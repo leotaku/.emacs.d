@@ -52,8 +52,8 @@
 
 (bk-block window-management
   :requires .ace-window
-  :bind (("C-x q" . split-window-left)
-         ("C-x w" . split-window-above)
+  :bind (("C-x q" . split-window-horizontally)
+         ("C-x w" . split-window-vertically)
          ("C-x o" . ace-window)
          ("C-x j" . delete-other-windows)
          ("C-x d" . kill-buffer)

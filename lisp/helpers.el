@@ -29,16 +29,6 @@
   (unless (ignore-errors (delete-window) t)
     (delete-frame)))
 
-(defun split-window-left (&optional size)
-  (interactive)
-  (split-window-right size)
-  (other-window 1))
-
-(defun split-window-above (&optional size)
-  (interactive)
-  (split-window-below size)
-  (other-window 1))
-
 ;;;; Ivy
 
 (defun ivy-insert-selection ()
