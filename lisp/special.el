@@ -88,6 +88,59 @@
   (interactive)
   (find-alternate-file ".."))
 
+(bk-block mail
+  :custom
+  (user-full-name . "Leo Georg Gaskin")
+  (send-mail-function . #'sendmail-send-it)
+  (message-send-mail-function . #'message-send-mail-with-sendmail))
+
+(bk-block mu4e
+  :requires mail .mu4e
+  :custom
+  (mu4e-get-mail-command . "mbsync -a")
+  (mu4e-change-filenames-when-moving . t)
+  :custom
+  (mu4e-contexts
+   . (list (make-mu4e-context
+            :name "Kitchen Sink"
+            :vars `((user-mail-address . ,(auth-source-address :user "kitchen^mail"))
+                    (mu4e-mail-subdir . "kitchen")))
+           (make-mu4e-context
+            :name "Personal"
+            :vars `((user-mail-address . ,(auth-source-address :user "personal^mail"))
+                    (mu4e-mail-subdir . "personal")))
+           (make-mu4e-context
+            :name "Website"
+            :vars `((user-mail-address . ,(auth-source-address :user "website^mail"))
+                    (mu4e-mail-subdir . "website")))
+           (make-mu4e-context
+            :name "University"
+            :vars `((user-mail-address . ,(auth-source-address :user "university^mail"))
+                    (mu4e-mail-subdir . "university")))
+           (make-mu4e-context
+            :name "Outlook"
+            :vars `((user-mail-address . ,(auth-source-address :user "outlook^mail"))
+                    (mu4e-mail-subdir . "outlook")))))
+  :custom
+  (mu4e-maildir-shortcuts
+   . '((:maildir "/kitchen/inbox"    :key ?k)
+       (:maildir "/personal/inbox"   :key ?p)
+       (:maildir "/website/inbox"    :key ?w)
+       (:maildir "/university/inbox" :key ?u)
+       (:maildir "/outlook/inbox"    :key ?s)))
+  (mu4e-bookmarks
+   . '((:name "Today's messages"   :key ?t :query "date:today..now AND NOT flag:draft")
+       (:name "Last 7 days"        :key ?w :query "date:7d..now AND NOT flag:draft")
+       (:name "Important messages" :key ?i :query "prio:high or prio:medium AND NOT flag:trashed")
+       (:name "Signed messages"    :key ?s :query "flag:signed AND NOT flag:trashed")
+       (:name "Drafted messages"   :key ?d :query "flag:draft")
+       (:name "Unread messages"    :key ?u :query "flag:unread" :hide t)))
+  :custom
+  (mu4e-sent-folder    . (lambda (msg) (file-name-concat "/" mu4e-mail-subdir "sent")))
+  (mu4e-trash-folder   . (lambda (msg) (file-name-concat "/" mu4e-mail-subdir "trash")))
+  (mu4e-drafts-folder  . (lambda (msg) (file-name-concat "/" mu4e-mail-subdir "drafts")))
+  (mu4e-archive-folder . (lambda (msg) (file-name-concat "/" mu4e-mail-subdir "archive"))))
+
 (bk-block study
   :requires .study-okular .study-dired .study-deadgrep)
 
@@ -139,6 +192,10 @@
   (let* ((matches (apply #'auth-source-search query))
          (secret (plist-get (car-safe matches) :secret)))
     (lambda (&rest _) (funcall secret))))
+
+(defun auth-source-address (&rest query)
+  (let* ((matches (apply #'auth-source-search query)))
+    (plist-get (car-safe matches) :address)))
 
 (defun circe-command-EXIT (&optional ignored)
   "Exit the current circe buffer."
