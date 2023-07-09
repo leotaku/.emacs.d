@@ -103,23 +103,23 @@
   (mu4e-contexts
    . (list (make-mu4e-context
             :name "Kitchen Sink"
-            :vars `((user-mail-address . ,(auth-source-address :user "kitchen^mail"))
+            :vars `((user-mail-address . ,(auth-source-pick-first-password :user "kitchen^mail"))
                     (mu4e-mail-subdir . "kitchen")))
            (make-mu4e-context
             :name "Personal"
-            :vars `((user-mail-address . ,(auth-source-address :user "personal^mail"))
+            :vars `((user-mail-address . ,(auth-source-pick-first-password :user "personal^mail"))
                     (mu4e-mail-subdir . "personal")))
            (make-mu4e-context
             :name "Website"
-            :vars `((user-mail-address . ,(auth-source-address :user "website^mail"))
+            :vars `((user-mail-address . ,(auth-source-pick-first-password :user "website^mail"))
                     (mu4e-mail-subdir . "website")))
            (make-mu4e-context
             :name "University"
-            :vars `((user-mail-address . ,(auth-source-address :user "university^mail"))
+            :vars `((user-mail-address . ,(auth-source-pick-first-password :user "university^mail"))
                     (mu4e-mail-subdir . "university")))
            (make-mu4e-context
             :name "Outlook"
-            :vars `((user-mail-address . ,(auth-source-address :user "outlook^mail"))
+            :vars `((user-mail-address . ,(auth-source-pick-first-password :user "outlook^mail"))
                     (mu4e-mail-subdir . "outlook")))))
   :custom
   (mu4e-maildir-shortcuts
@@ -170,7 +170,7 @@
   (circe-reduce-lurker-spam . t)
   (circe-network-defaults . nil)
   (circe-server-buffer-name . "{network}")
-  (circe-znc-password . (auth-source-secret :user "leotaku^znc"))
+  (circe-znc-password . (auth-source-pick-first-password :user "leotaku^znc"))
   (circe-network-options
    . `(("libera"
         :host "raw.le0.gs"
@@ -187,15 +187,6 @@
   :config
   (enable-circe-color-nicks)
   (advice-add 'lui-send-input :around #'advice-lui-send-input))
-
-(defun auth-source-secret (&rest query)
-  (let* ((matches (apply #'auth-source-search query))
-         (secret (plist-get (car-safe matches) :secret)))
-    (lambda (&rest _) (funcall secret))))
-
-(defun auth-source-address (&rest query)
-  (let* ((matches (apply #'auth-source-search query)))
-    (plist-get (car-safe matches) :address)))
 
 (defun circe-command-EXIT (&optional ignored)
   "Exit the current circe buffer."
