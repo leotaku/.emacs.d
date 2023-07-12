@@ -11,31 +11,31 @@
 (setq packages
       '((expand-region-improved
          :vc-backend Git
-         :url "git@github.com:leotaku/expand-region-improved")
+         :url "https://github.com/leotaku/expand-region-improved")
         (fi
          :vc-backend Git
-         :url "git@github.com:leotaku/fi-emacs")
+         :url "https://github.com/leotaku/fi-emacs")
         (motion
          :vc-backend Git
-         :url "git@github.com:leotaku/motion")
+         :url "https://github.com/leotaku/motion")
         ;; (flycheck-aspell
         ;;  :vc-backend Git
-        ;;  :url "git@github.com:leotaku/flycheck-aspell")
+        ;;  :url "https://github.com/leotaku/flycheck-aspell")
         (study
          :vc-backend Git
-         :url "git@github.com:leotaku/study.el")
+         :url "https://github.com/leotaku/study.el")
         (theist-mode
          :vc-backend Git
-         :url "git@github.com:leotaku/theist-mode")
+         :url "https://github.com/leotaku/theist-mode")
         (ace-window
          :vc-backend Git
-         :url "git@github.com:leotaku/ace-window")
+         :url "https://github.com/leotaku/ace-window")
         (doom-themes
          :vc-backend Git
-         :url "git@github.com:leotaku/emacs-doom-themes")
+         :url "https://github.com/leotaku/emacs-doom-themes")
         (worf
          :vc-backend Git
-         :url "git@github.com:leotaku/worf"
+         :url "https://github.com/leotaku/worf"
          :branch "patch-1")
         ace-link
         aggressive-indent
