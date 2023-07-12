@@ -101,26 +101,26 @@
   (mu4e-change-filenames-when-moving . t)
   :custom
   (mu4e-contexts
-   . `((make-mu4e-context
-        :name "Kitchen Sink"
-        :vars '((user-mail-address . ,(auth-source-pick-first-password :user "kitchen^mail"))
-                (mu4e-mail-subdir . "kitchen")))
-       (make-mu4e-context
-        :name "Personal"
-        :vars '((user-mail-address . ,(auth-source-pick-first-password :user "personal^mail"))
-                (mu4e-mail-subdir . "personal")))
-       (make-mu4e-context
-        :name "Website"
-        :vars '((user-mail-address . ,(auth-source-pick-first-password :user "website^mail"))
-                (mu4e-mail-subdir . "website")))
-       (make-mu4e-context
-        :name "University"
-        :vars '((user-mail-address . ,(auth-source-pick-first-password :user "university^mail"))
-                (mu4e-mail-subdir . "university")))
-       (make-mu4e-context
-        :name "Outlook"
-        :vars '((user-mail-address . ,(auth-source-pick-first-password :user "outlook^mail"))
-                (mu4e-mail-subdir . "outlook")))))
+   . (list (make-mu4e-context
+            :name "Kitchen Sink"
+            :vars `((user-mail-address . ,(auth-source-pick-first-password :user "kitchen^mail"))
+                    (mu4e-mail-subdir . "kitchen")))
+           (make-mu4e-context
+            :name "Personal"
+            :vars `((user-mail-address . ,(auth-source-pick-first-password :user "personal^mail"))
+                    (mu4e-mail-subdir . "personal")))
+           (make-mu4e-context
+            :name "Website"
+            :vars `((user-mail-address . ,(auth-source-pick-first-password :user "website^mail"))
+                    (mu4e-mail-subdir . "website")))
+           (make-mu4e-context
+            :name "University"
+            :vars `((user-mail-address . ,(auth-source-pick-first-password :user "university^mail"))
+                    (mu4e-mail-subdir . "university")))
+           (make-mu4e-context
+            :name "Outlook"
+            :vars `((user-mail-address . ,(auth-source-pick-first-password :user "outlook^mail"))
+                    (mu4e-mail-subdir . "outlook")))))
   :custom
   (mu4e-maildir-shortcuts
    . '((:maildir "/kitchen/inbox"    :key ?k)
