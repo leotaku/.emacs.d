@@ -7,10 +7,10 @@
 (bk-block fonts
   :config
   (fi-with-gui
-   (set-face-attribute 'default nil :font "Fira Mono" :height 110)
-   (set-face-attribute 'variable-pitch nil :font "Alegreya SC" :height 110)
-   (set-face-attribute 'mode-line-inactive nil :font "Alegreya" :height 120)
-   (set-face-attribute 'mode-line nil :font "Alegreya" :height 120)))
+   (set-face-attribute 'default nil :font "Source Code Pro" :height 100)
+   (set-face-attribute 'variable-pitch nil :font "Alegreya" :height 110)
+   (set-face-attribute 'mode-line-inactive nil :font "Alegreya" :height 110)
+   (set-face-attribute 'mode-line nil :font "Alegreya" :height 110)))
 
 (bk-block theme
   :requires .doom-themes
@@ -29,7 +29,7 @@
 (bk-block mode-line
   :requires .moody .minions .tracking
   :custom
-  (moody-mode-line-height . 50)
+  (moody-mode-line-height . 35)
   (x-underline-at-descent-line . t)
   (minions-mode-line-lighter . ";-")
   :config
