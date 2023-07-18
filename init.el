@@ -76,7 +76,7 @@
   (defun expand-sync-file (name)
     (expand-file-name name sync-directory))
   :custom
-  (sync-directory . "~/sync")
+  (sync-directory . "~/Sync")
   (todo-file . (expand-sync-file "homework.org"))
   (things-file . (expand-sync-file "things.org"))
   (journal-file . (expand-sync-file "journal.org"))
