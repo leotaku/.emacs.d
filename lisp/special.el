@@ -158,6 +158,12 @@
   (ledger-post-amount-alignment-at . :decimal)
   (ledger-default-date-format . "%Y-%m-%d"))
 
+(bk-block eat
+  :requires .eat
+  :custom
+  (shell-file-name . (executable-find "zsh"))
+  (eat-kill-buffer-on-exit . t))
+
 (bk-block circe
   :requires .circe .circe-color-nicks .auth-source
   :hook

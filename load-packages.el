@@ -50,6 +50,7 @@
         deadgrep
         dired-filter
         diredfl
+        eat
         eglot
         envrc
         expand-region
