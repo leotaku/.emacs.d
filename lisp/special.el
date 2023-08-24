@@ -163,7 +163,8 @@
   :bind ((:eat-mode-map ("C-v" . eat-yank)))
   :custom
   (shell-file-name . (executable-find "zsh"))
-  (eat-kill-buffer-on-exit . t))
+  (eat-kill-buffer-on-exit . t)
+  (eat-shell-prompt-annotation-position . 'right-margin))
 
 (bk-block circe
   :requires .circe .circe-color-nicks .auth-source
