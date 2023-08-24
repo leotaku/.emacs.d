@@ -160,6 +160,7 @@
 
 (bk-block eat
   :requires .eat
+  :bind ((:eat-mode-map ("C-v" . eat-yank)))
   :custom
   (shell-file-name . (executable-find "zsh"))
   (eat-kill-buffer-on-exit . t))

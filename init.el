@@ -43,12 +43,12 @@
   (define-key key-translation-map (kbd "ESC") (kbd "C-g")))
 
 (bk-block misc-bindings
-  :bind  (("C-x m" . execute-extended-command)
-          ("C-x r" . revert-buffer)
-          ("C-x f" . find-file)
-          ("C-x e" . eval-defun)
-          ("C-x s" . save-buffer))
-  :bind* (("C-v" . yank)))
+  :bind (("C-x m" . execute-extended-command)
+         ("C-x r" . revert-buffer)
+         ("C-x f" . find-file)
+         ("C-x e" . eval-defun)
+         ("C-x s" . save-buffer)
+         ("C-v" . yank)))
 
 (bk-block window-management
   :requires .ace-window
