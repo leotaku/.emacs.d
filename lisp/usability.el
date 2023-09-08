@@ -35,7 +35,8 @@
   :bind ((:ivy-minibuffer-map
           :package ivy
           ("<C-i>" . ivy-insert-selection)
-          ("C-h" . ivy-lookup-symbol)))
+          ("C-h" . ivy-lookup-symbol)
+          ("C-v" . yank)))
   :start ivy-mode
   :custom (ivy-use-selectable-prompt . t)
   :config
