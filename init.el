@@ -58,7 +58,7 @@
          ("C-x j" . delete-other-windows)
          ("C-x d" . kill-buffer)
          ("C-x k" . delete-window-or-frame))
-  :custom (aw-scope . 'visible)
+  :custom (aw-scope . 'frame)
   :config
   (advice-add 'keyboard-quit :around #'advice-keyboard-quit))
 
