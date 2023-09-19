@@ -27,15 +27,6 @@
 
 (setq garbage-collection-messages nil)
 
-;; Unset `file-name-handler-alist' during startup
-
-(let ((fnha file-name-handler-alist))
-  (defun hook-reset-file-handler-alist ()
-    (setq file-name-handler-alist
-          (append file-name-handler-alist fnha)))
-  (add-hook 'emacs-startup-hook #'hook-reset-file-handler-alist)
-  (setq file-name-handler-alist nil))
-
 ;; Package initialization normally occurs automatically, but this can
 ;; be unset in the `early-init-file'.
 
