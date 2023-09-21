@@ -142,7 +142,10 @@
   (mu4e-archive-folder . (lambda (msg) (file-name-concat "/" mu4e-mail-subdir "archive"))))
 
 (bk-block study
-  :requires .study-okular .study-dired .study-deadgrep)
+  :requires .study-okular .study-dired .study-deadgrep
+  :bind ((:dired-mode-map
+          ("n" . study-next)
+          ("p" . study-previous))))
 
 (bk-block deadgrep
   :requires .deadgrep
