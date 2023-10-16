@@ -37,7 +37,7 @@
   :bind (("C-x c" . calendar)
          (:calendar-mode-map
           :package calendar
-          ("h" . calendar-backward-day)
+          ("ö" . calendar-backward-day)
           ("j" . calendar-forward-week)
           ("k" . calendar-backward-week)
           ("l" . calendar-forward-day)))

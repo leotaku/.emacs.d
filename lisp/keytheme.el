@@ -27,7 +27,7 @@
    ("a" . motion-append)
    ("I" . motion-Insert)
    ("A" . motion-Append)
-   ("(" . backward-char)
+   ("ö" . backward-char)
    ("j" . next-line)
    ("k" . previous-line)
    ("l" . forward-char)
