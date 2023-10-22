@@ -13,6 +13,8 @@
   (org-tags-column . 0)
   (org-blank-before-new-entry
    . '((heading . nil) (plain-list-item . nil)))
+  (org-reverse-datetree-entry-time
+   . '((property "CREATED")))
   (org-link-parameters
    . (assoc-delete-all
       "file+" org-link-parameters
@@ -73,6 +75,12 @@ Offer day selection when ARG is non-nil."
   (run-hooks 'org-capture-mode-hook)
   (goto-char (point-at-bol))
   (quick-commit-mode))
+
+(defun org-refile-to-journal (arg)
+  "Refile subtree to journal based on org-reverse-datetree logic.
+Force day selection when ARG is non-nil."
+  (interactive "P")
+  (org-reverse-datetree-refile-to-file journal-file arg))
 
 (define-minor-mode quick-commit-mode nil
   :lighter "Quick"
