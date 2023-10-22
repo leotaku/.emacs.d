@@ -6,8 +6,8 @@
 
 (bk-block org
   :requires .org .org-tempo .org-timer worf org-capture
-  :hook
-  (org-mode-hook . auto-revert-mode)
+  :hook (org-mode-hook . auto-revert-mode)
+  :bind (("C-x SPC" . org-agenda))
   :custom
   (org-adapt-indentation . nil)
   (org-tags-column . 0)
