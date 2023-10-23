@@ -45,9 +45,6 @@
         :immediate-finish t)
        ("wc" "web-context" item (file+headline things-file "Capture")
         "+ [[%:link][%(string-trim-right \"%:description\" \"\s*[-–|].*\")]] :: %i"
-        :immediate-finish t)
-       ("wt" "web-todo" entry (file todo-file)
-        "* TODO %i"
         :immediate-finish t)))
   :config
   (add-hook 'org-capture-mode-hook #'motion-insert))
