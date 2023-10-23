@@ -18,9 +18,7 @@
   (org-link-parameters
    . (assoc-delete-all
       "file+" org-link-parameters
-      (lambda (it key) (string-prefix-p key it))))
-  :config
-  (advice-add 'org-return :override #'newline))
+      (lambda (it key) (string-prefix-p key it)))))
 
 (bk-block0 worf
   :requires .worf .theist-mode
@@ -35,10 +33,7 @@
   (let ((map worf-mode-map))
     (worf-define-key map "x" #'theist-C-x)
     (worf-define-key map "z" #'theist-C-c)
-    (worf-define-key map "P" #'org-priority))
-  (advice-add
-   'org-insert-heading
-   :after (lambda (&rest _) (beginning-of-line))))
+    (worf-define-key map "P" #'org-priority)))
 
 (bk-block0 org-capture
   :requires local-files .org-capture .org-protocol .org-reverse-datetree
