@@ -163,8 +163,11 @@
 
 (bk-block eat
   :requires .eat
-  :bind ((:eat-mode-map
+  :bind ((:eat-semi-char-mode-map
+          :package eat
           ("C-v" . eat-yank)
+          ("C-<left>" . eat-self-input)
+          ("C-<right>" . eat-self-input)
           ("<escape>" . eat-self-input)))
   :custom
   (shell-file-name . (executable-find "zsh"))
