@@ -18,7 +18,13 @@
   (org-link-parameters
    . (assoc-delete-all
       "file+" org-link-parameters
-      (lambda (it key) (string-prefix-p key it)))))
+      (lambda (it key) (string-prefix-p key it))))
+  (org-show-notification-handler
+   . (lambda (notification)
+       (notifications-notify
+        :title "Org mode message"
+        :body notification
+        :timeout (* org-show-notification-timeout 1000)))))
 
 (bk-block0 worf
   :requires .worf .theist-mode
