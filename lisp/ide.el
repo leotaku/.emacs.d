@@ -6,8 +6,6 @@
 
 (bk-block aggressive-backspace-mode
   :requires .aggressive-indent
-  :config
-  (add-to-list 'aggressive-indent-dont-indent-if '(eq major-mode 'python-mode))
   :hook
   (prog-mode-hook . aggressive-backspace-mode)
   (text-mode-hook . aggressive-backspace-mode)
@@ -94,5 +92,16 @@
                 (eglot--guess-contact)
                 (apply fn args))
          (error nil))))))
+
+(bk-block python-ide
+  :requires .eglot .aggressive-indent
+  :config
+  (add-to-list 'aggressive-indent-dont-indent-if '(eq major-mode 'python-mode))
+  :config
+  (setf (plist-get (default-value 'eglot-workspace-configuration) :pylsp)
+        '(:plugins (;;
+                    :jedi_completion (:include_params t :fuzzy t)
+                    :pylint (:enabled :json-false)
+                    :pycodestyle (:enabled :json-false)))))
 
 ;;; ide.el ends here
