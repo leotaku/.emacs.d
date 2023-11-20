@@ -96,9 +96,13 @@
       (mapcar #'car (mapcar #'ensure-list packages)))
 
 (setq package-vc-register-as-project nil)
-(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
-(package-initialize)
 
+(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/") t)
+(setf (alist-get "gnu" package-archive-priorities) 1)
+(setf (alist-get "nongnu" package-archive-priorities) 1)
+(setf (alist-get "melpa" package-archive-priorities) 0)
+
+(package-initialize)
 (package-vc-install-selected-packages)
 (package-install-selected-packages t)
 
