@@ -78,7 +78,8 @@
   :start amx-mode
   :custom
   (amx-map . nil)
-  (amx-ignored-command-matchers . nil)
+  (amx-ignored-command-matchers
+   . (list (lambda (it) (not (commandp it)))))
   (amx-show-key-bindings . nil))
 
 (bk-block* undo-fu-session
