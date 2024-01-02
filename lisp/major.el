@@ -4,6 +4,14 @@
 
 ;;; Code:
 
+(prog1 'load-ts-modes
+  (mapatoms
+   (lambda (it)
+     (when (string-suffix-p
+            "-ts-mode"
+            (symbol-name it))
+       (require it nil t)))))
+
 (bk-block* nix-mode
   :bind ((:nix-mode-map
           :package nix-mode
@@ -21,19 +29,6 @@
   (setf (alist-get 'other c-default-style) "wierdo")
   (c-add-style "modern" '("gnu" (c-offsets-alist (innamespace . 0))))
   (c-add-style "wierdo" '("ellemtel" (c-basic-offset . 4))))
-
-(bk-block* rust-mode
-  :requires .rust-mode
-  :bind ((:rust-mode-map
-          :package rust-mode
-          ("C-c C-f" . nil)))
-  :config
-  (with-eval-after-load 'rust-ts-mode
-    (setq auto-mode-alist
-          (seq-reduce
-           (lambda (acc it) (rassq-delete-all it acc))
-           '(rust-ts-mode)
-           auto-mode-alist))))
 
 (bk-block* markdown-mode
   :custom
@@ -59,16 +54,6 @@
   (js-jsx-indent-level . 2)
   (js-jsx-syntax . t)
   (js-switch-indent-offset . 2))
-
-(bk-block go-mode
-  :requires .go-mode
-  :config
-  (with-eval-after-load 'go-ts-mode
-    (setq auto-mode-alist
-          (seq-reduce
-           (lambda (acc it) (rassq-delete-all it acc))
-           '(go-ts-mode go-mod-ts-mode)
-           auto-mode-alist))))
 
 (bk-block* css-mode
   :mode "\\.rasi\\'"

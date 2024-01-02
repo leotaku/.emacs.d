@@ -56,12 +56,10 @@
         expand-region
         forge
         git-modes
-        go-mode
         haskell-mode
         hcl-mode
         ledger-mode
         lispy
-        lua-mode
         magit
         markdown-mode
         meson-mode
@@ -75,7 +73,6 @@
         pcre2el
         projectile
         rainbow-mode
-        rust-mode
         swiper
         terraform-mode
         undo-fu-session
@@ -84,7 +81,6 @@
         web-mode
         wgrep
         which-key
-        yaml-mode
         yasnippet))
 
 (setq package-vc-selected-packages
