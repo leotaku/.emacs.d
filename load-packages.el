@@ -37,6 +37,9 @@
          :vc-backend Git
          :url "https://github.com/leotaku/worf"
          :branch "patch-1")
+        (multiple-cursors
+         :vc-backend Git
+         :url "https://github.com/magnars/multiple-cursors.el")
         ace-link
         aggressive-indent
         amx
@@ -66,7 +69,6 @@
         minions
         modalka
         moody
-        multiple-cursors
         nix-mode
         no-littering
         org-reverse-datetree
