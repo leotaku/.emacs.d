@@ -106,7 +106,6 @@
 (bk-block tabs
   :custom
   (indent-tabs-mode . nil)
-  (tab-always-indent . 'complete)
   (tab-width . 4))
 
 (bk-block save-place
