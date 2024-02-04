@@ -53,7 +53,13 @@
         "+ [[%:link][%(string-trim-right \"%:description\" \"\s*[-–|].*\")]] :: %i"
         :immediate-finish t)))
   :config
-  (add-hook 'org-capture-mode-hook #'motion-insert))
+  (add-hook 'org-capture-mode-hook #'motion-insert)
+  (advice-add
+   'org-fix-position-after-promote
+   :after 'advice-org-fix-position-after-promote))
+
+(defun advice-org-fix-position-after-promote ()
+  (org-fold-region (1- (point-at-bol)) (point-at-eol) nil))
 
 ;;; New functionality
 
@@ -71,7 +77,8 @@ Offer day selection when ARG is non-nil."
   (org-fold-hide-subtree)
   (org-fold-show-entry)
   (org-fold-show-children)
-  (narrow-to-region (point-min) (1+ (point-max)))
+  (when (eq (char-before (point-max)) ?\n)
+    (org-fold-region (1- (point-max)) (point-max) nil))
   (run-hooks 'org-capture-mode-hook)
   (goto-char (point-at-bol))
   (quick-commit-mode))
