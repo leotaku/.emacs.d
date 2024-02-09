@@ -151,7 +151,9 @@
   :requires .deadgrep
   :custom
   (deadgrep-project-root-function
-   . (lambda () default-directory)))
+   . (lambda () default-directory))
+  (deadgrep-extra-arguments
+   . '("--no-config" "--sort=path")))
 
 (bk-block ledger
   :requires .ledger-mode
