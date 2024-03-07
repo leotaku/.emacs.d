@@ -11,6 +11,7 @@
   :custom
   (org-adapt-indentation . nil)
   (org-tags-column . 0)
+  (org-edit-src-content-indentation . 0)
   (org-blank-before-new-entry
    . '((heading . nil) (plain-list-item . nil)))
   (org-reverse-datetree-entry-time
