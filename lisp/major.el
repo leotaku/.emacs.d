@@ -64,8 +64,9 @@
   :requires .conf-mode .js
   :config
   (setq-mode-local
-   conf-mode
-   indent-line-function 'js-indent-line))
+   conf-toml-mode
+   indent-line-function 'js-indent-line
+   js-indent-level 4))
 
 (bk-block tex
   :requires .latex .study-SyncTeX
