@@ -9,7 +9,7 @@
   :start electric-pair-mode)
 
 (bk-block corfu
-  :requires .corfu
+  :requires .corfu .cape
   :start global-corfu-mode
   :at-load (setq text-mode-ispell-word-completion nil)
   :custom
@@ -22,7 +22,8 @@
           :package corfu
           ("RET" . nil)))
   :config
-  (setf (alist-get 'child-frame-border-width corfu--frame-parameters) 0))
+  (setf (alist-get 'child-frame-border-width corfu--frame-parameters) 0)
+  (add-hook 'completion-at-point-functions #'cape-dabbrev 100))
 
 (bk-block fix-semantic
   :requires .semantic/db-file
