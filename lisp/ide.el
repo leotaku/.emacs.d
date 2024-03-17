@@ -11,6 +11,7 @@
 (bk-block corfu
   :requires .corfu
   :start global-corfu-mode
+  :at-load (setq text-mode-ispell-word-completion nil)
   :custom
   (corfu-auto . t)
   (corfu-auto-prefix . 1)
