@@ -4,7 +4,9 @@
 
 ;;; Code:
 
-(prog1 'load-ts-modes
+(bk-block tree-sitter-modes
+  :custom (toml-ts-mode-indent-offset . 4)
+  :at-load
   (mapatoms
    (lambda (it)
      (when (string-suffix-p
@@ -59,14 +61,6 @@
   :mode "\\.rasi\\'"
   :custom
   (css-indent-offset . 2))
-
-(bk-block conf-mode
-  :requires .conf-mode .js
-  :config
-  (setq-mode-local
-   conf-toml-mode
-   indent-line-function 'js-indent-line
-   js-indent-level 4))
 
 (bk-block tex
   :requires .latex .study-SyncTeX
