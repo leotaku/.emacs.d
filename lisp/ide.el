@@ -15,8 +15,8 @@
   :custom
   (corfu-auto . t)
   (corfu-auto-prefix . 1)
-  (corfu-auto-delay . 0)
-  (corfu-bar-width . 0)
+  (corfu-auto-delay . 0.0)
+  (corfu-bar-width . 0.0)
   (completion-styles . '(basic))
   :bind ((:corfu-map
           :package corfu
