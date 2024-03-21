@@ -65,8 +65,8 @@
 (bk-block tex
   :requires .latex .study-SyncTeX
   :start TeX-PDF-mode TeX-source-correlate-mode
-  :custom
-  (TeX-view-program-selection . '((output-pdf "study-SyncTeX"))))
+  :config
+  (setf (alist-get 'output-pdf TeX-view-program-selection) "study-SyncTeX"))
 
 (bk-block emacs-lisp-mode
   :requires .elisp-mode .lispy .theist-mode .aggressive-indent
