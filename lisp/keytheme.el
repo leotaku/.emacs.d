@@ -11,7 +11,7 @@
   :bind (("<escape>" . modalka-mode)
          ("<C-return>" . open-line))
   :config
-  (advice-add 'modalka-mode :around #'fi-advice-silent)
+  (advice-add 'modalka-mode :around #'fi-call-silently)
   (add-to-list
    'emulation-mode-map-alists
    `((modalka-mode . ,modalka-mode-map)))
