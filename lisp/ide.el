@@ -26,7 +26,6 @@
   (add-hook 'completion-at-point-functions #'cape-dabbrev 100))
 
 (bk-block fix-semantic
-  :requires .semantic/db-file
   :at-load
   (with-eval-after-load 'semantic
     (defun hook-semantic-fix-lispy ()
