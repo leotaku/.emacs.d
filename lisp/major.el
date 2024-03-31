@@ -82,7 +82,9 @@
   :config
   (lispy-define-key lispy-mode-map "x" #'theist-C-x)
   (lispy-define-key lispy-mode-map "[" #'ignore)
-  (lispy-define-key lispy-mode-map "]" #'ignore))
+  (lispy-define-key lispy-mode-map "]" #'ignore)
+  :config
+  (load-file (locate-library "lispy-tags")))
 
 (defun minibuffer-lisp-config-enable ()
   (when (eq this-command 'eval-expression)
