@@ -25,15 +25,6 @@
   (setf (alist-get 'child-frame-border-width corfu--frame-parameters) 0)
   (add-hook 'completion-at-point-functions #'cape-dabbrev 100))
 
-(bk-block fix-semantic
-  :at-load
-  (with-eval-after-load 'semantic
-    (defun hook-semantic-fix-lispy ()
-      (dolist (x (default-value 'completion-at-point-functions))
-        (when (string-prefix-p "semantic-" (symbol-name x))
-          (remove-hook 'completion-at-point-functions x))))
-    (add-hook 'semantic-mode-hook #'hook-semantic-fix-lispy)))
-
 (bk-block envrc
   :requires .envrc
   :start envrc-global-mode)
