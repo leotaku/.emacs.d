@@ -32,9 +32,10 @@
 
 (setq package-enable-at-startup nil)
 
-;; Completely disable the `custom.el' permanent customization system
+;; Relocate the `custom.el' file for permanent customizations
 
-(setq custom-file (locate-user-emacs-file "var/custom-ignored.el"))
+(setq custom-file (locate-user-emacs-file "var/custom.el"))
+(load custom-file)
 
 ;; Prevent the glimpse of un-styled Emacs by setting these early
 
