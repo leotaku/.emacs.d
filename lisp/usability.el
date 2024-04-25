@@ -156,4 +156,11 @@
       (message "Auto-fill should not be used with visual-fill-column")
     (apply f args)))
 
+(defun save-clipboard-before-delete-frame (_frame)
+  (when (string= (gui-get-selection 'CLIPBOARD)
+                 (current-kill 0))
+    (start-process "wl-copy" nil "wl-copy" (current-kill 0))))
+
+(add-hook 'delete-frame-functions #'save-clipboard-before-delete-frame)
+
 ;;; usability.el ends here
