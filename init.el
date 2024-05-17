@@ -81,8 +81,9 @@
   (things-file . (expand-sync-file "things.org"))
   (journal-file . (expand-sync-file "journal.org"))
   (archive-file . (expand-sync-file "archive.org"))
+  (phone-file . (expand-sync-file "phone.org"))
   :custom
-  (org-agenda-files . (list todo-file things-file journal-file))
+  (org-agenda-files . (list journal-file phone-file todo-file things-file))
   (org-archive-location . (concat archive-file "::* %s")))
 
 ;; Run Emacs startup
