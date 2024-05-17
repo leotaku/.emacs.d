@@ -81,7 +81,6 @@
   (things-file . (expand-sync-file "things.org"))
   (journal-file . (expand-sync-file "journal.org"))
   (archive-file . (expand-sync-file "archive.org"))
-  (diary-file . (expand-sync-file "diary"))
   :custom
   (org-agenda-files . (list todo-file things-file journal-file))
   (org-archive-location . (concat archive-file "::* %s")))
