@@ -91,13 +91,7 @@ Force day selection when ARG is non-nil."
   (org-reverse-datetree-refile-to-file journal-file arg))
 
 (defun org-refile-phone-to-journal ()
-  "Refile all entries in my `phone-file' to journal.
-
-This works together with the \"Sync > Use property for created-at time\"
-setting of the Orgzly android app to quickly refile all notes created on
-my phone based on their creation date.
-
-TODO: For some reason, only the first refile gets a logbook entry?"
+  "Refile all entries in my `phone-file' to journal."
   (interactive)
   (with-current-buffer (find-file-noselect phone-file)
     (org-map-entries
