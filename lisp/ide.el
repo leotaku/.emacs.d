@@ -78,4 +78,24 @@
                     :pylint (:enabled :json-false)
                     :pycodestyle (:enabled :json-false)))))
 
+(keymap-global-set "<remap> <delete-backward-char>" #'backward-delete-indentation)
+(keymap-global-set "M-<backspace>" #'backward-delete-char-untabify)
+
+(defun backward-delete-indentation ()
+  (interactive)
+  (cond
+   ((= (point) (pos-bol))
+    (delete-char -1))
+   ((/= (point) (save-excursion (skip-chars-backward " \t") (point)))
+    (let ((initial-point (point))
+          (track-point -1))
+      (delete-region (save-excursion (skip-chars-backward " \t") (point)) (point))
+      (while (and (/= (point) track-point)
+                  (< (point) initial-point))
+        (setq track-point (point))
+        (indent-for-tab-command))
+      (delete-region track-point (point))))
+   (t
+    (delete-char -1))))
+
 ;;; ide.el ends here
