@@ -88,6 +88,7 @@
   :requires .flymake .help-at-pt
   :custom
   (help-at-pt-display-when-idle . t)
+  (flymake-indicator-type . 'fringes)
   :config
   (defun help-at-pt-maybe-display (&rest _)
     (display-local-help t)))
