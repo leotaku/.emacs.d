@@ -96,6 +96,7 @@
 
 (unless (sd-access-unit 'default-target)
   (bk-register-target 'default-target)
+  (bk-reach-target '.no-littering)
   (bk-reach-target 'default-target)
   (fi-with-gui
    (when (get-buffer "*Warnings*")
