@@ -1,2 +1,2 @@
 ((forge-dispatch
-  (forge-merge . 4)))
+  (forge-merge . 1)))
