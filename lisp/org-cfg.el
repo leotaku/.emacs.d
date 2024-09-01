@@ -90,21 +90,20 @@ Force day selection when ARG is non-nil."
   (interactive "P")
   (org-reverse-datetree-refile-to-file journal-file arg))
 
-(defun org-refile-phone-to-journal ()
-  "Refile all entries in my `phone-file' to journal."
+(defun org-refile-created-to-journal ()
+  "Refile all entries with a 'CREATED' property to journal."
   (interactive)
-  (with-current-buffer (find-file-noselect phone-file)
-    (org-map-entries
-     (lambda ()
-       (when (org-entry-properties nil "CREATED")
-         (org-set-property
-          "REFILE_FILE" (abbreviate-file-name (identity phone-file)))
-         (when-let ((olp (org-get-outline-path)))
-           (org-set-property "REFILE_OLP" (string-join olp "/")))
-         (org-set-property
-          "REFILE_TIME" (format-time-string (org-time-stamp-format t t)))
-         (org-reverse-datetree-refile-to-file journal-file)
-         (setq org-map-continue-from (pos-bol)))))))
+  (org-map-entries
+   (lambda ()
+     (when (org-entry-properties nil "CREATED")
+       (org-set-property
+        "REFILE_FILE" (abbreviate-file-name (identity phone-file)))
+       (when-let ((olp (org-get-outline-path)))
+         (org-set-property "REFILE_OLP" (string-join olp "/")))
+       (org-set-property
+        "REFILE_TIME" (format-time-string (org-time-stamp-format t t)))
+       (org-reverse-datetree-refile-to-file journal-file)
+       (setq org-map-continue-from (pos-bol))))))
 
 (define-minor-mode quick-commit-mode nil
   :lighter "Quick"
