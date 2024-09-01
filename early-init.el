@@ -44,6 +44,10 @@
 (add-to-list 'default-frame-alist '(vertical-scroll-bars . nil))
 (add-to-list 'default-frame-alist '(internal-border-width . 12))
 
+;; Emacs PGTK performance optimization (important for corfu!)
+
+(setq pgtk-wait-for-event-timeout 0)
+
 (provide 'early-init)
 
 ;; early-init.el ends here
