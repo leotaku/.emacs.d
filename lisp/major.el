@@ -32,6 +32,9 @@
   (c-add-style "modern" '("gnu" (c-offsets-alist (innamespace . 0))))
   (c-add-style "wierdo" '("ellemtel" (c-basic-offset . 4))))
 
+(bk-block go-mode
+  :custom (go-ts-mode-indent-offset . 4))
+
 (bk-block* markdown-mode
   :custom
   (markdown-hide-urls . t))
