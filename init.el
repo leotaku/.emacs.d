@@ -91,7 +91,7 @@
 (bk-block setup-initial-buffer
   :requires emacs-lisp-mode
   :at-load
-  (setq initial-buffer-choice "~/scratch.txt")
+  (setq initial-buffer-choice (expand-file-name "~/scratch.txt"))
   (setq initial-major-mode 'emacs-lisp-mode))
 
 (unless (sd-access-unit 'default-target)
