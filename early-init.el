@@ -37,6 +37,12 @@
 (setq custom-file (locate-user-emacs-file "var/custom.el"))
 (load custom-file)
 
+;; Add the user-specific bin directory to exec-path and PATH settings
+
+(let ((path (expand-file-name "~/.local/bin")))
+  (setenv "PATH" (string-join (setq exec-path (cons path (delete path exec-path))) ":")))
+
+
 ;; Prevent the glimpse of un-styled Emacs by setting these early
 
 (add-to-list 'default-frame-alist '(tool-bar-lines . 0))
