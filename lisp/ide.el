@@ -38,7 +38,7 @@
   :at-load (setq eglot-stay-out-of '(company))
   :custom
   (eldoc-echo-area-use-multiline-p . nil)
-  (eglot-ignored-server-capabilities  . '(:inlayHintProvider))
+  (eglot-ignored-server-capabilities  . '(:inlayHintProvider :documentOnTypeFormattingProvider))
   :hook (prog-mode-hook . eglot-ensure)
   :bind ((:eglot-mode-map
           :package eglot
