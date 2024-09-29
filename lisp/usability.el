@@ -27,6 +27,13 @@
   (ispell-really-aspell . t)
   (ispell-silently-savep . t))
 
+(bk-block* ellama
+  :requires .llm-claude .no-littering
+  :custom
+  (ellama-provider . (make-llm-claude :key (auth-source-pick-first-password :host "api.anthropic.com")))
+  (ellama-sessions-directory . (no-littering-expand-var-file-name "ellama-sessions"))
+  (llm-warn-on-nonfree . nil))
+
 (bk-block* which-key
   :start which-key-mode)
 

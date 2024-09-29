@@ -56,6 +56,7 @@
         diredfl
         eat
         eglot
+        ellama
         envrc
         expand-region
         forge
