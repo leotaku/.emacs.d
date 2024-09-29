@@ -23,7 +23,8 @@
           ("RET" . nil)))
   :config
   (setf (alist-get 'child-frame-border-width corfu--frame-parameters) 0)
-  (add-hook 'completion-at-point-functions #'cape-dabbrev 100))
+  (add-hook 'completion-at-point-functions #'cape-dabbrev 100)
+  (setq cape-dabbrev-check-other-buffers nil))
 
 (bk-block envrc
   :requires .envrc
