@@ -42,7 +42,6 @@
 (let ((path (expand-file-name "~/.local/bin")))
   (setenv "PATH" (string-join (setq exec-path (cons path (delete path exec-path))) ":")))
 
-
 ;; Prevent the glimpse of un-styled Emacs by setting these early
 
 (add-to-list 'default-frame-alist '(tool-bar-lines . 0))
