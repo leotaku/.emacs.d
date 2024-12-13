@@ -70,9 +70,11 @@
          (error nil))))))
 
 (bk-block python-ide
-  :requires .eglot .aggressive-indent
+  :requires .eglot .aggressive-indent .apheleia
   :config
   (add-to-list 'aggressive-indent-dont-indent-if '(eq major-mode 'python-mode))
+  (setf (alist-get 'python-mode apheleia-mode-alist) '(ruff ruff-isort))
+  (setf (alist-get 'python-ts-mode apheleia-mode-alist) '(ruff ruff-isort))
   :config
   (setf (plist-get (default-value 'eglot-workspace-configuration) :pylsp)
         '(:plugins (;;
