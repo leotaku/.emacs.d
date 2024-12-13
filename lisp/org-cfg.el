@@ -10,6 +10,7 @@
   :bind (("C-x SPC" . org-agenda))
   :custom
   (org-adapt-indentation . nil)
+  (org-src-fontify-natively . t)
   (org-tags-column . 0)
   (org-edit-src-content-indentation . 0)
   (org-blank-before-new-entry
@@ -25,7 +26,10 @@
        (notifications-notify
         :title "Org mode message"
         :body notification
-        :timeout (* org-show-notification-timeout 1000)))))
+        :timeout (* org-show-notification-timeout 1000))))
+  :config
+  (setf (alist-get "go" org-src-lang-modes nil nil #'equal) 'go-ts)
+  (setf (alist-get "rust" org-src-lang-modes nil nil #'equal) 'rust-ts))
 
 (bk-block0 worf
   :requires .worf .theist-mode
