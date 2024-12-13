@@ -27,6 +27,9 @@
         (theist-mode
          :vc-backend Git
          :url "https://github.com/leotaku/theist-mode")
+        (leyline
+         :vc-backend Git
+         :url "https://github.com/leotaku/leyline")
         (ace-window
          :vc-backend Git
          :url "https://github.com/leotaku/ace-window")
