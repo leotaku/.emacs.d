@@ -24,7 +24,9 @@
   :config
   (setf (alist-get 'child-frame-border-width corfu--frame-parameters) 0)
   (add-hook 'completion-at-point-functions #'cape-dabbrev 100)
-  (setq cape-dabbrev-check-other-buffers nil))
+  (setq cape-dabbrev-check-other-buffers nil)
+  (add-hook 'multiple-cursors-mode-enabled-hook (lambda () (corfu-mode -1)))
+  (add-hook 'multiple-cursors-mode-disabled-hook (lambda () (corfu-mode 1))))
 
 (bk-block envrc
   :requires .envrc
@@ -49,7 +51,8 @@
   :config
   (set-face-bold 'eglot-highlight-symbol-face nil)
   (advice-add 'eglot--connect :around #'advice-eglot-connect)
-  (advice-add 'eglot-ensure :around #'advice-eglot-ensure))
+  (advice-add 'eglot-ensure :around #'advice-eglot-ensure)
+  (add-hook 'yas-keymap-disable-hook (lambda () completion-in-region-mode)))
 
 (defun advice-eglot-connect (fn &rest args)
   (if (eq this-command 'eglot)
