@@ -37,7 +37,7 @@
   :bind (("C-c f" . apheleia-format-buffer)))
 
 (bk-block eglot
-  :requires .eglot .yasnippet
+  :requires .eglot .yasnippet .eglot-booster
   :at-load (setq eglot-stay-out-of '(company))
   :custom
   (eldoc-echo-area-use-multiline-p . nil)
@@ -49,6 +49,8 @@
           ("C-c r" . eglot-rename)
           ("C-c a" . eglot-code-actions)))
   :config
+  (when (executable-find "emacs-lsp-booster")
+    (eglot-booster-mode 1))
   (set-face-bold 'eglot-highlight-symbol-face nil)
   (advice-add 'eglot--connect :around #'advice-eglot-connect)
   (advice-add 'eglot-ensure :around #'advice-eglot-ensure)
