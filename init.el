@@ -52,8 +52,8 @@
 
 (bk-block window-management
   :requires .ace-window
-  :bind (("C-x q" . split-window-horizontally)
-         ("C-x w" . split-window-vertically)
+  :bind (("C-x q" . split-window-left)
+         ("C-x w" . split-window-above)
          ("C-x o" . ace-window)
          ("C-x j" . delete-other-windows)
          ("C-x d" . kill-buffer)
@@ -61,6 +61,16 @@
   :custom (aw-scope . 'frame)
   :config
   (advice-add 'keyboard-quit :around #'advice-keyboard-quit))
+
+(defun split-window-left ()
+  (interactive)
+  (split-window-right)
+  (other-window 1))
+
+(defun split-window-above ()
+  (interactive)
+  (split-window-below)
+  (other-window 1))
 
 (defun advice-keyboard-quit (func)
   (let ((minibuffer (active-minibuffer-window)))
