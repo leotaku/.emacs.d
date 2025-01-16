@@ -82,14 +82,6 @@
   (setf (car counsel-projectile-switch-project-action) 4)
   (projectile-load-known-projects))
 
-(bk-block* amx
-  :start amx-mode
-  :custom
-  (amx-map . nil)
-  (amx-ignored-command-matchers
-   . (list (lambda (it) (not (commandp it)))))
-  (amx-show-key-bindings . nil))
-
 (bk-block* undo-fu-session
   :requires .undo-fu-session .no-littering
   :start global-undo-fu-session-mode

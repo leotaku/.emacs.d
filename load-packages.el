@@ -45,7 +45,6 @@
          :url "https://github.com/magnars/multiple-cursors.el")
         ace-link
         aggressive-indent
-        amx
         apheleia
         auctex
         avy
