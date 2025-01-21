@@ -28,10 +28,29 @@
   (ispell-silently-savep . t))
 
 (bk-block llm-support
-  :requires .ellama .leyline .llm-claude .no-littering
+  :requires .ellama .leyline .llm-claude .llm-openai .no-littering
   :custom
-  (ellama-provider . (make-llm-claude :key (auth-source-pick-first-password :host "api.anthropic.com" :chat-model "claude-3-5-sonnet-20241022")))
-  (leyline-provider . (make-llm-claude :key (auth-source-pick-first-password :host "api.anthropic.com" :chat-model "claude-3-5-sonnet-20241022")))
+  (ellama-providers
+   . `(("sonnet"
+        . ,(make-llm-claude
+            :key (auth-source-pick-first-password :host "api.anthropic.com")
+            :chat-model "claude-3-5-sonnet-20241022"))
+       ("o1-mini"
+        . ,(make-llm-openai
+            :key (auth-source-pick-first-password :host "api.openai.com")
+            :chat-model "o1-mini"))
+       ("deepseek-reasoner"
+        . ,(make-llm-openai-compatible
+            :url "https://api.deepseek.com"
+            :key (auth-source-pick-first-password :host "api.deepseek.com")
+            :chat-model "deepseek-reasoner"))
+       ("deepseek-chat"
+        . ,(make-llm-openai-compatible
+            :url "https://api.deepseek.com"
+            :key (auth-source-pick-first-password :host "api.deepseek.com")
+            :chat-model "deepseek-chat"))))
+  (ellama-provider . (alist-get "sonnet" ellama-providers nil nil #'equal))
+  (leyline-provider . (alist-get "deepseek-reasoner" ellama-providers nil nil #'equal))
   (ellama-sessions-directory . (no-littering-expand-var-file-name "ellama-sessions"))
   (llm-warn-on-nonfree . nil))
 
