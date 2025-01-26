@@ -28,9 +28,9 @@
   (ispell-silently-savep . t))
 
 (bk-block llm-support
-  :requires .ellama .leyline .llm-claude .llm-openai .no-littering
+  :requires .leyline-assistant .leyline-chat .llm-claude .llm-openai .llm-ollama
   :custom
-  (ellama-providers
+  (leyline-providers
    . `(("sonnet"
         . ,(make-llm-claude
             :key (auth-source-pick-first-password :host "api.anthropic.com")
@@ -49,9 +49,13 @@
             :url "https://api.deepseek.com"
             :key (auth-source-pick-first-password :host "api.deepseek.com")
             :chat-model "deepseek-chat"))))
-  (ellama-provider . (alist-get "sonnet" ellama-providers nil nil #'equal))
-  (leyline-provider . (alist-get "deepseek-reasoner" ellama-providers nil nil #'equal))
-  (ellama-sessions-directory . (no-littering-expand-var-file-name "ellama-sessions"))
+  (leyline-configurations
+   . `(("terse" . (:context "Answer using at most one paragraph of text! If you are asked for explicit code examples, those may be longer." :temperature 0.35))
+       ("chat" . (:context "You are a helpful assistant. Please act accordingly!" :temperature 0.35))
+       ("coding" . (:context "You are a helpful coding assistant. Please act accordingly!" :temperature 0.00))
+       ("human" . (:context "You are the users friend! Help him as best as you can, while acting like a human who is being contacted by text." :temperature 1.00))
+       ("sentiment" . (:context "You are a classification algorithm. Always answer the given question using only one phrase." :temperature 0.00))))
+  :custom
   (llm-warn-on-nonfree . nil))
 
 (bk-block* which-key

@@ -59,7 +59,6 @@
         eat
         eglot
         eglot-booster
-        ellama
         envrc
         expand-region
         forge
