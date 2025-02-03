@@ -38,7 +38,9 @@
 (bk-block* markdown-mode
   :custom
   (markdown-hide-urls . t)
-  (markdown-fontify-code-blocks-natively . t))
+  (markdown-fontify-code-blocks-natively . t)
+  :config
+  (face-spec-reset-face 'markdown-code-face))
 
 (bk-block* web-mode
   :bind ((:web-mode-map
