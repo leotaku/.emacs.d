@@ -52,7 +52,6 @@
         circe
         corfu
         counsel
-        counsel-projectile
         deadgrep
         dired-filter
         diredfl
@@ -77,7 +76,6 @@
         no-littering
         org-reverse-datetree
         pcre2el
-        projectile
         rainbow-mode
         swiper
         terraform-mode

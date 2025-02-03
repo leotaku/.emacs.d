@@ -87,23 +87,15 @@
   :bind ((:ivy-mode-map
           ([remap yank-pop] . counsel-yank-pop))))
 
-(bk-block projectile
-  :requires .projectile .counsel-projectile .no-littering
-  :bind (("C-x p" . projectile-command-map)
-         (:projectile-command-map
-          :package projectile
-          ("s d" . counsel-rg)))
+(bk-block* project
+  :bind* (("C-x p" . project-prefix-map))
+  :bind (:project-prefix-map
+         :package project
+         ("s" . counsel-rg))
   :custom
-  (projectile-completion-system . 'ivy)
-  (projectile-project-root-files-functions . '(projectile-root-top-down))
-  (projectile-project-root-files
-   . '(".git" ".bzr" ".svn" ".hg" "_darcs" ".projectile"))
-  (projectile-known-projects-file
-   . (no-littering-expand-var-file-name "projectile-bookmarks.eld"))
-  :start projectile-mode counsel-projectile-mode
-  :config
-  (setf (car counsel-projectile-switch-project-action) 4)
-  (projectile-load-known-projects))
+  (project-switch-commands . #'project-dired)
+  (project-vc-extra-root-markers . '(".projectile")))
+
 
 (bk-block* undo-fu-session
   :requires .undo-fu-session .no-littering
