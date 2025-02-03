@@ -28,7 +28,7 @@
   (ispell-silently-savep . t))
 
 (bk-block llm-support
-  :requires .leyline-assistant .leyline-chat .llm-claude .llm-openai .llm-ollama
+  :requires .leyline-assistant .leyline-chat .llm-claude .llm-openai .llm-ollama .markdown-mode
   :custom
   (leyline-providers
    . `(("sonnet"
@@ -56,6 +56,7 @@
        ("human" . (:context "You are the users friend! Help him as best as you can, while acting like a human who is being contacted by text." :temperature 1.00))
        ("sentiment" . (:context "You are a classification algorithm. Always answer the given question using only one phrase." :temperature 0.00))))
   :custom
+  (leyline-chat-initial-major-mode . 'markdown-mode)
   (llm-warn-on-nonfree . nil))
 
 (bk-block* which-key
