@@ -27,7 +27,7 @@
   :load "lisp/keytheme.el"
   :load "lisp/ide.el"
   :load "lisp/major.el"
-  :load "lisp/fast-mx.el"
+  :load "lisp/simple-mx.el"
   :load "lisp/org-cfg.el"
   :load "lisp/special.el")
 
