@@ -149,6 +149,8 @@
 
 (bk-block deadgrep
   :requires .deadgrep
+  :bind ((:deadgrep-mode-map
+          ("e" . deadgrep-edit-mode)))
   :custom
   (deadgrep-project-root-function
    . (lambda () default-directory))
