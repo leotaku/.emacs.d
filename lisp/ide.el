@@ -51,6 +51,10 @@
   :config
   (when (executable-find "emacs-lsp-booster")
     (eglot-booster-mode 1))
+  (setf (alist-get 'js-mode
+                   eglot-server-programs nil nil
+                   (lambda (elem it) (seq-contains-p (ensure-list (car-safe elem)) it)))
+        '("vtsls" "--stdio"))
   (set-face-bold 'eglot-highlight-symbol-face nil)
   (advice-add 'eglot--connect :around #'advice-eglot-connect)
   (advice-add 'eglot-ensure :around #'advice-eglot-ensure)
