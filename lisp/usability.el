@@ -28,7 +28,7 @@
   (ispell-silently-savep . t))
 
 (bk-block llm-support
-  :requires .leyline-assistant .leyline-chat .llm-claude .llm-openai .llm-ollama .markdown-mode
+  :requires .leyline-assistant .leyline-chat .llm-claude .llm-openai .llm-gemini .llm-ollama .markdown-mode
   :custom
   (leyline-providers
    . `(("sonnet"
@@ -39,6 +39,11 @@
         . ,(make-llm-claude
             :key (auth-source-pick-first-password :host "api.anthropic.com")
             :chat-model "claude-3-5-sonnet-20241022"))
+       ("flash-pro"
+        . ,(make-llm-gemini
+            :key (auth-source-pick-first-password :host "aistudio.google.com")
+            :chat-model "gemini-2.5-pro-exp-03-25"
+            :embedding-model "embedding-001"))
        ("o1-mini"
         . ,(make-llm-openai
             :key (auth-source-pick-first-password :host "api.openai.com")
@@ -48,6 +53,16 @@
             :url "https://api.deepseek.com"
             :key (auth-source-pick-first-password :host "api.deepseek.com")
             :chat-model "deepseek-reasoner"))
+       ("flash-thinking"
+        . ,(make-llm-gemini
+            :key (auth-source-pick-first-password :host "aistudio.google.com")
+            :chat-model "gemini-2.0-flash-thinking-exp"
+            :embedding-model "embedding-001"))
+       ("flash"
+        . ,(make-llm-gemini
+            :key (auth-source-pick-first-password :host "aistudio.google.com")
+            :chat-model "gemini-2.0-flash"
+            :embedding-model "embedding-001"))
        ("deepseek-chat"
         . ,(make-llm-openai-compatible
             :url "https://api.deepseek.com"
