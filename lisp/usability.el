@@ -34,6 +34,10 @@
    . `(("sonnet"
         . ,(make-llm-claude
             :key (auth-source-pick-first-password :host "api.anthropic.com")
+            :chat-model "claude-3-7-sonnet-latest"))
+       ("sonnet-3.5"
+        . ,(make-llm-claude
+            :key (auth-source-pick-first-password :host "api.anthropic.com")
             :chat-model "claude-3-5-sonnet-20241022"))
        ("o1-mini"
         . ,(make-llm-openai
