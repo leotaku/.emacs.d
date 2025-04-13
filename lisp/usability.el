@@ -35,10 +35,6 @@
         . ,(make-llm-claude
             :key (auth-source-pick-first-password :host "api.anthropic.com")
             :chat-model "claude-3-7-sonnet-latest"))
-       ("sonnet-3.5"
-        . ,(make-llm-claude
-            :key (auth-source-pick-first-password :host "api.anthropic.com")
-            :chat-model "claude-3-5-sonnet-20241022"))
        ("flash-pro"
         . ,(make-llm-gemini
             :key (auth-source-pick-first-password :host "aistudio.google.com")
@@ -52,22 +48,7 @@
         . ,(make-llm-openai-compatible
             :url "https://api.deepseek.com"
             :key (auth-source-pick-first-password :host "api.deepseek.com")
-            :chat-model "deepseek-reasoner"))
-       ("flash-thinking"
-        . ,(make-llm-gemini
-            :key (auth-source-pick-first-password :host "aistudio.google.com")
-            :chat-model "gemini-2.0-flash-thinking-exp"
-            :embedding-model "embedding-001"))
-       ("flash"
-        . ,(make-llm-gemini
-            :key (auth-source-pick-first-password :host "aistudio.google.com")
-            :chat-model "gemini-2.0-flash"
-            :embedding-model "embedding-001"))
-       ("deepseek-chat"
-        . ,(make-llm-openai-compatible
-            :url "https://api.deepseek.com"
-            :key (auth-source-pick-first-password :host "api.deepseek.com")
-            :chat-model "deepseek-chat"))))
+            :chat-model "deepseek-reasoner"))))
   (leyline-configurations
    . `(("terse" . (:context "Answer using at most one paragraph of text! If you are asked for explicit code examples, those may be longer." :temperature 0.35))
        ("chat" . (:context "You are a helpful assistant. Please act accordingly!" :temperature 0.35))
