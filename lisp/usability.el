@@ -40,10 +40,10 @@
             :key (auth-source-pick-first-password :host "aistudio.google.com")
             :chat-model "gemini-2.5-pro-exp-03-25"
             :embedding-model "embedding-001"))
-       ("o1-mini"
+       ("o3-mini"
         . ,(make-llm-openai
             :key (auth-source-pick-first-password :host "api.openai.com")
-            :chat-model "o1-mini"))
+            :chat-model "o3-mini"))
        ("deepseek-reasoner"
         . ,(make-llm-openai-compatible
             :url "https://api.deepseek.com"
