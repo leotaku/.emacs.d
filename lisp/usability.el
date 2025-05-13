@@ -97,7 +97,6 @@
   (project-switch-commands . #'project-dired)
   (project-vc-extra-root-markers . '(".projectile")))
 
-
 (bk-block* undo-fu-session
   :requires .undo-fu-session .no-littering
   :start global-undo-fu-session-mode
