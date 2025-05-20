@@ -34,7 +34,11 @@
    . `(("sonnet"
         . ,(make-llm-claude
             :key (auth-source-pick-first-password :host "api.anthropic.com")
-            :chat-model "claude-3-7-sonnet-latest"))
+            :chat-model "claude-4-sonnet-20250514"))
+       ("opus"
+        . ,(make-llm-claude
+            :key (auth-source-pick-first-password :host "api.anthropic.com")
+            :chat-model "claude-4-opus-20250514"))
        ("flash-pro"
         . ,(make-llm-gemini
             :key (auth-source-pick-first-password :host "aistudio.google.com")
