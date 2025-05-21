@@ -42,18 +42,6 @@
   :config
   (face-spec-reset-face 'markdown-code-face))
 
-(bk-block* web-mode
-  :bind ((:web-mode-map
-          :package web-mode
-          ("C-c C-f" . nil)))
-  :mode "\\.html?\\'"
-  :custom
-  (web-mode-code-indent-offset . 2)
-  (web-mode-markup-indent-offset . 2)
-  (web-mode-css-indent-offset . 2)
-  (web-mode-script-padding . 2)
-  (web-mode-style-padding . 2))
-
 (bk-block js-mode
   :requires .js
   :mode "\\.[cm]js\\'"

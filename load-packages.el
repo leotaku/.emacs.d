@@ -82,7 +82,6 @@
         undo-fu-session
         visual-fill-column
         visual-regexp
-        web-mode
         wgrep
         which-key
         yasnippet))
