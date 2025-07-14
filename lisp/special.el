@@ -127,6 +127,7 @@
        (:maildir "/personal/inbox"   :key ?p)
        (:maildir "/website/inbox"    :key ?w)
        (:maildir "/university/inbox" :key ?u)
+       (:maildir "/phyto/inbox"      :key ?o)
        (:maildir "/outlook/inbox"    :key ?s)))
   (mu4e-bookmarks
    . '((:name "Today's messages"   :key ?t :query "date:today..now AND NOT flag:draft")
