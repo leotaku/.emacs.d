@@ -52,10 +52,10 @@
   (org-capture-templates
    . '(("w" "Capture templates using org-protocol")
        ("ww" "web-capture" item (file+headline things-file "Capture")
-        "+ [[%:link][%(string-trim-right \"%:description\" \"\s*[-–|].*\")]]"
+        "+ [[%:link][%(string-trim-right \"%:description\" \"\s*\\( [-–|] \\).*\")]]"
         :immediate-finish t)
        ("wc" "web-context" item (file+headline things-file "Capture")
-        "+ [[%:link][%(string-trim-right \"%:description\" \"\s*[-–|].*\")]] :: %i"
+        "+ [[%:link][%(string-trim-right \"%:description\" \"\s*\\( [-–|] \\).*\")]] :: %i"
         :immediate-finish t)))
   :config
   (add-hook 'org-capture-mode-hook #'motion-insert)
