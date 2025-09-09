@@ -16,6 +16,8 @@
           ("v" . motion-mark-cycle)
           ("x" . theist-C-x)
           ("C-k" . magit-discard)))
+  :custom
+  (magit-diff-visit-prefer-worktree . t)
   :config
   (setq-mode-local
    gitignore-mode
