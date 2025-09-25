@@ -10,14 +10,17 @@
   :bind (("C-x g" . magit-status)
          (:magit-status-mode-map
           :package magit
-          ("<return>" . magit-diff-visit-file-other-window)
           ("j" . magit-next-line)
           ("k" . magit-previous-line)
           ("v" . motion-mark-cycle)
           ("x" . theist-C-x)
-          ("C-k" . magit-discard)))
-  :custom
-  (magit-diff-visit-prefer-worktree . t)
+          ("C-k" . magit-discard))
+         (:magit-diff-section-map
+          :package magit
+          ([remap magit-visit-thing]
+           . magit-diff-visit-file-other-window)
+          ([remap magit-diff-visit-worktree-file]
+           . magit-diff-visit-worktree-file-other-window)))
   :config
   (setq-mode-local
    gitignore-mode
