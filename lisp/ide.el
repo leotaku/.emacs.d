@@ -40,7 +40,7 @@
   :requires .eglot .yasnippet .eglot-booster
   :at-load (setq eglot-stay-out-of '(company))
   :custom
-  (eldoc-echo-area-use-multiline-p . nil)
+  (eldoc-echo-area-use-multiline-p . t)
   (eglot-ignored-server-capabilities
    . '(:inlayHintProvider :documentOnTypeFormattingProvider))
   :hook (prog-mode-hook . eglot-ensure)
