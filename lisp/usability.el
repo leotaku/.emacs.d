@@ -44,10 +44,14 @@
             :key (auth-source-pick-first-password :host "aistudio.google.com")
             :chat-model "gemini-2.5-pro-preview-03-25"
             :embedding-model "embedding-001"))
-       ("o4-mini"
+       ("gpt5"
         . ,(make-llm-openai
             :key (auth-source-pick-first-password :host "api.openai.com")
-            :chat-model "o4-mini"))
+            :chat-model "gpt-5.1"))
+       ("codex"
+        . ,(make-llm-openai
+            :key (auth-source-pick-first-password :host "api.openai.com")
+            :chat-model "gpt-5.1-codex-max"))
        ("deepseek-reasoner"
         . ,(make-llm-openai-compatible
             :url "https://api.deepseek.com"
