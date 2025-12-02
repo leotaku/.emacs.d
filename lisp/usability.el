@@ -34,15 +34,15 @@
    . `(("sonnet"
         . ,(make-llm-claude
             :key (auth-source-pick-first-password :host "api.anthropic.com")
-            :chat-model "claude-4-sonnet-20250514"))
+            :chat-model "claude-sonnet-4-5"))
        ("opus"
         . ,(make-llm-claude
             :key (auth-source-pick-first-password :host "api.anthropic.com")
-            :chat-model "claude-4-opus-20250514"))
-       ("flash-pro"
+            :chat-model "claude-opus-4-5"))
+       ("gemini-pro"
         . ,(make-llm-gemini
             :key (auth-source-pick-first-password :host "aistudio.google.com")
-            :chat-model "gemini-2.5-pro-preview-03-25"
+            :chat-model "gemini-3-pro-preview"
             :embedding-model "embedding-001"))
        ("gpt5"
         . ,(make-llm-openai
