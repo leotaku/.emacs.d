@@ -49,12 +49,23 @@
           ("C-c r" . eglot-rename)
           ("C-c a" . eglot-code-actions)))
   :config
+  (add-to-list
+   'eglot-server-programs
+   '((python-mode python-ts-mode) . ("zubanls")))
+  (add-to-list
+   'eglot-server-programs
+   '((php-mode php-ts-mode) . ("intelephense" "--stdio")))
+  (add-to-list
+   'eglot-server-programs
+   '(((js-mode :language-id "javascript")
+      (js-ts-mode :language-id "javascript")
+      (tsx-ts-mode :language-id "typescriptreact")
+      (typescript-ts-mode :language-id "typescript")
+      (typescript-mode :language-id "typescript"))
+     . ("vtsls" "--stdio")))
+  :config
   (when (executable-find "emacs-lsp-booster")
     (eglot-booster-mode 1))
-  (setf (alist-get 'js-mode
-                   eglot-server-programs nil nil
-                   (lambda (elem it) (seq-contains-p (ensure-list (car-safe elem)) it)))
-        '("vtsls" "--stdio"))
   (set-face-bold 'eglot-highlight-symbol-face nil)
   (advice-add 'eglot--connect :around #'advice-eglot-connect)
   (advice-add 'eglot-ensure :around #'advice-eglot-ensure)
