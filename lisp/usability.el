@@ -31,38 +31,27 @@
   :requires .leyline-assistant .leyline-chat .llm-claude .llm-openai .llm-gemini .llm-ollama .markdown-mode
   :custom
   (leyline-providers
-   . `(("sonnet"
+   . `(("opus"
         . ,(make-llm-claude
             :key (auth-source-pick-first-password :host "api.anthropic.com")
-            :chat-model "claude-sonnet-4-5"))
-       ("opus"
+            :chat-model "claude-opus-4-8"))
+       ("sonnet"
         . ,(make-llm-claude
             :key (auth-source-pick-first-password :host "api.anthropic.com")
-            :chat-model "claude-opus-4-5"))
-       ("gemini-pro"
-        . ,(make-llm-gemini
-            :key (auth-source-pick-first-password :host "aistudio.google.com")
-            :chat-model "gemini-3-pro-preview"
-            :embedding-model "embedding-001"))
-       ("gpt5"
+            :chat-model "claude-sonnet-4-6"))
+       ("gpt"
         . ,(make-llm-openai
             :key (auth-source-pick-first-password :host "api.openai.com")
-            :chat-model "gpt-5.1"))
-       ("codex"
-        . ,(make-llm-openai
-            :key (auth-source-pick-first-password :host "api.openai.com")
-            :chat-model "gpt-5.1-codex-max"))
-       ("deepseek-reasoner"
-        . ,(make-llm-openai-compatible
-            :url "https://api.deepseek.com"
-            :key (auth-source-pick-first-password :host "api.deepseek.com")
-            :chat-model "deepseek-reasoner"))))
+            :chat-model "gpt-5.5"))))
   (leyline-configurations
-   . `(("terse" . (:context "Answer using at most one paragraph of text! If you are asked for explicit code examples, those may be longer." :temperature 0.35))
-       ("chat" . (:context "You are a helpful assistant. Please act accordingly!" :temperature 0.35))
-       ("coding" . (:context "You are a helpful coding assistant. Please act accordingly!" :temperature 0.00))
-       ("human" . (:context "You are the users friend! Help him as best as you can, while acting like a human who is being contacted by text." :temperature 1.00))
-       ("sentiment" . (:context "You are a classification algorithm. Always answer the given question using only one phrase." :temperature 0.00))))
+   . `(("terse" . (:context "Answer using at most one paragraph of text! If you are asked for explicit code examples, those may be longer."))
+       ("chat" . (:context "You are a helpful assistant. Please act accordingly!"))
+       ("coding" . (:context "You are a helpful coding assistant. Please act accordingly!"))
+       ("fluid" . (:context "You are a chat interface that adapts its responses to the current tone of conversation. You do not give long-winded explanations."))
+       ("human" . (:context "You are the users friend! Help him as best as you can, while acting like a human who is being contacted by text."))
+       ("sentiment" . (:context "You are a classification algorithm. Always answer the given question using only one phrase."))
+       ("title" . (:context "You are a program that generates titles for chat windows. Describe the given prompt in 1-3 lowercase words."))
+       ("empty" . (:non-standard-params nil))))
   :custom
   (leyline-chat-initial-major-mode . 'markdown-mode)
   (llm-warn-on-nonfree . nil))
