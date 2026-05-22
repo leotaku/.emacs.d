@@ -94,13 +94,7 @@
   :config
   (add-to-list 'aggressive-indent-dont-indent-if '(eq major-mode 'python-mode))
   (setf (alist-get 'python-mode apheleia-mode-alist) '(ruff ruff-isort))
-  (setf (alist-get 'python-ts-mode apheleia-mode-alist) '(ruff ruff-isort))
-  :config
-  (setf (plist-get (default-value 'eglot-workspace-configuration) :pylsp)
-        '(:plugins (;;
-                    :jedi_completion (:include_params t :fuzzy t)
-                    :pylint (:enabled :json-false)
-                    :pycodestyle (:enabled :json-false)))))
+  (setf (alist-get 'python-ts-mode apheleia-mode-alist) '(ruff ruff-isort)))
 
 (keymap-global-set "<remap> <delete-backward-char>" #'backward-delete-indentation)
 (keymap-global-set "M-<backspace>" #'backward-delete-char-untabify)
