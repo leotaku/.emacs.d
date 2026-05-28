@@ -30,20 +30,11 @@
         (leyline
          :vc-backend Git
          :url "https://github.com/leotaku/leyline")
-        (ace-window
-         :vc-backend Git
-         :url "https://github.com/leotaku/ace-window")
         (doom-themes
          :vc-backend Git
          :url "https://github.com/leotaku/emacs-doom-themes")
-        (worf
-         :vc-backend Git
-         :url "https://github.com/leotaku/worf"
-         :branch "patch-1")
-        (multiple-cursors
-         :vc-backend Git
-         :url "https://github.com/magnars/multiple-cursors.el")
         ace-link
+        ace-window
         aggressive-indent
         apheleia
         auctex
@@ -72,6 +63,7 @@
         minions
         modalka
         moody
+        multiple-cursors
         nix-mode
         no-littering
         org-reverse-datetree
@@ -84,6 +76,7 @@
         visual-regexp
         wgrep
         which-key
+        worf
         yasnippet))
 
 (setq package-vc-selected-packages

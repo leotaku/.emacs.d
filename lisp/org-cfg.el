@@ -44,7 +44,9 @@
   (let ((map worf-mode-map))
     (worf-define-key map "x" #'theist-C-x)
     (worf-define-key map "z" #'theist-C-c)
-    (worf-define-key map "P" #'org-priority)))
+    (worf-define-key map "P" #'org-priority))
+  :at-load
+  (load-library "worf.el"))
 
 (bk-block0 org-capture
   :requires local-files .org-capture .org-protocol .org-reverse-datetree
