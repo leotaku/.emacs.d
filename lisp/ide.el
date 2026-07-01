@@ -56,7 +56,7 @@
   :config
   (add-to-list
    'eglot-server-programs
-   '((python-mode python-ts-mode) . ("zubanls")))
+   '((python-mode python-ts-mode) . ("zuban" "server")))
   (add-to-list
    'eglot-server-programs
    '((php-mode php-ts-mode) . ("intelephense" "--stdio")))
