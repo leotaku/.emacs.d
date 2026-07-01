@@ -42,6 +42,46 @@
   :config
   (face-spec-reset-face 'markdown-code-face))
 
+(bk-block html-mode
+  :config
+  (add-to-list 'major-mode-remap-alist '(html-mode . html-ts-mode))
+  (add-to-list 'major-mode-remap-alist '(html-ts-mode . html-ts-mode))
+  (add-hook
+   'html-ts-mode-hook
+   (lambda ()
+     (setq-local treesit-range-settings
+                 (treesit-range-rules
+                  :embed 'javascript
+                  :host 'html
+                  '((script_element (raw_text) @capture))
+                  :embed 'css
+                  :host 'html
+                  '((style_element (raw_text) @capture))))
+     (setq-local treesit-language-at-point-function
+                 (lambda (pos)
+                   (let* ((node (treesit-node-at pos 'html))
+                          (parent (treesit-node-parent node)))
+                     (cond
+                      ((and node parent
+                            (equal (treesit-node-type node) "raw_text")
+                            (equal (treesit-node-type parent) "script_element"))
+                       'javascript)
+                      ((and node parent
+                            (equal (treesit-node-type node) "raw_text")
+                            (equal (treesit-node-type parent) "style_element"))
+                       'css)
+                      (t 'html)))))
+     (setq-local treesit-font-lock-settings
+                 (append
+                  html-ts-mode--font-lock-settings
+                  js--treesit-font-lock-settings
+                  css--treesit-settings))
+     (setq-local treesit-simple-indent-rules
+                 (append
+                  html-ts-mode--indent-rules
+                  js--treesit-indent-rules
+                  css--treesit-indent-rules)))))
+
 (bk-block js-mode
   :requires .js
   :mode "\\.[cm]js\\'"
