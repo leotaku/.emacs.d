@@ -34,7 +34,12 @@
 
 (bk-block apheleia
   :requires .apheleia
-  :bind (("C-c f" . apheleia-format-buffer)))
+  :bind (("C-c f" . apheleia-format-buffer))
+  :custom
+  (apheleia-formatters-respect-indent-level . nil)
+  :config
+  (setf (alist-get 'python-mode apheleia-mode-alist) '(ruff ruff-isort))
+  (setf (alist-get 'python-ts-mode apheleia-mode-alist) '(ruff ruff-isort)))
 
 (bk-block eglot
   :requires .eglot .yasnippet .eglot-booster
@@ -89,15 +94,13 @@
                 (apply fn args))
          (error nil))))))
 
-(bk-block python-ide
-  :requires .eglot .aggressive-indent .apheleia
+(bk-block aggressive-indent
+  :requires .aggressive-indent
   :config
   (add-to-list 'aggressive-indent-dont-indent-if '(eq major-mode 'python-mode))
-  (setf (alist-get 'python-mode apheleia-mode-alist) '(ruff ruff-isort))
-  (setf (alist-get 'python-ts-mode apheleia-mode-alist) '(ruff ruff-isort)))
-
-(keymap-global-set "<remap> <delete-backward-char>" #'backward-delete-indentation)
-(keymap-global-set "M-<backspace>" #'backward-delete-char-untabify)
+  :config
+  (keymap-global-set "<remap> <delete-backward-char>" #'backward-delete-indentation)
+  (keymap-global-set "M-<backspace>" #'backward-delete-char-untabify))
 
 (defun backward-delete-indentation ()
   (interactive)
