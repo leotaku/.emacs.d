@@ -56,6 +56,9 @@
   :config
   (add-to-list
    'eglot-server-programs
+   '(typst-ts-mode . ("tinymist")))
+  (add-to-list
+   'eglot-server-programs
    '((python-mode python-ts-mode) . ("zuban" "server")))
   (add-to-list
    'eglot-server-programs
@@ -74,7 +77,14 @@
   (set-face-bold 'eglot-highlight-symbol-face nil)
   (advice-add 'eglot--connect :around #'advice-eglot-connect)
   (advice-add 'eglot-ensure :around #'advice-eglot-ensure)
-  (add-hook 'yas-keymap-disable-hook (lambda () completion-in-region-mode)))
+  (add-hook 'yas-keymap-disable-hook (lambda () completion-in-region-mode))
+  :config
+  (advice-add
+   'xref-backend-definitions :around
+   (lambda (fun &rest args) (or (apply fun args) (save-excursion (backward-char) (apply fun args)))))
+  (advice-add
+   'xref-backend-references :around
+   (lambda (fun &rest args) (or (apply fun args) (save-excursion (backward-char) (apply fun args))))))
 
 (defun advice-eglot-connect (fn &rest args)
   (if (eq this-command 'eglot)
