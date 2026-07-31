@@ -31,18 +31,30 @@
   :requires .leyline-assistant .leyline-chat .llm-claude .llm-openai .llm-gemini .llm-ollama .markdown-mode
   :custom
   (leyline-providers
-   . `(("opus"
+   . `(("fable"
         . ,(make-llm-claude
             :key (auth-source-pick-first-password :host "api.anthropic.com")
-            :chat-model "claude-opus-4-8"))
+            :chat-model "claude-fable-5"))
+       ("opus"
+        . ,(make-llm-claude
+            :key (auth-source-pick-first-password :host "api.anthropic.com")
+            :chat-model "claude-opus-5"))
        ("sonnet"
         . ,(make-llm-claude
             :key (auth-source-pick-first-password :host "api.anthropic.com")
-            :chat-model "claude-sonnet-4-6"))
-       ("gpt"
+            :chat-model "claude-sonnet-5"))
+       ("sol"
         . ,(make-llm-openai
             :key (auth-source-pick-first-password :host "api.openai.com")
-            :chat-model "gpt-5.5"))))
+            :chat-model "gpt-5.6-sol"))
+       ("terra"
+        . ,(make-llm-openai
+            :key (auth-source-pick-first-password :host "api.openai.com")
+            :chat-model "gpt-5.6-terra"))
+       ("luna"
+        . ,(make-llm-openai
+            :key (auth-source-pick-first-password :host "api.openai.com")
+            :chat-model "gpt-5.6-luna"))))
   (leyline-configurations
    . `(("terse" . (:context "Answer using at most one paragraph of text! If you are asked for explicit code examples, those may be longer."))
        ("chat" . (:context "You are a helpful assistant. Please act accordingly!"))
