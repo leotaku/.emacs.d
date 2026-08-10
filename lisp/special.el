@@ -181,44 +181,4 @@
   (eat-kill-buffer-on-exit . t)
   (eat-shell-prompt-annotation-position . 'right-margin))
 
-(bk-block circe
-  :requires .circe .circe-color-nicks .auth-source
-  :hook
-  (circe-mode-hook . visual-line-mode)
-  :bind ((:lui-mode-map
-          :package lui
-          ("<up>" . lui-previous-input)
-          ("<down>" . lui-next-input)))
-  :custom
-  (circe-reduce-lurker-spam . t)
-  (circe-network-defaults . nil)
-  (circe-server-buffer-name . "{network}")
-  (circe-znc-password . (auth-source-pick-first-password :user "leotaku^znc"))
-  (circe-network-options
-   . `(("libera"
-        :host "raw.le0.gs"
-        :use-tls t
-        :port 6697
-        :user "leotaku/libera"
-        :pass ,circe-znc-password)
-       ("irchighway"
-        :host "raw.le0.gs"
-        :use-tls t
-        :port 6697
-        :user "leotaku/irchighway"
-        :pass ,circe-znc-password)))
-  :config
-  (enable-circe-color-nicks)
-  (advice-add 'lui-send-input :around #'advice-lui-send-input))
-
-(defun circe-command-EXIT (&optional ignored)
-  "Exit the current circe buffer."
-  (interactive)
-  (kill-buffer))
-
-(defun advice-lui-send-input (fun &rest args)
-  (if (< (point) lui-input-marker)
-      (goto-char lui-input-marker)
-    (apply fun args)))
-
 ;;; special.el ends here

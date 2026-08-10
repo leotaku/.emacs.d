@@ -27,13 +27,12 @@
    (set-face-attribute 'icon-button nil :inherit 'button :box t)))
 
 (bk-block mode-line
-  :requires .moody .minions .tracking
+  :requires .moody .minions
   :custom
   (moody-mode-line-height . 35)
   (x-underline-at-descent-line . t)
   (minions-mode-line-lighter . ";-")
   :config
-  (tracking-mode 1)
   (moody-replace-mode-line-buffer-identification)
   (moody-replace-element
    '(vc-mode vc-mode)

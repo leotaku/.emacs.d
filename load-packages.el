@@ -40,7 +40,6 @@
         auctex
         avy
         cape
-        circe
         corfu
         counsel
         deadgrep
