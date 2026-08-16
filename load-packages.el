@@ -69,13 +69,15 @@
         rainbow-mode
         swiper
         terraform-mode
+        typst-ts-mode
         undo-fu-session
         visual-fill-column
         visual-regexp
         wgrep
         which-key
         worf
-        yasnippet))
+        yasnippet
+        zig-ts-mode))
 
 (setq package-vc-selected-packages
       (seq-filter
