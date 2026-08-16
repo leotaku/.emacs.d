@@ -42,7 +42,7 @@
   (setf (alist-get 'python-ts-mode apheleia-mode-alist) '(ruff ruff-isort)))
 
 (bk-block eglot
-  :requires .eglot .yasnippet .eglot-booster
+  :requires .eglot .yasnippet
   :at-load (setq eglot-stay-out-of '(company))
   :custom
   (eldoc-echo-area-use-multiline-p . t)
@@ -72,8 +72,6 @@
       (typescript-mode :language-id "typescript"))
      . ("vtsls" "--stdio")))
   :config
-  (when (executable-find "emacs-lsp-booster")
-    (eglot-booster-mode 1))
   (set-face-bold 'eglot-highlight-symbol-face nil)
   (advice-add 'eglot--connect :around #'advice-eglot-connect)
   (advice-add 'eglot-ensure :around #'advice-eglot-ensure)

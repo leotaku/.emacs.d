@@ -47,7 +47,6 @@
         diredfl
         eat
         eglot
-        eglot-booster
         envrc
         expand-region
         forge
