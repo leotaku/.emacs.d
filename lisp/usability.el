@@ -118,7 +118,16 @@
 (bk-block* ace-link
   :bind (("C-x a" . ace-link))
   :custom
-  (ace-link-fallback-function . 'ace-link-org))
+  (ace-link-fallback-function . 'ace-link-org)
+  :config
+  (advice-add
+   'ace-link--org-action
+   :override
+   (lambda (pt)
+     (when (numberp pt)
+       (goto-char pt)
+       (org-open-at-point-global))
+     t)))
 
 (bk-block recentf
   :requires .recentf .no-littering
