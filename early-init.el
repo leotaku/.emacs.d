@@ -48,6 +48,7 @@
 (add-to-list 'default-frame-alist '(menu-bar-lines . 0))
 (add-to-list 'default-frame-alist '(vertical-scroll-bars . nil))
 (add-to-list 'default-frame-alist '(internal-border-width . 12))
+(add-to-list 'default-frame-alist '(undecorated . t))
 
 ;; Emacs PGTK performance optimization (important for corfu!)
 
